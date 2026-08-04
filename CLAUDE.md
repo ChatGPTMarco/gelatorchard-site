@@ -78,11 +78,6 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   è la guida di attivazione e la checklist cablaggi al lancio.
 - admin.html + admin.js → dashboard interna (8.4), NON linkata dalla nav, noindex.
   In preview legge localStorage (gc-orders/gc-feedback/gc-alerts); al lancio va protetta.
-- gelato-art.js (nella radice) → illustrazioni SVG di cono/coppetta/sacapoche coi colori veri
-  dei gusti, usate come SEGNAPOSTO nei punti che aspettano le foto del founder (hero,
-  unboxing, 2 foto story). Si applicano via [data-gelato="cone|tub|bag"] + data-flavour.
-  ⚠️ TEMPORANEE: quando arrivano le foto reali, sostituire quei blocchi con <img> e
-  togliere le .ph-note. Nessuna immagine deve mai fingersi una fotografia reale.
 - motion.js (nella radice) → TUTTE le animazioni del sito (Cap. 9). Caricarlo su ogni
   pagina pubblica DOPO gli script di pagina e PRIMA di site.js (scansiona il DOM già
   renderizzato). Nuove animazioni: solo qui, con --ease-apple e le durate standard;

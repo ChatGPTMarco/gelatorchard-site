@@ -71,8 +71,7 @@
 
         /* Capitolo 1 — il contadino */
         '<section class="story-chapter" data-chapter="1">' +
-          '<div class="sc-photo"><div data-gelato="tub" data-flavour="' + b.flavour + '"></div>' +
-          '<span class="ph-note">Illustration — photo of ' + b.farmerFirst + ' in the field to come</span></div>' +
+          '<div class="sc-photo"><span class="photo-ph">Real photo — ' + b.farmerFirst + ' in the field — to upload</span></div>' +
           '<span class="sc-kicker">Chapter 1 · The Farmer</span>' +
           '<h2>Meet ' + b.farmerFirst + '</h2>' +
           '<p class="sub" style="margin-top:14px">' + b.bio + '</p>' +
@@ -90,8 +89,7 @@
 
         /* Capitolo 2 — la produzione */
         '<section class="story-chapter" data-chapter="2">' +
-          '<div class="sc-photo"><div data-gelato="bag" data-flavour="' + b.flavour + '"></div>' +
-          '<span class="ph-note">Illustration — photo of Marco in the lab to come</span></div>' +
+          '<div class="sc-photo"><span class="photo-ph">Real photo — Marco in the lab, Trittico behind — to upload</span></div>' +
           '<span class="sc-kicker">Chapter 2 · The Making</span>' +
           '<h2>Made by ' + b.operator + '</h2>' +
           '<ul class="prod-log">' +
@@ -162,7 +160,6 @@
 
       '</div>';
 
-    if (G.paintGelato) G.paintGelato(root); /* illustrazioni segnaposto */
     wireProgress();
     wireFeedback(b);
   }
