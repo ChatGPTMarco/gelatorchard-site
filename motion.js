@@ -26,7 +26,7 @@
   /* ---------- Cascata figli (tile picker, step journey) ---------- */
   function armCascade(el) {
     if (el.classList.contains('cascade-ready')) return;
-    var st = parseFloat(el.getAttribute('data-stagger') || '0.09');
+    var st = parseFloat(el.getAttribute('data-stagger') || '0.14');
     var i = 0;
     Array.prototype.forEach.call(el.children, function (ch) {
       if (ch.classList.contains('journey-line')) return;
@@ -47,7 +47,7 @@
   function countUp(el) {
     var end = parseFloat(el.getAttribute('data-countup'));
     var suffix = el.getAttribute('data-suffix') || '';
-    var t0 = null, DUR = 1200; /* durata esplicita di spec 9.3 */
+    var t0 = null, DUR = 1800; /* conteggio 0→100 piu' disteso */
     function step(t) {
       if (!t0) t0 = t;
       var p = Math.min((t - t0) / DUR, 1);
@@ -80,7 +80,7 @@
         else if (el.hasAttribute('data-cascade')) M.cascade(el);
         else show(el);
       });
-    }, { threshold: 0, rootMargin: '0px 0px -22% 0px' }); /* l'elemento deve entrare davvero, non solo sbucare */
+    }, { threshold: 0, rootMargin: '0px 0px -28% 0px' }); /* l'elemento deve entrare davvero, non solo sbucare */
 
     Array.prototype.forEach.call(els, function (el) {
       var d = el.getAttribute('data-delay');
@@ -145,8 +145,11 @@
         el.style.transform = 'translateY(' + (t * 0.18).toFixed(1) + 'px) scale(' + (1 + (t / 700) * 0.05).toFixed(4) + ')';
       });
       if (line) {
+        /* la linea si disegna su un tratto di scroll piu' lungo: resta
+           leggibile invece di completarsi in un attimo */
         var box = line.closest('svg').parentElement.getBoundingClientRect();
-        var p = Math.max(0, Math.min(1, (wh * 0.85 - box.top) / (box.height || 1)));
+        var span = (box.height || 1) * 1.9;
+        var p = Math.max(0, Math.min(1, (wh * 0.72 - box.top) / span));
         line.style.strokeDashoffset = (1 - p).toFixed(3);
       }
     }
