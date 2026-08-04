@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Season Calendar — Gelatorchard</title>
+<meta name="description" content="12 months, only fruit grown in the UK. See what's really in season now — and what's already gone until next year.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="site-nav"></header>
+
+<main>
+  <section class="cal-hero">
+    <div class="container">
+      <span class="eyebrow reveal">Gelatorchard — No Powders. Just Fruit.</span>
+      <h1 class="h1 reveal">The Season Calendar</h1>
+      <p class="sub reveal" style="text-align:center">12 months. Only fruit grown in the UK. No frozen stock, no out-of-season imports. When it's gone, it's gone — until next year.</p>
+    </div>
+  </section>
+
+  <!-- <SeasonWheel> + pannello mese: renderizzati da calendar.js
+       sulla stessa fonte dati del Flavor Picker (flavors.js) -->
+  <section style="padding-top:0">
+    <div class="container">
+      <div class="wheel-box reveal-rotate" id="season-wheel"></div>
+      <div class="card cal-panel reveal" id="month-panel"></div>
+    </div>
+  </section>
+
+  <!-- 7.1 SEASONAL ALERT LIST (componente condiviso, alerts.js) -->
+  <section style="padding-top:0">
+    <div class="container checkout-view">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Seasonal Alert List</span>
+        <h2 class="h2">Know Before It Disappears</h2>
+      </div>
+      <div id="alert-signup-embed" class="reveal" style="margin-top:28px"></div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="flavors.js"></script>
+<script src="backend.js"></script>
+<script src="calendar.js"></script>
+<script src="alerts.js"></script>
+<script src="motion.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

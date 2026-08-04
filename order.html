@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order — Gelatorchard</title>
+<meta name="description" content="Choose a format, pick your flavours and trace every batch back to its farm. Gelato Kit £28 pickup / £34 delivery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="site-nav"></header>
+
+<main>
+
+  <!-- ============ CATALOGUE ============ -->
+  <section id="view-catalog">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Order</span>
+        <h1 class="h2">Pick a Format. Pick Your Flavours.</h1>
+        <p class="sec-sub">Every fruit flavour follows the real UK season — and every batch is traced back to its farm.</p>
+      </div>
+
+      <!-- 3.2 Format tabs (Gelato Kit active by default) -->
+      <div class="fmt-tabs" id="op-tabs" role="tablist"></div>
+
+      <!-- 3.3 FlavorPicker (shared component, dynamic max) -->
+      <div id="op-picker"></div>
+
+      <!-- 3.4 Batch / classic tickets for selected flavours -->
+      <div class="tickets" id="op-tickets"></div>
+
+      <!-- 3.5 Price block (value stack for the Kit) -->
+      <div id="op-price"></div>
+
+      <!-- 3.6 Add to basket + scarcity -->
+      <div class="op-cta-row">
+        <button class="pill pill-dark" id="op-add"></button>
+        <span class="cta-hint" id="op-hint"></span>
+      </div>
+      <div id="op-scarcity"></div>
+    </div>
+  </section>
+
+  <!-- ============ CHECKOUT STEP A — confirm order (3.8, deliberate friction) ============ -->
+  <section id="view-confirm" hidden>
+    <div class="container checkout-view">
+      <span class="eyebrow">Checkout · Step 1 of 3</span>
+      <h1 class="h2">Confirm your order</h1>
+      <div class="checkout-card" style="margin-top:24px">
+        <ul class="check-list" id="cf-list"></ul>
+        <p style="font-size:16px;font-weight:600;margin-top:8px">Is this what you want?</p>
+        <div class="step-ctas">
+          <button class="pill pill-dark" id="cf-yes">Yes, continue</button>
+          <button class="pill pill-ghost" id="cf-edit">Edit order</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHECKOUT STEP B — what this gelato is NOT (3.8) ============ -->
+  <section id="view-manifesto" hidden>
+    <div class="container checkout-view">
+      <span class="eyebrow">Checkout · Step 2 of 3</span>
+      <h1 class="h2">Before you continue</h1>
+      <div class="checkout-card manifesto" style="margin-top:24px">
+        <p class="no-line">This is <strong>NOT</strong> supermarket ice cream.</p>
+        <p class="no-line">This is <strong>NOT</strong> made from powders.</p>
+        <p class="no-line">This is <strong>NOT</strong> months old.</p>
+        <p class="yes-line" style="margin-top:14px">This <strong>IS</strong> London's most traceable gelato.</p>
+        <p class="yes-line">This <strong>IS</strong> fruit frozen at peak ripeness.</p>
+        <p class="yes-line">This <strong>IS</strong> the real name of the farmer who grew it.</p>
+        <div class="step-ctas">
+          <button class="pill pill-dark" id="mf-ok">Got it — continue</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETAILS + PAYMENT (3.8 email / 3.9) ============ -->
+  <section id="view-payment" hidden>
+    <div class="container checkout-view">
+      <span class="eyebrow">Checkout · Step 3 of 3</span>
+      <h1 class="h2">Your details &amp; payment</h1>
+      <div class="checkout-card" style="margin-top:24px">
+        <label class="field-label" for="pay-email">Your email (for order updates + the next flavour)</label>
+        <p class="field-note" style="margin:0 0 10px">You'll receive:</p>
+        <ul class="check-list" style="margin:0 0 14px">
+          <li>Real-time delivery tracking</li>
+          <li>Meet the next farmer (Monday morning)</li>
+          <li>A review request (Friday evening) — Marco reads every comment</li>
+        </ul>
+        <input class="field-input" type="email" id="pay-email" placeholder="you@example.co.uk" autocomplete="email">
+        <p class="field-note" id="pay-email-err" style="color:var(--stamp);display:none">Please enter a valid email address.</p>
+
+        <div id="pay-gift" hidden style="margin-top:22px">
+          <label class="field-label" for="gift-msg">Gift message (optional)</label>
+          <textarea class="field-input" id="gift-msg" placeholder="Is this Kit a present? We'll add your message to the box."></textarea>
+        </div>
+
+        <div class="notice ice" id="pay-ice" hidden>📦 Delivered with dry ice — handle with care and keep the box in a ventilated space.</div>
+
+        <div class="notice preview">Pre-launch preview — live payments (Stripe, Apple&nbsp;Pay, Google&nbsp;Pay) switch on at the September launch. No payment is taken today.</div>
+        <div class="paybtns" aria-hidden="true">
+          <span class="paybtn apple"> Pay</span>
+          <span class="paybtn">G&nbsp;Pay</span>
+          <span class="paybtn">Card via Stripe</span>
+        </div>
+        <div class="step-ctas">
+          <button class="pill pill-dark" id="pay-go"></button>
+          <button class="pill pill-ghost" id="pay-back">Back</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ORDER CONFIRMED (3.10) ============ -->
+  <section id="view-done" hidden>
+    <div class="container checkout-view">
+      <span class="eyebrow">Thank you</span>
+      <h1 class="h2" id="done-title">Order confirmed</h1>
+      <div class="checkout-card" style="margin-top:24px">
+        <div class="notice preview" style="margin:0 0 18px">Preview mode — no payment was taken and no real order was placed. Live orders open at the September launch.</div>
+        <p id="done-sub" style="font-size:16px"></p>
+        <p style="font-weight:600;margin-top:18px">What happens now:</p>
+        <ol class="done-steps">
+          <li>You'll receive a confirmation email in the next few minutes</li>
+          <li>Monday morning: we introduce you to the next farmer</li>
+          <li>On arrival: scan the QR on the piping bag and read the full story</li>
+          <li>After tasting: leave us a review — Marco replies within 24 hours</li>
+        </ol>
+        <div class="step-ctas">
+          <a class="pill pill-dark" href="index.html">Back to home</a>
+          <a class="pill pill-ghost" href="app.html">Join the Seasonal Alert List →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ BASKET DRAWER (3.7) ============ -->
+<button class="pill pill-dark basket-fab" id="basket-fab" hidden>Basket · <span id="fab-count">0</span></button>
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<aside class="drawer" id="basket-drawer" aria-label="Basket">
+  <div class="drawer-head">
+    <h3>Your Basket</h3>
+    <button class="drawer-close" id="drawer-close" aria-label="Close basket">✕</button>
+  </div>
+  <div class="drawer-body">
+    <p class="field-note" style="margin-bottom:6px">Pickup or delivery?</p>
+    <div class="fulfilment">
+      <button id="ful-pickup" class="active">Pickup — free</button>
+      <button id="ful-delivery">Delivery</button>
+    </div>
+    <div id="basket-items"></div>
+  </div>
+  <div class="drawer-foot">
+    <div class="tot-row"><span>Subtotal</span><span id="tot-sub">£0.00</span></div>
+    <div class="tot-row"><span>Delivery</span><span id="tot-del">£0.00 (pickup)</span></div>
+    <div class="tot-row grand"><span>Total</span><span id="tot-grand">£0.00</span></div>
+    <button class="pill pill-dark" id="go-checkout">Go to Checkout</button>
+  </div>
+</aside>
+
+<footer id="site-footer"></footer>
+<script src="flavors.js"></script>
+<script src="backend.js"></script>
+<script src="order.js"></script>
+<script src="motion.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

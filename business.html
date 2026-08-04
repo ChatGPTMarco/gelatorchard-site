@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business &amp; Corporate — Gelatorchard</title>
+<meta name="description" content="Event catering, corporate gifts (Premium Gift Box £28.50), office stock and wholesale — the same traceable fruit, at a different scale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="site-nav"></header>
+
+<main>
+
+  <!-- 6.2 HERO -->
+  <section class="cal-hero">
+    <div class="container">
+      <span class="eyebrow reveal">For Companies, Events, Gifts</span>
+      <h1 class="h1 reveal">The Same Traceable Fruit.<br>At a Different Scale.</h1>
+      <p class="sub reveal" style="text-align:center;margin-left:auto;margin-right:auto">Whether you're supplying an event, sending a corporate gift or bringing real gelato into the office — no compromise on ingredients or traceability.</p>
+      <div class="hero-ctas reveal">
+        <a class="pill pill-dark" href="#contact">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.3 QUATTRO TAB -->
+  <section style="padding-top:12px">
+    <div class="container">
+      <div class="flavor-tabs biz-tabs" role="tablist">
+        <button class="flavor-tab active" data-tab="catering" role="tab" aria-selected="true">Event Catering</button>
+        <button class="flavor-tab" data-tab="gifts" role="tab" aria-selected="false">Corporate Gifts</button>
+        <button class="flavor-tab" data-tab="office" role="tab" aria-selected="false">Office Stock</button>
+        <button class="flavor-tab" data-tab="wholesale" role="tab" aria-selected="false">Wholesale</button>
+      </div>
+
+      <!-- Tab 1 — Event Catering -->
+      <div class="biz-panel" data-panel="catering">
+        <div class="checkout-card">
+          <h2 style="font-size:24px">Event Catering</h2>
+          <p class="lead" style="margin-top:8px">Bulk servings for events, weddings and company parties.</p>
+          <ul class="check-list">
+            <li>Minimum 20 servings</li>
+            <li>From £6 a serving (price scales with volume)</li>
+            <li>No platform fees — you order direct</li>
+            <li>Mixed Fruit + Classics flavours on request</li>
+            <li>Delivery on the day of the event, cold chain guaranteed</li>
+          </ul>
+          <a class="pill pill-dark" href="#contact" data-request="Event Catering">Request an event quote</a>
+        </div>
+      </div>
+
+      <!-- Tab 2 — Corporate Gifts (Premium Gift Box ≠ Gelato Kit) -->
+      <div class="biz-panel" data-panel="gifts" hidden>
+        <div class="checkout-card">
+          <h2 style="font-size:24px">Corporate Gifts — Premium Gift Box</h2>
+          <p class="lead" style="margin-top:8px">The Premium Gift Box: 4 piping bags (flavours of your choice) + ribbon + personalised card. <strong>£28.50 a unit</strong>, minimum 10 for corporate orders — B2B pricing negotiable on larger volumes.</p>
+          <p class="lead" style="margin-top:10px">Perfect for: end-of-year gifts, welcome kits for new clients, project thank-yous.</p>
+          <ul class="check-list">
+            <li>Personalised message card included</li>
+            <li>Premium kraft box with magnetic closure</li>
+            <li>Delivery schedulable for a specific date</li>
+          </ul>
+          <a class="pill pill-dark" href="#contact" data-request="Corporate Gifts">Request a gifting quote</a>
+        </div>
+      </div>
+
+      <!-- Tab 3 — Office Stock (riordino manuale, MAI abbonamento) -->
+      <div class="biz-panel" data-panel="office" hidden>
+        <div class="checkout-card">
+          <h2 style="font-size:24px">Office Stock</h2>
+          <p class="lead" style="margin-top:8px">Bring real gelato into the office. No automatic plan, no recurring billing — just a direct channel to re-order easily, whenever you need it.</p>
+          <ul class="check-list">
+            <li>Cup Multipacks (4-pack, £12) — ideal for the break room</li>
+            <li>Repeat orders handled by a dedicated human contact — no saved card, no auto-charge</li>
+            <li>Company invoicing on request</li>
+          </ul>
+          <a class="pill pill-dark" href="#contact" data-request="Office Stock">Contact the business team</a>
+        </div>
+      </div>
+
+      <!-- Tab 4 — Wholesale -->
+      <div class="biz-panel" data-panel="wholesale" hidden>
+        <div class="checkout-card">
+          <h2 style="font-size:24px">Stockists &amp; Wholesale</h2>
+          <p class="lead" style="margin-top:8px">Gelato Kit and Premium Gift Box on sale-or-return for quality food shops, boutique hotels and concept stores.</p>
+          <ul class="check-list">
+            <li>Co-branding available on request</li>
+            <li>POS material (QR codes, product cards) supplied by us</li>
+            <li>Retailer margin agreed in negotiation</li>
+          </ul>
+          <a class="pill pill-dark" href="#contact" data-request="Wholesale">Become a stockist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6.4 FORM DI CONTATTO (condiviso da tutte le tab) -->
+  <section id="contact" style="padding-top:0">
+    <div class="container checkout-view">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Request a Quote</span>
+        <h2 class="h2">Tell Us What You Need</h2>
+      </div>
+      <div class="checkout-card" style="margin-top:28px">
+        <div id="biz-form">
+          <div class="form-grid">
+            <div class="field"><label class="field-label" for="bf-name">Name</label>
+              <input class="field-input" id="bf-name" type="text" autocomplete="name"></div>
+            <div class="field"><label class="field-label" for="bf-company">Company</label>
+              <input class="field-input" id="bf-company" type="text" autocomplete="organization"></div>
+            <div class="field"><label class="field-label" for="bf-email">Email</label>
+              <input class="field-input" id="bf-email" type="email" autocomplete="email"></div>
+            <div class="field"><label class="field-label" for="bf-phone">Phone</label>
+              <input class="field-input" id="bf-phone" type="tel" autocomplete="tel"></div>
+            <div class="field"><label class="field-label" for="bf-type">Request type</label>
+              <select class="field-input" id="bf-type">
+                <option value="">Select…</option>
+                <option>Event Catering</option>
+                <option>Corporate Gifts</option>
+                <option>Office Stock</option>
+                <option>Wholesale</option>
+              </select></div>
+            <div class="field"><label class="field-label" for="bf-volume">Estimated volume</label>
+              <input class="field-input" id="bf-volume" type="text" placeholder="e.g. 50 servings, 20 boxes"></div>
+            <div class="field full"><label class="field-label" for="bf-date">Event date (if applicable)</label>
+              <input class="field-input" id="bf-date" type="date"></div>
+            <div class="field full"><label class="field-label" for="bf-msg">Message</label>
+              <textarea class="field-input" id="bf-msg" placeholder="Anything else we should know?"></textarea></div>
+          </div>
+          <div class="step-ctas">
+            <button class="pill pill-dark" id="bf-send">Send request</button>
+            <span class="cta-hint" id="bf-hint"></span>
+          </div>
+          <p class="field-note" style="margin-top:14px">We reply within 1–2 working days.</p>
+        </div>
+        <div id="biz-done" hidden>
+          <p style="font-size:17px;font-weight:600" id="biz-done-msg"></p>
+          <p class="field-note" style="margin-top:8px">We reply within 1–2 working days.</p>
+          <div class="notice preview">Pre-launch preview — the enquiry service connects at launch, so nothing was sent yet.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+<script src="backend.js"></script>
+<script src="business.js"></script>
+<script src="motion.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

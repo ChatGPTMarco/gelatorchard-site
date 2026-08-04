@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150">
+  <!-- Gelatorchard mark: la "O" del wordmark — arancia con foglia sopra un cono a tratto.
+       Colori = token del sito: orange #E8934A, green #2D7A4A, green-deep #1F5C37 -->
+  <path d="M28 82 L48 142 L68 82" fill="none" stroke="#1F5C37" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="48" cy="58" r="32" fill="#E8934A"/>
+  <path d="M52 26 C53 19 56 13 62 8" fill="none" stroke="#2D7A4A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M56 14 C64 2 78 0 86 6 C80 18 64 22 56 14 Z" fill="#2D7A4A"/>
+</svg>

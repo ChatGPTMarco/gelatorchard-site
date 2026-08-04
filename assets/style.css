@@ -1,0 +1,104 @@
+/* ============================================================
+   GELATORCHARD — Design System "Apple Minimal, Natural Light"
+   Capitolo 1 · Token e componenti globali
+   ============================================================ */
+:root{
+  --bg:#FBFBF9;
+  --surface:#FFFFFF;
+  --ink:#1D1D1F;
+  --ink-soft:rgba(29,29,31,.62);
+  --ink-faint:rgba(29,29,31,.42);
+  --green:#2D7A4A;
+  --green-deep:#1F5C37;
+  --orange:#E8934A;
+  --line:rgba(29,29,31,.08);
+  --shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(29,29,31,.06);
+  --radius:22px;
+  --serif:'Fraunces', Georgia, serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+h1,h2,h3,.serif{font-family:var(--serif);font-optical-sizing:auto;font-weight:500;letter-spacing:-.015em}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---------- Layout ---------- */
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--green);margin-bottom:14px}
+.h1{font-size:clamp(38px,5.6vw,64px);line-height:1.06}
+.h2{font-size:clamp(28px,4vw,44px);line-height:1.12}
+.sub{color:var(--ink-soft);font-size:17px;max-width:56ch;margin-top:16px}
+.caption{color:var(--ink-faint);font-size:13px}
+
+/* ---------- Bottoni (pillole) ---------- */
+.pill{display:inline-flex;align-items:center;gap:8px;border-radius:100px;padding:13px 26px;font-family:var(--sans);font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
+.pill:hover{transform:scale(1.035);box-shadow:var(--shadow)}
+.pill-dark{background:var(--ink);color:#fff}
+.pill-green{background:var(--green);color:#fff}
+.pill-green:hover{background:var(--green-deep)}
+.pill-ghost{background:transparent;color:var(--ink);border-color:var(--line);background:var(--surface)}
+.pill-sm{padding:9px 18px;font-size:13.5px}
+
+/* ---------- Card ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+.card.featured{border:2px solid var(--green)}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(251,251,249,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-dot{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 32% 30%, #3E9A61, var(--green) 55%, var(--green-deep));flex-shrink:0;box-shadow:inset 0 -2px 5px rgba(0,0,0,.18)}
+.brand-name{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:-.02em}
+.nav-links{display:flex;gap:6px;list-style:none}
+.nav-links a{display:block;padding:8px 14px;border-radius:100px;font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:background .15s,color .15s}
+.nav-links a:hover{color:var(--ink);background:rgba(29,29,31,.05)}
+.nav-links a.active{color:var(--ink);background:rgba(45,122,74,.1)}
+@media(max-width:820px){.nav-links{display:none}}
+
+/* ---------- Footer ---------- */
+.footer{border-top:1px solid var(--line);padding:56px 0 40px;margin-top:40px;background:var(--surface)}
+.footer-grid{max-width:1120px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between}
+.footer .tagline{color:var(--ink-soft);font-size:14px;margin-top:10px;max-width:30ch}
+.footer h4{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--ink-faint);margin-bottom:14px}
+.footer ul{list-style:none}
+.footer li{margin-bottom:9px}
+.footer a{text-decoration:none;color:var(--ink-soft);font-size:14px}
+.footer a:hover{color:var(--ink)}
+.footer-legal{max-width:1120px;margin:40px auto 0;padding:24px 24px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--ink-faint)}
+
+/* ---------- Flavor Picker (elemento signature) ---------- */
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.tile{cursor:pointer;user-select:none}
+.tile .swatch{aspect-ratio:1;border-radius:20px;border:2px solid transparent;position:relative;transition:transform .18s ease,border-color .15s ease,box-shadow .18s ease}
+.tile:hover .swatch{transform:scale(1.03);box-shadow:var(--shadow)}
+.tile.selected .swatch{border-color:var(--green)}
+.tile.selected .swatch::after{content:"✓";position:absolute;top:10px;right:10px;width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.tile .t-name{font-weight:600;font-size:14px;margin-top:10px}
+.tile .t-meta{font-size:12px;color:var(--ink-faint)}
+.tile.soldout{opacity:.45;cursor:not-allowed}
+.tile.soldout .t-meta{color:var(--orange)}
+
+/* Swatch gradienti colore-vero (da sostituire con foto prodotto reali) */
+.sw-fragola{background:linear-gradient(145deg,#F6A9B8,#E0475C 60%,#C22B44)}
+.sw-lampone{background:linear-gradient(145deg,#E87FA0,#C4356B 60%,#9C2352)}
+.sw-ciliegia{background:linear-gradient(145deg,#C9506B,#8E1F38 60%,#6E1229)}
+.sw-mirtillo{background:linear-gradient(145deg,#8B87C0,#4E4B8F 60%,#37356B)}
+.sw-ribes{background:linear-gradient(145deg,#7A5B8E,#4A2F5E 60%,#33203F)}
+.sw-susina{background:linear-gradient(145deg,#B08FC9,#7C4F9E 60%,#5B3676)}
+.sw-mela-pera{background:linear-gradient(145deg,#D6E3A3,#A9C46A 60%,#7E9E45)}
+.sw-cotogna{background:linear-gradient(145deg,#F2D98B,#DBB44E 60%,#B8912F)}
+.sw-rabarbaro{background:linear-gradient(145deg,#F4A0A8,#E06A78 55%,#C94E62)}
+.sw-cioccolato{background:linear-gradient(145deg,#6B4A38,#452B1E 60%,#2E1B12)}
+.sw-pistacchio{background:linear-gradient(145deg,#CBD9A8,#A3BA76 60%,#7F9A55)}
+.sw-nocciola{background:linear-gradient(145deg,#C7A075,#9E744C 60%,#7B5636)}
+.sw-stracciatella{background:radial-gradient(circle at 20% 25%,#3B2A20 0 4%,transparent 5%),radial-gradient(circle at 62% 18%,#3B2A20 0 3%,transparent 4%),radial-gradient(circle at 38% 55%,#3B2A20 0 3.5%,transparent 4.5%),radial-gradient(circle at 78% 62%,#3B2A20 0 4%,transparent 5%),radial-gradient(circle at 22% 82%,#3B2A20 0 3%,transparent 4%),radial-gradient(circle at 58% 86%,#3B2A20 0 3.5%,transparent 4.5%),radial-gradient(circle at 88% 30%,#3B2A20 0 2.5%,transparent 3.5%),linear-gradient(145deg,#F7F1E3,#EFE4CC)}
+
+/* ---------- Utility ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.placeholder-hero{min-height:62vh;display:flex;align-items:center;text-align:left}
+.badge-soon{display:inline-block;background:rgba(232,147,74,.14);color:#B96F2E;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:18px}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.pill:hover,.tile:hover .swatch{transform:none}}

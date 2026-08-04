@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Ops — Gelatorchard (internal)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Dashboard interna (Cap. 8.4) — NON linkata dalla nav pubblica.
+     In preview legge i dati di test locali (localStorage di questo
+     browser); al lancio va collegata a Supabase e PROTETTA da login. -->
+
+<main>
+  <section style="padding-top:48px">
+    <div class="container" style="max-width:840px">
+      <span class="eyebrow">Internal · Ops</span>
+      <h1 class="h2">This Week at a Glance</h1>
+      <div class="notice preview" style="margin-top:16px">Internal preview — this page reads local test data only. Before launch: connect to Supabase and put it behind a login.</div>
+
+      <div class="card" style="margin-top:28px">
+        <h3 style="font-size:19px">Batches</h3>
+        <ul class="data-list" id="ad-batches" style="margin-top:14px"></ul>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <h3 style="font-size:19px">Orders <span class="caption">(local test orders)</span></h3>
+        <div class="notice ice" id="ad-assembly" style="margin-top:14px"></div>
+        <ul class="data-list" id="ad-orders" style="margin-top:14px"></ul>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <h3 style="font-size:19px">Feedback awaiting Marco</h3>
+        <ul class="data-list" id="ad-feedback" style="margin-top:14px"></ul>
+      </div>
+
+      <div class="card" style="margin-top:20px;margin-bottom:64px">
+        <h3 style="font-size:19px">Seasonal Alert List — demand signal</h3>
+        <ul class="data-list" id="ad-alerts" style="margin-top:14px"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="flavors.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

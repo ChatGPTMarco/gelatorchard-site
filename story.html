@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Batch Story — Gelatorchard</title>
+<meta name="description" content="Scan the QR on your pack: the farmer, the farm, the harvest time and the production log of the exact batch in your hands.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="site-nav"></header>
+
+<!-- Route dinamica: story.html?batch=042 oppure ?flavour=strawberry.
+     Il contenuto è renderizzato da story.js leggendo Gelatorchard.BATCHES
+     (registro JSON provvisorio — al lancio alimentato dal CMS Notion). -->
+<main id="story-root"></main>
+
+<footer id="site-footer"></footer>
+<script src="flavors.js"></script>
+<script src="backend.js"></script>
+<script src="story.js"></script>
+<script src="motion.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
