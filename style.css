@@ -491,7 +491,9 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 /* Cascata figli ([data-cascade]; "x" = slide da destra, journey) */
 .cascade-ready>:not(.journey-line){opacity:0;transform:translateY(22px);transition:opacity var(--dur-med) var(--ease-apple),transform var(--dur-med) var(--ease-apple)}
 [data-cascade="x"].cascade-ready>:not(.journey-line){transform:translateX(24px)}
-.cascade-ready.cas-in>:not(.journey-line){opacity:1;transform:none}
+/* NB: lo stato "entrato" deve battere in specificita' la regola
+   [data-cascade="x"] qui sopra, altrimenti gli elementi restano fermi */
+[data-cascade].cascade-ready.cas-in>:not(.journey-line){opacity:1;transform:none}
 
 /* Cambio tab picker: uscente fade+scale .98, entrante da .98 → 1 (0.35s) */
 .grid-out{opacity:0!important;transform:scale(.98);transition:opacity .22s ease,transform .22s ease}

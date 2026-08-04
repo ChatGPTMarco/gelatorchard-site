@@ -38,6 +38,14 @@
     if (REDUCED) { el.classList.add('cascade-ready', 'cas-in'); return; }
     armCascade(el);
     el.classList.add('cas-in');
+    /* Garanzia: i figli devono comparire anche se una regola CSS piu'
+       specifica dovesse vincere sullo stato "entrato" (regola 9.4: il
+       contenuto non resta mai nascosto). */
+    Array.prototype.forEach.call(el.children, function (ch) {
+      if (ch.classList.contains('journey-line')) return;
+      ch.style.opacity = '1';
+      ch.style.transform = 'none';
+    });
   };
 
   /* ---------- Count-up (spec strip: 100%) ---------- */
@@ -71,24 +79,52 @@
       return;
     }
 
+    function fire(el) {
+      if (el.getAttribute('data-fired')) return;
+      el.setAttribute('data-fired', '1');
+      if (el.hasAttribute('data-countup')) countUp(el);
+      else if (el.hasAttribute('data-cascade')) M.cascade(el);
+      else show(el);
+    }
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
-        var el = e.target;
-        io.unobserve(el);
-        if (el.hasAttribute('data-countup')) countUp(el);
-        else if (el.hasAttribute('data-cascade')) M.cascade(el);
-        else show(el);
+        io.unobserve(e.target);
+        fire(e.target);
       });
     }, { threshold: 0, rootMargin: '0px 0px -28% 0px' }); /* l'elemento deve entrare davvero, non solo sbucare */
+
+    /* Rete di sicurezza: se per qualsiasi motivo un elemento resta
+       invisibile pur essendo entrato nel viewport, lo mostriamo allo
+       scroll. Il contenuto non deve MAI restare nascosto (regola 9.4). */
+    var pending = [];
+    function sweep() {
+      if (!pending.length) return;
+      var line = window.innerHeight * 0.85;
+      pending = pending.filter(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < line && r.bottom > 0) { io.unobserve(el); fire(el); return false; }
+        return true;
+      });
+    }
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep);
+    setTimeout(sweep, 400);
 
     Array.prototype.forEach.call(els, function (el) {
       var d = el.getAttribute('data-delay');
       if (d) el.style.transitionDelay = d + 's';
-      io.observe(el);
+      io.observe(el); pending.push(el);
     });
-    Array.prototype.forEach.call(cascades, function (el) { armCascade(el); io.observe(el); });
-    Array.prototype.forEach.call(counts, function (el) { el.textContent = '0' + (el.getAttribute('data-suffix') || ''); io.observe(el); });
+    Array.prototype.forEach.call(cascades, function (el) {
+      armCascade(el); io.observe(el); pending.push(el);
+    });
+    Array.prototype.forEach.call(counts, function (el) {
+      el.textContent = '0' + (el.getAttribute('data-suffix') || '');
+      io.observe(el); pending.push(el);
+    });
+    sweep(); /* elementi gia' visibili al caricamento */
   }
 
   /* ---------- Cambio tab picker: out fade+scale .98, in da .98 (9.3) ----------
