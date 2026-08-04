@@ -26,7 +26,7 @@
   /* ---------- Cascata figli (tile picker, step journey) ---------- */
   function armCascade(el) {
     if (el.classList.contains('cascade-ready')) return;
-    var st = parseFloat(el.getAttribute('data-stagger') || '0.06');
+    var st = parseFloat(el.getAttribute('data-stagger') || '0.09');
     var i = 0;
     Array.prototype.forEach.call(el.children, function (ch) {
       if (ch.classList.contains('journey-line')) return;
@@ -80,7 +80,7 @@
         else if (el.hasAttribute('data-cascade')) M.cascade(el);
         else show(el);
       });
-    }, { threshold: 0, rootMargin: '0px 0px -15% 0px' }); /* trigger al ~20% dal basso (9.4) */
+    }, { threshold: 0, rootMargin: '0px 0px -22% 0px' }); /* l'elemento deve entrare davvero, non solo sbucare */
 
     Array.prototype.forEach.call(els, function (el) {
       var d = el.getAttribute('data-delay');
