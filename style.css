@@ -505,6 +505,16 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .panel-out{opacity:0}
 .panel-pre{opacity:0!important;transform:translateY(10px)!important;transition:none!important}
 
+/* ---- Foto provvisorie (stock, BOZZA — vedi FOTO-DA-SCARICARE.md) ----
+   Si agganciano da photos.js solo se il file esiste in assets/.
+   Vanno rimosse prima del lancio insieme a ogni altro data-fake. */
+.photo-fill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-visual .photo-fill,.unbox-visual .photo-fill{filter:saturate(1.05)}
+/* velo scuro sotto il testo bianco sovrapposto, cosi' resta leggibile su qualsiasi foto */
+.has-photo .hv-overlay{background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.62))}
+.photo-tag{position:absolute;top:12px;left:12px;z-index:3;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(29,29,31,.55);backdrop-filter:blur(4px);border-radius:100px;padding:4px 11px;pointer-events:none}
+.has-photo .unbox-placeholder,.has-photo .photo-ph{display:none}
+
 /* Linea journey che si disegna con lo scroll (effetto più "Apple") */
 .journey-grid{position:relative}
 .journey-line{position:absolute;top:18px;left:0;width:100%;height:3px;z-index:0;pointer-events:none;overflow:visible}
