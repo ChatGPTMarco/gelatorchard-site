@@ -1,5 +1,5 @@
 /* ============================================================
-   GELATORCHARD — Dashboard interna · Capitolo 8.4
+   GELATORCHARD, Dashboard interna · Capitolo 8.4
    Preview: legge i dati di test locali (gc-orders, gc-feedback,
    gc-alerts) + il registro batch (flavors.js). Al lancio: stesse
    viste alimentate da Supabase (orders/feedback/alert_subscriptions)
@@ -26,7 +26,7 @@
   batchesEl.innerHTML = ids.length
     ? ids.map(function (k) {
         var b = G.BATCHES[k];
-        return row('#' + b.id + ' — ' + b.fruitName + ' (' + b.farmName + ')',
+        return row('#' + b.id + ', ' + b.fruitName + ' (' + b.farmName + ')',
           (b.status || 'disponibile') + ' · produced ' + b.produced);
       }).join('')
     : empty('No batches in the registry');
@@ -40,21 +40,21 @@
           return it.format + (it.qty > 1 ? ' ×' + it.qty : '') + ' (' + it.flavours.join(' + ') + ')';
         }).join('; ');
         return row(new Date(o.date).toLocaleDateString('en-GB') + ' · ' + o.email,
-          items + ' — £' + o.total.toFixed(2) + ' · ' + o.fulfilment);
+          items + ', £' + o.total.toFixed(2) + ' · ' + o.fulfilment);
       }).join('')
-    : empty('No test orders yet — place one from /order');
+    : empty('No test orders yet, place one from /order');
 
   var kits = 0;
   orders.forEach(function (o) {
     o.items.forEach(function (it) { if (it.format === 'Gelato Kit') kits += it.qty; });
   });
-  var minutes = kits * 9; /* 8-10 min per Kit (nota 8.3) — media 9 */
+  var minutes = kits * 9; /* 8-10 min per Kit (nota 8.3), media 9 */
   var over = minutes > 120;
   document.getElementById('ad-assembly').innerHTML =
     '<strong>Thursday assembly:</strong> ' + kits + ' Gelato Kit' + (kits === 1 ? '' : 's') +
     ' ≈ ' + minutes + ' min (8–10 min each). ' +
     (over
-      ? '<strong style="color:var(--stamp)">Over the 2-hour window — plan a second slot or an extra pair of hands.</strong>'
+      ? '<strong style="color:var(--stamp)">Over the 2-hour window, plan a second slot or an extra pair of hands.</strong>'
       : 'Fits the 2-hour window.');
 
   /* ---------- Feedback non risposti (≤4 stelle evidenziati) ---------- */
@@ -63,7 +63,7 @@
   fbEl.innerHTML = fb.length
     ? fb.map(function (f) {
         var stars = '★★★★★'.slice(0, f.rating) + '☆☆☆☆☆'.slice(0, 5 - f.rating);
-        var label = stars + (f.comment ? ' — “' + f.comment + '”' : '');
+        var label = stars + (f.comment ? ', “' + f.comment + '”' : '');
         return row('Batch #' + f.batch + ' · ' + new Date(f.date).toLocaleDateString('en-GB'),
           label + (f.rating <= 4 ? ' · needs reply' : ''), f.rating <= 4);
       }).join('')

@@ -1,5 +1,5 @@
 /* ============================================================
-   GELATORCHARD — /business · Capitolo 6
+   GELATORCHARD, /business · Capitolo 6
    Tab B2B + form preventivi condiviso. Nessun pagamento: tutto
    a preventivo/contatto. Il form è in "pre-launch preview": al
    lancio va collegato all'endpoint email/Slack di Marco.
@@ -42,7 +42,7 @@
     hint.textContent = '';
     document.getElementById('biz-form').hidden = true;
     document.getElementById('biz-done-msg').textContent =
-      'Thanks, ' + name + ' — your ' + type.toLowerCase() + ' enquiry is on its way to Marco.';
+      'Thanks, ' + name + ', your ' + type.toLowerCase() + ' enquiry is on its way to Marco.';
     document.getElementById('biz-done').hidden = false;
 
     /* Invio al webhook (email/Slack di Marco) quando configurato (Cap. 8) */

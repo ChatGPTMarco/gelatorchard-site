@@ -1,9 +1,9 @@
 /* ============================================================
-   GELATORCHARD — /order · Capitolo 3
+   GELATORCHARD, /order · Capitolo 3
    Format tabs, FlavorPicker riusato (max dinamico), ticket batch,
    value stack, basket drawer, checkout a 2 conferme + pagamento.
    Il pagamento è in "pre-launch preview": Stripe si aggancia al
-   lancio — nessun pagamento reale viene preso oggi.
+   lancio, nessun pagamento reale viene preso oggi.
    ============================================================ */
 (function () {
   'use strict';
@@ -24,17 +24,17 @@
     kit: {
       name: 'Gelato Kit', tabPrice: '£28–34', min: 2, max: 2,
       price: 28, priceDelivery: 34,
-      hint: 'Pick exactly 2 flavours — one per piping bag'
+      hint: 'Pick exactly 2 flavours, one per piping bag'
     },
     multipack: {
       name: 'Multipack', tabPrice: '£12', min: 1, max: 4, price: 12,
-      priceLabel: '£12', desc: '4 cups, up to 4 flavours — one per cup.',
-      hint: 'Up to 4 flavours — one per cup in the pack'
+      priceLabel: '£12', desc: '4 cups, up to 4 flavours, one per cup.',
+      hint: 'Up to 4 flavours, one per cup in the pack'
     },
     tub: {
       name: 'Family Tub', tabPrice: '£22', min: 1, max: 2, price: 22,
       priceLabel: '£22', desc: '1 litre. One flavour, or two half-and-half.',
-      hint: '1 or 2 flavours — the 1L tub can hold two halves'
+      hint: '1 or 2 flavours, the 1L tub can hold two halves'
     }
   };
   var TAB_ORDER = ['cup', 'bag', 'kit', 'multipack', 'tub'];
@@ -73,7 +73,7 @@
     return ids;
   }
   function itemLabel(it) {
-    return FORMATS[it.format].name + ' — ' +
+    return FORMATS[it.format].name + ', ' +
       it.flavours.map(function (id) { return G.flavorById(id).name; }).join(' + ') +
       (it.qty > 1 ? ' ×' + it.qty : '');
   }
@@ -123,13 +123,13 @@
       return '<div class="ticket">' +
         '<span class="tk-dot ' + f.sw + '"></span>' +
         '<div><div class="tk-title">' + f.name + '</div>' +
-        '<div class="tk-farm">Always available — real ingredients, never powders</div></div></div>';
+        '<div class="tk-farm">Always available: real ingredients, never powders</div></div></div>';
     }
     var b = G.BATCHES[id];
     if (b) {
       return '<div class="ticket">' +
         '<span class="tk-dot ' + f.sw + '"></span>' +
-        '<div><div class="tk-title">' + f.name + ' — Batch #' + b.id + '</div>' +
+        '<div><div class="tk-title">' + f.name + ' · Batch #' + b.id + '</div>' +
         '<div class="tk-farm">' + b.farm + '</div>' +
         '<div class="tk-dates">Picked: ' + b.harvest + ' · Produced: ' + b.produced + '</div>' +
         '<a class="tk-link" href="story.html?batch=' + b.id + '">Read the full story →</a></div></div>';
@@ -138,8 +138,8 @@
     return '<div class="ticket">' +
       '<span class="tk-dot ' + f.sw + '"></span>' +
       '<div><div class="tk-title">' + f.name + '</div>' +
-      '<div class="tk-farm">' + origin + ' — in season now</div>' +
-      '<div class="tk-dates">Current batch details arrive with your delivery — every bag carries a QR.</div>' +
+      '<div class="tk-farm">' + origin + ', in season now</div>' +
+      '<div class="tk-dates">Current batch details arrive with your delivery, every bag carries a QR.</div>' +
       '<a class="tk-link" href="story.html?flavour=' + id + '">Read the story →</a></div></div>';
   }
 
@@ -151,16 +151,16 @@
       return '<div class="price-block">' +
         '<div class="price-line">£28.00 pickup · £34.00 delivery</div>' +
         '<p class="price-anchor">A London gelato bar charges <strong>£4.50–7.50 a scoop</strong>. ' +
-        'Your Kit: roughly 8 generous scoops (1kg, 2 flavours) — under <strong>£3.50 a scoop</strong>, farmer’s story included.</p>' +
+        'Your Kit: roughly 8 generous scoops (1kg, 2 flavours), under <strong>£3.50 a scoop</strong>, with the farmer’s story included.</p>' +
         '<ul class="value-stack">' +
         '<li>1kg of real gelato (2 × 500g piping bags, 2 flavours of your choice)</li>' +
         '<li>6–8 wafer cones, 6 kraft cups, 6 wooden spoons</li>' +
         '<li>Insulated dry-ice box (holds -18°C for 6+ hours)</li>' +
-        '<li>Full traceability — QR to the batch story</li>' +
+        '<li>Full traceability: a QR to the batch story</li>' +
         '</ul></div>';
     }
     return '<div class="price-block">' +
-      '<div class="price-line">' + f.name + ' — ' + f.priceLabel + '</div>' +
+      '<div class="price-line">' + f.name + ' · ' + f.priceLabel + '</div>' +
       '<p class="price-anchor">' + f.desc + '</p></div>';
   }
 
@@ -178,10 +178,10 @@
     add.disabled = !ok;
     add.classList.toggle('disabled', !ok);
     if (activeFormat === 'kit') {
-      add.textContent = 'Add the Kit — £28 / £34';
+      add.textContent = 'Add the Kit · £28 / £34';
       hint.textContent = ok ? '' : 'Select 2 flavours to continue';
     } else {
-      add.textContent = 'Add to Basket — ' + f.priceLabel;
+      add.textContent = 'Add to Basket · ' + f.priceLabel;
       hint.textContent = ok ? '' : 'Select a flavour to continue';
     }
     if (ok) hint.textContent = f.hint;
@@ -234,7 +234,7 @@
   function renderBasket() {
     var box = document.getElementById('basket-items');
     if (basket.length === 0) {
-      box.innerHTML = '<p class="basket-empty">Your basket is empty — pick a format and your flavours above.</p>';
+      box.innerHTML = '<p class="basket-empty">Your basket is empty, pick a format and your flavours above.</p>';
     } else {
       box.innerHTML = basket.map(function (it, i) {
         return '<div class="basket-item">' +
@@ -271,7 +271,7 @@
   function etaLine() {
     return fulfilment === 'delivery'
       ? 'Estimated delivery: ' + etaDate() + ', around 7:15pm'
-      : 'Pickup: ' + etaDate() + ' — we’ll confirm the exact time by email';
+      : 'Pickup: ' + etaDate() + ', we’ll confirm the exact time by email';
   }
 
   /* ---------- 3.8 Step A — conferma ordine ---------- */
@@ -280,11 +280,11 @@
     closeDrawer();
     var rows = basket.map(itemLabel);
     if (basketFruitIds().indexOf('strawberry') >= 0) {
-      rows.push("Johnson's Farm, Kent — picked 15 May");
+      rows.push("Johnson's Farm, Kent. Picked 15 May");
     }
     rows.push(etaLine());
     rows.push('You’ll receive a QR to scan on arrival');
-    rows.push('We’ll ask you for a review — Marco reads every comment');
+    rows.push('We’ll ask you for a review, Marco reads every comment');
     document.getElementById('cf-list').innerHTML =
       rows.map(function (r) { return '<li>' + r + '</li>'; }).join('');
     showView('view-confirm');
@@ -304,7 +304,7 @@
     document.getElementById('pay-ice').hidden =
       !(fulfilment === 'delivery' && basketFruitIds().length > 0);
     var sub = basket.reduce(function (n, it) { return n + unitPrice(it) * it.qty; }, 0);
-    document.getElementById('pay-go').textContent = 'Pay ' + gbp(sub) + ' — preview';
+    document.getElementById('pay-go').textContent = 'Pay ' + gbp(sub) + ' (preview)';
     showView('view-payment');
   });
   document.getElementById('pay-back').addEventListener('click', function () {
@@ -321,11 +321,11 @@
     var b = G.BATCHES.strawberry;
     document.getElementById('done-title').textContent =
       (basketFruitIds().indexOf('strawberry') >= 0 && b)
-        ? 'Order confirmed — Batch #' + b.id
+        ? 'Order confirmed · Batch #' + b.id
         : 'Order confirmed';
     var what = basket.map(itemLabel).join('; ');
     document.getElementById('done-sub').textContent =
-      'Your ' + what + ' — ' + etaLine().charAt(0).toLowerCase() + etaLine().slice(1) + '.';
+      'Your ' + what + ', ' + etaLine().charAt(0).toLowerCase() + etaLine().slice(1) + '.';
 
     /* Registro locale (dashboard admin) + invio a Supabase quando configurato */
     var gift = (document.getElementById('gift-msg') || {}).value || '';

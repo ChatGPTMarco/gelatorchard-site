@@ -1,5 +1,5 @@
 /* ============================================================
-   GELATORCHARD — Componenti globali: <Nav> e <Footer>
+   GELATORCHARD, Componenti globali: <Nav> e <Footer>
    Iniettati su ogni pagina (equivalente HTML dei componenti
    React previsti dallo stack Next.js al momento del lancio).
    ============================================================ */
@@ -7,7 +7,7 @@
   var page = (location.pathname.split('/').pop() || 'index.html');
 
   /* ---------- Logo (lockup ufficiale: la "O" è un'arancia con foglia
-     sopra un cono a tratto — ricreato in SVG con i token del sito) ---------- */
+     sopra un cono a tratto, ricreato in SVG con i token del sito) ---------- */
   var LOGO_O =
     '<svg class="logo-o" viewBox="0 0 100 150" aria-hidden="true" focusable="false">' +
       '<path d="M28 82 L48 142 L68 82" fill="none" stroke="var(--green-deep)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>' +
@@ -16,7 +16,7 @@
       '<path d="M56 14 C64 2 78 0 86 6 C80 18 64 22 56 14 Z" fill="var(--green)"/>' +
     '</svg>';
   function brandHTML() {
-    return '<a class="brand" href="index.html" aria-label="Gelatorchard — home">' +
+    return '<a class="brand" href="index.html" aria-label="Gelatorchard, home">' +
       '<span class="brand-word">GELAT</span>' + LOGO_O + '<span class="brand-word">RCHARD</span></a>';
   }
 
@@ -84,7 +84,7 @@
         '</ul></div>' +
       '</div>' +
       '<div class="footer-legal">' +
-        '<span>© 2026 Gelatorchard Ltd — London</span>' +
+        '<span>© 2026 Gelatorchard Ltd, London</span>' +
         '<span>No Powders. Just Fruit.</span>' +
       '</div>';
   }

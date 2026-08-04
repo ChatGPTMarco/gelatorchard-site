@@ -1,5 +1,5 @@
 /* ============================================================
-   GELATORCHARD — Seasonal engine + <FlavorPicker> + <SeasonBadge>
+   GELATORCHARD, Seasonal engine + <FlavorPicker> + <SeasonBadge>
    Cap. 2-3 · Shared across pages via window.Gelatorchard:
    - seasonStatus() and SeasonBadge return in /calendario (Cap. 5)
    - FlavorPicker is reused on / and /order (dynamic max, preselect)
@@ -103,7 +103,7 @@
       status: 'disponibile',
       flavour: 'strawberry',
       fruitName: 'Strawberry',
-      farm: "Johnson's Farm, Woodchurch — Kent",
+      farm: "Johnson's Farm, Woodchurch (Kent)",
       farmName: "Johnson's Farm",
       farmerName: 'Tom Johnson',
       farmerFirst: 'Tom',
@@ -127,7 +127,7 @@
         ['08:20', 'Into the blast freezer'],
         ['08:30', 'BATCH COMPLETE']
       ],
-      marcoNote: 'This strawberry had an incredible colour the moment it arrived — you could tell from the base alone this was going to be a good batch.',
+      marcoNote: 'This strawberry had an incredible colour the moment it arrived, you could tell from the base alone this was going to be a good batch.',
       coldChain: { distance: '89 km', tempOut: '-20°C', tempIn: '-14°C', transit: '2 hours' },
       mapQuery: 'Woodchurch, Kent'
     }
@@ -293,7 +293,7 @@
             '<div class="ks-label">Your Gelato Kit (pick up to 2 flavours)</div>' +
             '<div class="ks-value empty">Pick 1–2 flavours above</div>' +
           '</div>' +
-          '<a class="pill pill-dark ks-cta" href="order.html">Continue — £28 pickup / £34 delivery</a>' +
+          '<a class="pill pill-dark ks-cta" href="order.html">Continue · £28 pickup / £34 delivery</a>' +
         '</div>' : '');
 
     var valueEl = root.querySelector('.ks-value');

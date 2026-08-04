@@ -1,5 +1,5 @@
 /* ============================================================
-   GELATORCHARD — Story page · Capitolo 4
+   GELATORCHARD, Story page · Capitolo 4
    Route dinamica su file statico: story.html?batch=042 | ?flavour=id
    - Sezione 0 (istruzioni) identica per ogni batch → serveBoxHTML()
    - 4 capitoli con header sticky + barra di progresso (scroll-spy)
@@ -27,7 +27,7 @@
         '<li><span class="ss-name">2 · Massage</span><p>Gently “massage” the bag with your hands for 15–20 seconds to bring back the creaminess of artisan gelato.</p></li>' +
         '<li><span class="ss-name">3 · Serve</span><p>Unscrew the protective cap, place the cone in the die-cut holder and squeeze from top to bottom in a circular motion.</p></li>' +
       '</ol>' +
-      '<div class="video-ph">15-second tutorial video, on loop — to upload</div>' +
+      '<div class="video-ph">15-second tutorial video on loop, to upload</div>' +
       '<div class="serve-next"><span>Want to know more? Discover ' + farmerFirst + '’s story ↓</span>' +
       '<span class="sn-scroll">Scroll to continue →</span></div>' +
       '</div>';
@@ -43,7 +43,7 @@
     var mapsDir = 'https://www.google.com/maps/dir/' +
       encodeURIComponent(b.location) + '/London+E14';
 
-    document.title = 'Batch #' + b.id + ' — ' + b.fruitName + ' · Gelatorchard';
+    document.title = 'Batch #' + b.id + ' · ' + b.fruitName + ' · Gelatorchard';
 
     root.innerHTML =
       /* Header sticky con progresso */
@@ -71,7 +71,7 @@
 
         /* Capitolo 1 — il contadino */
         '<section class="story-chapter" data-chapter="1">' +
-          '<div class="sc-photo"><span class="photo-ph">Real photo — ' + b.farmerFirst + ' in the field — to upload</span></div>' +
+          '<div class="sc-photo"><span class="photo-ph">Photo of ' + b.farmerFirst + ' in the field, to upload</span></div>' +
           '<span class="sc-kicker">Chapter 1 · The Farmer</span>' +
           '<h2>Meet ' + b.farmerFirst + '</h2>' +
           '<p class="sub" style="margin-top:14px">' + b.bio + '</p>' +
@@ -89,7 +89,7 @@
 
         /* Capitolo 2 — la produzione */
         '<section class="story-chapter" data-chapter="2">' +
-          '<div class="sc-photo"><span class="photo-ph">Real photo — Marco in the lab, Trittico behind — to upload</span></div>' +
+          '<div class="sc-photo"><span class="photo-ph">Photo of Marco in the lab with the Trittico, to upload</span></div>' +
           '<span class="sc-kicker">Chapter 2 · The Making</span>' +
           '<h2>Made by ' + b.operator + '</h2>' +
           '<ul class="prod-log">' +
@@ -101,7 +101,7 @@
             '<span class="qc">colour ✓</span><span class="qc">texture ✓</span>' +
             '<span class="qc">flavour ✓</span><span class="qc">temperature ✓</span>' +
           '</div>' +
-          '<blockquote class="story-quote">“' + b.marcoNote + '” <span style="font-family:var(--sans);font-size:13px;color:var(--ink-faint)">— ' + b.operator + '</span></blockquote>' +
+          '<blockquote class="story-quote">“' + b.marcoNote + '” <span style="font-family:var(--sans);font-size:13px;color:var(--ink-faint)">' + b.operator + '</span></blockquote>' +
         '</section>' +
 
         /* Capitolo 3 — il viaggio */
@@ -146,10 +146,10 @@
           '</div>' +
           '<div id="fb-done" hidden>' +
             '<p style="font-size:17px;font-weight:600;margin-top:18px" id="fb-done-msg"></p>' +
-            '<div class="notice preview">Pre-launch preview — the feedback service connects at launch, so nothing was sent yet.</div>' +
+            '<div class="notice preview">Pre-launch preview: the feedback service connects at launch, so nothing was sent yet.</div>' +
           '</div>' +
           '<p class="review-note">Marco replies within 24 hours. 5 stars? A personal thank-you. 4 stars? Your comment helps tune the next batch. 3 stars or less? Marco messages you directly on WhatsApp to make it right.</p>' +
-          '<div class="first-review">You’ll be the first to review this batch — public reviews arrive after the September launch.</div>' +
+          '<div class="first-review">You’ll be the first to review this batch, public reviews arrive after the September launch.</div>' +
         '</section>' +
 
         /* CTA prossimo batch */
@@ -239,7 +239,7 @@
       '<section class="placeholder-hero"><div class="container">' +
         '<span class="badge-soon">Classics Collection</span>' +
         '<h1 class="h1 reveal">' + f.name + '</h1>' +
-        '<p class="sub reveal">This classic is always available — real ingredients, never powders. ' +
+        '<p class="sub reveal">This classic is always available: real ingredients, never powders. ' +
         'There’s no single-batch seasonal story to tell: batch stories belong to the Fruit Collection, ' +
         'where every flavour follows the real UK harvest.</p>' +
         '<div class="reveal" style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">' +
@@ -256,10 +256,10 @@
       '<section class="placeholder-hero"><div class="container">' +
         '<span class="badge-soon">Fruit Collection</span>' +
         '<h1 class="h1 reveal">' + (f ? f.name : 'This flavour') + '</h1>' +
-        '<p class="sub reveal">The story of the current batch is being written — every bag ships ' +
+        '<p class="sub reveal">The story of the current batch is being written, every bag ships ' +
         'with a QR code that opens its own batch page: the farmer, the harvest time, the production log.</p>' +
         '<div class="reveal" style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">' +
-          '<a class="pill pill-dark" href="story.html?batch=042">See an example — Batch #042</a>' +
+          '<a class="pill pill-dark" href="story.html?batch=042">See an example: Batch #042</a>' +
           '<a class="pill pill-ghost" href="app.html">Join the Seasonal Alert List</a>' +
         '</div>' +
       '</div></section>';
@@ -273,9 +273,9 @@
         '<h1 class="h1 reveal">Scan the QR on your pack</h1>' +
         '<p class="sub reveal">Every piping bag carries one QR code that opens the story of the exact ' +
         'batch in your hands: the farmer, the farm, the harvest time, the production log and the cold chain. ' +
-        'One scan, the whole story — serving instructions included.</p>' +
+        'One scan, the whole story, serving instructions included.</p>' +
         '<div class="reveal" style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">' +
-          '<a class="pill pill-dark" href="story.html?batch=042">See an example — Batch #042</a>' +
+          '<a class="pill pill-dark" href="story.html?batch=042">See an example: Batch #042</a>' +
           '<a class="pill pill-ghost" href="index.html#flavors">Pick your flavour</a>' +
         '</div>' +
       '</div></section>';

@@ -1,9 +1,9 @@
 /* ============================================================
-   GELATORCHARD — /calendario · Capitolo 5
+   GELATORCHARD, /calendario · Capitolo 5
    <SeasonWheel> (ruota SVG 12 spicchi, polar/segPath) + pannello
    mese con narrativa, FOMO, stati frutta e gusti ordinabili.
    Fonte dati unica: Gelatorchard.FRUITS / FLAVORS / windowInfo /
-   seasonStatus (flavors.js) — mai duplicare qui gli elenchi.
+   seasonStatus (flavors.js), mai duplicare qui gli elenchi.
    ============================================================ */
 (function () {
   'use strict';
@@ -20,19 +20,19 @@
   var LEVELS = { min: 'Minimal choice', mid: 'Medium choice', peak: 'Peak season' };
   var MONTH_DATA = [
     { hero: 'rhubarb_forced', level: 'min', fruits: ['rhubarb_forced', 'apple', 'pear'],
-      story: 'The Yorkshire Rhubarb Triangle. Grown in the dark, picked by candlelight — England’s most precious rhubarb.',
+      story: 'The Yorkshire Rhubarb Triangle. Grown in the dark and picked by candlelight. England’s most precious rhubarb.',
       fomo: 'January: only one fresh flavour is possible with real UK fruit. Anyone selling “strawberry” right now is using powder or imports.' },
     { hero: 'rhubarb_forced', level: 'min', fruits: ['rhubarb_forced', 'apple', 'pear'],
       story: 'The last full month of Yorkshire forced rhubarb before it turns scarce.',
       fomo: 'From March, forced rhubarb runs out. Book now, not once the season is over.' },
     { hero: 'rhubarb_forced', level: 'min', fruits: ['rhubarb_forced', 'rhubarb_field', 'apple'],
-      story: 'The handover from forced to field rhubarb — the true start of the English spring.',
+      story: 'The handover from forced to field rhubarb: the true start of the English spring.',
       fomo: 'Yorkshire forced rhubarb ends mid-March. Then you wait for December.' },
     { hero: 'rhubarb_field', level: 'min', fruits: ['rhubarb_field', 'gooseberry'],
       story: 'Field rhubarb at its peak. The real English spring, in gelato.',
       fomo: 'No shortcuts: we wait for the field to be ready, not the warehouse.' },
     { hero: 'strawberry', level: 'mid', fruits: ['rhubarb_field', 'strawberry', 'gooseberry'],
-      story: 'The first English strawberries of the year arrive late this month — the most requested, gone in days.',
+      story: 'The first English strawberries of the year arrive late this month. The most requested of all, gone in days.',
       fomo: 'The first strawberries of the season. Don’t wait for June: they go earlier.' },
     { hero: 'strawberry', level: 'peak', fruits: ['strawberry', 'cherry', 'gooseberry', 'raspberry', 'currant'],
       story: 'The official opening of the English summer. Wimbledon fortnight = strawberries at their peak.',
@@ -44,16 +44,16 @@
       story: 'The Victoria Plum: the signature fruit of the UK August. 3–4 weeks, then it disappears for a year.',
       fomo: 'No import can replace the Victoria. It’s UK August, or it doesn’t exist.' },
     { hero: 'apple', level: 'peak', fruits: ['apple', 'pear', 'damson', 'blackberry', 'fig', 'elderberry'],
-      story: 'The harvest month par excellence — dozens of English apple varieties, each one different.',
+      story: 'The harvest month par excellence: dozens of English apple varieties, each one different.',
       fomo: 'Damsons: a 3-week window, then the chapter closes until ' + (THIS_YEAR + 1) + '.' },
     { hero: 'quince', level: 'peak', fruits: ['apple', 'pear', 'quince', 'damson', 'blackberry', 'medlar'],
-      story: 'Quince opens the full autumn — an ancient, nearly forgotten fruit, perfect for a rediscovery.',
+      story: 'Quince opens the full autumn: an ancient, nearly forgotten fruit, perfect for a rediscovery.',
       fomo: 'The fresh quince window is tiny: October, and that’s it.' },
     { hero: 'pear', level: 'mid', fruits: ['apple', 'pear', 'quince'],
       story: 'The last month of fresh harvest before winter. From here on, everything we use was carefully stored in October.',
       fomo: 'The last fresh quince of the year. From December, only what’s been stored.' },
     { hero: 'rhubarb_forced', level: 'min', fruits: ['apple', 'pear', 'quince', 'rhubarb_forced'],
-      story: 'Yorkshire forced rhubarb starts again late this month — the calendar bites its own tail.',
+      story: 'Yorkshire forced rhubarb starts again late this month: the calendar bites its own tail.',
       fomo: 'No empty pause. Just the rhythm of the land starting over.' }
   ];
 

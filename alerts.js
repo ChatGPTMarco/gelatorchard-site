@@ -1,9 +1,9 @@
 /* ============================================================
-   GELATORCHARD — Seasonal Alert List · Capitolo 7
+   GELATORCHARD, Seasonal Alert List · Capitolo 7
    Componente di iscrizione riutilizzabile (app.html, homepage,
    /calendario). NIENTE abbonamenti: lista notifica gratuita.
    Fonte dati: Gelatorchard.FLAVORS/SEASONS (mai duplicare).
-   Storage provvisorio: localStorage gc-alerts — al lancio il
+   Storage provvisorio: localStorage gc-alerts, al lancio il
    form si collega a Brevo (vedi EMAILS.md).
    ============================================================ */
 (function () {
@@ -40,7 +40,7 @@
           '<input class="field-input al-email" id="al-email-' + (opts.key || 'x') + '" type="email" placeholder="you@example.co.uk" autocomplete="email">' +
         '</div>' +
         '<div class="step-ctas">' +
-          '<button class="pill pill-dark al-join" type="button">Join the alert list — free</button>' +
+          '<button class="pill pill-dark al-join" type="button">Join the alert list (free)</button>' +
           '<span class="cta-hint al-hint"></span>' +
         '</div>' +
         '<p class="alert-reassure">No subscription. No billing. Just a heads-up before it disappears until next year.</p>' +
@@ -82,7 +82,7 @@
           '<li>the day it comes into season (new batch available)</li>' +
           '<li>about a week before the season ends (last call)</li>' +
         '</ul>' +
-        '<div class="notice preview">Pre-launch preview — the alert service connects at launch, so nothing was saved to a real mailing list yet.</div>';
+        '<div class="notice preview">Pre-launch preview: the alert service connects at launch, so nothing was saved to a real mailing list yet.</div>';
 
       /* Invio a Supabase quando configurato (Cap. 8) */
       if (window.GelatorchardBackend) {
