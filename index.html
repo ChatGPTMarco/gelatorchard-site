@@ -26,8 +26,10 @@
         <a class="pill pill-dark" href="#flavors">Pick Your Flavour</a>
         <a class="pill pill-ghost" href="#story">Discover the Story</a>
       </div>
-      <!-- Colour-accurate placeholder: replace with real product photography when available -->
+      <!-- Segnaposto: illustrazioni SVG (gelato-art.js) — sostituire con la fotografia prodotto reale -->
       <div class="hero-visual reveal-fade" data-parallax>
+        <div data-gelato="cone" data-flavour="strawberry" data-flavour-b="pistachio"></div>
+        <span class="ph-note">Illustration — real photography to come</span>
         <div class="hv-overlay">
           <div>
             <div class="hv-title serif">Kentish Strawberry — Batch #042</div>
@@ -67,7 +69,7 @@
         <span class="eyebrow">Field to Freezer in 48 Hours</span>
         <h2 class="h2">Every Batch, Traced.</h2>
       </div>
-      <div class="journey-grid" data-cascade="x" data-stagger="0.12">
+      <div class="journey-grid" data-cascade="x" data-stagger="0.15">
         <!-- La linea si "disegna" con lo scroll (motion.js, dashoffset) -->
         <svg class="journey-line" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true"><line pathLength="1" x1="0" y1="1.5" x2="100" y2="1.5"/></svg>
         <div class="j-step">
@@ -146,7 +148,12 @@
   <section class="unboxing">
     <div class="container">
       <div class="unbox-visual reveal-zoom">
-        <span class="unbox-placeholder">Real box photo — to upload</span>
+        <div class="unbox-art">
+          <span data-gelato="bag" data-flavour="strawberry"></span>
+          <span data-gelato="bag" data-flavour="pistachio"></span>
+          <span data-gelato="tub" data-flavour="raspberry" data-flavour-b="blueberry"></span>
+        </div>
+        <span class="ph-note">Illustration — real box photo to come</span>
         <div class="hv-overlay reveal-fade" data-delay="0.2">
           <div>
             <h3 class="hv-title">One Kraft Box. No Plastic.</h3>
@@ -221,6 +228,7 @@
 <script src="flavors.js"></script>
 <script src="backend.js"></script>
 <script src="alerts.js"></script>
+<script src="gelato-art.js"></script>
 <script src="motion.js"></script>
 <script src="site.js"></script>
 </body>
