@@ -174,19 +174,24 @@
     }
     if (!pxEls.length && !line) return;
     var ticking = false;
+    var lineProgress = 0; /* monotono: solo in avanti */
     function update() {
       var y = window.scrollY, wh = window.innerHeight;
       pxEls.forEach(function (el) {
         var t = Math.min(y, 700);
         el.style.transform = 'translateY(' + (t * 0.18).toFixed(1) + 'px) scale(' + (1 + (t / 700) * 0.05).toFixed(4) + ')';
       });
-      if (line) {
-        /* la linea si disegna su un tratto di scroll piu' lungo: resta
-           leggibile invece di completarsi in un attimo */
+      if (line && lineProgress < 1) {
+        /* La linea si disegna su un tratto di scroll piu' lungo e non
+           torna MAI indietro: come ogni altra animazione del sito,
+           una volta avvenuta resta acquisita anche risalendo. */
         var box = line.closest('svg').parentElement.getBoundingClientRect();
         var span = (box.height || 1) * 1.9;
         var p = Math.max(0, Math.min(1, (wh * 0.72 - box.top) / span));
-        line.style.strokeDashoffset = (1 - p).toFixed(3);
+        if (p > lineProgress) {
+          lineProgress = p;
+          line.style.strokeDashoffset = (1 - p).toFixed(3);
+        }
       }
     }
     window.addEventListener('scroll', function () {
