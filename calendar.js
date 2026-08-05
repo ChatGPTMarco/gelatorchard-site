@@ -189,7 +189,7 @@
     var isNow = m === NOW_MONTH;
     panelEl.innerHTML =
       '<div class="cp-head">' +
-        '<h3>' + G.MONTHS[m] + (isNow ? ' <span style="font-size:13px;color:var(--green);font-family:var(--sans);font-weight:700;letter-spacing:.06em">— NOW</span>' : '') + '</h3>' +
+        '<h3>' + G.MONTHS[m] + (isNow ? ' <span style="font-size:13px;color:var(--green);font-family:var(--sans);font-weight:700;letter-spacing:.06em">NOW</span>' : '') + '</h3>' +
         '<span class="cp-level ' + d.level + '">' + LEVELS[d.level] + '</span>' +
       '</div>' +
       '<p class="cp-story">' + d.story + '</p>' +

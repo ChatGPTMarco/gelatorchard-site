@@ -256,7 +256,7 @@
       return '<li' + (b.fake ? ' data-fake="1"' : '') + '>' +
         '<span class="bl-id">#' + b.id + '</span>' +
         '<span class="bl-main">' + b.fruitName + (b.variety ? ' · ' + b.variety : '') +
-          ' — ' + b.farmerName + ', ' + b.location + '</span>' +
+          ' · ' + b.farmerName + ', ' + b.location + '</span>' +
         '<span class="bl-date">picked ' + b.harvest + '</span>' +
         '<a class="bl-link" href="story.html?batch=' + b.id + '">log →</a></li>';
     }).join('');

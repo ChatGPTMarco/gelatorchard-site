@@ -55,7 +55,7 @@
       bar.innerHTML = urgent.type === 'ending'
         ? '<a href="order.html?flavours=' + urgent.id + '"><strong>' + urgent.name + ':</strong> ' +
           urgent.daysLeft + (urgent.daysLeft === 1 ? ' day' : ' days') + ' left this season · back ' +
-          urgent.returnMonthYear + ' — order it while it exists</a>'
+          urgent.returnMonthYear + '. Order it while it exists</a>'
         : '<a href="calendario.html"><strong>Next into season:</strong> ' + urgent.name +
           ' · opens ' + urgent.startLabel + '</a>';
       document.body.insertBefore(bar, document.body.firstChild);

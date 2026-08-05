@@ -67,7 +67,7 @@
       '<div class="story-wrap">' +
 
         /* Batch simulato (Cap. 10): dichiararlo, mai spacciarlo per reale */
-        (b.fake ? '<div class="notice preview" data-fake="1" style="margin-top:24px">Sample batch — preview data only. At launch, every batch page is fed by the real production log.</div>' : '') +
+        (b.fake ? '<div class="notice preview" data-fake="1" style="margin-top:24px">Sample batch: preview data only. At launch, every batch page is fed by the real production log.</div>' : '') +
 
         /* Sezione 0 */
         serveBoxHTML(b.farmerFirst) +
@@ -127,7 +127,7 @@
             '<div class="cold-cell"><div class="cc-v">' + b.coldChain.tempIn + '</div><div class="cc-k">on arrival</div></div>' +
             '<div class="cold-cell"><div class="cc-v">' + b.coldChain.transit + '</div><div class="cc-k">in transit</div></div>' +
           '</div>' +
-          '<p class="sub" style="font-size:14px;margin-top:20px">Packaging: compostable piping bag, insulated box, dry ice. Dry ice sits at -78°C — it is the only way a bag stays frozen through London traffic without a freezer van.</p>' +
+          '<p class="sub" style="font-size:14px;margin-top:20px">Packaging: compostable piping bag, insulated box, dry ice. Dry ice sits at -78°C: it is the only way a bag stays frozen through London traffic without a freezer van.</p>' +
         '</section>' +
 
         /* Capitolo 4 — la valutazione */
