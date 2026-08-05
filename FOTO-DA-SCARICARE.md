@@ -1,5 +1,11 @@
 # FOTO STOCK PROVVISORIE — lista di ricerca
 
+> **AGGIORNAMENTO (Capitolo 10):** 3 delle 6 foto sono già state scaricate e
+> agganciate (hero, contadina, box) — vedi FAKE-DATA.md per gli ID Unsplash.
+> Restano a segnaposto: laboratorio (nessuna immagine trovata senza loghi),
+> frutta stagionale (slot non montato) e il ritratto di Marco (vietato: serve
+> la sua foto vera). Questo file resta come guida se vuoi sostituirle a mano.
+
 ⚠️ **Queste foto sono BOZZE.** Servono solo a valutare l'aspetto d'insieme del sito in
 locale. Vanno tutte sostituite con le fotografie originali di Marco prima del lancio.
 La procedura di sostituzione è in fondo a questo file.

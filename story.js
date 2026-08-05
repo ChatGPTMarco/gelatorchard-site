@@ -66,6 +66,9 @@
 
       '<div class="story-wrap">' +
 
+        /* Batch simulato (Cap. 10): dichiararlo, mai spacciarlo per reale */
+        (b.fake ? '<div class="notice preview" data-fake="1" style="margin-top:24px">Sample batch — preview data only. At launch, every batch page is fed by the real production log.</div>' : '') +
+
         /* Sezione 0 */
         serveBoxHTML(b.farmerFirst) +
 
@@ -102,6 +105,7 @@
             '<span class="qc">flavour ✓</span><span class="qc">temperature ✓</span>' +
           '</div>' +
           '<blockquote class="story-quote">“' + b.marcoNote + '” <span style="font-family:var(--sans);font-size:13px;color:var(--ink-faint)">' + b.operator + '</span></blockquote>' +
+          '<p class="sub" style="font-size:14px">Why 62°C and not hotter? Because past that point pasteurisation starts cooking the fruit. Safe is mandatory; boiled is not.</p>' +
         '</section>' +
 
         /* Capitolo 3 — il viaggio */
@@ -123,7 +127,7 @@
             '<div class="cold-cell"><div class="cc-v">' + b.coldChain.tempIn + '</div><div class="cc-k">on arrival</div></div>' +
             '<div class="cold-cell"><div class="cc-v">' + b.coldChain.transit + '</div><div class="cc-k">in transit</div></div>' +
           '</div>' +
-          '<p class="sub" style="font-size:14px;margin-top:20px">Packaging: compostable piping bag, insulated EPS box, dry ice. Cold chain guaranteed door to door.</p>' +
+          '<p class="sub" style="font-size:14px;margin-top:20px">Packaging: compostable piping bag, insulated box, dry ice. Dry ice sits at -78°C — it is the only way a bag stays frozen through London traffic without a freezer van.</p>' +
         '</section>' +
 
         /* Capitolo 4 — la valutazione */

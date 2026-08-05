@@ -39,9 +39,29 @@
   var NAV_LINKS = [
     { href: pre + '#flavors', label: 'Flavours' },
     { href: pre + '#formats', label: 'Formats' },
-    { href: pre + '#calendar', label: 'Season' },
+    { href: pre + '#season',  label: 'Season' },
     { href: pre + '#story',   label: 'Our Story' }
   ];
+
+  /* ---------- Barra di scarsità (Cap. 10.7) ----------
+     Sticky sopra la nav su ogni pagina pubblica. SOLO date di
+     stagione reali da Gelatorchard.mostUrgentFruit(): mai un
+     countdown a ore, mai numeri inventati. Si aggiorna da sola. */
+  if (window.Gelatorchard && window.Gelatorchard.mostUrgentFruit) {
+    var urgent = window.Gelatorchard.mostUrgentFruit();
+    if (urgent) {
+      var bar = document.createElement('div');
+      bar.className = 'scarcity-bar';
+      bar.innerHTML = urgent.type === 'ending'
+        ? '<a href="order.html?flavours=' + urgent.id + '"><strong>' + urgent.name + ':</strong> ' +
+          urgent.daysLeft + (urgent.daysLeft === 1 ? ' day' : ' days') + ' left this season · back ' +
+          urgent.returnMonthYear + ' — order it while it exists</a>'
+        : '<a href="calendario.html"><strong>Next into season:</strong> ' + urgent.name +
+          ' · opens ' + urgent.startLabel + '</a>';
+      document.body.insertBefore(bar, document.body.firstChild);
+      document.body.classList.add('has-scarcity');
+    }
+  }
 
   var navEl = document.getElementById('site-nav');
   if (navEl) {

@@ -476,6 +476,86 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .alert-reassure{font-size:13.5px;color:var(--ink-soft);margin-top:14px}
 
 /* ============================================================
+   Capitolo 10 · Direct response — nuove sezioni e componenti
+   ============================================================ */
+
+/* --- Barra di scarsità (10.7): sticky sopra la nav, ovunque --- */
+.scarcity-bar{position:sticky;top:0;z-index:80;background:var(--green-deep);height:38px;display:flex;align-items:center;justify-content:center;padding:0 16px}
+.scarcity-bar a{color:#fff;font-size:12.5px;font-weight:500;letter-spacing:.02em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scarcity-bar a:hover{text-decoration:underline}
+.scarcity-bar strong{font-weight:700}
+.has-scarcity .nav{top:38px}
+.has-scarcity .story-head{top:102px}
+
+/* --- Manifesto NOT/IS (10.5.2): fondo scuro, stacco netto --- */
+.manifesto-band{background:var(--ink);color:var(--bg);padding:96px 0}
+.manifesto-band .mf-kicker{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--orange);margin-bottom:22px}
+.mf-line{font-size:clamp(17px,2.4vw,22px);line-height:1.5;padding:7px 0;margin:0}
+.mf-no{color:rgba(251,251,249,.52)}
+.mf-no strong{color:#fff}
+.mf-yes{color:#fff}
+.mf-yes strong{color:var(--orange)}
+.mf-gap{height:22px}
+.mf-next{margin-top:34px;font-size:15.5px;color:rgba(251,251,249,.75)}
+.mf-next a{color:#fff;font-weight:600}
+
+/* --- Confronto etichette (10.5.2b) --- */
+.labels-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px;align-items:stretch}
+@media(max-width:760px){.labels-grid{grid-template-columns:1fr}}
+.label-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px;display:flex;flex-direction:column}
+.label-card h3{font-family:var(--sans);font-size:12px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--ink-faint);margin-bottom:16px}
+.label-ind{list-style:none;counter-reset:ing}
+.label-ind li{counter-increment:ing;font-size:12.5px;color:var(--ink-soft);padding:5px 0 5px 26px;border-bottom:1px dashed rgba(29,29,31,.08);position:relative}
+.label-ind li::before{content:counter(ing);position:absolute;left:0;font-size:10px;font-weight:700;color:var(--ink-faint)}
+.label-ind .en{color:var(--stamp);font-weight:600}
+.label-ours{flex:1;display:flex;flex-direction:column}
+.label-ours .lo-word{font-family:var(--serif);font-size:clamp(26px,3.5vw,34px);padding:10px 0;border-bottom:1px dashed rgba(29,29,31,.08)}
+.label-ours .lo-space{flex:1;min-height:80px}
+.label-ours .lo-note{font-size:12.5px;color:var(--ink-faint)}
+.labels-verdict{text-align:center;font-size:16px;font-weight:600;margin-top:28px}
+
+/* --- Proof bar a 5 numeri (10.5.6) --- */
+.proof-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;text-align:center}
+@media(max-width:900px){.proof-grid{grid-template-columns:repeat(3,1fr);row-gap:30px}}
+@media(max-width:560px){.proof-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* --- Lettera di Marco (10.5.3) --- */
+.letter-wrap{max-width:660px;margin:0 auto}
+.letter{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(28px,5vw,48px);text-align:left}
+.letter p{font-size:17px;line-height:1.7;margin-bottom:18px}
+.letter .sig{font-family:var(--serif);font-size:24px;margin:26px 0 22px}
+.letter .ps{border-top:1px solid var(--line);padding-top:18px;font-size:15.5px;color:var(--ink-soft);margin-bottom:0}
+.letter .ps strong{color:var(--ink)}
+
+/* --- Registro batch + prova (10.5.8) --- */
+.batch-log{list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;text-align:left}
+.batch-log li{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid var(--line);font-size:14px}
+.batch-log li:last-child{border-bottom:none}
+.bl-id{font-weight:700;color:var(--green);font-variant-numeric:tabular-nums;flex-shrink:0}
+.bl-main{flex:1;min-width:220px}
+.bl-date{color:var(--ink-faint);font-size:12.5px;white-space:nowrap}
+.bl-link{color:var(--green);text-decoration:none;font-weight:600;font-size:12.5px;white-space:nowrap}
+.bl-link:hover{text-decoration:underline}
+.panel-quotes{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px;text-align:left}
+@media(max-width:760px){.panel-quotes{grid-template-columns:1fr}}
+.pq{border-left:3px solid var(--green);padding:6px 0 6px 18px;font-family:var(--serif);font-size:17.5px;line-height:1.55;margin:0}
+.pq cite{display:block;font-family:var(--sans);font-style:normal;font-size:12.5px;color:var(--ink-faint);margin-top:8px}
+
+/* --- Farmer reveal nel picker (10.6) --- */
+.t-farmer{max-height:0;overflow:hidden;opacity:0;margin-top:0;font-size:11.5px;color:var(--ink-soft);line-height:1.5;transition:max-height .45s var(--ease-apple),opacity .45s var(--ease-apple),margin-top .45s var(--ease-apple)}
+.tile.selected .t-farmer{max-height:72px;opacity:1;margin-top:7px}
+.tf-k{display:block;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green);margin-bottom:1px}
+/* Link storia più visibile (10.6), sempre secondario alla selezione */
+.tile .t-link{display:inline-block;font-size:11.5px;font-weight:700;color:var(--green);text-decoration:none;margin-top:7px;padding:3px 10px;border:1px solid rgba(45,122,74,.35);border-radius:100px;transition:background .15s}
+.tile .t-link:hover{background:rgba(45,122,74,.08);text-decoration:none}
+.tile.out .t-link{color:var(--stamp);border-color:rgba(176,72,46,.35)}
+.tile.out .t-link:hover{background:rgba(176,72,46,.07)}
+
+@media(prefers-reduced-motion:reduce){
+  .t-farmer{transition:none}
+}
+
+/* ============================================================
    Capitolo 9 · Motion layer (stile Apple) — gestito da motion.js
    ============================================================ */
 /* Varianti di ingresso (oltre a .reveal fade+slide-up) */

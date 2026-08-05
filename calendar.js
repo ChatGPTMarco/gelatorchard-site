@@ -1,16 +1,15 @@
 /* ============================================================
-   GELATORCHARD, /calendario · Capitolo 5
+   GELATORCHARD, /calendario · Capitolo 5 (+ Cap. 10.5.5)
    <SeasonWheel> (ruota SVG 12 spicchi, polar/segPath) + pannello
    mese con narrativa, FOMO, stati frutta e gusti ordinabili.
+   Dal Cap. 10 la ruota è ESPORTATA come Gelatorchard.renderSeasonWheel
+   e riusata in homepage (home.js) — stessa fonte dati, mai duplicata.
    Fonte dati unica: Gelatorchard.FRUITS / FLAVORS / windowInfo /
    seasonStatus (flavors.js), mai duplicare qui gli elenchi.
    ============================================================ */
 (function () {
   'use strict';
   var G = window.Gelatorchard;
-  var wheelEl = document.getElementById('season-wheel');
-  var panelEl = document.getElementById('month-panel');
-  if (!wheelEl || !panelEl) return;
 
   var TODAY = new Date();
   var THIS_YEAR = TODAY.getFullYear();
@@ -84,8 +83,11 @@
       ' A' + R_IN + ' ' + R_IN + ' 0 0 0 ' + p4[0].toFixed(1) + ' ' + p4[1].toFixed(1) + ' Z';
   }
 
-  /* ---------- <SeasonWheel> ---------- */
-  function renderWheel(selected) {
+  /* ---------- <SeasonWheel> esportata (Cap. 10.5.5) ----------
+     opts: selected (0-11), onSelect(m). Ritorna { setSelected }. */
+  G.renderSeasonWheel = function (el, opts) {
+    opts = opts || {};
+    var selected = (opts.selected != null) ? opts.selected : NOW_MONTH;
     var segs = '';
     for (var i = 0; i < 12; i++) {
       var mid = i * 30 + 15;
@@ -100,7 +102,7 @@
             ICONS[MONTH_DATA[i].hero] + '</g>' +
         '</g>';
     }
-    wheelEl.innerHTML =
+    el.innerHTML =
       '<svg viewBox="0 0 420 420" aria-label="UK season wheel, 12 months">' +
         segs +
         '<circle cx="' + C + '" cy="' + C + '" r="' + (R_IN - 10) + '" fill="var(--surface)" stroke="var(--line)"/>' +
@@ -108,14 +110,29 @@
         '<text class="wheel-center-s" x="' + C + '" y="' + (C + 18) + '">UK ONLY</text>' +
       '</svg>';
 
-    wheelEl.querySelectorAll('.wheel-seg').forEach(function (g) {
-      function pick() { select(+g.getAttribute('data-m')); }
+    el.querySelectorAll('.wheel-seg').forEach(function (g) {
+      function pick() { if (opts.onSelect) opts.onSelect(+g.getAttribute('data-m')); }
       g.addEventListener('click', pick);
       g.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); }
       });
     });
-  }
+
+    return {
+      setSelected: function (m) {
+        el.querySelectorAll('.wheel-seg').forEach(function (g) {
+          g.classList.toggle('sel', +g.getAttribute('data-m') === m);
+        });
+      }
+    };
+  };
+
+  /* ============================================================
+     Da qui in giù: solo pagina /calendario (ruota + pannello mese)
+     ============================================================ */
+  var wheelEl = document.getElementById('season-wheel');
+  var panelEl = document.getElementById('month-panel');
+  if (!wheelEl || !panelEl) return;
 
   /* ---------- Data di riferimento: oggi per il mese corrente,
      giorno 15 per gli altri mesi (Cap. 5.5.3) ---------- */
@@ -183,10 +200,9 @@
       '<ul class="flavour-rows">' + G.FLAVORS.fruit.map(function (f) { return flavourRow(f, ref); }).join('') + '</ul>';
   }
 
+  var wheelCtl;
   function select(m) {
-    wheelEl.querySelectorAll('.wheel-seg').forEach(function (g) {
-      g.classList.toggle('sel', +g.getAttribute('data-m') === m);
-    });
+    wheelCtl.setSelected(m);
     /* Cap. 9: il pannello non "scatta" — fade-out 0.15s, poi fade-in+slide 0.25s */
     if (window.GelatorchardMotion) {
       window.GelatorchardMotion.swapPanel(panelEl, function () { renderPanel(m); });
@@ -195,6 +211,11 @@
     }
   }
 
-  renderWheel(NOW_MONTH);
-  renderPanel(NOW_MONTH);
+  /* Deep-link dal wheel in homepage: calendario.html?month=N (0-11) */
+  var initM = NOW_MONTH;
+  var qm = new URLSearchParams(location.search).get('month');
+  if (qm !== null && /^\d{1,2}$/.test(qm) && +qm >= 0 && +qm <= 11) initM = +qm;
+
+  wheelCtl = G.renderSeasonWheel(wheelEl, { selected: initM, onSelect: select });
+  renderPanel(initM);
 })();

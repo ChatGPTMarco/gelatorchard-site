@@ -86,9 +86,16 @@
     for (i = 0; i < wins.length; i++) {
       if (wins[i][0] > ref) { next = wins[i][0]; break; }
     }
+    /* Cap. 10.6: giorni trascorsi dalla FINE dell'ultima stagione chiusa
+       (serve per "Cherry ended 12 days ago") */
+    var prevEnd = null;
+    for (i = 0; i < wins.length; i++) {
+      if (wins[i][1] < ref && (!prevEnd || wins[i][1] > prevEnd)) prevEnd = wins[i][1];
+    }
     return {
       state: next.getFullYear() === y ? 'coming' : 'finished',
       daysToStart: Math.ceil((next - ref) / DAY),
+      daysSinceEnd: prevEnd ? Math.floor((ref - prevEnd) / DAY) : null,
       startLabel: next.getDate() + ' ' + MONTHS_SHORT[next.getMonth()],
       returnMonthYear: MONTHS[next.getMonth()] + ' ' + next.getFullYear()
     };
@@ -130,9 +137,130 @@
       marcoNote: 'This strawberry had an incredible colour the moment it arrived, you could tell from the base alone this was going to be a good batch.',
       coldChain: { distance: '89 km', tempOut: '-20°C', tempIn: '-14°C', transit: '2 hours' },
       mapQuery: 'Woodchurch, Kent'
+    },
+
+    /* ⚠️ BATCH SIMULATI (Cap. 10.5.8) — dati NON reali, solo mockup.
+       Marcati fake:true; elencati in FAKE-DATA.md; al lancio vanno
+       sostituiti con i batch veri dal registro di produzione. */
+    blueberry: {
+      fake: true,
+      id: '043',
+      status: 'esaurito',
+      flavour: 'blueberry',
+      fruitName: 'Blueberry',
+      farm: 'Reid Berry Farm, Blairgowrie, Perthshire',
+      farmName: 'Reid Berry Farm',
+      farmerName: 'David Reid',
+      farmerFirst: 'David',
+      location: 'Blairgowrie, Perthshire',
+      variety: 'Duke',
+      harvest: '20 July 2026',
+      harvestTime: '05:47',
+      produced: '22 July 2026',
+      operator: 'Marco',
+      batchSize: '12L',
+      method: 'Integrated Pest Management (IPM)',
+      certification: 'Red Tractor Assurance',
+      bio: 'David Reid grows blueberries on the slopes above Blairgowrie, the soft-fruit capital of Scotland. His bushes are twelve years old, right in their prime.',
+      quote: '“Cold nights, slow sugar. That’s why a Scottish blueberry tastes of something.”',
+      log: [
+        ['06:10', 'Fruit received and inspected (HACCP checklist)'],
+        ['06:40', 'Base prep: 8kg blueberries, 1.1kg sugar, water'],
+        ['07:10', 'Trittico: pasteurisation at 62°C, 20 minutes'],
+        ['07:30', 'Mixing and ageing, 40 minutes'],
+        ['08:10', 'Churning'],
+        ['08:30', 'Into the blast freezer'],
+        ['08:40', 'BATCH COMPLETE']
+      ],
+      marcoNote: 'Smaller berries than May strawberries, ten times the perfume. I churned this one slightly warmer to keep the skins whole.',
+      coldChain: { distance: '694 km', tempOut: '-20°C', tempIn: '-13°C', transit: '11 hours' },
+      mapQuery: 'Blairgowrie, Perthshire'
+    },
+    'victoria-plum': {
+      fake: true,
+      id: '044',
+      status: 'disponibile',
+      flavour: 'victoria-plum',
+      fruitName: 'Victoria Plum',
+      farm: 'Wickham Orchards, Pershore, Worcestershire',
+      farmName: 'Wickham Orchards',
+      farmerName: 'Sarah Wickham',
+      farmerFirst: 'Sarah',
+      location: 'Pershore, Worcestershire',
+      variety: 'Victoria',
+      harvest: '3 August 2026',
+      harvestTime: '06:05',
+      produced: '4 August 2026',
+      operator: 'Marco',
+      batchSize: '12L',
+      method: 'Integrated Pest Management (IPM)',
+      certification: 'Red Tractor Assurance',
+      bio: 'Sarah Wickham runs the orchard her grandfather planted in the Vale of Evesham, where the Victoria plum has been picked since the 1840s.',
+      quote: '“Three good weeks. That’s the whole Victoria season. You don’t waste a single morning of it.”',
+      log: [
+        ['06:00', 'Fruit received and inspected (HACCP checklist)'],
+        ['06:30', 'Base prep: 8.5kg plums, 1.2kg sugar, water'],
+        ['07:00', 'Trittico: pasteurisation at 62°C, 20 minutes'],
+        ['07:20', 'Mixing and ageing, 40 minutes'],
+        ['08:00', 'Churning'],
+        ['08:20', 'Into the blast freezer'],
+        ['08:30', 'BATCH COMPLETE']
+      ],
+      marcoNote: 'The first Victorias of the year. Stone out, skin in: the skin is where all the colour and the sharpness live.',
+      coldChain: { distance: '176 km', tempOut: '-20°C', tempIn: '-15°C', transit: '3 hours' },
+      mapQuery: 'Pershore, Worcestershire'
+    },
+    raspberry: {
+      fake: true,
+      id: '045',
+      status: 'disponibile',
+      flavour: 'raspberry',
+      fruitName: 'Raspberry',
+      farm: 'Anderson Berry Farm, Ettrickbridge, Scottish Borders',
+      farmName: 'Anderson Berry Farm',
+      farmerName: 'Louise Anderson',
+      farmerFirst: 'Louise',
+      location: 'Ettrickbridge, Scottish Borders',
+      variety: 'Glen Ample',
+      harvest: '27 July 2026',
+      harvestTime: '05:58',
+      produced: '29 July 2026',
+      operator: 'Marco',
+      batchSize: '12L',
+      method: 'Integrated Pest Management (IPM)',
+      certification: 'Red Tractor Assurance',
+      bio: 'Louise Anderson is the fourth generation on her family’s raspberry farm in the Scottish Borders.',
+      quote: '“This year’s crop has come in sweet and firm. Best yield in five years.”',
+      log: [
+        ['06:05', 'Fruit received and inspected (HACCP checklist)'],
+        ['06:35', 'Base prep: 8kg raspberries, 1.15kg sugar, water'],
+        ['07:05', 'Trittico: pasteurisation at 62°C, 20 minutes'],
+        ['07:25', 'Mixing and ageing, 40 minutes'],
+        ['08:05', 'Churning'],
+        ['08:25', 'Into the blast freezer'],
+        ['08:35', 'BATCH COMPLETE']
+      ],
+      marcoNote: 'Glen Ample berries barely need me. I kept the sugar low and let the fruit argue its own case.',
+      coldChain: { distance: '552 km', tempOut: '-20°C', tempIn: '-13°C', transit: '9 hours' },
+      mapQuery: 'Ettrickbridge, Scottish Borders'
     }
   };
   G.BATCHES = BATCHES;
+
+  /* Registro batch per la prova sociale in homepage (Cap. 10.5.8).
+     Legge SOLO Gelatorchard.BATCHES: nessun elenco duplicato. */
+  G.renderBatchLog = function (el) {
+    var rows = Object.keys(BATCHES).map(function (k) { return BATCHES[k]; })
+      .sort(function (a, b) { return b.id.localeCompare(a.id); });
+    el.innerHTML = rows.map(function (b) {
+      return '<li' + (b.fake ? ' data-fake="1"' : '') + '>' +
+        '<span class="bl-id">#' + b.id + '</span>' +
+        '<span class="bl-main">' + b.fruitName + (b.variety ? ' · ' + b.variety : '') +
+          ' — ' + b.farmerName + ', ' + b.location + '</span>' +
+        '<span class="bl-date">picked ' + b.harvest + '</span>' +
+        '<a class="bl-link" href="story.html?batch=' + b.id + '">log →</a></li>';
+    }).join('');
+  };
   G.batchById = function (id) {
     var found = null;
     Object.keys(BATCHES).forEach(function (k) {
@@ -174,11 +302,35 @@
       inSeason: false,
       state: w.state,
       daysToStart: w.daysToStart,
+      daysSinceEnd: w.daysSinceEnd,
       startLabel: w.startLabel,
       subtitle: 'Out of season',
       returnMonthYear: w.returnMonthYear,
       stampLabel: 'Back ' + w.returnMonthYear
     };
+  };
+
+  /* mostUrgentFruit(date) — la leva di scarsità condivisa (Cap. 10.7):
+     il gusto in stagione più vicino alla fine (≤45 giorni), altrimenti
+     il prossimo che apre. Usata da barra di scarsità e CTA band. */
+  G.mostUrgentFruit = function (date) {
+    var d = date || new Date();
+    var ending = null, coming = null;
+    FLAVORS.fruit.forEach(function (f) {
+      var st = G.seasonStatus(f.id, d);
+      if (st.inSeason) {
+        if (st.daysLeft <= 45 && (!ending || st.daysLeft < ending.daysLeft)) {
+          ending = { type: 'ending', id: f.id, name: f.name, daysLeft: st.daysLeft,
+                     endLong: st.endLong, returnMonthYear: st.returnMonthYear };
+        }
+      } else if (st.daysToStart != null) {
+        if (!coming || st.daysToStart < coming.daysToStart) {
+          coming = { type: 'coming', id: f.id, name: f.name,
+                     daysToStart: st.daysToStart, startLabel: st.startLabel };
+        }
+      }
+    });
+    return ending || coming;
   };
 
   /* alertsDue(date) — motore trigger della Seasonal Alert List (Cap. 7).
@@ -246,20 +398,40 @@
   function tileHTML(f) {
     var st = G.seasonStatus(f.id);
     if (!st.inSeason) {
-      /* Out of season: grey, not selectable, stamp + pre-selected alert link */
+      /* Fuori stagione: grigio, non selezionabile. Se la stagione è
+         finita da ≤30 giorni lo dichiara (Cap. 10.6): la perdita è
+         la leva, non va nascosta dietro un timbro generico. */
+      var meta = (st.state === 'finished' && st.daysSinceEnd != null && st.daysSinceEnd <= 30)
+        ? 'Ended ' + st.daysSinceEnd + (st.daysSinceEnd === 1 ? ' day' : ' days') + ' ago'
+        : st.subtitle;
       return '<div class="tile out" data-id="' + f.id + '">' +
         '<div class="swatch ' + f.sw + '"><span class="stamp">' + st.stampLabel + '</span></div>' +
         '<div class="t-name">' + f.name + '</div>' +
-        '<div class="t-meta">' + st.subtitle + '</div>' +
-        '<a class="t-link" href="app.html?fruit=' + f.id + '">Tell me when it’s back</a>' +
+        '<div class="t-meta">' + meta + '</div>' +
+        '<a class="t-link" href="app.html?fruit=' + f.id + '">Tell me when it’s back →</a>' +
         '</div>';
     }
+    /* Farmer reveal (Cap. 10.6): alla selezione la tile mostra chi ha
+       coltivato il batch corrente. Fonte: BATCHES; se il batch non è
+       pubblicato, solo l'origine reale — mai inventare un contadino. */
+    var reveal = '';
+    if (!st.always) {
+      var b = G.BATCHES[f.id];
+      var s = SEASONS[f.id];
+      reveal = b
+        ? '<div class="t-farmer"' + (b.fake ? ' data-fake="1"' : '') + '><span class="tf-k">Grown by</span>' +
+          b.farmerName + ' · ' + b.location + '<br>picked ' + b.harvest +
+          (b.harvestTime ? ' at ' + b.harvestTime : '') + '</div>'
+        : '<div class="t-farmer"><span class="tf-k">Grown in</span>' +
+          ((s && s.origin) ? s.origin : 'Britain') + ' · batch details ship on your bag</div>';
+    }
     var story = st.always ? '' :
-      '<a class="t-link" href="story.html?flavour=' + f.id + '">Read the story</a>';
+      '<a class="t-link" href="story.html?flavour=' + f.id + '">Read the story →</a>';
     return '<div class="tile" data-id="' + f.id + '">' +
       '<div class="swatch ' + f.sw + '"></div>' +
       '<div class="t-name">' + f.name + '</div>' +
       '<div class="t-meta">' + st.subtitle + '</div>' +
+      reveal +
       story +
       '</div>';
   }

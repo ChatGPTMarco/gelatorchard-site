@@ -41,6 +41,14 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   preview finché SUPABASE_URL/ANON_KEY vuote, poi live senza altre modifiche), touchpoint
   cablati in order/story/alerts/business, dashboard interna admin.html+admin.js (batch,
   ordini con carico assemblaggio Kit 8-10min, feedback ≤4★, domanda alert). Doc: BACKEND.md.
+- ✅ Capitolo 10 — Riscrittura direct response (Caples/Hopkins/Ogilvy/Halbert/Kennedy/
+  Sugarman): homepage riordinata in 13 sezioni (manifesto NOT/IS scuro, confronto
+  etichette 16-vs-3, proof bar a 5 numeri, ruota stagionale in home, lettera di Marco,
+  prova sociale col registro batch al posto delle testimonianze), barra di scarsità
+  globale sopra la nav (site.js, da mostUrgentFruit), farmer reveal nel picker, headline
+  riscritte su order/app/business, nav Season → #season.
+  ⚠️ CONTIENE DATI E FOTO SIMULATI marcati data-fake: vedere FAKE-DATA.md.
+  IL SITO NON VA PUBBLICATO finché quella lista non è vuota.
 - ✅ Capitolo 9 — Motion stile Apple in vanilla (niente Framer/GSAP: vietate dipendenze):
   motion.js = unico gestore animazioni (reveal/fade/zoom/lift/rotate, data-delay/data-dur,
   cascade tile/journey, count-up 100%, parallax hero, linea journey scroll-drawn,
@@ -65,6 +73,14 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   active/coming/finished. seasonStatus è costruito sopra windowInfo.
 - calendar.js (nella radice) → SeasonWheel + pannello mese di calendario.html.
   I testi narrativa/FOMO per mese vivono qui (MONTH_DATA); i dati stagionali NO (flavors.js).
+  Dal Cap. 10 esporta Gelatorchard.renderSeasonWheel (riusata in homepage) e supporta
+  il deep-link calendario.html?month=N (0-11).
+- home.js (nella radice) → logica solo-homepage (Cap. 10): headline stagione generata
+  live, mount della ruota, registro batch, CTA band dinamica. Mai testi statici dove
+  esiste il dato calcolato.
+- photos.js (nella radice) → aggancia foto da assets/ agli slot (hero, unboxing, story);
+  segna tutto data-fake + etichetta "Stock photo · bozza". Se il file manca resta il
+  segnaposto. FAKE-DATA.md elenca le foto provvisorie e la procedura di rimozione.
 - business.js (nella radice) → tab B2B + form preventivi di business.html.
 - alerts.js (nella radice) → componente Seasonal Alert List (renderAlertSignup), auto-init
   su #alert-signup (app.html) e #alert-signup-embed (index, calendario). Storage provvisorio

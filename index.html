@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gelatorchard | No Powders. Just Fruit.</title>
-<meta name="description" content="Real gelato, seasonal British fruit traced from field to your freezer. A 3-ingredient label: fruit, cane sugar, water.">
+<meta name="description" content="Most gelato starts as flavour powder. Ours starts on a named British farm, 48 hours before it reaches your freezer. Three ingredients: fruit, cane sugar, water.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,17 +16,20 @@
 
 <main>
 
-  <!-- 2.2 HERO -->
+  <!-- ============ 1. HERO (10.5.1) ============ -->
   <section class="hero">
     <div class="container">
       <span class="eyebrow reveal">No Powders. Just Fruit.</span>
-      <h1 class="h1 reveal" data-dur="slow">Real gelato.<br><span class="green">Seasonal British fruit.</span></h1>
-      <p class="hero-sub reveal" data-dur="slow" data-delay="0.25">The heart of Gelatorchard is fresh British fruit, traced from the field to your freezer. Plus the classics you love. Chocolate, pistachio and stracciatella, all made with real ingredients, never powders.</p>
+      <!-- Varianti headline da testare (Caples — 10.5.1):
+           B: "The Last 'Strawberry' Gelato You Bought Probably Never Met a Strawberry."
+           C: "Read the Label on Your Usual Gelato. Then Read Ours." -->
+      <h1 class="h1 reveal" data-dur="slow">Your “artisan” gelato has<br><span class="green">16 ingredients. Ours has 3.</span></h1>
+      <p class="hero-sub reveal" data-dur="slow" data-delay="0.25">We read the labels so you don’t have to. Every Gelatorchard batch starts with a named British farmer, a recorded harvest hour, and a finished label of exactly three words: fruit, cane sugar, water.</p>
       <div class="hero-ctas reveal" data-dur="slow" data-delay="0.45">
-        <a class="pill pill-dark" href="#flavors">Pick Your Flavour</a>
-        <a class="pill pill-ghost" href="#story">Discover the Story</a>
+        <a class="pill pill-dark" href="#season">See what’s in season today</a>
+        <a class="pill pill-ghost" href="#labels">Read both labels</a>
       </div>
-      <!-- Colour-accurate placeholder: replace with real product photography when available -->
+      <!-- Foto stock provvisoria via photos.js (data-fake) — sostituire con fotografia reale -->
       <div class="hero-visual reveal-fade" data-parallax>
         <div class="hv-overlay">
           <div>
@@ -39,179 +42,267 @@
     </div>
   </section>
 
-  <!-- 2.3 SPEC STRIP — pre-launch: only these 3 verifiable claims, do not add more -->
-  <section class="spec-strip">
-    <div class="container spec-grid">
-      <div class="reveal"><div class="spec-num" data-countup="100" data-suffix="%">100%</div><div class="spec-label">Seasonal British fruit, zero imports</div></div>
-      <div class="reveal"><div class="spec-num">3</div><div class="spec-label">Ingredients: fruit, sugar, water</div></div>
-      <div class="reveal"><div class="spec-num">48h</div><div class="spec-label">From the field to your freezer</div></div>
+  <!-- ============ 2. MANIFESTO NOT/IS (10.5.2) ============ -->
+  <section class="manifesto-band" id="manifesto">
+    <div class="container">
+      <span class="mf-kicker reveal">Read this before you order</span>
+      <div data-cascade data-stagger="0.12">
+        <p class="mf-line mf-no">This is <strong>NOT</strong> supermarket ice cream.</p>
+        <p class="mf-line mf-no">This is <strong>NOT</strong> made from powders, pastes or “natural flavouring”.</p>
+        <p class="mf-line mf-no">This is <strong>NOT</strong> available all year. Fruit doesn’t work that way.</p>
+        <p class="mf-line mf-no">This is <strong>NOT</strong> for you if you want strawberry gelato in January. We won’t make it, at any price.</p>
+        <p class="mf-line mf-no">This is <strong>NOT</strong> cheap. Fruit picked this week never is.</p>
+        <div class="mf-gap"></div>
+        <p class="mf-line mf-yes">This <strong>IS</strong> London’s most traceable gelato.</p>
+        <p class="mf-line mf-yes">This <strong>IS</strong> fruit frozen at peak ripeness, within 48 hours of the field.</p>
+        <p class="mf-line mf-yes">This <strong>IS</strong> the real name of the farmer who grew it, on every single bag.</p>
+      </div>
+      <p class="mf-next reveal">Don’t take our word for a line of it. <a href="#labels">Read both labels ↓</a></p>
     </div>
   </section>
 
-  <!-- 2.4 FLAVOR PICKER -->
+  <!-- ============ 3. CONFRONTO ETICHETTE (10.5.2b) ============ -->
+  <section id="labels">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">The Label Test</span>
+        <h2 class="h2">Two Tubs of “Strawberry Gelato”. Read What You’re Actually Eating.</h2>
+        <p class="sec-sub">On the left, the kind of ingredient list this category is built on. On the right, ours. Neither is a secret: both are printed on the tub. Almost nobody reads them. You’re about to.</p>
+      </div>
+      <div class="labels-grid">
+        <!-- Esempio di CATEGORIA (10.2): ingredienti industriali comuni, non l'etichetta di un marchio specifico.
+             DA VERIFICARE dal founder prima del lancio (vedi FAKE-DATA.md, sezione "da verificare"). -->
+        <div class="label-card reveal">
+          <h3>A typical industrial “gelato” label</h3>
+          <ol class="label-ind">
+            <li>Reconstituted skimmed milk</li>
+            <li>Glucose-fructose syrup</li>
+            <li>Sugar</li>
+            <li>Refined palm oil</li>
+            <li>Whey powder (milk)</li>
+            <li>Dextrose</li>
+            <li>Maltodextrin</li>
+            <li>Strawberry flavour base (powder)</li>
+            <li>Emulsifier: <span class="en">E471</span> (mono- and diglycerides)</li>
+            <li>Stabiliser: <span class="en">E410</span> (locust bean gum)</li>
+            <li>Stabiliser: <span class="en">E412</span> (guar gum)</li>
+            <li>Stabiliser: <span class="en">E407</span> (carrageenan)</li>
+            <li>Acidity regulator: <span class="en">E330</span></li>
+            <li>Colour: <span class="en">E120</span> (cochineal — made from insects)</li>
+            <li>“Natural flavouring”</li>
+            <li>Salt</li>
+          </ol>
+        </div>
+        <div class="label-card reveal" data-delay="0.15">
+          <h3>The Gelatorchard label — all of it</h3>
+          <div class="label-ours">
+            <div class="lo-word">Fruit.</div>
+            <div class="lo-word">Cane sugar.</div>
+            <div class="lo-word">Water.</div>
+            <div class="lo-space"></div>
+            <p class="lo-note">That’s the whole label. The empty space is the point.</p>
+          </div>
+        </div>
+      </div>
+      <p class="labels-verdict reveal">Both are legally allowed to call themselves gelato. Only one of them is fruit.</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. PROOF BAR (10.5.6) ============ -->
+  <section class="spec-strip">
+    <div class="container proof-grid">
+      <div class="reveal"><div class="spec-num" data-countup="3">3</div><div class="spec-label">ingredients on our label</div></div>
+      <div class="reveal"><div class="spec-num" data-countup="100" data-suffix="%">100%</div><div class="spec-label">British seasonal fruit, zero imports</div></div>
+      <div class="reveal"><div class="spec-num" data-countup="48" data-suffix="h">48h</div><div class="spec-label">from the field to your freezer</div></div>
+      <!-- DATO SIMULATO — sostituire con dato reale prima del lancio -->
+      <div class="reveal"><div class="spec-num" data-countup="45" data-fake="1">45</div><div class="spec-label">batches made, every one with a public log</div></div>
+      <!-- DATO SIMULATO — sostituire con dato reale prima del lancio -->
+      <div class="reveal"><div class="spec-num" data-countup="4" data-fake="1">4</div><div class="spec-label">farmers we know by name</div></div>
+    </div>
+  </section>
+
+  <!-- ============ 5. RUOTA STAGIONALE (10.5.5) ============ -->
+  <section id="season">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">The Season, Live</span>
+        <!-- Testo generato da home.js su FRUITS+windowInfo: mai scriverlo a mano -->
+        <h2 class="h2" id="season-headline">Loading the harvest calendar…</h2>
+        <p class="sec-sub">This wheel is not decoration, it is our stock system. When a fruit’s season closes, its flavour leaves the menu that same day — and no import, no freezer stock, no powder brings it back early.</p>
+      </div>
+      <div class="wheel-box reveal-rotate" id="home-wheel"></div>
+      <div style="text-align:center;margin-top:8px" class="reveal">
+        <a class="pill pill-ghost" href="calendario.html">Open the full harvest calendar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. FLAVOR PICKER (10.6) ============ -->
   <section id="flavors">
     <div class="container">
       <div class="sec-head reveal">
         <span class="eyebrow">Pick Your Flavour</span>
-        <h2 class="h2">Two Collections. One Rule: No Powders.</h2>
-        <p class="sec-sub">The Fruit Collection follows the real UK season calendar, when it ends, it disappears until next year. The Classics Collection is always available, made with real ingredients.</p>
+        <h2 class="h2">If You Can Select It, It Was Picked This Season.<br>If It’s Grey, It’s Gone.</h2>
+        <p class="sec-sub">Tap a fruit and you’ll see who grew it. Two flavours fill a Gelato Kit. The grey tiles come back when their season does, and not one day before.</p>
       </div>
       <div id="flavor-picker" class="reveal"></div>
     </div>
   </section>
 
-  <!-- 2.5 FARM → FREEZER JOURNEY -->
+  <!-- ============ 7. LETTERA DI MARCO (10.5.3) ============ -->
+  <section id="letter">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">A Letter From the Founder</span>
+        <h2 class="h2">Why I’d Rather Lose Your January Order Than Lie to You in July</h2>
+      </div>
+      <div class="letter-wrap reveal" style="margin-top:36px">
+        <div class="letter">
+          <p>At 5:30 last Monday morning I was standing in New Covent Garden market, smelling strawberries.</p>
+          <p>Not looking at them. Smelling them. A strawberry picked at peak ripeness smells like jam from three feet away. A strawberry picked early, so it can survive a warehouse, smells of nothing. That smell is the entire difference between what I make and most of what this city calls gelato.</p>
+          <p>My name is Marco Castellano. I trained as a gelatiere in Italy, where I was taught that gelato begins with an ingredient, not a catalogue. When I moved to London I found beautiful marble counters selling “artisan strawberry” in the middle of winter. Nobody could tell me where the strawberries came from. Eventually I understood why: there were no strawberries.</p>
+          <p>So I built Gelatorchard on one rule that costs me money every single month: <strong>if a fruit isn’t in season in Britain, we don’t make that flavour.</strong> No powder, no purée from a tin, no “natural flavouring”. Not even in February, when it would be easy, and cheap, and nobody would ever know.</p>
+          <p>Here’s what that rule does to my menu: in January I can offer you exactly one fresh fruit flavour. One. Yorkshire forced rhubarb, grown in the dark, picked by candlelight. A sensible businessman would quietly reach for the powder. I’d rather show you a short menu than a long lie — because that short January menu is the only proof I have that the July strawberry in your freezer is exactly what I say it is.</p>
+          <p class="sig">— Marco</p>
+          <p class="ps"><strong>P.S.</strong> Every bag we sell carries a QR code to the exact batch it came from: the farmer’s name, the field, the hour it was picked, the production log. I didn’t add it to impress you. I added it so I could never cheat, even if I wanted to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. PROCESSO (10.5.4, Hopkins) ============ -->
   <section id="story">
     <div class="container">
       <div class="sec-head reveal">
         <span class="eyebrow">Field to Freezer in 48 Hours</span>
-        <h2 class="h2">Every Batch, Traced.</h2>
+        <h2 class="h2">From a Kent Field to Your Freezer in One Working Day. Here’s Every Step.</h2>
       </div>
       <div class="journey-grid" data-cascade="x" data-stagger="0.22">
         <!-- La linea si "disegna" con lo scroll (motion.js, dashoffset) -->
         <svg class="journey-line" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true"><line pathLength="1" x1="0" y1="1.5" x2="100" y2="1.5"/></svg>
         <div class="j-step">
           <span class="j-num">1</span>
-          <h3>5am · Market</h3>
-          <p>Tom picks the strawberries in Woodchurch, Kent. They arrive fresh at New Covent Garden.</p>
+          <h3>5am · The pick</h3>
+          <p>Fruit is picked at first light, when sugar is at its peak and the flesh is coolest. Tom’s rule is simpler than ours: if it wasn’t picked this morning, it doesn’t get on the van.</p>
         </div>
         <div class="j-step">
           <span class="j-num">2</span>
-          <h3>6am · The Lab</h3>
-          <p>Pasteurised, churned, -18°C reached. Every batch logged.</p>
+          <h3>6am · The lab</h3>
+          <p>Pasteurised at 62°C for 20 minutes: hot enough to be safe, low enough that fruit still tastes of fruit. Then churned and blast-frozen to -18°C, because slow freezing grows big ice crystals, and big crystals kill texture.</p>
         </div>
         <div class="j-step">
           <span class="j-num">3</span>
           <h3>5pm · Dispatch</h3>
-          <p>Compostable piping bag, kraft box, dry ice. Cold chain guaranteed.</p>
+          <p>Compostable piping bag, insulated box, dry ice. Batch #042 left the lab at -20°C and arrived at -14°C two hours later. We know, because the numbers ride on the batch log.</p>
         </div>
         <div class="j-step">
           <span class="j-num">4</span>
-          <h3>7pm · Your Freezer</h3>
-          <p>Scan the QR. Meet Tom. No mystery, just real fruit.</p>
+          <h3>7pm · Your freezer</h3>
+          <p>Scan the QR on the bag and check everything we’ve just told you: the farmer, the field, the hour, the log. If we ever cut a corner, you’ll be the first to know.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2.6 FORMATS -->
+  <!-- ============ 9. FORMATI E PREZZO (10.5.7, Kennedy) ============ -->
   <section id="formats">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="eyebrow">No Subscriptions</span>
-        <h2 class="h2">Three Formats. Zero Commitment.</h2>
-        <p class="sec-sub">Every seasonal flavour follows the real UK season, you order when it exists, not on a billing cycle.</p>
+        <span class="eyebrow">No Subscriptions. No Discounts.</span>
+        <h2 class="h2">Start With £3.50 of Proof, or Fill the Freezer.</h2>
+        <p class="sec-sub">You order when a fruit exists, not on a billing cycle. And you’ll never see a discount here: the price is the cost of doing this properly, so the price is the promise.</p>
       </div>
       <div class="formats-grid">
         <div class="card fmt reveal">
-          <span class="fmt-tag">Taster</span>
+          <span class="fmt-tag">For Sceptics</span>
           <h3>Cup</h3>
-          <p>A single serving, cup + cone. The quickest way to try the flavour of the week.</p>
+          <p>One flavour, one sitting, cup + cone. The cheapest possible way to check we’re telling the truth.</p>
           <div class="fmt-price">£3.50</div>
           <a class="pill pill-ghost pill-sm" href="order.html">Order</a>
         </div>
         <div class="card fmt featured reveal">
           <span class="fmt-tag">Most Popular</span>
           <h3>Gelato Kit</h3>
-          <p>1kg, serves 2–6. 2 piping bags (2 flavours of your choice) + cones, cups, wooden spoons, dry-ice box.</p>
+          <p>1kg, serves 2–6. Two piping bags (two flavours), cones, cups, wooden spoons, dry-ice box. A London gelato bar charges £4.50–7.50 a scoop; the Kit works out under £3.50 a scoop, with the farmer’s name attached. Not for you if you want a bargain freezer-filler — real fruit doesn’t do bargains.</p>
           <div class="fmt-price">£28 pickup / £34 delivery</div>
           <a class="pill pill-dark pill-sm" href="order.html">Order</a>
         </div>
         <div class="card fmt reveal">
-          <span class="fmt-tag">One Flavour</span>
+          <span class="fmt-tag">One Flavour, No Ceremony</span>
           <h3>Piping Bag</h3>
-          <p>500g, one flavour of your choice. Squeeze it straight onto cone or cup.</p>
+          <p>500g of a single flavour, squeezed straight onto cone or cup. For people who already know exactly what they want.</p>
           <div class="fmt-price">from £6.50</div>
           <a class="pill pill-ghost pill-sm" href="order.html">Order</a>
         </div>
       </div>
+      <p class="sec-sub reveal" style="text-align:center;margin:32px auto 0">Where the money goes: about a third of a Kit’s price is the fruit and the cold-chain packaging alone. That’s the part we will never save on — and the only part you can actually taste.</p>
     </div>
   </section>
 
-  <!-- 2.7 CALENDAR TEASER -->
-  <section id="calendar">
-    <div class="container">
-      <div class="card cal-teaser reveal">
-        <div id="season-badge" class="season-badge reveal-rotate"></div>
-        <div class="cal-text">
-          <h3>12 Months. Only British Fruit.</h3>
-          <p>Every flavour in the Fruit Collection follows the real English harvest calendar. See what's in season now, and what's already gone until next year.</p>
-        </div>
-        <a class="pill pill-ghost" href="calendario.html">See the Calendar</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2.8 UNBOXING -->
+  <!-- ============ 10. UNBOXING ============ -->
   <section class="unboxing">
     <div class="container">
       <div class="unbox-visual reveal-zoom">
         <span class="unbox-placeholder">Real box photo to upload</span>
         <div class="hv-overlay reveal-fade" data-delay="0.2">
           <div>
-            <h3 class="hv-title">One Kraft Box. No Plastic.</h3>
-            <p class="hv-sub">Every Gelato Kit arrives in a 100% recyclable box. No film, no polystyrene: everything compostable or recyclable.</p>
+            <h3 class="hv-title">One Box. One Job: -18°C to Your Door.</h3>
+            <p class="hv-sub">Kraft shell, insulated liner, dry ice. It holds -18°C for six-plus hours, and everything in it is recyclable or compostable. No film, no foam peanuts, no apologies.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 2.9 TESTIMONIALS (pre-launch tasting panel: the note below is mandatory until launch) -->
-  <section class="quotes">
+  <!-- ============ 11. PROVA SOCIALE (10.5.8) ============ -->
+  <section id="proof">
     <div class="container">
       <div class="sec-head reveal">
-        <span class="eyebrow">From the First Tastings</span>
-        <h2 class="h2">What Early Tasters Say</h2>
+        <span class="eyebrow">Don’t Trust Us. Check Us.</span>
+        <h2 class="h2">Every Claim on This Page Comes With a Paper Trail</h2>
+        <p class="sec-sub">We can’t show you five-star reviews yet, we haven’t launched. What we can show you is the thing reviews are supposed to prove: the record.</p>
       </div>
-      <div class="quotes-grid">
-        <div class="quote-card reveal">
-          <span class="stars">★★★★★</span>
-          <blockquote>"The real taste of fruit. Not extract."</blockquote>
-          <cite>Sarah M. · Stratford</cite>
-        </div>
-        <div class="quote-card reveal">
-          <span class="stars">★★★★★</span>
-          <blockquote>"The first gelato my daughter eats without a second thought."</blockquote>
-          <cite>James L. · Hackney</cite>
-        </div>
-        <div class="quote-card reveal">
-          <span class="stars">★★★★★</span>
-          <blockquote>"Tastes like summer, but you know exactly where it comes from."</blockquote>
-          <cite>Lisa R. · Walthamstow</cite>
-        </div>
-        <div class="quote-card reveal">
-          <span class="stars">★★★★★</span>
-          <blockquote>"The pistachio is my favourite classic, full stop."</blockquote>
-          <cite>Tom S. · E15</cite>
-        </div>
+      <div class="cold-grid reveal" style="max-width:820px;margin:44px auto 0">
+        <!-- DATI SIMULATI — sostituire con dati reali prima del lancio -->
+        <div class="cold-cell"><div class="cc-v" data-fake="1">41h</div><div class="cc-k">average, pick to -18°C</div></div>
+        <div class="cold-cell"><div class="cc-v" data-fake="1">92 km</div><div class="cc-k">average, field to lab</div></div>
+        <div class="cold-cell"><div class="cc-v" data-fake="1">45</div><div class="cc-k">batches, each with a public log</div></div>
+        <div class="cold-cell"><div class="cc-v">0</div><div class="cc-k">flavour powders, ever</div></div>
       </div>
-      <p class="quotes-note reveal">Pre-launch tasting panel. Public reviews arrive after the September launch.</p>
+      <h4 class="reveal" style="font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);margin:40px 0 12px;text-align:left">The batch log — most recent first</h4>
+      <ul class="batch-log reveal" id="batch-log"></ul>
+      <div class="panel-quotes">
+        <!-- CITAZIONI SIMULATE dal panel pre-lancio — sostituire con citazioni reali -->
+        <blockquote class="pq reveal" data-fake="1">“It tastes like the fruit, not like the idea of the fruit.”<cite>Tasting panel, on Batch #042 (strawberry) · 19 May</cite></blockquote>
+        <blockquote class="pq reveal" data-fake="1">“I checked the QR against the farm on the map. It’s real. That alone is worth the price.”<cite>Tasting panel, on Batch #045 (raspberry) · 30 July</cite></blockquote>
+      </div>
+      <p class="quotes-note reveal">From our pre-launch tasting panel. Public reviews open with the September launch — and we won’t edit them.</p>
     </div>
   </section>
 
-  <!-- 2.10 CTA BAND -->
-  <section class="cta-band-wrap">
-    <div class="container">
-      <div class="cta-band reveal-lift">
-        <h2>Ready to Trace Your Gelato?</h2>
-        <p>Pick your flavours. Discover the story. No powders, ever.</p>
-        <div class="ctas">
-          <a class="pill pill-white" href="#flavors">Order Now</a>
-          <a class="pill pill-ghost-light" href="#alerts">Get Updates</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7.1 SEASONAL ALERT LIST (componente condiviso, alerts.js) -->
-  <section id="alerts" style="padding-top:56px">
+  <!-- ============ 12. SEASONAL ALERT LIST ============ -->
+  <section id="alerts" style="padding-top:0">
     <div class="container checkout-view">
       <div class="sec-head reveal">
-        <span class="eyebrow">Seasonal Alert List</span>
-        <h2 class="h2">Follow Your Fruit</h2>
+        <span class="eyebrow">Free · No Card, No Commitment</span>
+        <h2 class="h2">The Season Ends Whether You’re Ready or Not</h2>
+        <p class="sec-sub">Pick the fruits you’d actually miss. Marco emails you twice per fruit: the day it arrives, and one week before it disappears for months. That’s the entire system.</p>
       </div>
       <div id="alert-signup-embed" class="reveal" style="margin-top:28px"></div>
+    </div>
+  </section>
+
+  <!-- ============ 13. CTA BAND (10.5.9) — testo generato da home.js ============ -->
+  <section class="cta-band-wrap">
+    <div class="container">
+      <div class="cta-band reveal-lift" id="season-cta">
+        <h2 class="cta-title">The season is moving. Order what exists today.</h2>
+        <p class="cta-sub">Every flavour on this site follows the real British harvest, and the harvest doesn’t wait.</p>
+        <div class="ctas">
+          <a class="pill pill-white cta-order" href="order.html">Order now</a>
+          <a class="pill pill-ghost-light" href="#alerts">Join the alert list (free)</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -220,7 +311,9 @@
 <footer id="site-footer"></footer>
 <script src="flavors.js"></script>
 <script src="backend.js"></script>
+<script src="calendar.js"></script>
 <script src="alerts.js"></script>
+<script src="home.js"></script>
 <script src="photos.js"></script>
 <script src="motion.js"></script>
 <script src="site.js"></script>

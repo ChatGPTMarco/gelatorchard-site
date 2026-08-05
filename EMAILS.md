@@ -120,6 +120,9 @@ Don't want to miss a fruit? Join the seasonal alerts — free, no commitment: [J
 
 — Marco
 
+P.S. — Louise's raspberries have a shorter season than you'd think. When her last
+pick happens, the alert list hears about it first. That's the whole system.
+
 ---
 
 ## EMAIL 7.3 — Last call (trigger: ≤7 giorni alla fine stagione di un frutto seguito)
