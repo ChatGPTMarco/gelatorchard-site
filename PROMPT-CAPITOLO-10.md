@@ -28,8 +28,15 @@ Ogni singolo dato non verificato che inserisci DEVE rispettare tutte e tre quest
 3. **Registrazione in `FAKE-DATA.md`** (file nuovo, nella radice): una riga per ogni dato
    simulato, con file, riga approssimativa, valore usato e chi deve fornire il dato reale.
 
-Alla fine del capitolo (10.9) c'è la procedura di rimozione. Il sito **non deve andare
+Alla fine del capitolo (10.10) c'è la procedura di rimozione. Il sito **non deve andare
 online finché quella procedura non è stata eseguita**. Scrivilo anche in cima a `FAKE-DATA.md`.
+
+### Immagini provvisorie: stessa regola dei dati
+Il founder ha autorizzato **esplicitamente e solo per questa mockup locale** l'uso di
+fotografie stock al posto delle fotografie originali, che non sono ancora disponibili.
+Servono a valutare l'aspetto d'insieme del sito. La procedura completa è in **10.9**:
+leggila prima di inserire qualsiasi immagine. Valgono le stesse tre regole dei dati
+(marcatura `data-fake`, commento adiacente, registrazione in `FAKE-DATA.md`).
 
 ### Cosa NON è ammesso, nemmeno in mockup
 - Countdown a tempo che non corrisponde a una scadenza stagionale reale calcolata da `flavors.js`
@@ -333,27 +340,103 @@ Applica la stessa riscrittura, mantenendo intatte le funzionalità:
 
 ---
 
-## 10.9 PROCEDURA DI RIMOZIONE DATI SIMULATI (obbligatoria prima del lancio)
+## 10.9 FOTOGRAFIE PROVVISORIE (autorizzate dal founder, solo per la mockup)
+
+Il sito oggi non ha nemmeno una fotografia: al loro posto ci sono segnaposto testuali.
+Questo rende impossibile valutare l'aspetto d'insieme. Il founder autorizza l'uso di
+**foto stock provvisorie** per questa fase locale.
+
+### Da dove prenderle
+Solo banche immagini con licenza libera anche per uso commerciale e **senza obbligo di
+attribuzione**: Unsplash (unsplash.com) o Pexels (pexels.com). Non usare immagini trovate
+con una ricerca generica sul web: la licenza non è verificabile.
+
+Salva i file in `assets/`, dimensione circa 1600-1920px di larghezza, formato `.jpg`,
+compressi ragionevolmente (sotto i 400 KB l'una: il sito non deve appesantirsi).
+
+### L'infrastruttura esiste già — usala, non riscriverla
+Il progetto contiene già `photos.js`, che aggancia automaticamente le immagini presenti
+in `assets/` agli slot del sito, marcandole e mostrando l'etichetta "Stock photo · bozza".
+Se un file manca, lo slot resta col segnaposto e non si rompe nulla.
+
+**Non riscrivere questo meccanismo**: limitati a scaricare i file coi nomi attesi e, se
+il Capitolo 10 introduce nuovi slot immagine, aggiungi la voce corrispondente all'array
+`SLOTS` in `photos.js`. Il CSS necessario (`.photo-fill`, `.photo-tag`, velo scuro sotto
+il testo sovrapposto) è già in `style.css`.
+
+Il file `FOTO-DA-SCARICARE.md` nella radice contiene la lista dettagliata di ricerca.
+
+### Le immagini da procurare
+
+| Nome file | Slot | Proporzioni | Cosa cercare |
+|---|---|---|---|
+| `hero-gelato.jpg` | Hero homepage | orizzontale ~2:1 | `strawberry gelato cone`, `pink ice cream cone` |
+| `unboxing-box.jpg` | Sezione unboxing | orizzontale ~2:1 | `kraft box packaging open`, `eco packaging flat lay` |
+| `farmer-field.jpg` | Story, capitolo 1 | orizzontale 16:9 | `strawberry farmer field`, `hands picking strawberries` |
+| `lab-gelato.jpg` | Story, capitolo 2 | orizzontale 16:9 | `gelato making machine`, `artisan ice cream production` |
+| `fruit-seasonal.jpg` | Sezione stagionalità | orizzontale | `british summer fruit basket`, `seasonal fruit market` |
+| `label-industrial.jpg` | Confronto etichette (10.5.2b) | verticale/quadrata | `food label ingredients list close up` — **opzionale**: se non trovi un'etichetta reale leggibile, costruisci la colonna in HTML come previsto da 10.5.2b, che è comunque la soluzione preferita |
+
+### Regole vincolanti sulla scelta delle immagini
+
+1. **Nessun volto riconoscibile** nelle foto del contadino e del laboratorio. Scegli
+   inquadrature di spalle, di profilo, o sulle mani. Una faccia stock sotto la scritta
+   "Meet Tom" fa credere che quello sia il vero Tom Johnson: su un sito che vende
+   tracciabilità verificabile è il tipo di dettaglio che distrugge la credibilità.
+2. **Nessun ritratto per la lettera di Marco** (10.5.3). Quella sezione resta col
+   segnaposto finché non arriva una foto vera del founder: è la sua voce in prima
+   persona, una faccia altrui sarebbe una bugia diretta.
+3. **Nessun marchio o logo visibile** nelle immagini: né sui packaging, né sui
+   macchinari, né sulle etichette.
+4. **Coerenza cromatica col design system**: luce naturale, tonalità calde, sfondi
+   semplici. Scarta le foto con filtri saturi, sfondi scuri o estetica da stock
+   patinato: stonerebbero col resto.
+5. **Attenzione a dove cade il testo**: su hero e unboxing il testo bianco va in basso.
+   Scegli immagini con una zona inferiore relativamente uniforme.
+
+### Marcatura obbligatoria (identica a quella dei dati)
+Ogni immagine provvisoria deve avere `data-fake="1"` sull'elemento `<img>`, l'etichetta
+visibile "Stock photo · bozza" (già gestita da `photos.js`), e una riga in `FAKE-DATA.md`
+con nome file, slot occupato e la nota che va sostituita con la foto originale del founder.
+
+### Perché vanno rimosse prima del lancio
+Pubblicare il sito con queste immagini significherebbe mostrare frutta, laboratori e
+contadini che **non sono quelli di Gelatorchard**, sotto affermazioni che ne dichiarano la
+provenienza esatta. È l'unica bugia che questo brand non può permettersi, perché contraddice
+la sola cosa che vende. La procedura di rimozione è in 10.10 e vale anche per le immagini.
+
+---
+
+## 10.10 PROCEDURA DI RIMOZIONE DATI SIMULATI (obbligatoria prima del lancio)
 
 Crea `FAKE-DATA.md` nella radice con questa struttura:
 
 ```
-# DATI SIMULATI — DA RIMUOVERE PRIMA DEL LANCIO
+# DATI E IMMAGINI SIMULATI — DA RIMUOVERE PRIMA DEL LANCIO
 
 ⚠️ IL SITO NON DEVE ANDARE ONLINE FINCHÉ QUESTA LISTA NON È VUOTA.
 
-Ogni riga: file · cosa · valore simulato · chi fornisce il dato reale
-
+## Dati numerici e citazioni
 | File | Elemento | Valore simulato | Fonte del dato reale |
 |---|---|---|---|
 | index.html | proof bar, batch prodotti | 47 | Marco (registro produzione) |
 | ... | ... | ... | ... |
 
-## Come rimuoverli tutti
-1. Cerca `data-fake` in tutti i file: ogni occorrenza è un dato da sostituire.
-2. Se il dato reale è disponibile: sostituisci il valore e togli `data-fake` e il commento.
-3. Se NON è disponibile: rimuovi l'intero elemento, non lasciare un numero a zero.
-4. Verifica finale: la ricerca di `data-fake` deve restituire zero risultati.
+## Immagini stock provvisorie
+| File immagine | Slot occupato | Origine | Foto reale attesa |
+|---|---|---|---|
+| assets/hero-gelato.jpg | hero homepage | Unsplash | cono/coppetta del gelato vero |
+| ... | ... | ... | ... |
+
+## Come rimuovere tutto
+1. Cerca `data-fake` in tutti i file: ogni occorrenza è un elemento da sostituire.
+2. **Dati**: se il valore reale è disponibile, sostituiscilo e togli `data-fake` e il
+   commento. Se non è disponibile, rimuovi l'intero elemento: mai lasciare uno zero.
+3. **Immagini**: sostituisci il file in `assets/` con la fotografia originale mantenendo
+   lo stesso nome, poi togli `data-fake` e l'etichetta "Stock photo · bozza". Se la foto
+   reale non c'è ancora, rimuovi l'immagine e lascia il segnaposto testuale.
+4. Cancella da `assets/` i file stock non più usati.
+5. Verifica finale: la ricerca di `data-fake` deve restituire zero risultati.
 ```
 
 Aggiungi in `CLAUDE.md`, nella sezione "Stato build", una riga che segnala l'esistenza di
@@ -361,7 +444,7 @@ Aggiungi in `CLAUDE.md`, nella sezione "Stato build", una riga che segnala l'esi
 
 ---
 
-## 10.10 VINCOLI TECNICI (invariati dai capitoli precedenti)
+## 10.11 VINCOLI TECNICI (invariati dai capitoli precedenti)
 
 - HTML/CSS/JS puro, struttura piatta. Nessuna dipendenza esterna, nessun framework.
 - Design system del Capitolo 1: non introdurre colori o font nuovi. Il fondo scuro del
@@ -376,7 +459,7 @@ Aggiungi in `CLAUDE.md`, nella sezione "Stato build", una riga che segnala l'esi
 
 ---
 
-## 10.11 COSA CONSEGNARE
+## 10.12 COSA CONSEGNARE
 
 1. `index.html` riordinato secondo 10.3 con tutte le sezioni nuove e il copy riscritto
 2. Nuove regole CSS in `style.css` per: manifesto a fondo scuro, confronto etichette,
@@ -385,8 +468,9 @@ Aggiungi in `CLAUDE.md`, nella sezione "Stato build", una riga che segnala l'esi
    `windowInfo()`, batch simulati marcati nel registro
 4. `site.js`: barra di scarsità globale
 5. Copy riscritto su `/order`, `/story`, `/business`, `/app` e in `EMAILS.md`
-6. `FAKE-DATA.md` completo di ogni dato simulato inserito
-7. `CLAUDE.md` aggiornato
+6. Fotografie provvisorie scaricate in `assets/` e agganciate via `photos.js` (10.9)
+7. `FAKE-DATA.md` completo di ogni dato E immagine simulata inserita
+8. `CLAUDE.md` aggiornato
 
 **Criterio di accettazione**: un visitatore che apre la homepage e legge solo i primi due
 schermi deve poter rispondere a tre domande — che cosa vendono, perché è diverso da tutto
