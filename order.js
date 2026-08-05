@@ -221,6 +221,23 @@
   document.getElementById('drawer-close').addEventListener('click', closeDrawer);
   document.getElementById('basket-fab').addEventListener('click', openDrawer);
 
+  /* Quantità e rimozione righe: gestore delegato sul contenitore,
+     così sopravvive a ogni ri-render del basket */
+  document.getElementById('basket-items').addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-i]');
+    if (!btn) return;
+    var i = +btn.getAttribute('data-i');
+    var d = +btn.getAttribute('data-d');
+    if (!basket[i]) return;
+    if (d === 0) basket.splice(i, 1);            /* remove */
+    else {
+      basket[i].qty += d;                        /* +1 / −1 */
+      if (basket[i].qty <= 0) basket.splice(i, 1);
+    }
+    saveBasket();
+    renderBasket();
+  });
+
   document.getElementById('ful-pickup').addEventListener('click', function () { setFulfilment('pickup'); });
   document.getElementById('ful-delivery').addEventListener('click', function () { setFulfilment('delivery'); });
   function setFulfilment(mode) {
