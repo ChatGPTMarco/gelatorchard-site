@@ -133,6 +133,21 @@ Premium Gift Box £28.50
 4. Scarsità solo se ancorata a date/stagioni reali. Mai countdown finti.
 5. VIETATE le parole "abbonamento/subscription/member" → usare "Seasonal Alert List" (notifica gratuita).
 
+## PROSSIMI PASSI (stato al 5 agosto 2026 — aggiornare man mano)
+Lista A, migliorie approvate come candidate dal founder (in attesa del "vai"), in ordine:
+1. Picker utilizzabile da tastiera (tile div senza tabindex: oggi non si può comprare senza mouse)
+2. Barra di scarsità a soglie: >30gg tono "picco", ≤21gg countdown, ≤7gg rosso ruggine perentorio
+3. Scheletro FAQ/consegna/allergeni (risposte vere di Marco = campi "da confermare";
+   allergeni COMPLETI = bloccante per il lancio, obbligo UK vendita a distanza)
+4. Meta Open Graph su tutte le pagine (oggi un link condiviso su WhatsApp è un rettangolo grigio)
+5. Hook analytics: data-track sugli eventi chiave + stub locale, provider al lancio
+6. Contrasto righe NOT del manifesto (opacità .52 fallisce WCAG)
+Decisione rimandata dal founder: "dieta homepage" 13→9 sezioni, claim deduplicati,
+manifesto checkout differenziato da quello in home (farla come mini-capitolo a parte).
+Domande aperte per Marco: matrice allergeni + contaminazione incrociata, zone/giorni
+consegna Londra, contatti reali footer (ora #), account analytics, numero vero batch.
+Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cache).
+
 ## Metodo di lavoro
 - Modifiche chirurgiche, mai rigenerare file interi senza necessità.
 - Ogni capitolo nuovo arriva come specifica dal founder: implementarlo senza stravolgere i precedenti.
