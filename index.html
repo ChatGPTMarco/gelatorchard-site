@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gelatorchard | No Powders. Just Fruit.</title>
 <meta name="description" content="Most gelato starts as flavour powder. Ours starts on a named British farm, 48 hours before it reaches your freezer. Three ingredients: fruit, cane sugar, water.">
+<!-- Open Graph (Lista A.4) — og:image usa la foto hero stock: si sistema
+     da sola quando il file viene sostituito (stesso nome, FAKE-DATA.md) -->
+<link rel="canonical" href="https://chatgptmarco.github.io/gelatorchard-site/index.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gelatorchard">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Gelatorchard | No Powders. Just Fruit.">
+<meta property="og:description" content="Most gelato starts as flavour powder. Ours starts on a named British farm, 48 hours before it reaches your freezer. Three ingredients: fruit, cane sugar, water.">
+<meta property="og:url" content="https://chatgptmarco.github.io/gelatorchard-site/index.html">
+<meta property="og:image" content="https://chatgptmarco.github.io/gelatorchard-site/assets/hero-gelato.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -26,8 +37,8 @@
       <h1 class="h1 reveal" data-dur="slow">Your “artisan” gelato has<br><span class="green">16 ingredients. Ours has 3.</span></h1>
       <p class="hero-sub reveal" data-dur="slow" data-delay="0.25">We read the labels so you don’t have to. Every Gelatorchard batch starts with a named British farmer, a recorded harvest hour, and a finished label of exactly three words: fruit, cane sugar, water.</p>
       <div class="hero-ctas reveal" data-dur="slow" data-delay="0.45">
-        <a class="pill pill-dark" href="#season">See what’s in season today</a>
-        <a class="pill pill-ghost" href="#labels">Read both labels</a>
+        <a class="pill pill-dark" data-track="hero_cta_season" href="#season">See what’s in season today</a>
+        <a class="pill pill-ghost" data-track="hero_cta_labels" href="#labels">Read both labels</a>
       </div>
       <!-- Foto stock provvisoria via photos.js (data-fake) — sostituire con fotografia reale -->
       <div class="hero-visual reveal-fade" data-parallax>
@@ -299,8 +310,8 @@
         <h2 class="cta-title">The season is moving. Order what exists today.</h2>
         <p class="cta-sub">Every flavour on this site follows the real British harvest, and the harvest doesn’t wait.</p>
         <div class="ctas">
-          <a class="pill pill-white cta-order" href="order.html">Order now</a>
-          <a class="pill pill-ghost-light" href="#alerts">Join the alert list (free)</a>
+          <a class="pill pill-white cta-order" data-track="cta_band_order" href="order.html">Order now</a>
+          <a class="pill pill-ghost-light" data-track="cta_band_alerts" href="#alerts">Join the alert list (free)</a>
         </div>
       </div>
     </div>
@@ -310,6 +321,7 @@
 
 <footer id="site-footer"></footer>
 <script src="flavors.js"></script>
+<script src="analytics.js"></script>
 <script src="backend.js"></script>
 <script src="calendar.js"></script>
 <script src="alerts.js"></script>

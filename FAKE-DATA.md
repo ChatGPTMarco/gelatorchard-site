@@ -28,7 +28,7 @@ sostituire i record e togliere il campo `fake`.
 
 | File immagine | Slot occupato | Origine (ID Unsplash) | Foto reale attesa |
 |---|---|---|---|
-| assets/hero-gelato.jpg | hero homepage | T0cT79FV6Ig | cono/coppetta del gelato VERO di Gelatorchard |
+| assets/hero-gelato.jpg | hero homepage + `og:image` di tutte le pagine (anteprima link WhatsApp/social) | T0cT79FV6Ig | cono/coppetta del gelato VERO di Gelatorchard |
 | assets/farmer-field.jpg | story, capitolo 1 | E80rnzCWCPk | Tom Johnson nel campo (o al mercato) |
 | assets/unboxing-box.jpg | sezione unboxing | bYhDEWgqYLM | la box kraft VERA aperta col contenuto |
 

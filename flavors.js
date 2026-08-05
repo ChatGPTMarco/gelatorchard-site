@@ -321,7 +321,7 @@
       if (st.inSeason) {
         if (st.daysLeft <= 45 && (!ending || st.daysLeft < ending.daysLeft)) {
           ending = { type: 'ending', id: f.id, name: f.name, daysLeft: st.daysLeft,
-                     endLong: st.endLong, returnMonthYear: st.returnMonthYear };
+                     peak: st.peak, endLong: st.endLong, returnMonthYear: st.returnMonthYear };
         }
       } else if (st.daysToStart != null) {
         if (!coming || st.daysToStart < coming.daysToStart) {
@@ -404,7 +404,7 @@
       var meta = (st.state === 'finished' && st.daysSinceEnd != null && st.daysSinceEnd <= 30)
         ? 'Ended ' + st.daysSinceEnd + (st.daysSinceEnd === 1 ? ' day' : ' days') + ' ago'
         : st.subtitle;
-      return '<div class="tile out" data-id="' + f.id + '">' +
+      return '<div class="tile out" data-id="' + f.id + '" aria-disabled="true">' +
         '<div class="swatch ' + f.sw + '"><span class="stamp">' + st.stampLabel + '</span></div>' +
         '<div class="t-name">' + f.name + '</div>' +
         '<div class="t-meta">' + meta + '</div>' +
@@ -427,7 +427,10 @@
     }
     var story = st.always ? '' :
       '<a class="t-link" href="story.html?flavour=' + f.id + '">Read the story →</a>';
-    return '<div class="tile" data-id="' + f.id + '">' +
+    /* Tastiera (Lista A.1): la tile è un checkbox focusabile — il toggle
+       via Enter/Spazio vive nel gestore keydown del picker */
+    return '<div class="tile" data-id="' + f.id + '" role="checkbox" aria-checked="false" tabindex="0"' +
+      ' aria-label="' + f.name + ', ' + st.subtitle + '">' +
       '<div class="swatch ' + f.sw + '"></div>' +
       '<div class="t-name">' + f.name + '</div>' +
       '<div class="t-meta">' + st.subtitle + '</div>' +
@@ -465,7 +468,7 @@
             '<div class="ks-label">Your Gelato Kit (pick up to 2 flavours)</div>' +
             '<div class="ks-value empty">Pick 1–2 flavours above</div>' +
           '</div>' +
-          '<a class="pill pill-dark ks-cta" href="order.html">Continue · £28 pickup / £34 delivery</a>' +
+          '<a class="pill pill-dark ks-cta" data-track="picker_continue" href="order.html">Continue · £28 pickup / £34 delivery</a>' +
         '</div>' : '');
 
     var valueEl = root.querySelector('.ks-value');
@@ -489,7 +492,9 @@
 
     function sync() {
       root.querySelectorAll('.tile').forEach(function (t) {
-        t.classList.toggle('selected', selected.indexOf(t.getAttribute('data-id')) >= 0);
+        var on = selected.indexOf(t.getAttribute('data-id')) >= 0;
+        t.classList.toggle('selected', on);
+        if (t.hasAttribute('role')) t.setAttribute('aria-checked', on ? 'true' : 'false');
       });
       if (valueEl) {
         if (selected.length === 0) {
@@ -509,19 +514,32 @@
       tab.addEventListener('click', function () { showTab(tab.getAttribute('data-tab')); });
     });
 
+    function toggleTile(tile) {
+      var id = tile.getAttribute('data-id');
+      var idx = selected.indexOf(id);
+      if (idx >= 0) selected.splice(idx, 1);
+      else {
+        selected.push(id);
+        while (selected.length > max) selected.shift(); /* FIFO: oldest out */
+      }
+      if (G.track) G.track('picker_select', { flavour: id, on: idx < 0 });
+      sync();
+    }
+
     root.querySelectorAll('.tile-grid').forEach(function (grid) {
       grid.addEventListener('click', function (e) {
         if (e.target.closest('a')) return; /* links inside tiles never select */
         var tile = e.target.closest('.tile');
         if (!tile || tile.classList.contains('out')) return;
-        var id = tile.getAttribute('data-id');
-        var idx = selected.indexOf(id);
-        if (idx >= 0) selected.splice(idx, 1);
-        else {
-          selected.push(id);
-          while (selected.length > max) selected.shift(); /* FIFO: oldest out */
-        }
-        sync();
+        toggleTile(tile);
+      });
+      /* Lista A.1: Enter/Spazio selezionano come il click */
+      grid.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+        var tile = e.target.closest('.tile');
+        if (!tile || tile.classList.contains('out')) return;
+        e.preventDefault(); /* Spazio non deve scrollare la pagina */
+        toggleTile(tile);
       });
     });
 

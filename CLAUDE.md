@@ -134,14 +134,24 @@ Premium Gift Box £28.50
 5. VIETATE le parole "abbonamento/subscription/member" → usare "Seasonal Alert List" (notifica gratuita).
 
 ## PROSSIMI PASSI (stato al 5 agosto 2026 — aggiornare man mano)
-Lista A, migliorie approvate come candidate dal founder (in attesa del "vai"), in ordine:
-1. Picker utilizzabile da tastiera (tile div senza tabindex: oggi non si può comprare senza mouse)
-2. Barra di scarsità a soglie: >30gg tono "picco", ≤21gg countdown, ≤7gg rosso ruggine perentorio
-3. Scheletro FAQ/consegna/allergeni (risposte vere di Marco = campi "da confermare";
-   allergeni COMPLETI = bloccante per il lancio, obbligo UK vendita a distanza)
-4. Meta Open Graph su tutte le pagine (oggi un link condiviso su WhatsApp è un rettangolo grigio)
-5. Hook analytics: data-track sugli eventi chiave + stub locale, provider al lancio
-6. Contrasto righe NOT del manifesto (opacità .52 fallisce WCAG)
+Lista A: fatti i punti 1, 2, 4, 5, 6 (5 agosto 2026, "vai" del founder, FAQ rimandate):
+1. ✅ Picker da tastiera: tile role="checkbox" tabindex=0, Enter/Spazio, aria-checked,
+   focus ring in style.css; tile fuori stagione aria-disabled e non focusabili.
+2. ✅ Barra di scarsità a soglie (site.js): >21gg tono "picco" (endLong, flag peak da
+   mostUrgentFruit), 8–21gg countdown in giorni, ≤7gg classe .sb-last rosso ruggine
+   (--stamp) con copy perentorio. Sempre e solo date reali.
+3. ⏳ Scheletro FAQ/consegna/allergeni (risposte vere di Marco = campi "da confermare";
+   allergeni COMPLETI = bloccante per il lancio, obbligo UK vendita a distanza) — DA FARE
+4. ✅ Open Graph su tutte le pagine pubbliche (admin escluso): og:title/description/url/
+   locale/site_name + twitter:card + canonical. og:image = assets/hero-gelato.jpg (stock,
+   annotato in FAKE-DATA.md: si sistema sostituendo il file a parità di nome).
+5. ✅ Hook analytics: analytics.js (stub locale gc-analytics max 300 eventi, console.debug,
+   send() vuota da compilare col provider al lancio). Via dichiarativa [data-track] su CTA
+   chiave (hero, nav, cta band, barra scarsità, picker continue) + via programmatica
+   Gelatorchard.track in order.js (add_to_basket/checkout_start/order_submitted),
+   flavors.js (picker_select) e backend.js (alert_subscribe/feedback_submit/enquiry_send).
+6. ✅ Contrasto manifesto: .mf-no a opacità .72 (home, ~9:1) e .no-line a --ink-soft
+   (checkout, ~5.9:1), entrambi sopra WCAG AA.
 Decisione rimandata dal founder: "dieta homepage" 13→9 sezioni, claim deduplicati,
 manifesto checkout differenziato da quello in home (farla come mini-capitolo a parte).
 Domande aperte per Marco: matrice allergeni + contaminazione incrociata, zone/giorni

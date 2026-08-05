@@ -207,6 +207,7 @@
     var existing = basket.filter(function (it) { return it.key === key; })[0];
     if (existing) existing.qty += 1;
     else basket.push({ key: key, format: activeFormat, flavours: sel.slice(), qty: 1 });
+    if (G.track) G.track('add_to_basket', { format: activeFormat, flavours: sel.join(',') });
     saveBasket();
     renderBasket();
     openDrawer();
@@ -294,6 +295,7 @@
   /* ---------- 3.8 Step A — conferma ordine ---------- */
   document.getElementById('go-checkout').addEventListener('click', function () {
     if (basket.length === 0) return;
+    if (G.track) G.track('checkout_start', { items: basket.length, fulfilment: fulfilment });
     closeDrawer();
     var rows = basket.map(itemLabel);
     if (basketFruitIds().indexOf('strawberry') >= 0) {
@@ -366,6 +368,7 @@
       hist.push(record);
       localStorage.setItem('gc-orders', JSON.stringify(hist));
     } catch (e) {}
+    if (G.track) G.track('order_submitted', { total: record.total, fulfilment: fulfilment, items: record.items.length });
     if (window.GelatorchardBackend) {
       record.items.forEach(function (it) {
         window.GelatorchardBackend.submitOrder({

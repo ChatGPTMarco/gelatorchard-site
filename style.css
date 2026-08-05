@@ -83,7 +83,8 @@ section{padding:88px 0}
 .tile-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
 @media(max-width:900px){.tile-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.tile-grid{grid-template-columns:repeat(2,1fr)}}
-.tile{cursor:pointer;user-select:none;text-align:left}
+.tile{cursor:pointer;user-select:none;text-align:left;outline:none}
+.tile:focus-visible .swatch{border-color:var(--green);box-shadow:0 0 0 3px rgba(45,122,74,.3)}
 .tile .swatch{height:118px;border-radius:20px;border:2.5px solid transparent;position:relative;transition:transform .18s ease,border-color .15s ease,box-shadow .18s ease}
 .tile:hover .swatch{transform:scale(1.03);box-shadow:var(--shadow)}
 .tile.selected .swatch{border-color:var(--green)}
@@ -297,8 +298,8 @@ section{padding:88px 0}
 .check-list li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
 .step-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 .manifesto p{font-size:17px;padding:7px 0;margin:0}
-.manifesto .no-line{color:var(--ink-faint)}
-.manifesto .no-line strong{color:var(--ink-soft)}
+.manifesto .no-line{color:var(--ink-soft)} /* Lista A.6: --ink-faint non passava WCAG AA */
+.manifesto .no-line strong{color:var(--ink)}
 .manifesto .yes-line{color:var(--green);font-weight:600}
 .field-label{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px}
 .field-input{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px 16px;font-family:var(--sans);font-size:15px;background:var(--bg);color:var(--ink)}
@@ -484,6 +485,7 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .scarcity-bar a{color:#fff;font-size:12.5px;font-weight:500;letter-spacing:.02em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .scarcity-bar a:hover{text-decoration:underline}
 .scarcity-bar strong{font-weight:700}
+.scarcity-bar.sb-last{background:var(--stamp)} /* ≤7 giorni: rosso ruggine (Lista A.2) */
 .has-scarcity .nav{top:38px}
 .has-scarcity .story-head{top:102px}
 
@@ -491,7 +493,7 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .manifesto-band{background:var(--ink);color:var(--bg);padding:96px 0}
 .manifesto-band .mf-kicker{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--orange);margin-bottom:22px}
 .mf-line{font-size:clamp(17px,2.4vw,22px);line-height:1.5;padding:7px 0;margin:0}
-.mf-no{color:rgba(251,251,249,.52)}
+.mf-no{color:rgba(251,251,249,.72)} /* Lista A.6: .52 non passava WCAG AA su --ink */
 .mf-no strong{color:#fff}
 .mf-yes{color:#fff}
 .mf-yes strong{color:var(--orange)}

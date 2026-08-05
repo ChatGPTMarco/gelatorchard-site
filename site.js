@@ -43,21 +43,36 @@
     { href: pre + '#story',   label: 'Our Story' }
   ];
 
-  /* ---------- Barra di scarsità (Cap. 10.7) ----------
+  /* ---------- Barra di scarsità (Cap. 10.7 + Lista A.2) ----------
      Sticky sopra la nav su ogni pagina pubblica. SOLO date di
      stagione reali da Gelatorchard.mostUrgentFruit(): mai un
-     countdown a ore, mai numeri inventati. Si aggiorna da sola. */
+     countdown a ore, mai numeri inventati. Si aggiorna da sola.
+     Soglie (Lista A.2): >21 giorni tono "picco" (nessuna pressione),
+     8–21 countdown in giorni, ≤7 rosso ruggine perentorio. */
   if (window.Gelatorchard && window.Gelatorchard.mostUrgentFruit) {
     var urgent = window.Gelatorchard.mostUrgentFruit();
     if (urgent) {
       var bar = document.createElement('div');
       bar.className = 'scarcity-bar';
-      bar.innerHTML = urgent.type === 'ending'
-        ? '<a href="order.html?flavours=' + urgent.id + '"><strong>' + urgent.name + ':</strong> ' +
-          urgent.daysLeft + (urgent.daysLeft === 1 ? ' day' : ' days') + ' left this season · back ' +
-          urgent.returnMonthYear + '. Order it while it exists</a>'
-        : '<a href="calendario.html"><strong>Next into season:</strong> ' + urgent.name +
-          ' · opens ' + urgent.startLabel + '</a>';
+      var msg;
+      if (urgent.type !== 'ending') {
+        msg = '<a data-track="scarcity_bar" href="calendario.html"><strong>Next into season:</strong> ' +
+          urgent.name + ' · opens ' + urgent.startLabel + '</a>';
+      } else if (urgent.daysLeft <= 7) {
+        bar.className += ' sb-last';
+        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '"><strong>' +
+          urgent.name + ': ' + urgent.daysLeft + (urgent.daysLeft === 1 ? ' day' : ' days') +
+          ' left.</strong> Then gone until ' + urgent.returnMonthYear + '. Order now or wait a year</a>';
+      } else if (urgent.daysLeft <= 21) {
+        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '"><strong>' +
+          urgent.name + ':</strong> ' + urgent.daysLeft + ' days left this season · back ' +
+          urgent.returnMonthYear + '. Order it while it exists</a>';
+      } else {
+        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '"><strong>' +
+          urgent.name + ' is in season' + (urgent.peak ? ', at its peak' : '') + '</strong> · until ' +
+          urgent.endLong + '. Order it at its best</a>';
+      }
+      bar.innerHTML = msg;
       document.body.insertBefore(bar, document.body.firstChild);
       document.body.classList.add('has-scarcity');
     }
@@ -74,7 +89,7 @@
             return '<li><a href="' + l.href + '">' + l.label + '</a></li>';
           }).join('') +
         '</ul>' +
-        '<a class="pill pill-dark pill-sm" href="' + pre + '#flavors">Order</a>' +
+        '<a class="pill pill-dark pill-sm" data-track="nav_order" href="' + pre + '#flavors">Order</a>' +
       '</div>';
   }
 

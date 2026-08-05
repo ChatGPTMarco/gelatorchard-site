@@ -21,6 +21,13 @@ window.GelatorchardBackend = (function () {
   function isLive() { return !!(SUPABASE_URL && SUPABASE_ANON_KEY); }
   function preview() { return Promise.resolve({ preview: true, live: false }); }
 
+  /* Hook analytics (Lista A.5): ogni submit passa di qui, quindi un solo
+     punto di tracciamento per alert/feedback/enquiry. Gli ordini sono
+     tracciati da order.js (submitOrder arriva già spezzato per riga). */
+  function track(event, props) {
+    if (window.Gelatorchard && window.Gelatorchard.track) window.Gelatorchard.track(event, props);
+  }
+
   function rest(path, method, body, prefer) {
     var headers = {
       apikey: SUPABASE_ANON_KEY,
@@ -51,6 +58,7 @@ window.GelatorchardBackend = (function () {
 
     /* Cap. 7 → alert_subscriptions (una riga per frutto seguito) */
     subscribeAlerts: function (email, fruitKeys) {
+      track('alert_subscribe', { fruits: fruitKeys.length });
       if (!isLive()) return preview();
       var rows = fruitKeys.map(function (k) { return { email: email, fruit_key: k }; });
       return rest('alert_subscriptions', 'POST', rows, 'resolution=ignore-duplicates')
@@ -59,6 +67,7 @@ window.GelatorchardBackend = (function () {
 
     /* Cap. 4 → feedback (lookup batch_number → batch_id) */
     submitFeedback: function (batchNumber, rating, comment) {
+      track('feedback_submit', { batch: batchNumber, rating: rating });
       if (!isLive()) return preview();
       return idOf('batches', 'batch_number', batchNumber).then(function (bid) {
         return rest('feedback', 'POST', [{ batch_id: bid, rating: rating, comment: comment || null }]);
@@ -97,6 +106,7 @@ window.GelatorchardBackend = (function () {
 
     /* Cap. 6 → webhook notifica (email/Slack di Marco) */
     sendEnquiry: function (payload) {
+      track('enquiry_send', { type: payload && payload.type });
       if (!ENQUIRY_WEBHOOK_URL) return preview();
       return fetch(ENQUIRY_WEBHOOK_URL, {
         method: 'POST',
