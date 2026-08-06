@@ -101,7 +101,11 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   in loop, NESSUNA rotazione sui frutti (la fa già il Diario) e NIENTE
   badge REC sulle tappe (scelta founder: solo icona casa sulla 4ª; i REC
   con orari reali restano sul Diario). Hook statico proprio in index.html
-  ("Field to Freezer in 48 Hours. Watch Every Step."). Motore condiviso
+  ("Field to Freezer in 48 Hours. The Clock Starts at the Harvest.").
+  REGOLA 48h: le 48 ore sono SEMPRE frutta→freezer (gio→sab del drop),
+  mai velocità di consegna dall'ordine — ogni claim va ancorato al campo
+  ("from the field"), il sito non deve mai suonare Deliveroo. Tappe del
+  Viaggio etichettate coi giorni reali del drop (Thu/Fri/Sat). Motore condiviso
   buildCarousel in home.js. Foto: foto-farmers/<slug>.jpg (tappa 1) e
   foto-gusti/viaggio/{laboratorio,spedizione,freezer}.jpg. Nav/footer
   "Our Story" → #letter (id story non esiste più).

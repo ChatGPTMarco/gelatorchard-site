@@ -233,7 +233,15 @@
      Kent, l'unico batch con dati reali completi (citazione, orari,
      azienda), in loop infinito sulle sue 4 tappe. Il frutto specifico
      è irrilevante: è un esempio illustrativo costante. --- */
-  var STAGES = ['The harvest', 'The lab', 'Dispatch', 'Your freezer'];
+  /* Tappe ancorate ai giorni REALI del drop settimanale (orderWindow):
+     le 48h sono frutta→freezer (gio→sab), MAI velocità di consegna
+     dall'ordine — il sito non deve mai suonare Deliveroo. */
+  var STAGES = [
+    ['Thursday', 'The harvest'],
+    ['Friday', 'The lab'],
+    ['Saturday', 'Dispatch'],
+    ['Saturday', 'Your freezer']
+  ];
   /* NIENTE badge REC sulle tappe del Viaggio (scelta founder): solo
      l'icona casa sulla quarta. I REC restano sul Diario del Raccolto. */
   function journeySlideHTML(stage) {
@@ -251,17 +259,18 @@
       body = '<div class="hc-meta">On its way to you: cold chain guaranteed</div>';
       photo = 'foto-gusti/viaggio/spedizione.jpg';
     } else {
-      /* destinazione, non "ripresa in corso": icona casa, seconda persona */
+      /* destinazione, non "ripresa in corso": icona casa, seconda persona.
+         48h dopo il raccolto, non dopo l'ordine. */
       badge = '<span class="hc-rec home">🏠</span>';
-      body = '<div class="hc-meta">A few hours from now, in YOUR freezer</div>';
+      body = '<div class="hc-meta">In YOUR freezer: 48 hours after the field, not 48 days in a warehouse</div>';
       photo = 'foto-gusti/viaggio/freezer.jpg';
     }
     return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '"' +
       ' data-photo="' + photo + '" role="group" aria-roledescription="slide" ' +
-      'aria-label="Step ' + (stage + 1) + ': ' + STAGES[stage] + '">' +
+      'aria-label="Step ' + (stage + 1) + ', ' + STAGES[stage][0] + ': ' + STAGES[stage][1] + '">' +
       badge +
       '<div class="hc-overlay">' +
-        '<div class="hc-kicker">' + (stage + 1) + ' · ' + STAGES[stage] + '</div>' +
+        '<div class="hc-kicker">' + (stage + 1) + ' · ' + STAGES[stage][0] + ' · ' + STAGES[stage][1] + '</div>' +
         body +
       '</div></div>';
   }
