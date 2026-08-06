@@ -233,45 +233,40 @@
      Kent, l'unico batch con dati reali completi (citazione, orari,
      azienda), in loop infinito sulle sue 4 tappe. Il frutto specifico
      è irrilevante: è un esempio illustrativo costante. --- */
-  /* Tappe ancorate ai giorni REALI del drop settimanale (orderWindow):
-     le 48h sono frutta→freezer (gio→sab), MAI velocità di consegna
-     dall'ordine — il sito non deve mai suonare Deliveroo. */
-  var STAGES = [
-    ['Thursday', 'The harvest'],
-    ['Friday', 'The lab'],
-    ['Saturday', 'Dispatch'],
-    ['Saturday', 'Your freezer']
+  /* Tappe SEMPLIFICATE (founder, 7 ago 2026): niente badge, niente
+     timestamp, NESSUNA claim di ore/giorni in questo carosello — il
+     "48h dal campo" vive altrove (proof bar, manifesto). Qui solo il
+     racconto campo → cucchiaio, una riga per tappa. Il badge REC
+     resta esclusivo del Diario del Raccolto. */
+  var STAGES = ['The harvest', 'It becomes gelato', 'Ready for you', 'You eat it'];
+  var STAGE_TEXT = [
+    'This grew in a real field, not a factory',
+    'Made with real fruit. Zero powders.',
+    'Packed to arrive intact',
+    'This is that harvest. On your spoon.'
   ];
-  /* NIENTE badge REC sulle tappe del Viaggio (scelta founder): solo
-     l'icona casa sulla quarta. I REC restano sul Diario del Raccolto. */
+  var STAGE_PHOTO = [
+    null, /* tappa 1: foto del contadino, calcolata dal batch */
+    'foto-gusti/viaggio/laboratorio.jpg',
+    'foto-gusti/viaggio/confezione.jpg',
+    'foto-gusti/viaggio/servito.jpg'
+  ];
   function journeySlideHTML(stage) {
     var f = G.flavorById('strawberry');
     var b = G.BATCHES.strawberry;
-    var badge = '', body = '', photo = '';
-    if (stage === 0) {
-      body = '<p class="hc-quote">' + b.quote + '</p>' +
-        '<div class="hc-meta">— ' + b.farmerName + ', ' + b.location + '</div>';
-      photo = 'foto-farmers/' + b.farmerName.toLowerCase().replace(/[^a-z]+/g, '-') + '.jpg';
-    } else if (stage === 1) {
-      body = '<div class="hc-meta">Pasteurised, churned: ' + f.name + ' becomes gelato</div>';
-      photo = 'foto-gusti/viaggio/laboratorio.jpg';
-    } else if (stage === 2) {
-      body = '<div class="hc-meta">On its way to you: cold chain guaranteed</div>';
-      photo = 'foto-gusti/viaggio/spedizione.jpg';
-    } else {
-      /* destinazione, non "ripresa in corso": icona casa, seconda persona.
-         48h dopo il raccolto, non dopo l'ordine. */
-      badge = '<span class="hc-rec home">🏠</span>';
-      body = '<div class="hc-meta">In YOUR freezer: 48 hours after the field, not 48 days in a warehouse</div>';
-      photo = 'foto-gusti/viaggio/freezer.jpg';
-    }
+    var photo = STAGE_PHOTO[stage] ||
+      'foto-farmers/' + b.farmerName.toLowerCase().replace(/[^a-z]+/g, '-') + '.jpg';
+    /* solo la tappa 1 nomina l'esempio ricorrente (Fragola/Tom) */
+    var meta = stage === 0
+      ? '<div class="hc-meta">' + f.name + ' · ' + b.farmerName + ', ' + b.location + '</div>'
+      : '';
     return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '"' +
       ' data-photo="' + photo + '" role="group" aria-roledescription="slide" ' +
-      'aria-label="Step ' + (stage + 1) + ', ' + STAGES[stage][0] + ': ' + STAGES[stage][1] + '">' +
-      badge +
+      'aria-label="Step ' + (stage + 1) + ': ' + STAGES[stage] + '">' +
       '<div class="hc-overlay">' +
-        '<div class="hc-kicker">' + (stage + 1) + ' · ' + STAGES[stage][0] + ' · ' + STAGES[stage][1] + '</div>' +
-        body +
+        '<div class="hc-kicker">' + (stage + 1) + ' · ' + STAGES[stage] + '</div>' +
+        '<p class="hc-line">' + STAGE_TEXT[stage] + '</p>' +
+        meta +
       '</div></div>';
   }
   var jr = document.getElementById('journey-carousel');

@@ -97,18 +97,21 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   N live dalla stessa fonte del carosello) + secondo carosello "Il Viaggio"
   (#journey-carousel) che SOSTITUISCE la vecchia sezione statica journey
   (2.5/10.5.4, rimossa da index.html): ESEMPIO FISSO Fragola/Tom Johnson
-  (unico batch reale completo), 4 tappe (harvest/lab/dispatch/your freezer)
-  in loop, NESSUNA rotazione sui frutti (la fa già il Diario) e NIENTE
-  badge REC sulle tappe (scelta founder: solo icona casa sulla 4ª; i REC
-  con orari reali restano sul Diario). Hook statico proprio in index.html
-  ("Field to Freezer in 48 Hours. The Clock Starts at the Harvest.").
-  REGOLA 48h: le 48 ore sono SEMPRE frutta→freezer (gio→sab del drop),
+  (unico batch reale completo), NESSUNA rotazione sui frutti (la fa già
+  il Diario). SEMPLIFICATO il 7 ago 2026: 4 tappe (The harvest / It
+  becomes gelato / Ready for you / You eat it), una riga di testo
+  ciascuna (.hc-line), NIENTE badge/REC/icone, NIENTE timestamp e
+  NESSUNA claim di ore o giorni in questo carosello (il "48h" vive solo
+  in proof bar/manifesto, sempre ancorato al campo). Il badge REC con
+  orari reali resta esclusivo del Diario. Hook proprio in index.html:
+  testo attuale = BOZZA di Fable (la spec del founder aveva il blocco
+  hook vuoto), da fargli confermare.
+  REGOLA 48h (resto del sito): le 48 ore sono SEMPRE frutta→freezer,
   mai velocità di consegna dall'ordine — ogni claim va ancorato al campo
-  ("from the field"), il sito non deve mai suonare Deliveroo. Tappe del
-  Viaggio etichettate coi giorni reali del drop (Thu/Fri/Sat). Motore condiviso
-  buildCarousel in home.js. Foto: foto-farmers/<slug>.jpg (tappa 1) e
-  foto-gusti/viaggio/{laboratorio,spedizione,freezer}.jpg. Nav/footer
-  "Our Story" → #letter (id story non esiste più).
+  ("from the field"), il sito non deve mai suonare Deliveroo.
+  Motore condiviso buildCarousel in home.js. Foto: foto-farmers/<slug>.jpg
+  (tappa 1) e foto-gusti/viaggio/{laboratorio,confezione,servito}.jpg.
+  Nav/footer "Our Story" → #letter (id story non esiste più).
 - photos.js (nella radice) → aggancia foto da assets/ agli slot (hero, unboxing, story);
   segna tutto data-fake + etichetta "Stock photo · bozza". Se il file manca resta il
   segnaposto. FAKE-DATA.md elenca le foto provvisorie e la procedura di rimozione.
