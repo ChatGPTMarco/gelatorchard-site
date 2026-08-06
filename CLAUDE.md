@@ -103,9 +103,8 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   ciascuna (.hc-line), NIENTE badge/REC/icone, NIENTE timestamp e
   NESSUNA claim di ore o giorni in questo carosello (il "48h" vive solo
   in proof bar/manifesto, sempre ancorato al campo). Il badge REC con
-  orari reali resta esclusivo del Diario. Hook proprio in index.html:
-  testo attuale = BOZZA di Fable (la spec del founder aveva il blocco
-  hook vuoto), da fargli confermare.
+  orari reali resta esclusivo del Diario. Hook proprio in index.html
+  ("From a Real Field to Your Spoon."), approvato dal founder 7 ago 2026.
   REGOLA 48h (resto del sito): le 48 ore sono SEMPRE frutta→freezer,
   mai velocità di consegna dall'ordine — ogni claim va ancorato al campo
   ("from the field"), il sito non deve mai suonare Deliveroo.
