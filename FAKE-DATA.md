@@ -30,10 +30,12 @@ Il **carosello hero "Diario del Raccolto"** (home.js) eredita gli stessi record
 (il carosello "Il Viaggio" invece usa SOLO il batch reale #042, niente fake):
 le citazioni dei batch fake (#043/#044/#045) compaiono nelle slide marcate
 `data-fake` (contadino NON confermato → al lancio, senza record reale, la slide
-mostra solo "frutto · regione · in season now", senza citazione). Anche lo stato
-"esaurito" del mirtillo (riga "Already sold out this week" nella slide, tile
-grigio-caldo nel picker) viene dal batch fake #043: `G.stockStatus` in preview
-legge `BATCHES[id].status`, al lancio andrà su `flavors.stock_status` (Supabase).
+mostra solo "frutto · regione · in season now", senza citazione). Lo stato
+scorta viene dai batch: `G.stockStatus` in preview legge `BATCHES[id].status`,
+al lancio andrà su `flavors.stock_status` (Supabase). Il mirtillo #043 era
+`esaurito` come demo del terzo stato (tile grigio-caldo, riga "Already sold
+out" nella slide); dall'8 ago 2026 è `disponibile` su richiesta del founder:
+per rivedere la demo basta rimettere `status: 'esaurito'`.
 
 ## Immagini provvisorie (consegna founder 7 ago 2026 — stock/AI, TUTTE bozze)
 

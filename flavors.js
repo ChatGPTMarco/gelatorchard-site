@@ -145,7 +145,10 @@
     blueberry: {
       fake: true,
       id: '043',
-      status: 'esaurito',
+      /* era 'esaurito' come demo del terzo stato del picker; il founder
+         l'ha voluto disponibile (8 ago 2026) per mostrare la foto.
+         Rimettere 'esaurito' per rivedere la demo scorta finita. */
+      status: 'disponibile',
       flavour: 'blueberry',
       fruitName: 'Blueberry',
       farm: 'Reid Berry Farm, Blairgowrie, Perthshire',
