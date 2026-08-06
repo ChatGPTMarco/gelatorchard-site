@@ -496,6 +496,34 @@
       '</div>';
   }
 
+  /* Foto prodotto sulle tile della Collezione Frutta: prova
+     foto-gusti/frutta/<id>.jpg (stessa convenzione dei caroselli),
+     fallback automatico al gradiente .sw-*. Le foto attuali sono
+     BOZZE stock/AI → swatch marcato data-fake (FAKE-DATA.md).
+     Niente foto su: Classici (non consegnate) e tile "sold" (il
+     grigio caldo È il segnale di scorta esaurita). Le tile fuori
+     stagione mostrano la foto in scala di grigi (filter esistente). */
+  var TILE_PHOTOS = {};
+  function applyTilePhotos(root) {
+    root.querySelectorAll('.tile').forEach(function (t) {
+      if (t.classList.contains('sold')) return;
+      var id = t.getAttribute('data-id');
+      if (G.isClassic(id)) return;
+      var sw = t.querySelector('.swatch');
+      function apply() {
+        sw.classList.add('has-photo');
+        sw.setAttribute('data-fake', '1'); /* bozza: togliere con le foto vere */
+        sw.style.backgroundImage = 'url("foto-gusti/frutta/' + id + '.jpg")';
+      }
+      if (TILE_PHOTOS[id] === true) { apply(); return; }
+      if (TILE_PHOTOS[id] === false) return;
+      var img = new Image();
+      img.onload = function () { TILE_PHOTOS[id] = true; apply(); };
+      img.onerror = function () { TILE_PHOTOS[id] = false; };
+      img.src = 'foto-gusti/frutta/' + id + '.jpg';
+    });
+  }
+
   /* renderFlavorPicker(root[, opts]) → controller { get, setMax, clear }
      opts: max (default 2, FIFO beyond it), preselect: [ids],
            summary: false hides the Kit summary box (used on /order),
@@ -602,6 +630,7 @@
     });
 
     if (selected.length && G.isClassic(selected[0])) showTab('classics');
+    applyTilePhotos(root);
     sync();
 
     return {
