@@ -46,6 +46,8 @@ parità di nome. La cartella `foto/` resta come archivio degli originali.
 |---|---|---|
 | foto-gusti/frutta/strawberry.jpg | Diario · fragola | filari in tunnel |
 | foto-gusti/frutta/raspberry.jpg | Diario · lampone | filari in tunnel |
+| foto-gusti/frutta/tile/strawberry.jpg | Picker · tile fragola (primo piano) | frutti grandi ravvicinati |
+| foto-gusti/frutta/tile/raspberry.jpg | Picker · tile lampone (primo piano) | frutti grandi ravvicinati |
 | foto-gusti/frutta/cherry.jpg | Diario · ciliegia | cestino in mano — watermark AI "✦" |
 | foto-gusti/frutta/blueberry.jpg | Diario · mirtillo | vaschetta in mano — watermark AI "✦" |
 | foto-gusti/frutta/blackcurrant.jpg | Diario · ribes nero | raccolta a mano — watermark AI "✦" |

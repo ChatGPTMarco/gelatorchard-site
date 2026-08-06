@@ -510,17 +510,28 @@
       var id = t.getAttribute('data-id');
       if (G.isClassic(id)) return;
       var sw = t.querySelector('.swatch');
-      function apply() {
+      function apply(url) {
         sw.classList.add('has-photo');
         sw.setAttribute('data-fake', '1'); /* bozza: togliere con le foto vere */
-        sw.style.backgroundImage = 'url("foto-gusti/frutta/' + id + '.jpg")';
+        sw.style.backgroundImage = 'url("' + url + '")';
       }
-      if (TILE_PHOTOS[id] === true) { apply(); return; }
-      if (TILE_PHOTOS[id] === false) return;
-      var img = new Image();
-      img.onload = function () { TILE_PHOTOS[id] = true; apply(); };
-      img.onerror = function () { TILE_PHOTOS[id] = false; };
-      img.src = 'foto-gusti/frutta/' + id + '.jpg';
+      /* Nella tile serve il frutto RICONOSCIBILE (scelta founder):
+         prima il primo piano dedicato in frutta/tile/, poi la foto
+         standard del carosello, poi resta il gradiente. */
+      var cached = TILE_PHOTOS[id];
+      if (cached === false) return;
+      if (cached) { apply(cached); return; }
+      var candidates = [
+        'foto-gusti/frutta/tile/' + id + '.jpg',
+        'foto-gusti/frutta/' + id + '.jpg'
+      ];
+      (function tryNext(i) {
+        if (i >= candidates.length) { TILE_PHOTOS[id] = false; return; }
+        var img = new Image();
+        img.onload = function () { TILE_PHOTOS[id] = candidates[i]; apply(candidates[i]); };
+        img.onerror = function () { tryNext(i + 1); };
+        img.src = candidates[i];
+      })(0);
     });
   }
 
