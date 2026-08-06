@@ -55,8 +55,13 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   swapGrids tab picker, swapPanel mese calendario). Curve/durate standard in :root
   (--ease-apple, --dur-fast/med/slow). prefers-reduced-motion rispettato ovunque.
 
+- ✅ How to Order (spec founder 6 ago 2026): pagina conversion sul drop settimanale
+  (ordina lun-mar → mangi sab/dom), 6 sezioni direct response (hero, problema,
+  processo in 5 step, obiezioni, proof, close), stato finestra + countdown reale,
+  ETA del checkout allineata al sabato del drop. In nav e footer.
+
 ## Struttura file (HTML puro, struttura PIATTA — conversione a Next.js solo al lancio, non ora)
-- index.html, order.html, calendario.html, business.html, story.html, app.html
+- index.html, order.html, calendario.html, business.html, story.html, app.html, how-to-order.html
 - style.css (nella radice) → TUTTI i token e componenti del design system. Non inventare colori/font nuovi.
 - site.js (nella radice) → Nav e Footer globali iniettati su ogni pagina. Modificare SOLO qui nav/footer.
   Contiene anche il LOGO ufficiale: lockup "GELAT + mark + RCHARD" dove la O è il mark SVG
@@ -100,6 +105,13 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   max 0.8s (unica eccezione: count-up 1.2s da spec). Niente librerie motion esterne.
 - order.js (nella radice) → logica di /order: formati (FORMATS con min/max gusti), basket
   (localStorage gc-basket-v1 + gc-fulfilment), checkout. Solo per order.html.
+  ETA = sabato del drop settimanale via G.orderWindow (NON più "domani").
+- how-to-order.html + howto.js → pagina "How to Order" (drop settimanale, direct
+  response): finestra ordini lun 10:00 → mar 18:00, frutta gio sera, produzione ven
+  mattina, consegna sab/dom. Il ritmo vive SOLO in Gelatorchard.orderWindow
+  (flavors.js): howto.js e order.js lo leggono da lì. Countdown ammesso perché la
+  scadenza è reale. Proof numbers marcati data-fake (FAKE-DATA.md); trust line
+  Tower Hamlets/SFBB in DA VERIFICARE.
 - story.js (nella radice) → logica story page (story.html?batch=… / ?flavour=…). I dati batch
   vivono SOLO in Gelatorchard.BATCHES (flavors.js): registro JSON provvisorio, al lancio
   alimentato dal CMS Notion del founder (1 pagina Notion per batch → QR sull'etichetta).

@@ -19,6 +19,8 @@ in tutto il progetto è l'elenco esatto di ciò che va sostituito o rimosso.
 | flavors.js | BATCHES.blueberry — Batch #043 | intero record (David Reid, Reid Berry Farm, Blairgowrie, date, log, cold chain) | registro produzione + fornitore reale |
 | flavors.js | BATCHES['victoria-plum'] — Batch #044 | intero record (Sarah Wickham, Wickham Orchards, Pershore, date, log, cold chain) | registro produzione + fornitore reale |
 | flavors.js | BATCHES.raspberry — Batch #045 | intero record (Louise Anderson, Anderson Berry Farm, Ettrickbridge, date, log, cold chain) | registro produzione + fornitore reale. NB: nome e citazione di Louise vengono dal template email del founder (EMAILS.md), ma azienda, luogo e date sono INVENTATI |
+| how-to-order.html | proof · ordini dal lancio | 500+ | registro ordini reale |
+| how-to-order.html | proof · reclami sull'attesa | 0 | registro feedback reale |
 
 I record fake in `flavors.js` hanno il campo `fake: true`: la story page e il
 farmer-reveal del picker li mostrano con la nota "Sample batch". Al lancio:
@@ -51,6 +53,13 @@ con le fotografie originali mantenendo il nome, poi togliere marcature ed etiche
   sulla base del posizionamento; Marco deve leggerla e firmarla davvero.
 - **Claim "about a third of a Kit's price is fruit and packaging"** (index.html,
   #formats): deriva dal COGS verificato £8.50 su £28 (≈30%), dato reale del Cap. 8.
+- **Trust line di how-to-order.html** ("registered food business (Tower Hamlets) ·
+  fully insured · Safer Food, Better Business compliant"): claim forniti dal founder
+  nella spec; prima del lancio verificare registrazione (numero/borough), polizza
+  attiva e pack SFBB compilato. Sono claim legali: se uno non è vero, va rimosso.
+- **Numeri del processo in how-to-order.html** (750g per batch, 2 ore, quantità
+  esempio "5kg strawberries, 3kg raspberries"): dalla spec del founder; confermare
+  che rispecchino la produzione reale.
 
 ## Come rimuovere tutto
 

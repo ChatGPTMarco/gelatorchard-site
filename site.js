@@ -40,6 +40,7 @@
     { href: pre + '#flavors', label: 'Flavours' },
     { href: pre + '#formats', label: 'Formats' },
     { href: pre + '#season',  label: 'Season' },
+    { href: 'how-to-order.html', label: 'How to Order' },
     { href: pre + '#story',   label: 'Our Story' }
   ];
 
@@ -105,6 +106,7 @@
         '<div><h4>Shop</h4><ul>' +
           '<li><a href="' + pre + '#flavors">Flavours</a></li>' +
           '<li><a href="' + pre + '#formats">Gelato Kit</a></li>' +
+          '<li><a href="how-to-order.html">How to Order</a></li>' +
           '<li><a href="business.html">Corporate Gifts</a></li>' +
         '</ul></div>' +
         '<div><h4>Discover</h4><ul>' +

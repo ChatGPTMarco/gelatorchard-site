@@ -280,15 +280,16 @@
     return sub;
   }
 
-  /* ---------- data stimata (giorno successivo) ---------- */
+  /* ---------- data stimata: il sabato del drop settimanale ----------
+     Fonte unica G.orderWindow (flavors.js): niente più "domani",
+     il modello è ordina questa settimana → mangi sabato/domenica. */
   function etaDate() {
-    var d = new Date();
-    d.setDate(d.getDate() + 1);
-    return d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    return G.orderWindow().saturday
+      .toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
   }
   function etaLine() {
     return fulfilment === 'delivery'
-      ? 'Estimated delivery: ' + etaDate() + ', around 7:15pm'
+      ? 'Delivery: ' + etaDate() + ' (or Sunday, you pick the slot by email)'
       : 'Pickup: ' + etaDate() + ', we’ll confirm the exact time by email';
   }
 
@@ -301,6 +302,7 @@
     if (basketFruitIds().indexOf('strawberry') >= 0) {
       rows.push("Johnson's Farm, Kent. Picked 15 May");
     }
+    rows.push('Made fresh Friday morning, from fruit that arrives Thursday evening');
     rows.push(etaLine());
     rows.push('You’ll receive a QR to scan on arrival');
     rows.push('We’ll ask you for a review, Marco reads every comment');

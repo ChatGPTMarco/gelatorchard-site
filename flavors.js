@@ -333,6 +333,33 @@
     return ending || coming;
   };
 
+  /* orderWindow(date) — il drop settimanale (pagina How to Order).
+     Ritmo confermato dal founder: ordini lunedì 10:00 → martedì 18:00,
+     frutta dalla farm giovedì sera, produzione venerdì mattina,
+     consegna/ritiro sabato-domenica. Un'unica fonte per la pagina
+     how-to-order, l'ETA del checkout (order.js) e ogni countdown:
+     il countdown è lecito SOLO perché la scadenza è reale (regola 4). */
+  G.orderWindow = function (ref) {
+    var d = ref || new Date();
+    var dow = (d.getDay() + 6) % 7; /* 0 = lunedì */
+    var mon = new Date(d.getFullYear(), d.getMonth(), d.getDate() - dow);
+    var opens = new Date(mon); opens.setHours(10, 0, 0, 0);
+    var closes = new Date(mon); closes.setDate(mon.getDate() + 1); closes.setHours(18, 0, 0, 0);
+    if (d > closes) { /* finestra passata: la prossima è la settimana dopo */
+      opens.setDate(opens.getDate() + 7);
+      closes.setDate(closes.getDate() + 7);
+    }
+    var saturday = new Date(closes.getFullYear(), closes.getMonth(), closes.getDate() + 4);
+    var sunday = new Date(saturday.getFullYear(), saturday.getMonth(), saturday.getDate() + 1);
+    return {
+      open: d >= opens && d <= closes,
+      opensAt: opens,     /* prossima apertura (o quella in corso) */
+      closesAt: closes,   /* chiusura della finestra corrente/prossima */
+      saturday: saturday, /* giorno di consegna del drop */
+      sunday: sunday
+    };
+  };
+
   /* alertsDue(date) — motore trigger della Seasonal Alert List (Cap. 7).
      lastCall: gusti frutta in stagione con ≤7 giorni rimasti (email 7.3);
      seasonEntry: gusti la cui stagione apre esattamente oggi (email 7.4).

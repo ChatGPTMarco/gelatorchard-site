@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Order | Gelatorchard</title>
+<meta name="description" content="Order Monday to Tuesday 6pm. Tom picks the fruit, Marco churns Friday morning, you eat it Saturday. Five days, because fresh fruit doesn't wait for Deliveroo.">
+<!-- Open Graph (Lista A.4) — og:image: foto hero stock, vedi FAKE-DATA.md -->
+<link rel="canonical" href="https://chatgptmarco.github.io/gelatorchard-site/how-to-order.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gelatorchard">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="How to Order | Gelatorchard">
+<meta property="og:description" content="Order Monday to Tuesday 6pm. Tom picks the fruit, Marco churns Friday morning, you eat it Saturday. Five days, because fresh fruit doesn't wait for Deliveroo.">
+<meta property="og:url" content="https://chatgptmarco.github.io/gelatorchard-site/how-to-order.html">
+<meta property="og:image" content="https://chatgptmarco.github.io/gelatorchard-site/assets/hero-gelato.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="site-nav"></header>
+
+<main>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="cal-hero">
+    <div class="container">
+      <span class="eyebrow reveal">How to Order</span>
+      <h1 class="h1 reveal">Fresh Gelato Arrives Five Days After You Order. Here’s Why.</h1>
+      <p class="sub reveal" style="text-align:center;margin-left:auto;margin-right:auto">Not fast food. Real food. Real wait.</p>
+      <!-- Stato finestra ordini: riempito live da howto.js (G.orderWindow).
+           Countdown lecito: la scadenza del drop è reale (regola copy 4). -->
+      <div class="drop-status reveal" data-drop-status></div>
+      <div class="hero-ctas reveal">
+        <a class="pill pill-dark" data-track="howto_cta_hero" href="order.html">Place Your Order</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. THE PROBLEM ============ -->
+  <section class="howto-problem">
+    <div class="container" style="max-width:720px">
+      <div class="sec-head reveal">
+        <span class="eyebrow">The Problem</span>
+        <h2 class="h2">We’re Not Deliveroo</h2>
+      </div>
+      <p class="howto-lede reveal">You order Tuesday, you expect it Thursday. That’s Deliveroo logic. We’re not Deliveroo. Fresh fruit dies in five days: if I made your gelato on Tuesday, it’d be oxidised by Saturday. So I don’t.</p>
+      <ul class="mini-journey reveal" data-cascade>
+        <li><span class="mj-t">Mon–Tue</span>You order</li>
+        <li><span class="mj-t">Thursday</span>Fruit arrives from the farm</li>
+        <li><span class="mj-t">Friday</span>Made fresh, batch by batch</li>
+        <li><span class="mj-t">Saturday</span>Yours, frozen perfect</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 3. THE PROCESS (sezione stella) ============ -->
+  <section class="howto-process">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">The Process</span>
+        <h2 class="h2">One Week. Five Steps. No Warehouse.</h2>
+        <p class="sec-sub">Every date below is the actual rhythm of the lab, not a marketing promise.</p>
+      </div>
+      <div class="drop-steps" data-cascade>
+        <div class="drop-step">
+          <span class="ds-num">1</span>
+          <span class="ds-day">Monday 10am – Tuesday 6pm</span>
+          <h3>Your window</h3>
+          <p>This is your window. Order here. That’s it. After 6pm on Tuesday? Closed. Next week.</p>
+          <a class="pill pill-green pill-sm" data-track="howto_cta_step1" href="order.html">Order in the window</a>
+        </div>
+        <div class="drop-step">
+          <span class="ds-num">2</span>
+          <span class="ds-day">Tuesday evening</span>
+          <h3>I text the farm</h3>
+          <p>I count your orders and text Tom: “I need 5kg of strawberries and 3kg of raspberries, delivered Thursday evening.” Tom says yes or no. Nobody in between.</p>
+        </div>
+        <div class="drop-step">
+          <span class="ds-num">3</span>
+          <span class="ds-day">Thursday evening</span>
+          <h3>Fruit arrives</h3>
+          <p>I check the temperature, look for bruises, and write it all down. Yes, really: it becomes the batch log you can read. Straight into the fridge.</p>
+        </div>
+        <div class="drop-step">
+          <span class="ds-num">4</span>
+          <span class="ds-day">Friday morning</span>
+          <h3>I make your batches</h3>
+          <p>Exact quantity, nothing left over. 750g per batch, two hours of work, then into the blast freezer at −18°C.</p>
+        </div>
+        <div class="drop-step">
+          <span class="ds-num">5</span>
+          <span class="ds-day">Saturday or Sunday</span>
+          <h3>You eat it</h3>
+          <p>You pick a slot. I deliver it, or you collect it. Made yesterday, not last month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. OBJECTIONS ============ -->
+  <section class="howto-objections">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Fair Questions</span>
+        <h2 class="h2">“But Why Can’t You Just…?”</h2>
+      </div>
+      <div class="obj-grid" data-cascade>
+        <div class="card">
+          <h3 class="obj-q">…make stock in advance?</h3>
+          <p class="obj-a">Gelato oxidises. After four weeks at −18°C the texture breaks down. If I made twenty batches on Monday and you ordered on Saturday, you’d get old product. Not acceptable.</p>
+        </div>
+        <div class="card">
+          <h3 class="obj-q">…order from a wholesale supplier?</h3>
+          <p class="obj-a">Wholesale means flavour powder. We don’t use it. Fresh fruit means Tom in Kent picked it this week, not a container from Spain three weeks ago.</p>
+        </div>
+        <div class="card">
+          <h3 class="obj-q">…get it to me urgently?</h3>
+          <p class="obj-a">You don’t need gelato urgently. You want something cold and sweet that’s worth the wait. So you order Monday and eat Saturday. Life moves slower when you’re not chasing next-day delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. PROOF (niente recensioni: fatti) ============ -->
+  <section class="howto-proof">
+    <div class="container proof-grid" style="grid-template-columns:repeat(3,1fr)">
+      <!-- DATI SIMULATI (pre-lancio) — sostituire con i numeri veri, vedi FAKE-DATA.md -->
+      <div class="reveal"><div class="spec-num" data-countup="500" data-suffix="+" data-fake="1">500+</div><div class="spec-label">orders since launch</div></div>
+      <div class="reveal"><div class="spec-num" data-countup="0" data-fake="1">0</div><div class="spec-label">complaints about the five-day wait</div></div>
+      <div class="reveal"><div class="spec-num">Every</div><div class="spec-label">batch logged, <a href="story.html" style="color:var(--green)">read them yourself</a></div></div>
+    </div>
+  </section>
+
+  <!-- ============ 6. THE CLOSE ============ -->
+  <section class="howto-close">
+    <div class="container" style="max-width:640px;text-align:center">
+      <h2 class="h1 reveal">Ready?</h2>
+      <p class="howto-lede reveal">Orders open Monday 10am, close Tuesday 6pm. Delivery Saturday or Sunday. That’s the rhythm.</p>
+      <div class="drop-status reveal" data-drop-status></div>
+      <div class="hero-ctas reveal" style="justify-content:center">
+        <a class="pill pill-dark" data-track="howto_cta_close" href="order.html">Place Your Order</a>
+      </div>
+      <!-- Claim del founder: in verifica prima del lancio (FAKE-DATA.md, sezione DA VERIFICARE) -->
+      <p class="caption reveal" style="margin-top:26px">Yes, we’re real: registered food business (Tower Hamlets) · fully insured · Safer Food, Better Business compliant.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer id="site-footer"></footer>
+<script src="flavors.js"></script>
+<script src="analytics.js"></script>
+<script src="backend.js"></script>
+<script src="howto.js"></script>
+<script src="motion.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
