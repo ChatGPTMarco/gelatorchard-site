@@ -47,20 +47,32 @@
   /* ---------- Barra di scarsità (Cap. 10.7 + Lista A.2) ----------
      Sticky sopra la nav su ogni pagina pubblica. SOLO date di
      stagione reali da Gelatorchard.mostUrgentFruit(): mai un
-     countdown a ore, mai numeri inventati. Si aggiorna da sola.
+     countdown a ore, mai numeri inventati.
      Soglie (Lista A.2): >21 giorni tono "picco" (nessuna pressione),
-     8–21 countdown in giorni, ≤7 rosso ruggine perentorio. */
+     8–21 countdown in giorni, ≤7 rosso ruggine perentorio.
+     Rifinitura 15: si RICALCOLA ogni 30 minuti, così una tab lasciata
+     aperta oltre mezzanotte non mente mai di un giorno. */
   if (window.Gelatorchard && window.Gelatorchard.mostUrgentFruit) {
-    var urgent = window.Gelatorchard.mostUrgentFruit();
-    if (urgent) {
-      var bar = document.createElement('div');
-      bar.className = 'scarcity-bar';
+    var scarcityBar = null;
+    var renderScarcity = function () {
+      var urgent = window.Gelatorchard.mostUrgentFruit();
+      if (!urgent) {
+        if (scarcityBar) { scarcityBar.remove(); scarcityBar = null; }
+        document.body.classList.remove('has-scarcity');
+        return;
+      }
+      if (!scarcityBar) {
+        scarcityBar = document.createElement('div');
+        document.body.insertBefore(scarcityBar, document.body.firstChild);
+        document.body.classList.add('has-scarcity');
+      }
+      scarcityBar.className = 'scarcity-bar' +
+        (urgent.type === 'ending' && urgent.daysLeft <= 7 ? ' sb-last' : '');
       var msg;
       if (urgent.type !== 'ending') {
         msg = '<a data-track="scarcity_bar" href="calendario.html"><strong>Next into season:</strong> ' +
           urgent.name + ' · opens ' + urgent.startLabel + '</a>';
       } else if (urgent.daysLeft <= 7) {
-        bar.className += ' sb-last';
         msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '"><strong>' +
           urgent.name + ': ' + urgent.daysLeft + (urgent.daysLeft === 1 ? ' day' : ' days') +
           ' left.</strong> Then gone until ' + urgent.returnMonthYear + '. Order now or wait a year</a>';
@@ -73,10 +85,10 @@
           urgent.name + ' is in season' + (urgent.peak ? ', at its peak' : '') + '</strong> · until ' +
           urgent.endLong + '. Order it at its best</a>';
       }
-      bar.innerHTML = msg;
-      document.body.insertBefore(bar, document.body.firstChild);
-      document.body.classList.add('has-scarcity');
-    }
+      scarcityBar.innerHTML = msg;
+    };
+    renderScarcity();
+    setInterval(renderScarcity, 30 * 60 * 1000);
   }
 
   var navEl = document.getElementById('site-nav');
@@ -90,8 +102,43 @@
             return '<li><a href="' + l.href + '">' + l.label + '</a></li>';
           }).join('') +
         '</ul>' +
-        '<a class="pill pill-dark pill-sm" data-track="nav_order" href="' + pre + '#flavors">Order</a>' +
+        '<div class="nav-right">' +
+          '<a class="pill pill-dark pill-sm" data-track="nav_order" href="' + pre + '#flavors">Order</a>' +
+          /* Hamburger (8 ago 2026): sotto i 760px i link centrali
+             spariscono, senza questo il mobile non aveva navigazione */
+          '<button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">' +
+            '<span></span><span></span><span></span>' +
+          '</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="nav-mobile" id="nav-mobile" hidden>' +
+        '<ul>' +
+          NAV_LINKS.map(function (l) {
+            return '<li><a href="' + l.href + '">' + l.label + '</a></li>';
+          }).join('') +
+          '<li><a href="calendario.html">Season Calendar</a></li>' +
+          '<li><a href="business.html">Business &amp; Gifts</a></li>' +
+        '</ul>' +
       '</div>';
+
+    var burger = navEl.querySelector('.nav-burger');
+    var mobileMenu = navEl.querySelector('#nav-mobile');
+    function closeMobile() {
+      mobileMenu.setAttribute('hidden', '');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.classList.remove('open');
+    }
+    burger.addEventListener('click', function () {
+      var opening = mobileMenu.hasAttribute('hidden');
+      if (opening) {
+        mobileMenu.removeAttribute('hidden');
+        burger.setAttribute('aria-expanded', 'true');
+        burger.classList.add('open');
+      } else closeMobile();
+    });
+    mobileMenu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) closeMobile(); /* naviga e richiudi */
+    });
   }
 
   var footEl = document.getElementById('site-footer');

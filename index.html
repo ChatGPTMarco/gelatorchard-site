@@ -16,6 +16,22 @@
 <meta property="og:url" content="https://chatgptmarco.github.io/gelatorchard-site/index.html">
 <meta property="og:image" content="https://chatgptmarco.github.io/gelatorchard-site/assets/hero-gelato.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<!-- Dati strutturati (rifinitura 13): SOLO fatti veri, mai rating finti.
+     Al lancio: aggiornare url/image col dominio definitivo. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "IceCreamShop",
+  "name": "Gelatorchard",
+  "slogan": "No Powders. Just Fruit.",
+  "url": "https://chatgptmarco.github.io/gelatorchard-site/",
+  "image": "https://chatgptmarco.github.io/gelatorchard-site/assets/hero-gelato.jpg",
+  "servesCuisine": "Gelato",
+  "priceRange": "££",
+  "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" },
+  "founder": { "@type": "Person", "name": "Marco Castellano" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,17 +63,9 @@
            solo nel picker #flavors. Render + logica in home.js. -->
       <div class="hero-visual harvest-carousel reveal-fade" id="harvest-carousel"
            aria-roledescription="carousel" aria-label="In season this week"></div>
-      <!-- Il Viaggio (sostituisce la vecchia sezione statica 2.5): come
-           arriva da lì a te. Esempio FISSO Fragola/Tom Johnson (home.js),
-           nessuna rotazione sui frutti: quella la fa il Diario sopra. -->
-      <!-- Hook del Viaggio: NESSUNA claim di ore/giorni qui. Testo
-           approvato dal founder (7 ago 2026). -->
-      <div class="hero-hook reveal">
-        <h2 class="hook-title">From a Real Field to Your Spoon.</h2>
-        <p class="hook-sub">No factories, no powders, no warehouses. Watch the journey every batch makes.</p>
-      </div>
-      <div class="hero-visual harvest-carousel journey-carousel reveal-fade" id="journey-carousel"
-           aria-roledescription="carousel" aria-label="From the field to your freezer"></div>
+      <!-- Dieta hero (8 ago 2026): qui restano headline + UN hook + il
+           Diario. Il carosello "Il Viaggio" vive nella sezione #journey
+           più in basso, al posto della vecchia journey statica. -->
     </div>
   </section>
 
@@ -163,6 +171,10 @@
         <span class="eyebrow">Pick Your Flavour</span>
         <h2 class="h2">If You Can Select It, It Was Picked This Season.<br>If It’s Grey, It’s Gone.</h2>
         <p class="sec-sub">Tap a fruit and you’ll see who grew it. Two flavours fill a Gelato Kit. The grey tiles come back when their season does, and not one day before.</p>
+        <!-- Stato drop PRIMA della scelta (8 ago 2026): l'aspettativa
+             sui tempi si gestisce qui, non al checkout. Riempita da
+             howto.js via G.orderWindow. -->
+        <div class="drop-status" data-drop-status></div>
       </div>
       <div id="flavor-picker" class="reveal"></div>
     </div>
@@ -189,9 +201,21 @@
     </div>
   </section>
 
-  <!-- 8. PROCESSO: la vecchia sezione statica Farm→Freezer (2.5/10.5.4) è
-       stata SOSTITUITA dal carosello "Il Viaggio" nell'hero (7 ago 2026).
-       I link "Our Story" di nav/footer ora puntano a #letter. -->
+  <!-- ============ 8. IL VIAGGIO (ex journey statica 2.5/10.5.4) ============
+       Carosello a esempio fisso Fragola/Tom (home.js). Spostato qui
+       dall'hero l'8 ago 2026 (dieta hero). "Our Story" → #letter. -->
+  <section id="journey">
+    <div class="container">
+      <!-- Hook del Viaggio: NESSUNA claim di ore/giorni qui. Testo
+           approvato dal founder (7 ago 2026). -->
+      <div class="hero-hook reveal">
+        <h2 class="hook-title">From a Real Field to Your Spoon.</h2>
+        <p class="hook-sub">No factories, no powders, no warehouses. Watch the journey every batch makes.</p>
+      </div>
+      <div class="hero-visual harvest-carousel journey-carousel reveal-fade" id="journey-carousel"
+           aria-roledescription="carousel" aria-label="From the field to your freezer"></div>
+    </div>
+  </section>
 
   <!-- ============ 9. FORMATI E PREZZO (10.5.7, Kennedy) ============ -->
   <section id="formats">
@@ -262,10 +286,47 @@
       <ul class="batch-log reveal" id="batch-log"></ul>
       <div class="panel-quotes">
         <!-- CITAZIONI SIMULATE dal panel pre-lancio — sostituire con citazioni reali -->
-        <blockquote class="pq reveal" data-fake="1">“It tastes like the fruit, not like the idea of the fruit.”<cite>Tasting panel, on Batch #042 (strawberry) · 19 May</cite></blockquote>
-        <blockquote class="pq reveal" data-fake="1">“I checked the QR against the farm on the map. It’s real. That alone is worth the price.”<cite>Tasting panel, on Batch #045 (raspberry) · 30 July</cite></blockquote>
+        <blockquote class="pq reveal" data-fake="1">“It tastes like the fruit, not like the idea of the fruit.”<cite>Tasting panel, on Batch #042 (strawberry)</cite></blockquote>
+        <blockquote class="pq reveal" data-fake="1">“I checked the QR against the farm on the map. It’s real. That alone is worth the price.”<cite>Tasting panel, on Batch #045 (raspberry)</cite></blockquote>
       </div>
       <p class="quotes-note reveal">From our pre-launch tasting panel. Public reviews open with the September launch, and we won’t edit them.</p>
+    </div>
+  </section>
+
+  <!-- ============ 11b. PANEL PRE-LANCIO (spec 2.9, reintrodotta 8 ago 2026) ============ -->
+  <section id="testimonials" style="padding-top:0">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">From the First Tastings</span>
+        <h2 class="h2">What Early Tasters Say</h2>
+      </div>
+      <div class="testi-grid" data-cascade>
+        <!-- CITAZIONI SIMULATE del panel (nomi/zone di fantasia) — data-fake,
+             FAKE-DATA.md: sostituire con citazioni e nomi reali del panel -->
+        <div class="card t-card" data-fake="1">
+          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="t-quote">“The real taste of the fruit. Not an extract.”</p>
+          <div class="t-who">Sarah M. · Stratford</div>
+        </div>
+        <div class="card t-card" data-fake="1">
+          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="t-quote">“The first gelato my daughter eats without a second thought.”</p>
+          <div class="t-who">James L. · Hackney</div>
+        </div>
+        <div class="card t-card" data-fake="1">
+          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="t-quote">“It tastes of summer, and you know exactly where it came from.”</p>
+          <div class="t-who">Lisa R. · Walthamstow</div>
+        </div>
+        <div class="card t-card" data-fake="1">
+          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="t-quote">“The pistachio is my favourite classic, full stop.”</p>
+          <div class="t-who">Tom S. · E15</div>
+        </div>
+      </div>
+      <!-- Nota OBBLIGATORIA finché il sito non lancia (spec 2.9): senza,
+           il panel sembrerebbe fatto di recensioni pubbliche reali -->
+      <p class="caption reveal" style="text-align:center;margin-top:26px">Pre-launch tasting panel, not public reviews. Real customer reviews open with the September launch, unedited.</p>
     </div>
   </section>
 
@@ -304,6 +365,7 @@
 <script src="calendar.js"></script>
 <script src="alerts.js"></script>
 <script src="home.js"></script>
+<script src="howto.js"></script> <!-- pillola stato drop al picker -->
 <script src="photos.js"></script>
 <script src="motion.js"></script>
 <script src="site.js"></script>

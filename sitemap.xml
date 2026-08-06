@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AL LANCIO: sostituire chatgptmarco.github.io/gelatorchard-site
+     col dominio definitivo (stessa cosa per canonical e og:url) -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://chatgptmarco.github.io/gelatorchard-site/index.html</loc></url>
+  <url><loc>https://chatgptmarco.github.io/gelatorchard-site/order.html</loc></url>
+  <url><loc>https://chatgptmarco.github.io/gelatorchard-site/how-to-order.html</loc></url>
+  <url><loc>https://chatgptmarco.github.io/gelatorchard-site/calendario.html</loc></url>
+  <url><loc>https://chatgptmarco.github.io/gelatorchard-site/business.html</loc></url>
+  <url><loc>https://chatgptmarco.github.io/gelatorchard-site/story.html</loc></url>
+  <url><loc>https://chatgptmarco.github.io/gelatorchard-site/app.html</loc></url>
+</urlset>

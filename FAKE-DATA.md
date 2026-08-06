@@ -21,6 +21,8 @@ in tutto il progetto è l'elenco esatto di ciò che va sostituito o rimosso.
 | flavors.js | BATCHES.raspberry — Batch #045 | intero record (Louise Anderson, Anderson Berry Farm, Ettrickbridge, date, log, cold chain) | registro produzione + fornitore reale. NB: nome e citazione di Louise vengono dal template email del founder (EMAILS.md), ma azienda, luogo e date sono INVENTATI |
 | how-to-order.html | proof · ordini dal lancio | 500+ | registro ordini reale |
 | how-to-order.html | proof · reclami sull'attesa | 0 | registro feedback reale |
+| index.html #testimonials | 4 citazioni panel con nomi/zone | Sarah M./James L./Lisa R./Tom S. (INVENTATI) | citazioni e nomi VERI del panel di assaggio; la nota "pre-launch tasting panel" sotto la griglia è OBBLIGATORIA finché non si lancia |
+| flavors.js | date harvest/produced di TUTTI i batch | dinamiche: giovedì/venerdì dell'ultimo drop (demoBatchDates) | date dei batch veri dal CMS. NB le date REALI del batch #042: raccolto 15 May 2026 alle 06:12, prodotto 17 May 2026 |
 
 I record fake in `flavors.js` hanno il campo `fake: true`: la story page e il
 farmer-reveal del picker li mostrano con la nota "Sample batch". Al lancio:

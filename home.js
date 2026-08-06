@@ -62,13 +62,9 @@
     });
   }
 
-  /* Badge REC: pallino rosso pulsante + orario monospace. SOLO orari
-     reali dal batch; senza orario il badge non compare. */
-  function recBadge(time, fake) {
-    if (!time) return '';
-    return '<span class="hc-rec"' + (fake ? ' data-fake="1"' : '') +
-      '><span class="rec-dot"></span>REC ' + time + '</span>';
-  }
+  /* Il badge REC è stato ELIMINATO (founder, 8 ago 2026): suggeriva
+     una ripresa "in diretta" accanto a date vecchie. Le date dei
+     batch sono ora demo dinamiche sull'ultimo drop (flavors.js). */
 
   /* Motore condiviso dei due caroselli. items = array di stringhe
      .hc-slide (con data-id per il pulse e data-photo per la foto).
@@ -93,29 +89,32 @@
         : '');
 
     /* Foto reale se esiste: quando Marco carica il file, sostituisce
-       il gradiente da sola, senza toccare codice */
-    root.querySelectorAll('.hc-slide[data-photo]').forEach(function (el) {
-      var img = new Image();
-      img.onload = function () {
-        img.className = 'photo-fill';
-        img.alt = '';
-        /* Le foto attuali sono BOZZE stock/AI (consegna 7 ago 2026,
-           vedi FAKE-DATA.md): servono solo a vedere come verrà il
-           sito e saranno cancellate e sostituite con gli scatti veri
-           prima della pubblicazione. Al cambio: togliere marcatura
-           ed etichetta, come per photos.js. */
-        img.setAttribute('data-fake', '1');
-        el.insertBefore(img, el.firstChild);
-        el.classList.add('has-photo');
-        var tag = document.createElement('span');
-        tag.className = 'photo-tag tr';
-        tag.setAttribute('data-fake', '1');
-        tag.textContent = 'Stock/AI photo · bozza';
-        el.appendChild(tag);
-      };
-      img.onerror = function () {}; /* nessuna foto: resta il gradiente */
-      img.src = el.getAttribute('data-photo');
-    });
+       il gradiente da sola, senza toccare codice. Caricate LAZY: solo
+       quando il carosello si avvicina al viewport (rifinitura 11). */
+    function loadPhotos() {
+      root.querySelectorAll('.hc-slide[data-photo]').forEach(function (el) {
+        var img = new Image();
+        img.onload = function () {
+          img.className = 'photo-fill';
+          img.alt = '';
+          /* Le foto attuali sono BOZZE stock/AI (consegna 7 ago 2026,
+             vedi FAKE-DATA.md): servono solo a vedere come verrà il
+             sito e saranno cancellate e sostituite con gli scatti veri
+             prima della pubblicazione. Al cambio: togliere marcatura
+             ed etichetta, come per photos.js. */
+          img.setAttribute('data-fake', '1');
+          el.insertBefore(img, el.firstChild);
+          el.classList.add('has-photo');
+          var tag = document.createElement('span');
+          tag.className = 'photo-tag tr';
+          tag.setAttribute('data-fake', '1');
+          tag.textContent = 'Stock/AI photo · bozza';
+          el.appendChild(tag);
+        };
+        img.onerror = function () {}; /* nessuna foto: resta il gradiente */
+        img.src = el.getAttribute('data-photo');
+      });
+    }
 
     var slides = root.querySelectorAll('.hc-slide');
     var dots = root.querySelectorAll('.hc-dot');
@@ -123,14 +122,17 @@
 
     function show(i) {
       idx = (i + slides.length) % slides.length;
-      slides.forEach(function (s, k) { s.classList.toggle('active', k === idx); });
+      slides.forEach(function (s, k) {
+        s.classList.toggle('active', k === idx);
+        s.tabIndex = k === idx ? 0 : -1; /* tastiera: solo la slide visibile */
+      });
       var da = dotFor(idx);
       dots.forEach(function (d, k) { d.classList.toggle('active', k === da); });
     }
 
-    /* Autoplay a loop infinito; la pausa (hover) conserva il tempo
-       residuo e riprende da dove si era fermata */
-    var timer = null, nextAt = 0, remaining = DELAY;
+    /* Autoplay a loop infinito; la pausa (hover o fuori viewport)
+       conserva il tempo residuo e riprende da dove si era fermata */
+    var timer = null, nextAt = 0, remaining = DELAY, hovered = false;
     function tick() { show(idx + 1); remaining = DELAY; schedule(); }
     function schedule() {
       if (!multi || REDUCED) return;
@@ -139,24 +141,18 @@
       timer = setTimeout(tick, remaining);
     }
     function pause() {
+      if (!timer) return;
       clearTimeout(timer); timer = null;
       remaining = Math.max(300, nextAt - Date.now());
     }
     function goto_(i) { show(i); remaining = DELAY; if (timer) schedule(); }
 
-    root.addEventListener('mouseenter', pause);
-    root.addEventListener('mouseleave', function () { schedule(); });
+    root.addEventListener('mouseenter', function () { hovered = true; pause(); });
+    root.addEventListener('mouseleave', function () { hovered = false; schedule(); });
 
-    root.addEventListener('click', function (e) {
-      if (swiped) { swiped = false; return; }
-      var dot = e.target.closest('.hc-dot');
-      if (dot) { goto_(slideForDot(+dot.getAttribute('data-d'), idx)); return; }
-      var arrow = e.target.closest('.hc-arrow');
-      if (arrow) { goto_(idx + (arrow.classList.contains('prev') ? -1 : 1)); return; }
-      /* Click/tap sulla slide (mouse e touch, identico): scroll al
-         picker + pulse sulla tile corrispondente. Nessun modal. */
-      var slide = e.target.closest('.hc-slide');
-      if (!slide) return;
+    /* Click/tap/Enter sulla slide (identici): scroll al picker + pulse
+       sulla tile corrispondente. Nessun modal. */
+    function activateSlide(slide) {
       var id = slide.getAttribute('data-id');
       if (G.track) G.track(opts.trackEvent || 'carousel_slide_click', { flavour: id });
       var picker = document.getElementById('flavor-picker');
@@ -173,6 +169,25 @@
           setTimeout(function () { tile.classList.remove('pulse'); }, 1800);
         }, REDUCED ? 0 : 450);
       }
+    }
+
+    root.addEventListener('click', function (e) {
+      if (swiped) { swiped = false; return; }
+      var dot = e.target.closest('.hc-dot');
+      if (dot) { goto_(slideForDot(+dot.getAttribute('data-d'), idx)); return; }
+      var arrow = e.target.closest('.hc-arrow');
+      if (arrow) { goto_(idx + (arrow.classList.contains('prev') ? -1 : 1)); return; }
+      var slide = e.target.closest('.hc-slide');
+      if (slide) activateSlide(slide);
+    });
+
+    /* Rifinitura 12: Enter/Spazio sulla slide attiva = click */
+    root.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+      var slide = e.target.closest && e.target.closest('.hc-slide');
+      if (!slide) return;
+      e.preventDefault();
+      activateSlide(slide);
     });
 
     /* Swipe touch: cambia slide e azzera il timer; sopprime il click
@@ -190,7 +205,26 @@
     }, { passive: true });
 
     show(0);
-    schedule();
+    /* Rifinitura 11: foto e autoplay partono solo quando il carosello
+       è (quasi) in vista; fuori viewport l'autoplay si ferma. L'IO
+       consegna la prima notifica solo dopo il primo paint, quindi chi
+       è già in viewport al load parte subito col check sincrono. */
+    var photosLoaded = false;
+    function wake() {
+      if (!photosLoaded) { photosLoaded = true; loadPhotos(); }
+      if (!hovered) schedule();
+    }
+    function inView() {
+      var r = root.getBoundingClientRect();
+      var h = window.innerHeight || document.documentElement.clientHeight;
+      return r.bottom > -200 && r.top < h + 200;
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) wake(); else pause(); });
+      }, { rootMargin: '200px' }).observe(root);
+      if (inView()) wake();
+    } else { wake(); }
   }
 
   var inSeason = fruitsInSeason();
@@ -228,7 +262,6 @@
     return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '"' +
       ' data-photo="foto-gusti/frutta/' + f.id + '.jpg" role="group" ' +
       'aria-roledescription="slide" aria-label="' + f.name + ', ' + st.subtitle + '">' +
-      recBadge(b && b.harvestTime, b && b.fake) +
       '<div class="hc-overlay">' + quote + '<div class="hc-meta">' + meta + '</div>' + stock + '</div>' +
       '</div>';
   }

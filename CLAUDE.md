@@ -204,6 +204,26 @@ Domande aperte per Marco: matrice allergeni + contaminazione incrociata, zone/gi
 consegna Londra, contatti reali footer (ora #), account analytics, numero vero batch.
 Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cache).
 
+## Interventi dell'8 agosto 2026 (dalla critica spietata, approvati dal founder)
+- Badge REC ELIMINATO (suggeriva "in diretta" su date vecchie); date batch ora
+  DEMO DINAMICHE: demoBatchDates in flavors.js le riallinea all'ultimo drop
+  (gio raccolta / ven produzione). Date vere del #042 in FAKE-DATA.md.
+- Dieta hero: headline + UN hook + Diario. Il Viaggio vive nella sezione
+  #journey (ex journey statica), con il suo hook.
+- Pillola stato drop [data-drop-status] anche nella sec-head del picker in
+  home (howto.js caricato pure su index.html).
+- Panel pre-lancio (spec 2.9) reintrodotto: #testimonials dopo #proof, 4 card
+  data-fake + nota obbligatoria "pre-launch tasting panel".
+- MOBILE: hamburger in site.js (.nav-burger + pannello .nav-mobile <760px).
+- Caroselli: foto lazy + autoplay solo in viewport (IntersectionObserver),
+  Enter/Spazio sulla slide attiva = click (tabindex sulla slide visibile).
+- SEO: sitemap.xml + robots.txt (admin esclusa) + JSON-LD (IceCreamShop in
+  home, Product Gelato Kit su /order — MAI rating finti).
+- Barra scarsità: ricalcolo ogni 30 minuti (tab aperte a cavallo di mezzanotte).
+- CHECKLIST LANCIO: canonical, og:url, sitemap.xml e JSON-LD url puntano a
+  chatgptmarco.github.io/gelatorchard-site → sostituire TUTTI col dominio vero.
+- Classici senza foto nel picker: scelta founder, per ora restano gradienti.
+
 ## Metodo di lavoro
 - Modifiche chirurgiche, mai rigenerare file interi senza necessità.
 - Ogni capitolo nuovo arriva come specifica dal founder: implementarlo senza stravolgere i precedenti.

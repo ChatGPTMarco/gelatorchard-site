@@ -375,6 +375,24 @@
     };
   };
 
+  /* DATE DEMO (founder, 8 ago 2026): via il badge REC "in diretta",
+     le date dei batch mostrati come "correnti" seguono l'ULTIMO DROP
+     (frutta giovedì, produzione venerdì): plausibili ogni giorno senza
+     manutenzione. SOLO demo pre-lancio: al lancio le date arrivano dai
+     batch veri (CMS Notion). Le date VERE del batch #042 sono in
+     FAKE-DATA.md (raccolto 15 May 2026 06:12, prodotto 17 May 2026). */
+  (function demoBatchDates() {
+    var now = new Date();
+    var backToFri = (now.getDay() - 5 + 7) % 7;
+    var fri = new Date(now.getFullYear(), now.getMonth(), now.getDate() - backToFri);
+    var thu = new Date(fri.getFullYear(), fri.getMonth(), fri.getDate() - 1);
+    function fmt(d) { return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
+    Object.keys(BATCHES).forEach(function (k) {
+      BATCHES[k].harvest = fmt(thu);
+      BATCHES[k].produced = fmt(fri);
+    });
+  })();
+
   /* alertsDue(date) — motore trigger della Seasonal Alert List (Cap. 7).
      lastCall: gusti frutta in stagione con ≤7 giorni rimasti (email 7.3);
      seasonEntry: gusti la cui stagione apre esattamente oggi (email 7.4).
