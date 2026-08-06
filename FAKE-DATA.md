@@ -35,21 +35,51 @@ mostra solo "frutto · regione · in season now", senza citazione). Anche lo sta
 grigio-caldo nel picker) viene dal batch fake #043: `G.stockStatus` in preview
 legge `BATCHES[id].status`, al lancio andrà su `flavors.stock_status` (Supabase).
 
-## Immagini stock provvisorie (Unsplash, licenza standard gratuita)
+## Immagini provvisorie (consegna founder 7 ago 2026 — stock/AI, TUTTE bozze)
 
-| File immagine | Slot occupato | Origine (ID Unsplash) | Foto reale attesa |
-|---|---|---|---|
-| assets/hero-gelato.jpg | SOLO `og:image` di tutte le pagine (anteprima link WhatsApp/social); dal 6 ago 2026 l'hero è il carosello Diario del Raccolto, non usa più questa foto | T0cT79FV6Ig | cono/coppetta del gelato VERO di Gelatorchard |
-| assets/farmer-field.jpg | story, capitolo 1 | E80rnzCWCPk | Tom Johnson nel campo (o al mercato) |
-| assets/unboxing-box.jpg | sezione unboxing | bYhDEWgqYLM | la box kraft VERA aperta col contenuto |
+Fonte: cartella `foto/` fornita dal founder. Sono immagini stock e generate
+con AI, NON scatti reali di Gelatorchard: tutte marcate `data-fake` (photos.js
+per assets/, home.js per i caroselli) e da sostituire con le foto vere a
+parità di nome. La cartella `foto/` resta come archivio degli originali.
 
-Slot rimasti a segnaposto (nessuna immagine adeguata trovata senza loghi/volti):
-laboratorio (story cap. 2), video 15s (story sezione 0), ritratto lettera di Marco
-(vietato per regola 10.9: mai una faccia altrui sotto la sua firma).
+| File nel sito | Slot | Origine/nota |
+|---|---|---|
+| foto-gusti/frutta/strawberry.jpg | Diario · fragola | filari in tunnel |
+| foto-gusti/frutta/raspberry.jpg | Diario · lampone | filari in tunnel |
+| foto-gusti/frutta/cherry.jpg | Diario · ciliegia | cestino in mano — watermark AI "✦" |
+| foto-gusti/frutta/blueberry.jpg | Diario · mirtillo | vaschetta in mano — watermark AI "✦" |
+| foto-gusti/frutta/blackcurrant.jpg | Diario · ribes nero | raccolta a mano — watermark AI "✦" |
+| foto-gusti/frutta/victoria-plum.jpg | Diario · susina | colapasta smaltato — watermark AI "✦" |
+| foto-gusti/frutta/apple-pear.jpg | Diario · mela/pera | cassette di legno |
+| foto-gusti/frutta/quince.jpg | Diario · cotogna | cassetta blu — bande nere da anteprima stock (il crop le nasconde quasi tutte) |
+| foto-gusti/frutta/rhubarb.jpg | **MANCANTE** (resta il gradiente) | l'originale era un'anteprima Alamy CON WATERMARK visibile: inutilizzabile |
+| foto-farmers/tom-johnson.jpg | Viaggio · tappa 1 | raccoglitori in tunnel, visi non riconoscibili (MAI usare visi altrui come "Tom") |
+| foto-gusti/viaggio/laboratorio.jpg | Viaggio · tappa 2 | mantecatore, mani senza viso — bande nere da stock |
+| foto-gusti/viaggio/confezione.jpg | Viaggio · tappa 3 | box brand "Gelato Orchard" GENERATA CON AI — NB mostra un vassoio simil-polistirolo, in contraddizione col claim "no polystyrene": non usare al lancio |
+| foto-gusti/viaggio/servito.jpg | Viaggio · tappa 4 | coppetta kraft ai mirtilli, studio |
+| assets/hero-gelato.jpg | og:image di tutte le pagine | stessa box AI di cui sopra |
+| assets/unboxing-box.jpg | homepage unboxing | stessa box AI di cui sopra |
+| assets/farmer-field.jpg | story cap. 1 | raccolta fragole, viso coperto dal cappello — bande nere da stock |
+| assets/lab-gelato.jpg | story cap. 2 | stesso mantecatore della tappa 2 |
 
-Le immagini sono agganciate da `photos.js`, che le marca `data-fake` e mostra
-l'etichetta "Stock photo · bozza". Al lancio: sostituire i file in `assets/`
-con le fotografie originali mantenendo il nome, poi togliere marcature ed etichette.
+**File della cartella `foto/` NON usati (non usare mai):**
+- `rhubarb.jpg` → watermark Alamy visibile (non licenziata)
+- `Marco al Trittico….jpg` → gelatiere sconosciuto con grembiule del marchio
+  reale "Crusio IJsmakers": viso altrui + brand terzo
+- `fot farmer con cassetta….png` e `foto farmers che raccoglie….png` →
+  marchio reale "Hugh Lowe Farms" (azienda vera del Kent) ben visibile;
+  la seconda è uno screenshot di Instagram
+- `Tom nel campo mentre raccoglie….jpg` → viso riconoscibile di uno
+  sconosciuto + cassetta "PRODUCT OF USA" (il sito dice Kent)
+- `blackberries.png`, `blackberries nel cespuglio .png` → la mora non è un
+  gusto del catalogo (nessuno slot)
+- scatti doppi di fragola/lampone e `gelato cono finito.jpg` → riserve
+
+Slot ancora a segnaposto: video 15s (story sezione 0), ritratto lettera di
+Marco (vietato per regola 10.9: mai una faccia altrui sotto la sua firma).
+
+Al lancio: sostituire i file con le fotografie originali mantenendo il nome,
+poi togliere le marcature data-fake in photos.js e home.js e le etichette.
 
 ## DA VERIFICARE (non rimuovere, ma validare col founder prima del lancio)
 

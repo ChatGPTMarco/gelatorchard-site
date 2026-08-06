@@ -2,3 +2,6 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# Archivio locale foto originali del founder (contiene stock con watermark e screenshot: NON pubblicare)
+foto/

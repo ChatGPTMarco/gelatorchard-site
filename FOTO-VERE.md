@@ -1,5 +1,11 @@
 # FOTO VERE — lista di scatto per Marco
 
+> **STATO (7 ago 2026):** il founder ha consegnato una prima cartella `foto/`,
+> ma sono immagini stock/AI, NON scatti reali: piazzate in tutti gli slot come
+> BOZZE marcate data-fake (inventario e problemi in FAKE-DATA.md). Manca del
+> tutto `rhubarb.jpg` (l'originale aveva un watermark Alamy: resta il
+> gradiente). QUESTA LISTA RESTA VALIDA: ogni voce va ancora scattata davvero.
+
 Questa è la lista completa delle fotografie REALI che il sito aspetta,
 con nome file esatto e descrizione di cosa deve mostrare ogni scatto.
 (FOTO-DA-SCARICARE.md riguarda le stock provvisorie: altra cosa.)
