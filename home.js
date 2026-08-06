@@ -100,11 +100,18 @@
         img.className = 'photo-fill';
         img.alt = '';
         /* Le foto attuali sono BOZZE stock/AI (consegna 7 ago 2026,
-           vedi FAKE-DATA.md): quando arrivano gli scatti veri di
-           Marco, sostituire i file e togliere questa marcatura. */
+           vedi FAKE-DATA.md): servono solo a vedere come verrà il
+           sito e saranno cancellate e sostituite con gli scatti veri
+           prima della pubblicazione. Al cambio: togliere marcatura
+           ed etichetta, come per photos.js. */
         img.setAttribute('data-fake', '1');
         el.insertBefore(img, el.firstChild);
         el.classList.add('has-photo');
+        var tag = document.createElement('span');
+        tag.className = 'photo-tag tr';
+        tag.setAttribute('data-fake', '1');
+        tag.textContent = 'Stock/AI photo · bozza';
+        el.appendChild(tag);
       };
       img.onerror = function () {}; /* nessuna foto: resta il gradiente */
       img.src = el.getAttribute('data-photo');
