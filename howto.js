@@ -1,8 +1,12 @@
 /* ============================================================
-   GELATORCHARD — /how-to-order · stato live del drop settimanale
+   GELATORCHARD — stato live del drop settimanale (how-to-order + order)
    Riempie ogni [data-drop-status] leggendo G.orderWindow (flavors.js,
    unica fonte del ritmo). Countdown SOLO su scadenze reali (regola 4):
    la finestra lun 10:00 → mar 18:00 esiste davvero, quindi si conta.
+   Modello "opzione B" (decisione founder 6 ago 2026): fuori finestra
+   NON si blocca nulla — l'ordine si accoda al drop successivo e il
+   copy lo dice esplicitamente. Mai far credere che sia chiuso il
+   negozio: è chiusa solo la conta di questa settimana.
    ============================================================ */
 (function () {
   'use strict';
@@ -25,11 +29,10 @@
   function render() {
     var w = G.orderWindow();
     var html = w.open
-      ? '<span class="ds-dot open"></span><strong>Orders are open.</strong> They close Tuesday 6pm, in ' +
+      ? '<span class="ds-dot open"></span><strong>This week’s drop is open.</strong> Order by Tuesday 6pm, in ' +
         countdown(w.closesAt) + ' · delivery ' + dayLong(w.saturday) + ' or Sunday'
-      : '<span class="ds-dot"></span><strong>Orders are closed.</strong> Next window: ' +
-        dayLong(w.opensAt) + ', 10am, in ' + countdown(w.opensAt) +
-        ' · delivery ' + dayLong(w.saturday) + ' or Sunday';
+      : '<span class="ds-dot"></span><strong>Ordering now? You’re in the next drop.</strong> Orders are counted ' +
+        dayLong(w.closesAt) + ' at 6pm · delivery ' + dayLong(w.saturday) + ' or Sunday';
     document.querySelectorAll('[data-drop-status]').forEach(function (el) {
       el.classList.toggle('open', w.open);
       el.innerHTML = html;

@@ -302,7 +302,12 @@
     if (basketFruitIds().indexOf('strawberry') >= 0) {
       rows.push("Johnson's Farm, Kent. Picked 15 May");
     }
-    rows.push('Made fresh Friday morning, from fruit that arrives Thursday evening');
+    /* Opzione B (founder, 6 ago 2026): fuori finestra non si blocca nulla,
+       l'ordine si accoda al drop successivo e il riepilogo lo dice chiaro. */
+    var w = G.orderWindow();
+    rows.push(w.open
+      ? 'You’re in this week’s drop: fruit ordered from the farm Tuesday evening, made fresh Friday morning'
+      : 'This week’s window has passed, so you join the next drop: counted Tuesday 6pm, made fresh Friday morning');
     rows.push(etaLine());
     rows.push('You’ll receive a QR to scan on arrival');
     rows.push('We’ll ask you for a review, Marco reads every comment');

@@ -112,6 +112,12 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   (flavors.js): howto.js e order.js lo leggono da lì. Countdown ammesso perché la
   scadenza è reale. Proof numbers marcati data-fake (FAKE-DATA.md); trust line
   Tower Hamlets/SFBB in DA VERIFICARE.
+  DECISIONE FOUNDER (opzione B, 6 ago 2026): fuori finestra il checkout NON si
+  blocca mai — l'ordine si accoda al drop successivo e il copy lo dichiara
+  (pillola [data-drop-status] su how-to-order e /order, riga nel riepilogo
+  ordine). howto.js è condiviso: caricato anche da order.html dopo order.js.
+  Mai scrivere "closed"/"chiuso" come se il negozio fosse chiuso: è chiusa
+  solo la conta della settimana.
 - story.js (nella radice) → logica story page (story.html?batch=… / ?flavour=…). I dati batch
   vivono SOLO in Gelatorchard.BATCHES (flavors.js): registro JSON provvisorio, al lancio
   alimentato dal CMS Notion del founder (1 pagina Notion per batch → QR sull'etichetta).
