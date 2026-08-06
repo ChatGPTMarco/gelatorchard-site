@@ -227,69 +227,48 @@
     else car.style.display = 'none';
   }
 
-  /* --- Carosello 2 · Il Viaggio (sostituisce la vecchia 2.5): stesso
-     frutto protagonista per un giro completo delle 4 tappe, poi il
-     successivo in stagione, ciclicamente. 4 pallini = 4 tappe. --- */
+  /* --- Carosello 2 · Il Viaggio: ESEMPIO FISSO (correzione founder,
+     7 ago 2026). NIENTE rotazione sui frutti: quella la fa già il
+     Diario, qui sarebbe duplicata. Sempre Fragola / Tom Johnson /
+     Kent, l'unico batch con dati reali completi (citazione, orari,
+     azienda), in loop infinito sulle sue 4 tappe. Il frutto specifico
+     è irrilevante: è un esempio illustrativo costante. --- */
   var STAGES = ['The harvest', 'The lab', 'Dispatch', 'Your freezer'];
-  function journeySlideHTML(f, stage) {
-    var b = G.BATCHES[f.id];
-    var s = G.SEASONS[f.id];
-    var fake = !!(b && b.fake);
+  /* NIENTE badge REC sulle tappe del Viaggio (scelta founder): solo
+     l'icona casa sulla quarta. I REC restano sul Diario del Raccolto. */
+  function journeySlideHTML(stage) {
+    var f = G.flavorById('strawberry');
+    var b = G.BATCHES.strawberry;
     var badge = '', body = '', photo = '';
     if (stage === 0) {
-      /* orario di raccolta reale dal batch */
-      badge = recBadge(b && b.harvestTime, fake);
-      body = (b && b.quote)
-        ? '<p class="hc-quote"' + (fake ? ' data-fake="1"' : '') + '>' + b.quote + '</p>' +
-          '<div class="hc-meta"' + (fake ? ' data-fake="1"' : '') + '>— ' + b.farmerName + ', ' + b.location + '</div>'
-        : '<div class="hc-meta">' + f.name + ' · ' + ((s && s.origin) ? s.origin : 'Britain') + '</div>';
-      photo = b
-        ? 'foto-farmers/' + b.farmerName.toLowerCase().replace(/[^a-z]+/g, '-') + '.jpg'
-        : 'foto-gusti/frutta/' + f.id + '.jpg';
+      body = '<p class="hc-quote">' + b.quote + '</p>' +
+        '<div class="hc-meta">— ' + b.farmerName + ', ' + b.location + '</div>';
+      photo = 'foto-farmers/' + b.farmerName.toLowerCase().replace(/[^a-z]+/g, '-') + '.jpg';
     } else if (stage === 1) {
-      /* orario reale della pastorizzazione dal log del batch */
-      var t = null;
-      if (b && b.log) b.log.forEach(function (row) { if (row[1].indexOf('Trittico') === 0) t = row[0]; });
-      badge = recBadge(t, fake);
       body = '<div class="hc-meta">Pasteurised, churned: ' + f.name + ' becomes gelato</div>';
       photo = 'foto-gusti/viaggio/laboratorio.jpg';
     } else if (stage === 2) {
-      /* 17:00 = orario di spedizione dichiarato dal founder (ex 2.5) */
-      badge = recBadge('17:00', false);
       body = '<div class="hc-meta">On its way to you: cold chain guaranteed</div>';
       photo = 'foto-gusti/viaggio/spedizione.jpg';
     } else {
-      /* destinazione, non più "ripresa in corso": icona casa al posto
-         del REC. Esaurito → il raccolto è già tutto prenotato. */
+      /* destinazione, non "ripresa in corso": icona casa, seconda persona */
       badge = '<span class="hc-rec home">🏠</span>';
-      var sold = G.stockStatus(f.id) === 'esaurito';
-      body = '<div class="hc-meta"' + (sold && fake ? ' data-fake="1"' : '') + '>' + (sold
-        ? 'This harvest is already spoken for: the next one lands soon'
-        : 'A few hours from now, in YOUR freezer') + '</div>';
+      body = '<div class="hc-meta">A few hours from now, in YOUR freezer</div>';
       photo = 'foto-gusti/viaggio/freezer.jpg';
     }
     return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '"' +
       ' data-photo="' + photo + '" role="group" aria-roledescription="slide" ' +
-      'aria-label="' + f.name + ', step ' + (stage + 1) + ': ' + STAGES[stage] + '">' +
+      'aria-label="Step ' + (stage + 1) + ': ' + STAGES[stage] + '">' +
       badge +
       '<div class="hc-overlay">' +
-        '<div class="hc-kicker">' + (stage + 1) + ' · ' + STAGES[stage] + ' · ' + f.name + '</div>' +
+        '<div class="hc-kicker">' + (stage + 1) + ' · ' + STAGES[stage] + '</div>' +
         body +
       '</div></div>';
   }
   var jr = document.getElementById('journey-carousel');
   if (jr) {
-    if (inSeason.length) {
-      var jItems = [];
-      inSeason.forEach(function (f) {
-        for (var st4 = 0; st4 < 4; st4++) jItems.push(journeySlideHTML(f, st4));
-      });
-      buildCarousel(jr, jItems, {
-        trackEvent: 'journey_slide_click',
-        dotCount: 4,
-        dotFor: function (i) { return i % 4; },
-        slideForDot: function (d, cur) { return Math.floor(cur / 4) * 4 + d; }
-      });
+    if (G.BATCHES.strawberry) {
+      buildCarousel(jr, [0, 1, 2, 3].map(journeySlideHTML), { trackEvent: 'journey_slide_click' });
     } else jr.style.display = 'none';
   }
 

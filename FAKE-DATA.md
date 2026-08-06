@@ -26,7 +26,8 @@ I record fake in `flavors.js` hanno il campo `fake: true`: la story page e il
 farmer-reveal del picker li mostrano con la nota "Sample batch". Al lancio:
 sostituire i record e togliere il campo `fake`.
 
-I **caroselli hero "Diario del Raccolto" e "Il Viaggio"** (home.js) ereditano gli stessi record:
+Il **carosello hero "Diario del Raccolto"** (home.js) eredita gli stessi record
+(il carosello "Il Viaggio" invece usa SOLO il batch reale #042, niente fake):
 le citazioni dei batch fake (#043/#044/#045) compaiono nelle slide marcate
 `data-fake` (contadino NON confermato → al lancio, senza record reale, la slide
 mostra solo "frutto · regione · in season now", senza citazione). Anche lo stato

@@ -96,13 +96,15 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   Dal 7 ago 2026: frase hook sopra il Diario ("Right Now, [N] UK Fruits…",
   N live dalla stessa fonte del carosello) + secondo carosello "Il Viaggio"
   (#journey-carousel) che SOSTITUISCE la vecchia sezione statica journey
-  (2.5/10.5.4, rimossa da index.html): 4 tappe (harvest/lab/dispatch/your
-  freezer) per frutto protagonista, a rotazione; badge REC (pallino rosso +
-  orario monospace, SOLO orari reali dal batch; tappa 4 = icona casa),
-  4 pallini = tappe. Motore condiviso buildCarousel in home.js. Foto:
-  foto-farmers/<slug>.jpg (tappa 1) e foto-gusti/viaggio/{laboratorio,
-  spedizione,freezer}.jpg. Nav/footer "Our Story" → #letter (id story
-  non esiste più).
+  (2.5/10.5.4, rimossa da index.html): ESEMPIO FISSO Fragola/Tom Johnson
+  (unico batch reale completo), 4 tappe (harvest/lab/dispatch/your freezer)
+  in loop, NESSUNA rotazione sui frutti (la fa già il Diario) e NIENTE
+  badge REC sulle tappe (scelta founder: solo icona casa sulla 4ª; i REC
+  con orari reali restano sul Diario). Hook statico proprio in index.html
+  ("Field to Freezer in 48 Hours. Watch Every Step."). Motore condiviso
+  buildCarousel in home.js. Foto: foto-farmers/<slug>.jpg (tappa 1) e
+  foto-gusti/viaggio/{laboratorio,spedizione,freezer}.jpg. Nav/footer
+  "Our Story" → #letter (id story non esiste più).
 - photos.js (nella radice) → aggancia foto da assets/ agli slot (hero, unboxing, story);
   segna tutto data-fake + etichetta "Stock photo · bozza". Se il file manca resta il
   segnaposto. FAKE-DATA.md elenca le foto provvisorie e la procedura di rimozione.
