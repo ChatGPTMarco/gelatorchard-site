@@ -26,11 +26,19 @@ I record fake in `flavors.js` hanno il campo `fake: true`: la story page e il
 farmer-reveal del picker li mostrano con la nota "Sample batch". Al lancio:
 sostituire i record e togliere il campo `fake`.
 
+Il **carosello hero "Diario del Raccolto"** (home.js) eredita gli stessi record:
+le citazioni dei batch fake (#043/#044/#045) compaiono nelle slide marcate
+`data-fake` (contadino NON confermato → al lancio, senza record reale, la slide
+mostra solo "frutto · regione · in season now", senza citazione). Anche lo stato
+"esaurito" del mirtillo (riga "Already sold out this week" nella slide, tile
+grigio-caldo nel picker) viene dal batch fake #043: `G.stockStatus` in preview
+legge `BATCHES[id].status`, al lancio andrà su `flavors.stock_status` (Supabase).
+
 ## Immagini stock provvisorie (Unsplash, licenza standard gratuita)
 
 | File immagine | Slot occupato | Origine (ID Unsplash) | Foto reale attesa |
 |---|---|---|---|
-| assets/hero-gelato.jpg | hero homepage + `og:image` di tutte le pagine (anteprima link WhatsApp/social) | T0cT79FV6Ig | cono/coppetta del gelato VERO di Gelatorchard |
+| assets/hero-gelato.jpg | SOLO `og:image` di tutte le pagine (anteprima link WhatsApp/social); dal 6 ago 2026 l'hero è il carosello Diario del Raccolto, non usa più questa foto | T0cT79FV6Ig | cono/coppetta del gelato VERO di Gelatorchard |
 | assets/farmer-field.jpg | story, capitolo 1 | E80rnzCWCPk | Tom Johnson nel campo (o al mercato) |
 | assets/unboxing-box.jpg | sezione unboxing | bYhDEWgqYLM | la box kraft VERA aperta col contenuto |
 

@@ -16,7 +16,9 @@
 
   /* slot → file atteso in assets/. Aggiungere qui eventuali nuovi punti. */
   var SLOTS = [
-    { sel: '.hero-visual',  file: 'hero-gelato.jpg',   alt: 'Strawberry gelato (stock photo, placeholder)' },
+    /* hero: dal 6 ago 2026 è il carosello Diario del Raccolto (home.js),
+       con foto per-gusto da foto-gusti/ — niente più foto stock qui.
+       hero-gelato.jpg resta SOLO come og:image (vedi FAKE-DATA.md). */
     { sel: '.unbox-visual', file: 'unboxing-box.jpg',  alt: 'Kraft box packaging (stock photo, placeholder)' },
     /* story page: i due riquadri sono renderizzati da story.js, in ordine */
     { sel: '.story-chapter[data-chapter="1"] .sc-photo', file: 'farmer-field.jpg', alt: 'Farmer in a strawberry field (stock photo, placeholder)' },

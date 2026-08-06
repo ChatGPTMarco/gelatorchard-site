@@ -40,16 +40,11 @@
         <a class="pill pill-dark" data-track="hero_cta_season" href="#season">See what’s in season today</a>
         <a class="pill pill-ghost" data-track="hero_cta_labels" href="#labels">Read both labels</a>
       </div>
-      <!-- Foto stock provvisoria via photos.js (data-fake) — sostituire con fotografia reale -->
-      <div class="hero-visual reveal-fade" data-parallax>
-        <div class="hv-overlay">
-          <div>
-            <div class="hv-title serif">Kentish Strawberry · Batch #042</div>
-            <div class="hv-sub">Johnson's Farm, Kent · Picked 15 May</div>
-          </div>
-          <span class="hv-badge">In season now</span>
-        </div>
-      </div>
+      <!-- Diario del Raccolto (spec 6 ago 2026): carosello NARRATIVO dei
+           frutti in stagione oggi. Niente prezzi né CTA ordina: si sceglie
+           solo nel picker #flavors. Render + logica in home.js. -->
+      <div class="hero-visual harvest-carousel reveal-fade" id="harvest-carousel"
+           aria-roledescription="carousel" aria-label="In season this week"></div>
     </div>
   </section>
 

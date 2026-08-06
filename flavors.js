@@ -261,6 +261,18 @@
         '<a class="bl-link" href="story.html?batch=' + b.id + '">log →</a></li>';
     }).join('');
   };
+  /* stockStatus(id) — scorta della settimana (spec carosello, 6 ago 2026).
+     In preview legge lo status del batch corrente in BATCHES ('esaurito'
+     = Marco ha venduto tutta la produzione della settimana). Al lancio:
+     alimentato da Supabase flavors.stock_status via backend.js. La
+     stagionalità NON c'entra: prima si controlla seasonStatus, poi
+     (solo se in stagione) la scorta. I Classici non hanno stagione ma
+     possono comunque esaurirsi. */
+  G.stockStatus = function (id) {
+    var b = BATCHES[id];
+    return (b && b.status === 'esaurito') ? 'esaurito' : 'disponibile';
+  };
+
   G.batchById = function (id) {
     var found = null;
     Object.keys(BATCHES).forEach(function (k) {
@@ -438,6 +450,24 @@
         '<a class="t-link" href="app.html?fruit=' + f.id + '">Tell me when it’s back →</a>' +
         '</div>';
     }
+    /* Terzo stato (spec 6 ago 2026): in stagione MA scorta esaurita.
+       Controllo in sequenza: prima la stagione (sopra), poi la scorta.
+       Grigio CALDO distinto dal grigio fuori-stagione, NESSUN timbro
+       con data (non sappiamo quando Marco rifornisce). La storia resta
+       consultabile: un batch è esistito, è per questo che è esaurito.
+       Vale anche per i Classici (niente stagione, ma si esauriscono). */
+    if (G.stockStatus(f.id) === 'esaurito') {
+      var bs = G.BATCHES[f.id];
+      return '<div class="tile out sold" data-id="' + f.id + '" aria-disabled="true"' +
+        (bs && bs.fake ? ' data-fake="1"' : '') + '>' +
+        '<div class="swatch ' + f.sw + '"></div>' +
+        '<div class="t-name">' + f.name + '</div>' +
+        '<div class="t-meta">Sold out: more fruit on order, back soon</div>' +
+        (bs ? '<a class="t-link" href="story.html?batch=' + bs.id + '">Read the story →</a>' : '') +
+        (st.always ? '' : '<a class="t-link" href="app.html?fruit=' + f.id + '">Tell me when it’s back →</a>') +
+        '</div>';
+    }
+
     /* Farmer reveal (Cap. 10.6): alla selezione la tile mostra chi ha
        coltivato il batch corrente. Fonte: BATCHES; se il batch non è
        pubblicato, solo l'origine reale — mai inventare un contadino. */
@@ -477,7 +507,8 @@
     var selected = [];
     (opts.preselect || []).forEach(function (id) {
       var st = G.seasonStatus(id);
-      if (G.flavorById(id) && st.inSeason && selected.indexOf(id) < 0 && selected.length < max) {
+      if (G.flavorById(id) && st.inSeason && G.stockStatus(id) !== 'esaurito' &&
+          selected.indexOf(id) < 0 && selected.length < max) {
         selected.push(id);
       }
     });

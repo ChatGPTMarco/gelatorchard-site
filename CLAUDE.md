@@ -82,7 +82,17 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   il deep-link calendario.html?month=N (0-11).
 - home.js (nella radice) → logica solo-homepage (Cap. 10): headline stagione generata
   live, mount della ruota, registro batch, CTA band dinamica. Mai testi statici dove
-  esiste il dato calcolato.
+  esiste il dato calcolato. Dal 6 ago 2026 contiene anche il carosello hero
+  "Diario del Raccolto" (#harvest-carousel): NARRATIVO, niente prezzi/CTA ordina,
+  una slide per frutto in stagione (seasonStatus decide l'inclusione, la scorta
+  solo la riga in coda), citazione contadino solo se batch confermato (fake →
+  data-fake), foto da foto-gusti/frutta/<id>.jpg con fallback gradiente .sw-*,
+  autoplay 4.5s con pausa hover che conserva il tempo residuo, click/tap slide →
+  scroll a #flavors + pulse sulla tile. Scorta: G.stockStatus (flavors.js, in
+  preview legge BATCHES.status, al lancio Supabase flavors.stock_status).
+  Il picker ha il terzo stato "sold" (grigio caldo #C9C4BC→#A8A296, niente
+  timbro, storia consultabile + alert): prima si controlla la stagione, poi
+  la scorta. photos.js non riempie più l'hero.
 - photos.js (nella radice) → aggancia foto da assets/ agli slot (hero, unboxing, story);
   segna tutto data-fake + etichetta "Stock photo · bozza". Se il file manca resta il
   segnaposto. FAKE-DATA.md elenca le foto provvisorie e la procedura di rimozione.
