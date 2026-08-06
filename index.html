@@ -40,11 +40,17 @@
         <a class="pill pill-dark" data-track="hero_cta_season" href="#season">See what’s in season today</a>
         <a class="pill pill-ghost" data-track="hero_cta_labels" href="#labels">Read both labels</a>
       </div>
+      <!-- Frase hook: [N] frutti in stagione, conteggio live (home.js) -->
+      <div class="hero-hook reveal" id="harvest-hook"></div>
       <!-- Diario del Raccolto (spec 6 ago 2026): carosello NARRATIVO dei
            frutti in stagione oggi. Niente prezzi né CTA ordina: si sceglie
            solo nel picker #flavors. Render + logica in home.js. -->
       <div class="hero-visual harvest-carousel reveal-fade" id="harvest-carousel"
            aria-roledescription="carousel" aria-label="In season this week"></div>
+      <!-- Il Viaggio (sostituisce la vecchia sezione statica 2.5): come
+           arriva da lì a te. Stesso motore, 4 tappe per frutto (home.js). -->
+      <div class="hero-visual harvest-carousel journey-carousel reveal-fade" id="journey-carousel"
+           aria-roledescription="carousel" aria-label="From the field to your freezer"></div>
     </div>
   </section>
 
@@ -176,39 +182,9 @@
     </div>
   </section>
 
-  <!-- ============ 8. PROCESSO (10.5.4, Hopkins) ============ -->
-  <section id="story">
-    <div class="container">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Field to Freezer in 48 Hours</span>
-        <h2 class="h2">From a Kent Field to Your Freezer in One Working Day. Here’s Every Step.</h2>
-      </div>
-      <div class="journey-grid" data-cascade="x" data-stagger="0.22">
-        <!-- La linea si "disegna" con lo scroll (motion.js, dashoffset) -->
-        <svg class="journey-line" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true"><line pathLength="1" x1="0" y1="1.5" x2="100" y2="1.5"/></svg>
-        <div class="j-step">
-          <span class="j-num">1</span>
-          <h3>5am · The pick</h3>
-          <p>Fruit is picked at first light, when sugar is at its peak and the flesh is coolest. Tom’s rule is simpler than ours: if it wasn’t picked this morning, it doesn’t get on the van.</p>
-        </div>
-        <div class="j-step">
-          <span class="j-num">2</span>
-          <h3>6am · The lab</h3>
-          <p>Pasteurised at 62°C for 20 minutes: hot enough to be safe, low enough that fruit still tastes of fruit. Then churned and blast-frozen to -18°C, because slow freezing grows big ice crystals, and big crystals kill texture.</p>
-        </div>
-        <div class="j-step">
-          <span class="j-num">3</span>
-          <h3>5pm · Dispatch</h3>
-          <p>Compostable piping bag, insulated box, dry ice. Batch #042 left the lab at -20°C and arrived at -14°C two hours later. We know, because the numbers ride on the batch log.</p>
-        </div>
-        <div class="j-step">
-          <span class="j-num">4</span>
-          <h3>7pm · Your freezer</h3>
-          <p>Scan the QR on the bag and check everything we’ve just told you: the farmer, the field, the hour, the log. If we ever cut a corner, you’ll be the first to know.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- 8. PROCESSO: la vecchia sezione statica Farm→Freezer (2.5/10.5.4) è
+       stata SOSTITUITA dal carosello "Il Viaggio" nell'hero (7 ago 2026).
+       I link "Our Story" di nav/footer ora puntano a #letter. -->
 
   <!-- ============ 9. FORMATI E PREZZO (10.5.7, Kennedy) ============ -->
   <section id="formats">

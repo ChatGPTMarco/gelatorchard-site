@@ -46,63 +46,55 @@
   var logEl = document.getElementById('batch-log');
   if (logEl && G.renderBatchLog) G.renderBatchLog(logEl);
 
-  /* --- Diario del Raccolto (spec founder 6 ago 2026) ---
-     Carosello NARRATIVO: niente prezzi, niente CTA ordina — la scelta
-     vive solo nel picker #flavors. Una slide per ogni frutto con
-     seasonStatus attivo OGGI, indipendentemente dalla scorta (il
-     calendario decide l'inclusione, la scorta solo la riga in coda).
-     Foto reale da foto-gusti/frutta/<id>.jpg se esiste, altrimenti
-     fallback automatico al gradiente .sw-* del picker. */
-  var car = document.getElementById('harvest-carousel');
-  if (car) (function (root) {
-    var DELAY = 4500;
-    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* --- Hook + caroselli hero (spec founder 6-7 ago 2026) ---
+     Due caroselli NARRATIVI consecutivi: il Diario del Raccolto
+     risponde a "cosa c'è in stagione ora", Il Viaggio a "come arriva
+     da lì a te" (sostituisce la vecchia sezione statica 2.5). Niente
+     prezzi, niente CTA ordina: click/tap su una slide → scroll a
+     #flavors + pulse sulla tile. Foto reali dalle convenzioni
+     foto-gusti/ e foto-farmers/, fallback automatico ai gradienti. */
+  var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var fruits = G.FLAVORS.fruit.filter(function (f) {
+  function fruitsInSeason() {
+    return G.FLAVORS.fruit.filter(function (f) {
       var st = G.seasonStatus(f.id);
       return st.inSeason && !st.always;
     });
-    if (!fruits.length) { root.style.display = 'none'; return; }
+  }
 
-    function slideHTML(f) {
-      var st = G.seasonStatus(f.id);
-      var b = G.BATCHES[f.id];
-      var s = G.SEASONS[f.id];
-      var confirmed = b && !b.fake; /* contadino confermato dal founder */
-      /* Citazione SOLO se il contadino è confermato; i batch fake la
-         mostrano marcata data-fake (fase di build, FAKE-DATA.md) */
-      var quote = (b && b.quote)
-        ? '<p class="hc-quote"' + (confirmed ? '' : ' data-fake="1"') + '>' + b.quote + '</p>'
-        : '';
-      var meta = b
-        ? f.name + ' · ' + b.farm + ' · picked ' + b.harvest +
-          (b.harvestTime ? ' at ' + b.harvestTime : '')
-        : f.name + ' · ' + ((s && s.origin) ? s.origin : 'Britain') + ' · in season now';
-      /* Esaurito: SOLO la riga in coda, la slide resta a colori pieni
-         (la scala di grigi a tre stati è del Flavor Picker) */
-      var stock = (G.stockStatus(f.id) === 'esaurito')
-        ? '<div class="hc-stock"' + (b && b.fake ? ' data-fake="1"' : '') +
-          '>Already sold out this week: ask for the next harvest below</div>'
-        : '';
-      return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '" role="group" ' +
-        'aria-roledescription="slide" aria-label="' + f.name + ', ' + st.subtitle + '">' +
-        '<div class="hc-overlay">' + quote + '<div class="hc-meta">' + meta + '</div>' + stock + '</div>' +
-        '</div>';
-    }
+  /* Badge REC: pallino rosso pulsante + orario monospace. SOLO orari
+     reali dal batch; senza orario il badge non compare. */
+  function recBadge(time, fake) {
+    if (!time) return '';
+    return '<span class="hc-rec"' + (fake ? ' data-fake="1"' : '') +
+      '><span class="rec-dot"></span>REC ' + time + '</span>';
+  }
+
+  /* Motore condiviso dei due caroselli. items = array di stringhe
+     .hc-slide (con data-id per il pulse e data-photo per la foto).
+     opts.dotCount/dotFor/slideForDot: mappa pallini↔slide (Il Viaggio
+     mostra 4 pallini-tappa anche con slide = frutti × 4). */
+  function buildCarousel(root, items, opts) {
+    opts = opts || {};
+    var DELAY = 4500;
+    var dotCount = opts.dotCount || items.length;
+    var dotFor = opts.dotFor || function (i) { return i; };
+    var slideForDot = opts.slideForDot || function (d) { return d; };
+    var multi = items.length > 1;
 
     root.innerHTML =
-      '<div class="hc-track">' + fruits.map(slideHTML).join('') + '</div>' +
-      (fruits.length > 1
-        ? '<button class="hc-arrow prev" aria-label="Previous flavour">‹</button>' +
-          '<button class="hc-arrow next" aria-label="Next flavour">›</button>' +
-          '<div class="hc-dots" role="tablist">' + fruits.map(function (f, i) {
-            return '<button class="hc-dot" data-i="' + i + '" aria-label="' + f.name + '"></button>';
+      '<div class="hc-track">' + items.join('') + '</div>' +
+      (multi
+        ? '<button class="hc-arrow prev" aria-label="Previous">‹</button>' +
+          '<button class="hc-arrow next" aria-label="Next">›</button>' +
+          '<div class="hc-dots">' + Array.apply(null, Array(dotCount)).map(function (_, d) {
+            return '<button class="hc-dot" data-d="' + d + '" aria-label="Slide ' + (d + 1) + '"></button>';
           }).join('') + '</div>'
         : '');
 
-    /* Foto reale se esiste (convenzione /foto-gusti/): sostituisce il
-       gradiente da sola quando Marco carica il file, senza toccare codice */
-    root.querySelectorAll('.hc-slide').forEach(function (el) {
+    /* Foto reale se esiste: quando Marco carica il file, sostituisce
+       il gradiente da sola, senza toccare codice */
+    root.querySelectorAll('.hc-slide[data-photo]').forEach(function (el) {
       var img = new Image();
       img.onload = function () {
         img.className = 'photo-fill';
@@ -111,7 +103,7 @@
         el.classList.add('has-photo');
       };
       img.onerror = function () {}; /* nessuna foto: resta il gradiente */
-      img.src = 'foto-gusti/frutta/' + el.getAttribute('data-id') + '.jpg';
+      img.src = el.getAttribute('data-photo');
     });
 
     var slides = root.querySelectorAll('.hc-slide');
@@ -121,7 +113,8 @@
     function show(i) {
       idx = (i + slides.length) % slides.length;
       slides.forEach(function (s, k) { s.classList.toggle('active', k === idx); });
-      dots.forEach(function (d, k) { d.classList.toggle('active', k === idx); });
+      var da = dotFor(idx);
+      dots.forEach(function (d, k) { d.classList.toggle('active', k === da); });
     }
 
     /* Autoplay a loop infinito; la pausa (hover) conserva il tempo
@@ -129,6 +122,7 @@
     var timer = null, nextAt = 0, remaining = DELAY;
     function tick() { show(idx + 1); remaining = DELAY; schedule(); }
     function schedule() {
+      if (!multi || REDUCED) return;
       clearTimeout(timer);
       nextAt = Date.now() + remaining;
       timer = setTimeout(tick, remaining);
@@ -145,19 +139,17 @@
     root.addEventListener('click', function (e) {
       if (swiped) { swiped = false; return; }
       var dot = e.target.closest('.hc-dot');
-      if (dot) { goto_(+dot.getAttribute('data-i')); return; }
-      if (e.target.closest('.hc-arrow')) {
-        goto_(idx + (e.target.closest('.hc-arrow').classList.contains('prev') ? -1 : 1));
-        return;
-      }
+      if (dot) { goto_(slideForDot(+dot.getAttribute('data-d'), idx)); return; }
+      var arrow = e.target.closest('.hc-arrow');
+      if (arrow) { goto_(idx + (arrow.classList.contains('prev') ? -1 : 1)); return; }
       /* Click/tap sulla slide (mouse e touch, identico): scroll al
          picker + pulse sulla tile corrispondente. Nessun modal. */
       var slide = e.target.closest('.hc-slide');
       if (!slide) return;
       var id = slide.getAttribute('data-id');
-      if (G.track) G.track('carousel_slide_click', { flavour: id });
+      if (G.track) G.track(opts.trackEvent || 'carousel_slide_click', { flavour: id });
       var picker = document.getElementById('flavor-picker');
-      if (picker) picker.scrollIntoView(reduced ? {} : { behavior: 'smooth', block: 'start' });
+      if (picker) picker.scrollIntoView(REDUCED ? {} : { behavior: 'smooth', block: 'start' });
       var tile = document.querySelector('#flavor-picker .tile[data-id="' + id + '"]');
       if (tile) {
         setTimeout(function () {
@@ -168,7 +160,7 @@
           });
           /* fallback se l'animazione è disattivata (reduced motion) */
           setTimeout(function () { tile.classList.remove('pulse'); }, 1800);
-        }, reduced ? 0 : 450);
+        }, REDUCED ? 0 : 450);
       }
     });
 
@@ -187,8 +179,119 @@
     }, { passive: true });
 
     show(0);
-    if (slides.length > 1 && !reduced) schedule();
-  })(car);
+    schedule();
+  }
+
+  var inSeason = fruitsInSeason();
+
+  /* --- Frase hook sopra il Diario del Raccolto: [N] calcolato live
+     dalla stessa fonte del carosello (mai un numero fisso in codice) --- */
+  var hookEl = document.getElementById('harvest-hook');
+  if (hookEl && inSeason.length) {
+    var n = inSeason.length;
+    hookEl.innerHTML =
+      '<h2 class="hook-title">Right Now, <span class="green">' + n + ' UK Fruit' + (n === 1 ? '' : 's') + '</span> ' +
+      (n === 1 ? 'Is' : 'Are') + ' Ready to Pick.<br>Some Won’t Be Back Until Next Year.</h2>' +
+      '<p class="hook-sub">No powders. No imports. Only what England grows right now.</p>';
+  }
+
+  /* --- Carosello 1 · Diario del Raccolto: una slide per frutto in
+     stagione (il calendario decide l'inclusione, la scorta solo la
+     riga in coda; la slide resta a colori pieni) --- */
+  function harvestSlideHTML(f) {
+    var st = G.seasonStatus(f.id);
+    var b = G.BATCHES[f.id];
+    var s = G.SEASONS[f.id];
+    var confirmed = b && !b.fake; /* contadino confermato dal founder */
+    var quote = (b && b.quote)
+      ? '<p class="hc-quote"' + (confirmed ? '' : ' data-fake="1"') + '>' + b.quote + '</p>'
+      : '';
+    var meta = b
+      ? f.name + ' · ' + b.farm + ' · picked ' + b.harvest +
+        (b.harvestTime ? ' at ' + b.harvestTime : '')
+      : f.name + ' · ' + ((s && s.origin) ? s.origin : 'Britain') + ' · in season now';
+    var stock = (G.stockStatus(f.id) === 'esaurito')
+      ? '<div class="hc-stock"' + (b && b.fake ? ' data-fake="1"' : '') +
+        '>Already sold out this week: ask for the next harvest below</div>'
+      : '';
+    return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '"' +
+      ' data-photo="foto-gusti/frutta/' + f.id + '.jpg" role="group" ' +
+      'aria-roledescription="slide" aria-label="' + f.name + ', ' + st.subtitle + '">' +
+      recBadge(b && b.harvestTime, b && b.fake) +
+      '<div class="hc-overlay">' + quote + '<div class="hc-meta">' + meta + '</div>' + stock + '</div>' +
+      '</div>';
+  }
+  var car = document.getElementById('harvest-carousel');
+  if (car) {
+    if (inSeason.length) buildCarousel(car, inSeason.map(harvestSlideHTML), {});
+    else car.style.display = 'none';
+  }
+
+  /* --- Carosello 2 · Il Viaggio (sostituisce la vecchia 2.5): stesso
+     frutto protagonista per un giro completo delle 4 tappe, poi il
+     successivo in stagione, ciclicamente. 4 pallini = 4 tappe. --- */
+  var STAGES = ['The harvest', 'The lab', 'Dispatch', 'Your freezer'];
+  function journeySlideHTML(f, stage) {
+    var b = G.BATCHES[f.id];
+    var s = G.SEASONS[f.id];
+    var fake = !!(b && b.fake);
+    var badge = '', body = '', photo = '';
+    if (stage === 0) {
+      /* orario di raccolta reale dal batch */
+      badge = recBadge(b && b.harvestTime, fake);
+      body = (b && b.quote)
+        ? '<p class="hc-quote"' + (fake ? ' data-fake="1"' : '') + '>' + b.quote + '</p>' +
+          '<div class="hc-meta"' + (fake ? ' data-fake="1"' : '') + '>— ' + b.farmerName + ', ' + b.location + '</div>'
+        : '<div class="hc-meta">' + f.name + ' · ' + ((s && s.origin) ? s.origin : 'Britain') + '</div>';
+      photo = b
+        ? 'foto-farmers/' + b.farmerName.toLowerCase().replace(/[^a-z]+/g, '-') + '.jpg'
+        : 'foto-gusti/frutta/' + f.id + '.jpg';
+    } else if (stage === 1) {
+      /* orario reale della pastorizzazione dal log del batch */
+      var t = null;
+      if (b && b.log) b.log.forEach(function (row) { if (row[1].indexOf('Trittico') === 0) t = row[0]; });
+      badge = recBadge(t, fake);
+      body = '<div class="hc-meta">Pasteurised, churned: ' + f.name + ' becomes gelato</div>';
+      photo = 'foto-gusti/viaggio/laboratorio.jpg';
+    } else if (stage === 2) {
+      /* 17:00 = orario di spedizione dichiarato dal founder (ex 2.5) */
+      badge = recBadge('17:00', false);
+      body = '<div class="hc-meta">On its way to you: cold chain guaranteed</div>';
+      photo = 'foto-gusti/viaggio/spedizione.jpg';
+    } else {
+      /* destinazione, non più "ripresa in corso": icona casa al posto
+         del REC. Esaurito → il raccolto è già tutto prenotato. */
+      badge = '<span class="hc-rec home">🏠</span>';
+      var sold = G.stockStatus(f.id) === 'esaurito';
+      body = '<div class="hc-meta"' + (sold && fake ? ' data-fake="1"' : '') + '>' + (sold
+        ? 'This harvest is already spoken for: the next one lands soon'
+        : 'A few hours from now, in YOUR freezer') + '</div>';
+      photo = 'foto-gusti/viaggio/freezer.jpg';
+    }
+    return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '"' +
+      ' data-photo="' + photo + '" role="group" aria-roledescription="slide" ' +
+      'aria-label="' + f.name + ', step ' + (stage + 1) + ': ' + STAGES[stage] + '">' +
+      badge +
+      '<div class="hc-overlay">' +
+        '<div class="hc-kicker">' + (stage + 1) + ' · ' + STAGES[stage] + ' · ' + f.name + '</div>' +
+        body +
+      '</div></div>';
+  }
+  var jr = document.getElementById('journey-carousel');
+  if (jr) {
+    if (inSeason.length) {
+      var jItems = [];
+      inSeason.forEach(function (f) {
+        for (var st4 = 0; st4 < 4; st4++) jItems.push(journeySlideHTML(f, st4));
+      });
+      buildCarousel(jr, jItems, {
+        trackEvent: 'journey_slide_click',
+        dotCount: 4,
+        dotFor: function (i) { return i % 4; },
+        slideForDot: function (d, cur) { return Math.floor(cur / 4) * 4 + d; }
+      });
+    } else jr.style.display = 'none';
+  }
 
   /* --- CTA band (10.5.9): ultima chiamata sul dato stagionale reale --- */
   var cta = document.getElementById('season-cta');

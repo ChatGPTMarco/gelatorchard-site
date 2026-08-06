@@ -41,7 +41,7 @@
     { href: pre + '#formats', label: 'Formats' },
     { href: pre + '#season',  label: 'Season' },
     { href: 'how-to-order.html', label: 'How to Order' },
-    { href: pre + '#story',   label: 'Our Story' }
+    { href: pre + '#letter',  label: 'Our Story' }
   ];
 
   /* ---------- Barra di scarsità (Cap. 10.7 + Lista A.2) ----------
@@ -110,7 +110,7 @@
           '<li><a href="business.html">Corporate Gifts</a></li>' +
         '</ul></div>' +
         '<div><h4>Discover</h4><ul>' +
-          '<li><a href="' + pre + '#story">Our Story</a></li>' +
+          '<li><a href="' + pre + '#letter">Our Story</a></li>' +
           '<li><a href="story.html">The Farmers</a></li>' +
           '<li><a href="calendario.html">Season Calendar</a></li>' +
         '</ul></div>' +
