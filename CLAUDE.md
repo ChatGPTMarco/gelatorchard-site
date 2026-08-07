@@ -177,8 +177,12 @@ Situazione reale: NIENTE Trittico, macchina professionale da banco da 750g/ciclo
 - Formati: Cup 125g · Sacapoche 250g (2 porzioni) · Multipack 4×125g ·
   Family Tub 750g (una mantecata) · KIT per persone: 250g a testa, max 2 gusti,
   taglie 2/3/4/6 (menu a tendina in order.js, KIT_SIZES; default per 4).
-- Prezzi Kit: per 4 = £28/34 (fisso storico); per 2 £15/21, per 3 £20/26,
-  per 6 £40/46 = PROPOSTI, da confermare (FAKE-DATA.md).
+- Prezzi Kit dall'ANALISI COSTI (COSTI.md, 8 ago 2026): pickup £15/20/28/40,
+  delivery = pickup + £10 (£25/30/38/50) perché EPS+ghiaccio secco+giro
+  costano ~£12 reali. ⚠️ per-4 delivery: £34 storico → £38, da far
+  confermare al founder. Coppetta £3.50 confermata (food cost 15%).
+  IVA: gelato sempre standard-rated 20%, ma sotto soglia £90k non si
+  applica. Trappola ghiaccio secco (minimo 10kg, sublima) in COSTI.md §5.
 - Capacità: ven 07-15, tetto 8 cicli, piano vendita 7 cicli = 5.25kg = 42
   porzioni/drop; max 6 gusti per drop; eccedenze → drop successivo (opzione B).
 - Formula del martedì sera e timeline gio-sab in PRODUZIONE.md.

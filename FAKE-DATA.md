@@ -23,7 +23,7 @@ in tutto il progetto è l'elenco esatto di ciò che va sostituito o rimosso.
 | how-to-order.html | proof · reclami sull'attesa | 0 | registro feedback reale |
 | index.html #testimonials | 4 citazioni panel con nomi/zone | Sarah M./James L./Lisa R./Tom S. (INVENTATI) | citazioni e nomi VERI del panel di assaggio; la nota "pre-launch tasting panel" sotto la griglia è OBBLIGATORIA finché non si lancia |
 | flavors.js | date harvest/produced di TUTTI i batch | dinamiche: giovedì/venerdì dell'ultimo drop (demoBatchDates) | date dei batch veri dal CMS. NB le date REALI del batch #042: raccolto 15 May 2026 alle 06:12, prodotto 17 May 2026 |
-| order.js KIT_SIZES | prezzi Kit per 2/3/6 persone | £15/21, £20/26, £40/46 (PROPOSTI da Fable a coerenza £/kg; il per-4 £28/34 è il prezzo fisso storico) | conferma del founder; riflessi anche in index #formats ("sizes from £15") e nel JSON-LD di order.html (low 15 / high 46) |
+| order.js KIT_SIZES | prezzi Kit (pickup £15/20/28/40, delivery = +£10: £25/30/38/50) | dall'analisi costi COSTI.md (food cost 33-44% pickup). ⚠️ il per-4 DELIVERY passa dal £34 storico a £38: a £34 con EPS+ghiaccio+giro (~£12 reali) si vendeva quasi in perdita | CONFERMA ESPLICITA del founder, soprattutto sul £34→£38; riflessi in index #formats e JSON-LD (15–50) |
 | flavors.js | log e batchSize dei batch | riscritti sul piano reale (cicli 750g, fornello, gio sera→ven; quantità frutta/zucchero derivate da PRODUZIONE.md) | log di produzione veri |
 
 I record fake in `flavors.js` hanno il campo `fake: true`: la story page e il

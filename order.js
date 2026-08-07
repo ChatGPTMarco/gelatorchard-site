@@ -43,15 +43,16 @@
   };
 
   /* Taglie del Kit per numero di persone (menu a tendina).
-     250g a testa = 2 porzioni da 125g a persona. Il "per 4" è il
-     formato storico (£28/£34, prezzi FISSI del founder); i prezzi
-     delle taglie 2/3/6 sono PROPOSTI a coerenza £/kg e vanno
-     confermati dal founder (FAKE-DATA.md). */
+     250g a testa = 2 porzioni da 125g a persona. PREZZI dall'analisi
+     dei costi (COSTI.md, 8 ago 2026): pickup con food cost 33-44%,
+     delivery = pickup + £10 (EPS + ghiaccio secco + giro costano ~£12:
+     il vecchio +£6 vendeva in perdita). NB il per-4 delivery passa da
+     £34 storico a £38: cambo segnalato al founder (FAKE-DATA.md). */
   var KIT_SIZES = {
-    2: { bags: 2, grams: 500,  price: 15, priceDelivery: 21 },
-    3: { bags: 3, grams: 750,  price: 20, priceDelivery: 26 },
-    4: { bags: 4, grams: 1000, price: 28, priceDelivery: 34 },
-    6: { bags: 6, grams: 1500, price: 40, priceDelivery: 46 }
+    2: { bags: 2, grams: 500,  price: 15, priceDelivery: 25 },
+    3: { bags: 3, grams: 750,  price: 20, priceDelivery: 30 },
+    4: { bags: 4, grams: 1000, price: 28, priceDelivery: 38 },
+    6: { bags: 6, grams: 1500, price: 40, priceDelivery: 50 }
   };
   var kitPeople = 4; /* default: il formato di punta */
   var TAB_ORDER = ['cup', 'bag', 'kit', 'multipack', 'tub'];
