@@ -9,34 +9,51 @@
   'use strict';
   var G = window.Gelatorchard;
 
-  /* ---------- 3.2 / 3.3 / 3.5 — formati ---------- */
+  /* ---------- 3.2 / 3.3 / 3.5 — formati ----------
+     PIANO DI PRODUZIONE (8 ago 2026, vedi PRODUZIONE.md): la macchina
+     da banco manteca 750g a ciclo. 1 porzione = 125g. Ogni formato è
+     un multiplo esatto: 750g = 6 coppette = 3 sacapoche da 250g.
+     Il Kit si taglia PER PERSONE: 250g a testa (2 porzioni ciascuno),
+     massimo 2 gusti per box. */
   var FORMATS = {
     cup: {
       name: 'Cup', tabPrice: '£3.50', min: 1, max: 1, price: 3.5,
-      priceLabel: '£3.50', desc: 'One flavour, ready in moments.',
+      priceLabel: '£3.50', desc: '125g, one honest portion (two proper scoops). The cheapest way to try us.',
       hint: 'Pick 1 flavour for your Cup'
     },
     bag: {
       name: 'Piping Bag', tabPrice: 'from £6.50', min: 1, max: 1, price: 6.5,
-      priceLabel: 'from £6.50', desc: '500g, one flavour. Squeeze it straight onto cone or cup.',
+      priceLabel: 'from £6.50', desc: '250g, one flavour: two 125g servings. Squeeze it straight onto cone or cup.',
       hint: 'One bag = one flavour'
     },
     kit: {
-      name: 'Gelato Kit', tabPrice: '£28–34', min: 2, max: 2,
-      price: 28, priceDelivery: 34,
-      hint: 'Pick exactly 2 flavours, one per piping bag'
+      name: 'Gelato Kit', tabPrice: 'from £15', min: 1, max: 2,
+      hint: 'Pick 1 or 2 flavours, one per piping bag'
     },
     multipack: {
       name: 'Multipack', tabPrice: '£12', min: 1, max: 4, price: 12,
-      priceLabel: '£12', desc: '4 cups, up to 4 flavours, one per cup.',
+      priceLabel: '£12', desc: '4 cups of 125g, up to 4 flavours, one per cup.',
       hint: 'Up to 4 flavours, one per cup in the pack'
     },
     tub: {
       name: 'Family Tub', tabPrice: '£22', min: 1, max: 2, price: 22,
-      priceLabel: '£22', desc: '1 litre. One flavour, or two half-and-half.',
-      hint: '1 or 2 flavours, the 1L tub can hold two halves'
+      priceLabel: '£22', desc: '750g, one full churn (about a litre): six 125g servings. One flavour, or two half-and-half.',
+      hint: '1 or 2 flavours, the tub can hold two halves'
     }
   };
+
+  /* Taglie del Kit per numero di persone (menu a tendina).
+     250g a testa = 2 porzioni da 125g a persona. Il "per 4" è il
+     formato storico (£28/£34, prezzi FISSI del founder); i prezzi
+     delle taglie 2/3/6 sono PROPOSTI a coerenza £/kg e vanno
+     confermati dal founder (FAKE-DATA.md). */
+  var KIT_SIZES = {
+    2: { bags: 2, grams: 500,  price: 15, priceDelivery: 21 },
+    3: { bags: 3, grams: 750,  price: 20, priceDelivery: 26 },
+    4: { bags: 4, grams: 1000, price: 28, priceDelivery: 34 },
+    6: { bags: 6, grams: 1500, price: 40, priceDelivery: 46 }
+  };
+  var kitPeople = 4; /* default: il formato di punta */
   var TAB_ORDER = ['cup', 'bag', 'kit', 'multipack', 'tub'];
   var activeFormat = 'kit'; /* prodotto di punta: default */
 
@@ -56,8 +73,17 @@
     } catch (e) {}
   }
   function unitPrice(item) {
-    var f = FORMATS[item.format];
-    return (item.format === 'kit' && fulfilment === 'delivery') ? f.priceDelivery : f.price;
+    if (item.format === 'kit') {
+      var s = KIT_SIZES[item.people] || KIT_SIZES[4];
+      return fulfilment === 'delivery' ? s.priceDelivery : s.price;
+    }
+    return FORMATS[item.format].price;
+  }
+  /* Nome visibile: il Kit porta la taglia ("Gelato Kit for 4") */
+  function displayName(it) {
+    return it.format === 'kit'
+      ? 'Gelato Kit for ' + (it.people || 4)
+      : FORMATS[it.format].name;
   }
   function basketCount() {
     return basket.reduce(function (n, it) { return n + it.qty; }, 0);
@@ -73,7 +99,7 @@
     return ids;
   }
   function itemLabel(it) {
-    return FORMATS[it.format].name + ', ' +
+    return displayName(it) + ', ' +
       it.flavours.map(function (id) { return G.flavorById(id).name; }).join(' + ') +
       (it.qty > 1 ? ' ×' + it.qty : '');
   }
@@ -101,6 +127,15 @@
       t.classList.toggle('active', t === btn);
     });
     picker.setMax(FORMATS[activeFormat].max); /* fa scattare refresh() via onChange */
+  });
+
+  /* Menu a tendina taglia Kit (delegato: op-price si ri-renderizza) */
+  document.getElementById('op-price').addEventListener('change', function (e) {
+    if (e.target && e.target.id === 'kit-people') {
+      kitPeople = +e.target.value;
+      if (G.track) G.track('kit_people_select', { people: kitPeople });
+      refresh();
+    }
   });
 
   /* ---------- FlavorPicker riusato (preselezione da ?flavours=) ---------- */
@@ -147,14 +182,29 @@
   function priceHTML() {
     var f = FORMATS[activeFormat];
     if (activeFormat === 'kit') {
-      /* Value stack: solo numeri reali già stabiliti (£28/£34, £4.50–7.50 a scoop) */
+      /* Taglia per persone (PRODUZIONE.md): 250g a testa = 2 porzioni
+         da 125g a persona. Il menu a tendina guida la quantità giusta. */
+      var s = KIT_SIZES[kitPeople];
+      var servings = s.grams / 125;
+      var perServing = (s.price / servings).toFixed(2);
       return '<div class="price-block">' +
-        '<div class="price-line">£28.00 pickup · £34.00 delivery</div>' +
+        '<label class="kit-people-label" for="kit-people">Who’s it for?</label>' +
+        '<select id="kit-people" class="kit-people">' +
+          [2, 3, 4, 6].map(function (p) {
+            var k = KIT_SIZES[p];
+            return '<option value="' + p + '"' + (p === kitPeople ? ' selected' : '') + '>' +
+              p + ' people · ' + (k.grams >= 1000 ? (k.grams / 1000) + 'kg' : k.grams + 'g') +
+              ' · ' + (k.grams / 125) + ' servings</option>';
+          }).join('') +
+        '</select>' +
+        '<div class="price-line">£' + s.price.toFixed(2) + ' pickup · £' + s.priceDelivery.toFixed(2) + ' delivery</div>' +
         '<p class="price-anchor">A London gelato bar charges <strong>£4.50–7.50 a scoop</strong>. ' +
-        'Your Kit: roughly 8 generous scoops (1kg, 2 flavours), under <strong>£3.50 a scoop</strong>, with the farmer’s story included.</p>' +
+        'Here a full 125g serving (two proper scoops) works out at <strong>£' + perServing + '</strong>, with the farmer’s story included.</p>' +
         '<ul class="value-stack">' +
-        '<li>1kg of real gelato (2 × 500g piping bags, 2 flavours of your choice)</li>' +
-        '<li>6–8 wafer cones, 6 kraft cups, 6 wooden spoons</li>' +
+        '<li>' + s.bags + ' piping bags of 250g: ' + (s.grams >= 1000 ? (s.grams / 1000) + 'kg' : s.grams + 'g') +
+          ' of real gelato, ' + servings + ' × 125g servings (two each)</li>' +
+        '<li>Up to 2 flavours, one per piping bag</li>' +
+        '<li>Wafer cones, kraft cups and wooden spoons to match</li>' +
         '<li>Insulated dry-ice box (holds -18°C for 6+ hours)</li>' +
         '<li>Full traceability: a QR to the batch story</li>' +
         '</ul></div>';
@@ -178,8 +228,9 @@
     add.disabled = !ok;
     add.classList.toggle('disabled', !ok);
     if (activeFormat === 'kit') {
-      add.textContent = 'Add the Kit · £28 / £34';
-      hint.textContent = ok ? '' : 'Select 2 flavours to continue';
+      var ks = KIT_SIZES[kitPeople];
+      add.textContent = 'Add the Kit for ' + kitPeople + ' · £' + ks.price + ' / £' + ks.priceDelivery;
+      hint.textContent = ok ? '' : 'Select 1–2 flavours to continue';
     } else {
       add.textContent = 'Add to Basket · ' + f.priceLabel;
       hint.textContent = ok ? '' : 'Select a flavour to continue';
@@ -203,11 +254,12 @@
   document.getElementById('op-add').addEventListener('click', function () {
     var sel = picker.get();
     if (sel.length < FORMATS[activeFormat].min) return;
-    var key = activeFormat + '|' + sel.slice().sort().join(',');
+    var people = activeFormat === 'kit' ? kitPeople : null;
+    var key = activeFormat + (people ? '|' + people : '') + '|' + sel.slice().sort().join(',');
     var existing = basket.filter(function (it) { return it.key === key; })[0];
     if (existing) existing.qty += 1;
-    else basket.push({ key: key, format: activeFormat, flavours: sel.slice(), qty: 1 });
-    if (G.track) G.track('add_to_basket', { format: activeFormat, flavours: sel.join(',') });
+    else basket.push({ key: key, format: activeFormat, people: people, flavours: sel.slice(), qty: 1 });
+    if (G.track) G.track('add_to_basket', { format: activeFormat, people: people, flavours: sel.join(',') });
     saveBasket();
     renderBasket();
     openDrawer();
@@ -256,7 +308,7 @@
     } else {
       box.innerHTML = basket.map(function (it, i) {
         return '<div class="basket-item">' +
-          '<div><div class="bi-name">' + FORMATS[it.format].name + '</div>' +
+          '<div><div class="bi-name">' + displayName(it) + '</div>' +
           '<div class="bi-flavours">' + it.flavours.map(function (id) { return G.flavorById(id).name; }).join(' + ') + '</div>' +
           '<div class="bi-qty">' +
             '<button class="qty-btn" data-i="' + i + '" data-d="-1" aria-label="Decrease">−</button>' +
@@ -299,8 +351,8 @@
     if (G.track) G.track('checkout_start', { items: basket.length, fulfilment: fulfilment });
     closeDrawer();
     var rows = basket.map(itemLabel);
-    if (basketFruitIds().indexOf('strawberry') >= 0) {
-      rows.push("Johnson's Farm, Kent. Picked 15 May");
+    if (basketFruitIds().indexOf('strawberry') >= 0 && G.BATCHES.strawberry) {
+      rows.push("Johnson's Farm, Kent. Picked " + G.BATCHES.strawberry.harvest);
     }
     /* Opzione B (founder, 6 ago 2026): fuori finestra non si blocca nulla,
        l'ordine si accoda al drop successivo e il riepilogo lo dice chiaro. */

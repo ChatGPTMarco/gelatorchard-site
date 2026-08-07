@@ -49,7 +49,7 @@ Le 4 tappe dell'esempio fisso Fragola/Tom.
 | Nome file | Tappa | Cosa deve mostrare |
 |---|---|---|
 | `foto-farmers/tom-johnson.jpg` | 1 · The harvest | Tom Johnson nel suo campo di fragole: mentre raccoglie, o con la cassetta in mano. Il viso si può vedere: è il punto (le facce costruiscono fiducia) |
-| `foto-gusti/viaggio/laboratorio.jpg` | 2 · It becomes gelato | Marco in laboratorio: il Trittico in azione, frutta vera in lavorazione, acciaio. Niente polveri in vista, ovviamente |
+| `foto-gusti/viaggio/laboratorio.jpg` | 2 · It becomes gelato | Marco in laboratorio: la macchina da banco in azione, frutta vera in lavorazione, acciaio. Niente polveri in vista, ovviamente |
 | `foto-gusti/viaggio/confezione.jpg` | 3 · Ready for you | Il prodotto confezionato e pronto: sacapoche sigillate o box kraft chiusa col ghiaccio secco. "Confezionato per arrivare intatto" |
 | `foto-gusti/viaggio/servito.jpg` | 4 · You eat it | Il gelato finito, servito: cono o coppetta in mano o porto verso l'obiettivo, rivolto a chi guarda. "Nel tuo cucchiaio" |
 

@@ -92,7 +92,7 @@
 
         /* Capitolo 2 — la produzione */
         '<section class="story-chapter" data-chapter="2">' +
-          '<div class="sc-photo"><span class="photo-ph">Photo of Marco in the lab with the Trittico, to upload</span></div>' +
+          '<div class="sc-photo"><span class="photo-ph">Photo of Marco in the lab at the bench machine, to upload</span></div>' +
           '<span class="sc-kicker">Chapter 2 · The Making</span>' +
           '<h2>Made by ' + b.operator + '</h2>' +
           '<ul class="prod-log">' +
@@ -115,11 +115,12 @@
           '<div class="map-wrap"><iframe title="Route from ' + b.location + ' to London E14" loading="lazy" ' +
             'src="https://maps.google.com/maps?q=' + encodeURIComponent(b.mapQuery) + '&z=8&output=embed"></iframe></div>' +
           '<a class="map-link" href="' + mapsDir + '" target="_blank" rel="noopener">Open the full route in Google Maps →</a>' +
+          /* Ritmo del drop settimanale (PRODUZIONE.md), non stesso-giorno */
           '<ul class="mini-journey">' +
-            '<li><span class="mj-t">5am</span>Harvest at the farm</li>' +
-            '<li><span class="mj-t">6am</span>Into the lab</li>' +
-            '<li><span class="mj-t">5pm</span>Dispatch, dry ice packed</li>' +
-            '<li><span class="mj-t">7pm</span>Your freezer</li>' +
+            '<li><span class="mj-t">Thu</span>Harvest, then to the lab by evening</li>' +
+            '<li><span class="mj-t">Fri</span>Churned in 750g cycles</li>' +
+            '<li><span class="mj-t">Sat</span>Dispatch, dry ice packed</li>' +
+            '<li><span class="mj-t">Sat</span>Your freezer</li>' +
           '</ul>' +
           '<div class="cold-grid">' +
             '<div class="cold-cell"><div class="cc-v">' + b.coldChain.distance + '</div><div class="cc-k">distance</div></div>' +

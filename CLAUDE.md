@@ -171,6 +171,20 @@ Coppetta £3.50 · Pallina 120g £5.50 · Doppia 240g £8.50 · Sacapoche da £6
 GELATO KIT (prodotto di punta) £28 pickup / £34 delivery · Multipack 4 £12 · Family Tub 1L £22 ·
 Premium Gift Box £28.50
 
+## PIANO DI PRODUZIONE (8 ago 2026 — vedi PRODUZIONE.md, che PREVALE sui capitoli)
+Situazione reale: NIENTE Trittico, macchina professionale da banco da 750g/ciclo.
+- 1 porzione = 125g. Moduli esatti del ciclo: 750g = 6 coppette = 3 sacapoche da 250g.
+- Formati: Cup 125g · Sacapoche 250g (2 porzioni) · Multipack 4×125g ·
+  Family Tub 750g (una mantecata) · KIT per persone: 250g a testa, max 2 gusti,
+  taglie 2/3/4/6 (menu a tendina in order.js, KIT_SIZES; default per 4).
+- Prezzi Kit: per 4 = £28/34 (fisso storico); per 2 £15/21, per 3 £20/26,
+  per 6 £40/46 = PROPOSTI, da confermare (FAKE-DATA.md).
+- Capacità: ven 07-15, tetto 8 cicli, piano vendita 7 cicli = 5.25kg = 42
+  porzioni/drop; max 6 gusti per drop; eccedenze → drop successivo (opzione B).
+- Formula del martedì sera e timeline gio-sab in PRODUZIONE.md.
+- Log batch in flavors.js riscritti sul piano reale (cicli 750g, fornello,
+  gio sera→ven). "12L"/Trittico non esistono più finché non arriva il Trittico.
+
 ## Regole di copy (VINCOLANTI)
 1. Specificità, non aggettivi: "Tom Johnson, Woodchurch, Kent, raccolto 15 maggio 06:12" — mai "ingredienti freschi".
 2. NIENTE numeri inventati (pre-lancio): no recensioni finte, no "X ordini", no press bar fake.

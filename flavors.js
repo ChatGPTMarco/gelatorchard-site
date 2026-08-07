@@ -120,19 +120,21 @@
       harvestTime: '06:12',
       produced: '17 May 2026',
       operator: 'Marco',
-      batchSize: '12L',
+      /* Piano produzione reale (PRODUZIONE.md): macchina da banco,
+         cicli da 750g — niente più "12L"/Trittico nei log */
+      batchSize: '4.5kg · 6 cycles of 750g',
       method: 'Integrated Pest Management (IPM)',
       certification: 'Red Tractor Assurance',
       bio: 'Tom Johnson has been growing strawberries in Woodchurch, Kent, for three generations. His farm is certified by Red Tractor Assurance.',
       quote: '“Best season in three years,” says Tom, holding a strawberry the size of a walnut. “Every berry picked at peak ripeness. That’s the difference between field-to-freezer and supermarket-to-shelf.”',
       log: [
-        ['06:00', 'Fruit received and inspected (HACCP checklist)'],
-        ['06:30', 'Base prep: 8kg strawberries, 1.2kg sugar, water'],
-        ['07:00', 'Trittico: pasteurisation at 62°C, 20 minutes'],
-        ['07:20', 'Mixing and ageing, 40 minutes'],
-        ['08:00', 'Churning'],
-        ['08:20', 'Into the blast freezer'],
-        ['08:30', 'BATCH COMPLETE']
+        ['Thu 18:40', 'Fruit received and inspected (HACCP checklist)'],
+        ['Thu 19:10', 'Base prep: 2.5kg strawberries, 800g sugar, water'],
+        ['Thu 19:40', 'Pasteurised at 62°C on the hob, 20 minutes'],
+        ['Thu 20:10', 'Base chilled to 4°C, resting overnight'],
+        ['Fri 07:00', 'Churning: 750g cycles on the bench machine'],
+        ['Fri 12:30', 'Bags and cups filled at extraction, into the freezer at −18°C'],
+        ['Fri 13:00', 'BATCH COMPLETE: 6 cycles, 4.5kg']
       ],
       marcoNote: 'This strawberry had an incredible colour the moment it arrived, you could tell from the base alone this was going to be a good batch.',
       coldChain: { distance: '89 km', tempOut: '-20°C', tempIn: '-14°C', transit: '2 hours' },
@@ -161,19 +163,19 @@
       harvestTime: '05:47',
       produced: '22 July 2026',
       operator: 'Marco',
-      batchSize: '12L',
+      batchSize: '3kg · 4 cycles of 750g',
       method: 'Integrated Pest Management (IPM)',
       certification: 'Red Tractor Assurance',
       bio: 'David Reid grows blueberries on the slopes above Blairgowrie, the soft-fruit capital of Scotland. His bushes are twelve years old, right in their prime.',
       quote: '“Cold nights, slow sugar. That’s why a Scottish blueberry tastes of something.”',
       log: [
-        ['06:10', 'Fruit received and inspected (HACCP checklist)'],
-        ['06:40', 'Base prep: 8kg blueberries, 1.1kg sugar, water'],
-        ['07:10', 'Trittico: pasteurisation at 62°C, 20 minutes'],
-        ['07:30', 'Mixing and ageing, 40 minutes'],
-        ['08:10', 'Churning'],
-        ['08:30', 'Into the blast freezer'],
-        ['08:40', 'BATCH COMPLETE']
+        ['Thu 18:55', 'Fruit received and inspected (HACCP checklist)'],
+        ['Thu 19:25', 'Base prep: 1.7kg blueberries, 550g sugar, water'],
+        ['Thu 19:55', 'Pasteurised at 62°C on the hob, 20 minutes'],
+        ['Thu 20:25', 'Base chilled to 4°C, resting overnight'],
+        ['Fri 09:00', 'Churning: 750g cycles on the bench machine'],
+        ['Fri 12:45', 'Bags and cups filled at extraction, into the freezer at −18°C'],
+        ['Fri 13:10', 'BATCH COMPLETE: 4 cycles, 3kg']
       ],
       marcoNote: 'Smaller berries than May strawberries, ten times the perfume. I churned this one slightly warmer to keep the skins whole.',
       coldChain: { distance: '694 km', tempOut: '-20°C', tempIn: '-13°C', transit: '11 hours' },
@@ -195,19 +197,19 @@
       harvestTime: '06:05',
       produced: '4 August 2026',
       operator: 'Marco',
-      batchSize: '12L',
+      batchSize: '3kg · 4 cycles of 750g',
       method: 'Integrated Pest Management (IPM)',
       certification: 'Red Tractor Assurance',
       bio: 'Sarah Wickham runs the orchard her grandfather planted in the Vale of Evesham, where the Victoria plum has been picked since the 1840s.',
       quote: '“Three good weeks. That’s the whole Victoria season. You don’t waste a single morning of it.”',
       log: [
-        ['06:00', 'Fruit received and inspected (HACCP checklist)'],
-        ['06:30', 'Base prep: 8.5kg plums, 1.2kg sugar, water'],
-        ['07:00', 'Trittico: pasteurisation at 62°C, 20 minutes'],
-        ['07:20', 'Mixing and ageing, 40 minutes'],
-        ['08:00', 'Churning'],
-        ['08:20', 'Into the blast freezer'],
-        ['08:30', 'BATCH COMPLETE']
+        ['Thu 19:05', 'Fruit received and inspected (HACCP checklist)'],
+        ['Thu 19:35', 'Base prep: 1.8kg plums, 550g sugar, water'],
+        ['Thu 20:05', 'Pasteurised at 62°C on the hob, 20 minutes'],
+        ['Thu 20:35', 'Base chilled to 4°C, resting overnight'],
+        ['Fri 10:00', 'Churning: 750g cycles on the bench machine'],
+        ['Fri 13:15', 'Bags and cups filled at extraction, into the freezer at −18°C'],
+        ['Fri 13:40', 'BATCH COMPLETE: 4 cycles, 3kg']
       ],
       marcoNote: 'The first Victorias of the year. Stone out, skin in: the skin is where all the colour and the sharpness live.',
       coldChain: { distance: '176 km', tempOut: '-20°C', tempIn: '-15°C', transit: '3 hours' },
@@ -229,19 +231,19 @@
       harvestTime: '05:58',
       produced: '29 July 2026',
       operator: 'Marco',
-      batchSize: '12L',
+      batchSize: '3kg · 4 cycles of 750g',
       method: 'Integrated Pest Management (IPM)',
       certification: 'Red Tractor Assurance',
       bio: 'Louise Anderson is the fourth generation on her family’s raspberry farm in the Scottish Borders.',
       quote: '“This year’s crop has come in sweet and firm. Best yield in five years.”',
       log: [
-        ['06:05', 'Fruit received and inspected (HACCP checklist)'],
-        ['06:35', 'Base prep: 8kg raspberries, 1.15kg sugar, water'],
-        ['07:05', 'Trittico: pasteurisation at 62°C, 20 minutes'],
-        ['07:25', 'Mixing and ageing, 40 minutes'],
-        ['08:05', 'Churning'],
-        ['08:25', 'Into the blast freezer'],
-        ['08:35', 'BATCH COMPLETE']
+        ['Thu 18:45', 'Fruit received and inspected (HACCP checklist)'],
+        ['Thu 19:15', 'Base prep: 1.7kg raspberries, 550g sugar, water'],
+        ['Thu 19:45', 'Pasteurised at 62°C on the hob, 20 minutes'],
+        ['Thu 20:15', 'Base chilled to 4°C, resting overnight'],
+        ['Fri 08:00', 'Churning: 750g cycles on the bench machine'],
+        ['Fri 12:00', 'Bags and cups filled at extraction, into the freezer at −18°C'],
+        ['Fri 12:20', 'BATCH COMPLETE: 4 cycles, 3kg']
       ],
       marcoNote: 'Glen Ample berries barely need me. I kept the sugar low and let the fruit argue its own case.',
       coldChain: { distance: '552 km', tempOut: '-20°C', tempIn: '-13°C', transit: '9 hours' },
@@ -586,7 +588,7 @@
             '<div class="ks-label">Your Gelato Kit (pick up to 2 flavours)</div>' +
             '<div class="ks-value empty">Pick 1–2 flavours above</div>' +
           '</div>' +
-          '<a class="pill pill-dark ks-cta" data-track="picker_continue" href="order.html">Continue · £28 pickup / £34 delivery</a>' +
+          '<a class="pill pill-dark ks-cta" data-track="picker_continue" href="order.html">Continue · pick your Kit size →</a>' +
         '</div>' : '');
 
     var valueEl = root.querySelector('.ks-value');
