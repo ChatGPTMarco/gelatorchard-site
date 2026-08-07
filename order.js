@@ -230,18 +230,46 @@
      colpo finale al load. Se l'utente tocca/scrolla, si smette subito
      di correggere: mai combattere l'utente. Salto sempre istantaneo
      (bypass della CSS scroll-behavior:smooth). */
-  if (new URLSearchParams(location.search).get('goto') === 'size' && preselect.length) {
+  /* goto=format (8 ago sera): dalla home i gusti sono scelti ma il
+     FORMATO no — si atterra sulle 5 linguette (#op-tabs), col picker
+     e i gusti preselezionati subito sotto; pulse sul tab attivo.
+     goto=size resta per compatibilità (link vecchi in cache). */
+  function jumpToTabs(instant, withPulse) {
+    var tabs = document.getElementById('op-tabs');
+    if (!tabs) return;
+    if (instant) {
+      var htmlEl = document.documentElement;
+      var prevBehavior = htmlEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = 'auto';
+      tabs.scrollIntoView({ block: 'start' });
+      htmlEl.style.scrollBehavior = prevBehavior;
+    } else {
+      tabs.scrollIntoView({ block: 'start' });
+    }
+    if (withPulse) {
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var t = tabs.querySelector('.fmt-tab.active');
+      if (t && !reduced) {
+        t.classList.add('pulse');
+        setTimeout(function () { t.classList.remove('pulse'); }, 1600);
+      }
+    }
+  }
+
+  var gotoParam = new URLSearchParams(location.search).get('goto');
+  if ((gotoParam === 'format' || gotoParam === 'size') && preselect.length) {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     var userTookOver = false;
     ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
       window.addEventListener(ev, function () { userTookOver = true; }, { passive: true, once: true });
     });
-    var autoJump = function () { if (!userTookOver) jumpToPrice(true, false); };
+    var jumpFn = (gotoParam === 'format') ? jumpToTabs : jumpToPrice;
+    var autoJump = function () { if (!userTookOver) jumpFn(true, false); };
     autoJump();                                    /* subito: DOM pronto */
     setTimeout(autoJump, 250);                     /* dopo docket + barra scarsità */
     setTimeout(function () {
       if (userTookOver) return;
-      jumpToPrice(true, true);                     /* assestamento + pulse */
+      jumpFn(true, true);                          /* assestamento + pulse */
     }, 700);
     window.addEventListener('load', function () { setTimeout(autoJump, 60); });
   }

@@ -405,6 +405,13 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   sotto, pulse su #op-add invece che sul menu taglie. Il Kit tiene
   etichetta/CTA/atterraggio suoi (taglia). syncDockFormat non nasconde
   più il dock fuori dal Kit: aggiorna etichetta e CTA.
+- HOME → SCELTA FORMATO (fix founder, 8 ago sera): dalla home il
+  formato NON è ancora scelto — riepilogo e dock ora dicono "Your
+  flavours (pick up to 2)" / "Continue · choose your format →" e
+  atterrano su /order alle 5 linguette (#op-tabs, goto=format, pulse
+  sul tab attivo), non più sulla taglia Kit. goto=size resta gestito
+  per compatibilità coi link in cache. Su /order (formato scelto) il
+  dock parla per formato via syncDockFormat, invariato.
 - LISTINO HOME COMPLETO (fix founder, 8 ago sera): #formats in home
   ora ha TUTTI e 5 i formati — aggiunte le card Multipack (£12,
   ?format=multipack) e Family Tub (£22, ?format=tub), descrizioni

@@ -598,13 +598,17 @@
       '</div>' +
       '<div class="tile-grid" data-group="fruit" data-cascade>' + FLAVORS.fruit.map(tileHTML).join('') + '</div>' +
       '<div class="tile-grid" data-group="classics" data-cascade style="display:none">' + FLAVORS.classics.map(tileHTML).join('') + '</div>' +
+      /* Home = formato ANCORA da scegliere (founder, 8 ago sera): il
+         riepilogo e il dock non parlano più di Kit — l'atterraggio è
+         sulle linguette formato di /order (goto=format). Su /order le
+         etichette del dock le riscrive syncDockFormat per formato. */
       (showSummary ?
         '<div class="kit-summary card">' +
           '<div>' +
-            '<div class="ks-label">Your Gelato Kit (pick up to 2 flavours)</div>' +
+            '<div class="ks-label">Your flavours (pick up to 2)</div>' +
             '<div class="ks-value empty">Pick 1–2 flavours above</div>' +
           '</div>' +
-          '<a class="pill pill-dark ks-cta" data-track="picker_continue" href="order.html">Continue · pick your Kit size →</a>' +
+          '<a class="pill pill-dark ks-cta" data-track="picker_continue" href="order.html">Continue · choose your format →</a>' +
         '</div>' : '') +
       /* Dock mobile (fix founder 8 ago 2026): stesso contenuto del
          riepilogo, fisso in basso, appare al primo gusto scelto.
@@ -613,9 +617,9 @@
          scrolla al modulo taglia via opts.onDockCta. */
       (wantDock ?
         '<div class="picker-dock" aria-live="polite">' +
-          '<div><span class="pd-k">Your Gelato Kit (pick up to 2 flavours)</span>' +
+          '<div><span class="pd-k">Your flavours (pick up to 2)</span>' +
           '<span class="pd-value"></span></div>' +
-          '<a class="pill pill-green pd-cta" data-track="picker_continue" href="order.html">Continue · pick your Kit size →</a>' +
+          '<a class="pill pill-green pd-cta" data-track="picker_continue" href="order.html">Continue · choose your format →</a>' +
         '</div>' : '');
 
     var valueEl = root.querySelector('.ks-value');
@@ -659,7 +663,7 @@
       var on = selected.length > 0 && !dockRedundant;
       dockEl.classList.toggle('on', on);
       dockValueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
-      dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') + '&goto=size' : 'order.html';
+      dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') + '&goto=format' : 'order.html';
       /* segnale globale: su mobile il bottone Basket si alza sopra
          il dock (altrimenti si coprono a vicenda) */
       document.body.classList.toggle('gc-dock-on',
@@ -706,10 +710,10 @@
         } else {
           valueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
           valueEl.classList.remove('empty');
-          /* goto=size: /order atterra direttamente su "Who's it for?"
-             (fix founder 8 ago 2026) — i gusti sono già scelti, il
-             passo davanti all'utente è la taglia, non la cima pagina */
-          if (ctaEl) ctaEl.href = 'order.html?flavours=' + selected.join(',') + '&goto=size';
+          /* goto=format (8 ago sera): dalla home i gusti sono scelti ma
+             il FORMATO no — si atterra sulle linguette di /order, non
+             sulla taglia del Kit */
+          if (ctaEl) ctaEl.href = 'order.html?flavours=' + selected.join(',') + '&goto=format';
         }
       }
       /* Dock mobile: visibile solo con ≥1 gusto scelto E bersaglio

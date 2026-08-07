@@ -191,7 +191,7 @@ section{padding:88px 0}
   .hc-dot{transition:none}
   .tile.pulse .swatch{animation:none}
   .kit-people.pulse{animation:none}
-  .pill.pulse{animation:none}
+  .pill.pulse,.fmt-tab.pulse{animation:none}
 }
 
 /* ============================================================
@@ -368,9 +368,9 @@ section{padding:88px 0}
 /* Atterraggio goto=size / CTA dock: la sezione parte dall'inizio,
    "Who's it for?" (o i ticket gusti, fuori dal Kit) subito sotto
    nav sticky + barra scarsità */
-#op-price,#op-tickets{scroll-margin-top:calc(var(--sb-h,38px) + 76px)}
-/* pulse su Add to Basket per l'atterraggio dei formati non-Kit */
-.pill.pulse{animation:tile-pulse .75s ease-out 2}
+#op-price,#op-tickets,#op-tabs{scroll-margin-top:calc(var(--sb-h,38px) + 76px)}
+/* pulse su Add to Basket / tab formato per gli atterraggi guidati */
+.pill.pulse,.fmt-tab.pulse{animation:tile-pulse .75s ease-out 2}
 
 /* --- Basket drawer --- */
 .basket-fab{position:fixed;right:24px;bottom:24px;z-index:65;box-shadow:0 8px 28px rgba(29,29,31,.25)}
