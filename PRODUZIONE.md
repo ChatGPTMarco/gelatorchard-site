@@ -106,7 +106,64 @@ Totale 5 cicli ✓ (entro 7). Frutta: fragola 1.4kg, lampone 0.9kg.
 | 3 | + seconda macchina da banco in parallelo | ~12-15kg |
 | 4 | Trittico (pastorizza + manteca 2-5kg/ciclo) | 30kg+, e i log "12L" tornano veri |
 
-## 7. Da validare alla prima produzione reale (poi aggiornare qui)
+## 7. REGISTRO BATCH — definizione, numerazione, ciclo di vita
+
+> **1 batch = 1 gusto × 1 drop.** Tutti i cicli da 750g dello stesso gusto
+> mantecati lo stesso venerdì sono UN batch: un numero, una story page,
+> un QR (identico su tutte le sacapoche e coppette di quel gusto, quella
+> settimana). Mai per-ciclo, mai per-settimana-intera.
+
+**Numerazione**: progressiva globale (#046, #047, #048…), mai riciclata.
+Continua la sequenza esistente (#042 = primo batch reale). La data del
+drop vive nel registro, non nel numero.
+
+**Ciclo di vita:**
+
+| Momento | Evento |
+|---|---|
+| Mar 18:00 | **NASCE il numero**: chiusa la conta, si sa quali gusti si producono → si assegnano i progressivi |
+| Gio sera | Entrano i dati frutta: messaggio del contadino + controllo all'arrivo |
+| Ven | Entrano i dati di produzione (cicli, orari, kg) → si stampano le etichette QR |
+| Sab/Dom | **SI CHIUDE**: consegnata l'ultima confezione (o "sold out" se finisce prima del cap) |
+| Per sempre | La story page resta online: il QR nel freezer del cliente deve funzionare anche fra mesi. I batch chiusi si archiviano, mai cancellati |
+
+### Le due metà del log (chi scrive cosa)
+
+**Metà del contadino** — ora di raccolta, varietà, appezzamento: la manda
+LUI via WhatsApp. Si chiede nel messaggio d'ordine del martedì (template
+sotto); giovedì mattina risponde, si salva lo screenshot come pezza
+d'appoggio e si ricopia nel registro. Le aziende raccolgono all'alba e
+tracciano già i lotti (Red Tractor): è una riga di messaggio, non un favore.
+
+**Metà di Marco** — tutto dal momento in cui la frutta arriva: ora
+d'arrivo e temperatura (gio sera), controllo ammaccature, orari basi,
+cicli di mantecatura, ora in freezer (ven). Si compila con l'orologio
+in mano: sono gli stessi campi del log già sul sito.
+
+**Regola d'onestà**: la precisione del log = la precisione della filiera,
+mai di più. Se una settimana si compra da intermediario (New Covent
+Garden), l'ora di raccolta NON esiste → il log dice ciò che si sa
+("consegnata gio 19:40, lotto X, azienda Y da etichetta") e la story
+page di quel batch non mostra l'ora di raccolta. L'intermediario è
+l'eccezione: il posizionamento del sito regge solo con la filiera diretta.
+
+### Template WhatsApp del martedì sera (ordine + dati)
+
+```
+Ciao Tom! Ordine per questa settimana:
+– [X] kg di fragole, consegna giovedì sera come sempre.
+Quando raccogli giovedì mandami per favore:
+1. ora di raccolta
+2. varietà
+3. campo/appezzamento
+Va nel batch log dei clienti (#0XX). Grazie!
+```
+
+Registro: al lancio una pagina Notion per batch (già previsto), che
+alimenta story page e QR. La dashboard admin.html si aspetta questa
+struttura.
+
+## 8. Da validare alla prima produzione reale (poi aggiornare qui)
 
 - Tempo vero di mantecatura di un ciclo da 750g con base a 4°C
 - Capienza reale del freezer per l'indurimento (quanti cicli in parallelo)

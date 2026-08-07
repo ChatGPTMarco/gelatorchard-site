@@ -198,6 +198,11 @@ Situazione reale: NIENTE Trittico, macchina professionale da banco da 750g/ciclo
 - Capacità: ven 07-15, tetto 8 cicli, piano vendita 7 cicli = 5.25kg = 42
   porzioni/drop; max 6 gusti per drop; eccedenze → drop successivo (opzione B).
 - Formula del martedì sera e timeline gio-sab in PRODUZIONE.md.
+- REGISTRO BATCH (PRODUZIONE.md §7): 1 batch = 1 gusto × 1 drop; numero
+  progressivo assegnato mar 18:00, chiuso all'ultima consegna, story page
+  eterna. Log a due metà: dati raccolta dal contadino via WhatsApp
+  (template nel §7), dati lab da Marco. Precisione log = precisione
+  filiera, mai di più (niente ora di raccolta se si compra da intermediario).
 - Log batch in flavors.js riscritti sul piano reale (cicli 750g, fornello,
   gio sera→ven). "12L"/Trittico non esistono più finché non arriva il Trittico.
 
