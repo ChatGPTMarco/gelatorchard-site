@@ -129,11 +129,27 @@ drop vive nel registro, non nel numero.
 
 ### Le due metà del log (chi scrive cosa)
 
-**Metà del contadino** — ora di raccolta, varietà, appezzamento: la manda
-LUI via WhatsApp. Si chiede nel messaggio d'ordine del martedì (template
-sotto); giovedì mattina risponde, si salva lo screenshot come pezza
-d'appoggio e si ricopia nel registro. Le aziende raccolgono all'alba e
-tracciano già i lotti (Red Tractor): è una riga di messaggio, non un favore.
+**Metà del contadino** — ora di raccolta, varietà, appezzamento.
+Canale PRIMARIO (idea founder, 8 ago 2026): la **BATCH CARD nella
+cassetta** — un blocchetto di schede precompilate che Marco stampa e
+lascia all'azienda; Tom ne riempie una mentre chiude la cassetta
+(20 secondi, niente telefono, niente memoria richiesta) e la firma.
+All'arrivo del giovedì sera: FOTOGRAFARE la scheda (archivio batch,
+la carta può perdersi) e ricopiare i dati nel registro. La foto della
+nota scritta a mano è anche materiale per story page/social.
+
+```
+GELATORCHARD · BATCH CARD
+Frutto: ____________  Varietà: ____________
+Raccolto il: ____/____  alle ore: ______
+Campo/appezzamento: ____________
+Firma: ____________
+```
+
+Canale di RISERVA: WhatsApp — promemoria del giovedì mattina se la
+cassetta arriva senza scheda (e il template d'ordine del martedì, sotto).
+Le aziende raccolgono all'alba e tracciano già i lotti (Red Tractor):
+è una scheda da 20 secondi, non un favore.
 
 **Metà di Marco** — tutto dal momento in cui la frutta arriva: ora
 d'arrivo e temperatura (gio sera), controllo ammaccature, orari basi,
