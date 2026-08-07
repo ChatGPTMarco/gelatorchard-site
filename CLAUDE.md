@@ -351,6 +351,16 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   Card bag in home corretta a 250g.
 - Restano compiti del founder (asset fisici): video 15s, foto vere,
   contatti reali footer.
+- ETICHETTE REALI (fix founder, 8 ago sera): il confronto etichette in
+  #labels è ora un VERO back label UK — "Ingredients:" in paragrafo
+  fitto giustificato (non elenco puntato), allergeni (milk) in
+  grassetto da norma EU, righe Storage/Best before, piede con
+  "500ml ℮"+barcode CSS (industriale) vs "Batch & farmer: on every
+  bag"+QR CSS (nostra). NIENTE tabella nutrizionale: numeri inventati
+  vietati. Copy aggiunto dal redesign (approvabile dal founder):
+  "Storage: keep frozen at −18°C." / "Best before: see base of tub."
+  / "Best before: this weekend." / "Batch & farmer: on every bag".
+  I tre lo-word grandi e la lo-note restano identici.
 - MOBILE UX PICKER (fix founder, post-migrazione): (1) barra scarsità
   mai troncata su mobile — va a capo, site.js pubblica l'altezza vera
   in --sb-h e nav/story-head la usano per gli offset sticky; (2) campo

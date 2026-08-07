@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=r6">
+<link rel="stylesheet" href="style.css?v=r7">
 </head>
 <body>
 
@@ -94,35 +94,37 @@
       <div class="labels-grid" id="labels">
         <!-- Esempio di CATEGORIA (10.2): ingredienti industriali comuni, non l'etichetta di un marchio specifico.
              DA VERIFICARE dal founder prima del lancio (vedi FAKE-DATA.md, sezione "da verificare"). -->
+        <!-- Etichette VERE da retro-confezione (founder, 8 ago sera):
+             INGREDIENTS in paragrafo fitto come su una vaschetta reale,
+             allergeni in grassetto (norma EU), conservazione, piede con
+             peso+barcode (industriale) vs QR batch (nostra). -->
         <div class="label-card reveal">
           <h3>A typical industrial “gelato” label</h3>
-          <ol class="label-ind">
-            <li>Reconstituted skimmed milk</li>
-            <li>Glucose-fructose syrup</li>
-            <li>Sugar</li>
-            <li>Refined palm oil</li>
-            <li>Whey powder (milk)</li>
-            <li>Dextrose</li>
-            <li>Maltodextrin</li>
-            <li>Strawberry flavour base (powder)</li>
-            <li>Emulsifier: <span class="en">E471</span> (mono- and diglycerides)</li>
-            <li>Stabiliser: <span class="en">E410</span> (locust bean gum)</li>
-            <li>Stabiliser: <span class="en">E412</span> (guar gum)</li>
-            <li>Stabiliser: <span class="en">E407</span> (carrageenan)</li>
-            <li>Acidity regulator: <span class="en">E330</span></li>
-            <li>Colour: <span class="en">E120</span> (cochineal: made from insects)</li>
-            <li>“Natural flavouring”</li>
-            <li>Salt</li>
-          </ol>
+          <div class="lbl-body">
+            <p class="lbl-ing"><span class="lbl-k">Ingredients:</span> reconstituted skimmed <strong>milk</strong>, glucose-fructose syrup, sugar, refined palm oil, whey powder (<strong>milk</strong>), dextrose, maltodextrin, strawberry flavour base (powder), emulsifier: <span class="en">E471</span> (mono- and diglycerides), stabiliser: <span class="en">E410</span> (locust bean gum), stabiliser: <span class="en">E412</span> (guar gum), stabiliser: <span class="en">E407</span> (carrageenan), acidity regulator: <span class="en">E330</span>, colour: <span class="en">E120</span> (cochineal: made from insects), “natural flavouring”, salt.</p>
+            <p class="lbl-meta">Storage: keep frozen at −18°C.</p>
+            <p class="lbl-meta">Best before: see base of tub.</p>
+          </div>
+          <div class="lbl-foot">
+            <span class="lbl-net">500ml ℮</span>
+            <span class="lbl-barcode" aria-hidden="true"></span>
+          </div>
         </div>
         <div class="label-card reveal" data-delay="0.15">
           <h3>The Gelatorchard label, all of it</h3>
-          <div class="label-ours">
+          <div class="lbl-body">
+            <p class="lbl-ing"><span class="lbl-k">Ingredients:</span></p>
             <div class="lo-word">Fruit.</div>
             <div class="lo-word">Cane sugar.</div>
             <div class="lo-word">Water.</div>
             <div class="lo-space"></div>
             <p class="lo-note">That’s the whole label. The empty space is the point.</p>
+            <p class="lbl-meta">Storage: keep frozen at −18°C.</p>
+            <p class="lbl-meta">Best before: this weekend.</p>
+          </div>
+          <div class="lbl-foot">
+            <span class="lbl-net">Batch &amp; farmer: on every bag</span>
+            <span class="lbl-qr" aria-hidden="true"></span>
           </div>
         </div>
       </div>
@@ -330,15 +332,15 @@
 </main>
 
 <footer id="site-footer"></footer>
-<script src="flavors.js?v=r6"></script>
-<script src="analytics.js?v=r6"></script>
-<script src="backend.js?v=r6"></script>
-<script src="calendar.js?v=r6"></script>
-<script src="alerts.js?v=r6"></script>
-<script src="home.js?v=r6"></script>
-<script src="howto.js?v=r6"></script> <!-- pillola stato drop al picker -->
-<script src="photos.js?v=r6"></script>
-<script src="motion.js?v=r6"></script>
-<script src="site.js?v=r6"></script>
+<script src="flavors.js?v=r7"></script>
+<script src="analytics.js?v=r7"></script>
+<script src="backend.js?v=r7"></script>
+<script src="calendar.js?v=r7"></script>
+<script src="alerts.js?v=r7"></script>
+<script src="home.js?v=r7"></script>
+<script src="howto.js?v=r7"></script> <!-- pillola stato drop al picker -->
+<script src="photos.js?v=r7"></script>
+<script src="motion.js?v=r7"></script>
+<script src="site.js?v=r7"></script>
 </body>
 </html>
