@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>DEMO · Direzione “Il Registro” | Gelatorchard</title>
+<!--
+  ============================================================
+  DEMO INTERNA — direzione di stile "IL REGISTRO" (8 ago 2026)
+  Una sola sezione: picker-schedario + drop docket timbrata.
+  NON linkata dal sito, NON pubblicare, NON tocca style.css.
+  Dati REALI da flavors.js (stagioni, batch, finestra drop).
+  Font proposti in aggiunta: IBM Plex Mono (i dati "misurati").
+  Se il founder approva: migrazione progressiva del sito vero.
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF8F2;      /* carta, un grado più calda del sito */
+    --ink:#1D1D1F;
+    --ink-soft:rgba(29,29,31,.64);
+    --ink-faint:rgba(29,29,31,.42);
+    --rule:rgba(29,29,31,.16);
+    --green:#2D7A4A;
+    --green-deep:#1F5C37;
+    --orange:#E8934A;
+    --stamp:#B0482E;
+    --serif:'Fraunces',Georgia,serif;
+    --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+    --sans:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55;font-size:15px;
+       background-image:radial-gradient(rgba(29,29,31,.025) 1px,transparent 1px);background-size:22px 22px}
+  .demo-note{background:var(--ink);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+             text-transform:uppercase;text-align:center;padding:8px 16px}
+  .demo-note a{color:#9FD4B4}
+  .wrap{max-width:1060px;margin:0 auto;padding:56px 24px 96px}
+
+  /* ---------- intestazione del modulo ---------- */
+  .doc-head{border:1.5px solid var(--ink);background:#fff}
+  .dh-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+          border-bottom:1.5px solid var(--ink);padding:14px 20px}
+  .dh-brand{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.04em}
+  .dh-form{font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase}
+  .dh-title{padding:26px 20px 8px;text-align:left}
+  .dh-title h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.6vw,44px);line-height:1.08}
+  .dh-title h1 em{font-style:italic;color:var(--green-deep)}
+  .dh-sub{padding:0 20px 18px;color:var(--ink-soft);max-width:60ch}
+  .dh-meta{display:flex;flex-wrap:wrap;border-top:1px dashed var(--rule)}
+  .dh-meta div{flex:1;min-width:160px;padding:10px 20px;border-right:1px dashed var(--rule);
+               font-family:var(--mono);font-size:12px}
+  .dh-meta div:last-child{border-right:none}
+  .dh-meta .k{display:block;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ---------- drop docket (timbrata) ---------- */
+  .docket{position:relative;margin-top:28px;border:1.5px solid var(--ink);background:#fff;padding:22px 24px;
+          display:grid;grid-template-columns:1fr auto;gap:8px 24px;align-items:center;overflow:hidden}
+  .dk-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+  .dk-clock{font-family:var(--mono);font-weight:600;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1.05;font-variant-numeric:tabular-nums}
+  .dk-clock .u{font-size:12px;color:var(--ink-soft);font-weight:400;margin-left:8px;letter-spacing:.08em}
+  .dk-choice{font-size:14px;color:var(--ink-soft);grid-column:1}
+  .dk-choice b{color:var(--ink)}
+  .dk-cap{grid-column:1;font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);border-top:1px dashed var(--rule);padding-top:10px;margin-top:4px}
+  .stamp{grid-row:1/span 3;grid-column:2;align-self:center;transform:rotate(-6deg);
+         border:3px double var(--stamp);color:var(--stamp);border-radius:6px;
+         font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+         padding:10px 14px;text-align:center;opacity:.85;mix-blend-mode:multiply}
+  .stamp small{display:block;font-size:9.5px;letter-spacing:.16em}
+  @media(max-width:640px){.stamp{display:none}}
+
+  /* ---------- schedario (specimen cards) ---------- */
+  .cabinet{margin-top:44px}
+  .cab-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;
+            border-bottom:1.5px solid var(--ink);padding-bottom:8px}
+  .cab-head h2{font-family:var(--serif);font-weight:500;font-size:26px}
+  .cab-head .rule{font-family:var(--mono);font-size:11px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:22px}
+
+  .card{background:#fff;border:1.5px solid var(--ink);cursor:pointer;position:relative;
+        transition:transform .16s ease,box-shadow .16s ease;user-select:none;outline:none}
+  .card:hover{transform:translateY(-2px);box-shadow:4px 4px 0 rgba(29,29,31,.12)}
+  .card:focus-visible{box-shadow:0 0 0 3px rgba(45,122,74,.45)}
+  .card.out{cursor:default;background:var(--paper)}
+  .card.out:hover{transform:none;box-shadow:none}
+  .photo{height:120px;position:relative;overflow:hidden;border-bottom:1.5px solid var(--ink);
+         background-size:cover;background-position:center}
+  .card.out .photo{filter:grayscale(1);opacity:.55}
+  .photo .fake-tag{position:absolute;top:6px;right:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;
+                   text-transform:uppercase;background:rgba(29,29,31,.6);color:#fff;padding:2px 7px;border-radius:3px}
+  .fields{padding:12px 14px 14px;font-family:var(--mono);font-size:11.5px}
+  .f-row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;border-bottom:1px dashed var(--rule)}
+  .f-row:last-child{border-bottom:none}
+  .f-k{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);padding-top:2px;flex:none}
+  .f-v{text-align:right;color:var(--ink)}
+  .f-v.green{color:var(--green-deep);font-weight:600}
+  .specimen{font-family:var(--serif);font-size:19px;font-weight:600;padding:10px 14px 2px}
+  .tickbox{position:absolute;top:8px;left:8px;width:22px;height:22px;background:#fff;border:1.5px solid var(--ink);
+           font-family:var(--mono);font-weight:600;font-size:15px;line-height:19px;text-align:center;color:var(--green-deep)}
+  .card.out .tickbox{display:none}
+  .back-stamp{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);
+              border:2.5px double var(--stamp);color:var(--stamp);font-family:var(--mono);font-weight:600;
+              font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:4px;
+              background:rgba(250,248,242,.82);mix-blend-mode:multiply;white-space:nowrap}
+
+  /* ---------- riga d'azione del modulo ---------- */
+  .form-action{position:sticky;bottom:14px;margin-top:26px;border:1.5px solid var(--ink);background:#fff;
+               display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+               padding:14px 18px;box-shadow:0 6px 24px rgba(29,29,31,.12)}
+  .fa-sel{font-family:var(--mono);font-size:12px;letter-spacing:.04em}
+  .fa-sel .k{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);display:block}
+  .fa-btn{font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+          background:var(--green);color:#fff;border:1.5px solid var(--green-deep);padding:13px 22px;
+          text-decoration:none;transition:background .15s ease}
+  .fa-btn:hover{background:var(--green-deep)}
+  .fa-btn.off{background:var(--paper);color:var(--ink-faint);border-color:var(--rule);pointer-events:none}
+
+  .foot-note{margin-top:40px;font-size:12.5px;color:var(--ink-faint);font-family:var(--mono)}
+  @media(prefers-reduced-motion:reduce){.card{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="demo-note">Demo interna · direzione “Il Registro” · una sezione sola · <a href="index.html">torna al sito attuale</a></div>
+
+<div class="wrap">
+
+  <!-- Intestazione: il sito vestito da documento -->
+  <div class="doc-head">
+    <div class="dh-top">
+      <span class="dh-brand">GELAT&#127818;RCHARD</span>
+      <span class="dh-form">Form GC-01 · Weekly Flavour Register</span>
+    </div>
+    <div class="dh-title">
+      <h1>If it’s in this register, <em>it was picked this season.</em><br>If it isn’t, we don’t make it.</h1>
+    </div>
+    <p class="dh-sub">Every entry below is a real fruit in its real British window. Tick up to two specimens: they become the two piping bags of your Kit.</p>
+    <div class="dh-meta">
+      <div><span class="k">Register date</span><span id="doc-date">—</span></div>
+      <div><span class="k">Drop</span><span id="doc-drop">—</span></div>
+      <div><span class="k">Capacity</span>42 servings · 7 churns × 750g</div>
+      <div><span class="k">Delivery area</span>E14 · Canary Wharf, Poplar, S. Quay</div>
+    </div>
+  </div>
+
+  <!-- Drop docket: la scadenza come documento timbrato -->
+  <div class="docket">
+    <div>
+      <div class="dk-label">Time remaining to enter this drop</div>
+      <div class="dk-clock"><span id="dk-timer">—</span><span class="u">D : H : M : S</span></div>
+    </div>
+    <div class="stamp" id="dk-stamp">Count closes<small id="dk-stamp-when">Tue 18:00</small></div>
+    <div class="dk-choice" id="dk-choice">—</div>
+    <div class="dk-cap">CAP 42 SERVINGS · FIRST COME, FIRST SERVED · LATE ENTRIES ROLL TO THE NEXT DROP</div>
+  </div>
+
+  <!-- Lo schedario -->
+  <div class="cabinet">
+    <div class="cab-head">
+      <h2>Fruit Collection — specimen cards</h2>
+      <span class="rule">Tick max 2 · grey card = out of season, back on its own</span>
+    </div>
+    <div class="grid" id="cards"></div>
+  </div>
+
+  <!-- Riga d'azione del modulo -->
+  <div class="form-action">
+    <div class="fa-sel"><span class="k">Selected specimens</span><span id="fa-sel">none yet</span></div>
+    <a class="fa-btn off" id="fa-btn" href="order.html">Continue → order form</a>
+  </div>
+
+  <p class="foot-note">Demo: dati stagionali, batch e finestra drop sono REALI (flavors.js). Foto = bozze stock/AI
+  già marcate nel progetto (FAKE-DATA.md). I Classici e il resto del sito verrebbero migrati solo dopo l’ok del founder.</p>
+
+</div>
+
+<script src="flavors.js"></script>
+<script>
+(function () {
+  'use strict';
+  var G = window.Gelatorchard;
+
+  /* ---------- intestazione ---------- */
+  var w = G.orderWindow();
+  function dLong(d) { return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }); }
+  document.getElementById('doc-date').textContent =
+    new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase();
+  document.getElementById('doc-drop').textContent = 'SAT ' + w.saturday.getDate() + ' — #DROP OF ' + dLong(w.saturday).toUpperCase();
+
+  /* ---------- docket ---------- */
+  var sat2 = new Date(w.saturday.getFullYear(), w.saturday.getMonth(), w.saturday.getDate() + 7);
+  document.getElementById('dk-choice').innerHTML = w.open
+    ? 'Order now → eat <b>Saturday ' + w.saturday.getDate() + '</b>. After the stamp → Saturday ' + sat2.getDate() + '.'
+    : 'Enter before the stamp and you eat <b>Saturday ' + w.saturday.getDate() + '</b>. Miss it → Saturday ' + sat2.getDate() + '.';
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() {
+    var ms = Math.max(0, w.closesAt - new Date());
+    var d = Math.floor(ms / 86400000), h = Math.floor(ms % 86400000 / 3600000),
+        m = Math.floor(ms % 3600000 / 60000), s = Math.floor(ms % 60000 / 1000);
+    document.getElementById('dk-timer').textContent = d + ' : ' + pad(h) + ' : ' + pad(m) + ' : ' + pad(s);
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- specimen cards (dati reali) ---------- */
+  var SW = { /* fallback colore se manca la foto */
+    strawberry:'#E8536B', raspberry:'#A32348', cherry:'#8B1E3F', blueberry:'#3D2B56',
+    blackcurrant:'#2A1B3D', 'victoria-plum':'#7C4F9E', 'apple-pear':'#A9C46A',
+    quince:'#DBB44E', rhubarb:'#E06A78'
+  };
+  var selected = [];
+  var grid = document.getElementById('cards');
+
+  grid.innerHTML = G.FLAVORS.fruit.map(function (f) {
+    var st = G.seasonStatus(f.id);
+    var b = G.BATCHES[f.id];
+    var inS = st.inSeason;
+    var rows = '';
+    if (inS) {
+      rows += row('Status', 'IN SEASON', 'green');
+      rows += row('Origin', b ? b.location : ((G.SEASONS[f.id] || {}).origin || 'Britain'));
+      if (b) {
+        rows += row('Batch', '#' + b.id + (b.fake ? ' *' : ''));
+        rows += row('Picked', b.harvest.replace(' 2026', '') + (b.harvestTime ? ' · ' + b.harvestTime : ''));
+      } else {
+        rows += row('Batch', 'assigned Tue 18:00');
+      }
+    } else {
+      rows += row('Status', 'OUT OF SEASON');
+      rows += row('Returns', st.returnMonthYear);
+    }
+    return '<div class="card' + (inS ? '' : ' out') + '" data-id="' + f.id + '"' +
+      (inS ? ' role="checkbox" aria-checked="false" tabindex="0"' : ' aria-disabled="true"') + '>' +
+      (inS ? '<div class="tickbox" aria-hidden="true"></div>' : '') +
+      '<div class="photo" style="background-color:' + SW[f.id] + ';background-image:url(\'foto-gusti/frutta/' + f.id + '.jpg\')">' +
+        '<span class="fake-tag">bozza</span></div>' +
+      (inS ? '' : '<div class="back-stamp">Back ' + st.returnMonthYear + '</div>') +
+      '<div class="specimen">' + f.name + '</div>' +
+      '<div class="fields">' + rows + '</div>' +
+      '</div>';
+  }).join('');
+
+  function row(k, v, cls) {
+    return '<div class="f-row"><span class="f-k">' + k + '</span><span class="f-v' +
+      (cls ? ' ' + cls : '') + '">' + v + '</span></div>';
+  }
+
+  /* ---------- selezione (max 2, FIFO) ---------- */
+  function sync() {
+    grid.querySelectorAll('.card[role="checkbox"]').forEach(function (c) {
+      var on = selected.indexOf(c.getAttribute('data-id')) >= 0;
+      c.setAttribute('aria-checked', on ? 'true' : 'false');
+      c.querySelector('.tickbox').textContent = on ? '✕' : '';
+    });
+    var sel = document.getElementById('fa-sel');
+    var btn = document.getElementById('fa-btn');
+    if (selected.length) {
+      sel.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
+      btn.classList.remove('off');
+      btn.href = 'order.html?flavours=' + selected.join(',');
+    } else {
+      sel.textContent = 'none yet';
+      btn.classList.add('off');
+      btn.href = 'order.html';
+    }
+  }
+  function toggle(card) {
+    var id = card.getAttribute('data-id');
+    var i = selected.indexOf(id);
+    if (i >= 0) selected.splice(i, 1);
+    else { selected.push(id); while (selected.length > 2) selected.shift(); }
+    sync();
+  }
+  grid.addEventListener('click', function (e) {
+    var c = e.target.closest('.card[role="checkbox"]');
+    if (c) toggle(c);
+  });
+  grid.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+    var c = e.target.closest('.card[role="checkbox"]');
+    if (c) { e.preventDefault(); toggle(c); }
+  });
+  sync();
+})();
+</script>
+</body>
+</html>
