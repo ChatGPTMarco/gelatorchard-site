@@ -161,14 +161,23 @@
   /* Atterraggio dal picker in home (?goto=size, fix founder 8 ago 2026):
      i gusti sono già scelti, quindi il passo davanti all'utente è
      "Who's it for?" — si scrolla lì, non si atterra in cima pagina.
-     ROBUSTEZZA MOBILE (secondo fix): il salto è ISTANTANEO (lo smooth
-     su mobile viene cancellato dal primo tocco e scavalcato dal
-     ripristino scroll di Safari) e parte DOPO l'evento load, quando
-     il browser ha finito i suoi scroll. La CSS scroll-behavior:smooth
-     va bypassata a mano: vale anche per gli scroll "auto". Il pulse
-     verde sul menu taglie fa da segnale d'atterraggio. */
+     TERZO FIX (mobile): NIENTE attesa dell'evento load — su una pagina
+     piena di foto arriva dopo molti secondi e l'utente resta in cima.
+     Si salta SUBITO (il DOM del prezzo è già renderizzato) e si
+     ri-assesta il bersaglio ai tempi in cui gli script successivi
+     spostano il layout (howto.js riempie il docket, site.js inserisce
+     la barra scarsità: order.html li carica DOPO order.js), più un
+     colpo finale al load. Se l'utente tocca/scrolla, si smette subito
+     di correggere: mai combattere l'utente. Salto sempre istantaneo
+     (bypass della CSS scroll-behavior:smooth). */
   if (new URLSearchParams(location.search).get('goto') === 'size' && preselect.length) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    var userTookOver = false;
+    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+      window.addEventListener(ev, function () { userTookOver = true; }, { passive: true, once: true });
+    });
     var jumpToSize = function () {
+      if (userTookOver) return;
       var priceBox = document.getElementById('op-price');
       if (!priceBox) return;
       var htmlEl = document.documentElement;
@@ -176,15 +185,19 @@
       htmlEl.style.scrollBehavior = 'auto'; /* spegne lo smooth CSS: salto secco */
       priceBox.scrollIntoView({ block: 'center' });
       htmlEl.style.scrollBehavior = prevBehavior;
+    };
+    jumpToSize();                                  /* subito: DOM pronto */
+    setTimeout(jumpToSize, 250);                   /* dopo docket + barra scarsità */
+    setTimeout(function () {
+      jumpToSize();                                /* assestamento (font, reveal) */
       var sel = document.getElementById('kit-people');
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (sel && !reduced) {
+      if (sel && !reduced && !userTookOver) {
         sel.classList.add('pulse');
         setTimeout(function () { sel.classList.remove('pulse'); }, 1600);
       }
-    };
-    if (document.readyState === 'complete') setTimeout(jumpToSize, 60);
-    else window.addEventListener('load', function () { setTimeout(jumpToSize, 60); });
+    }, 700);
+    window.addEventListener('load', function () { setTimeout(jumpToSize, 60); });
   }
 
   /* ---------- 3.4 ticket batch/classico ---------- */
