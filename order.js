@@ -193,6 +193,7 @@
     max: FORMATS[activeFormat].max,
     summary: false,
     dock: true,
+    dockHideNear: '#op-price', /* dock via quando "Who's it for?" è in vista */
     preselect: preselect,
     onChange: refresh,
     onDockCta: function () { jumpToPrice(false, true); }

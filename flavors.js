@@ -639,6 +639,42 @@
         opts.onDockCta(selected.slice());
       });
     }
+    /* Il dock è RIDONDANTE quando il suo bersaglio è già in vista
+       (fix founder, 8 ago sera): su /order il modulo taglia
+       (opts.dockHideNear = '#op-price'), in home il riepilogo con la
+       stessa CTA. Quando il bersaglio entra nello schermo (almeno
+       80px) il dock scende; risalendo al picker riappare. Scroll
+       listener passivo, non IntersectionObserver: il bersaglio di
+       /order viene ri-renderizzato a ogni refresh e l'observer
+       perderebbe il nodo. */
+    var dockRedundant = false;
+    var dockHideNear = null;
+    if (dockEl) {
+      dockHideNear = opts.dockHideNear
+        ? (typeof opts.dockHideNear === 'string' ? document.querySelector(opts.dockHideNear) : opts.dockHideNear)
+        : root.querySelector('.kit-summary');
+    }
+    function updateDock() {
+      if (!dockEl) return;
+      var on = selected.length > 0 && !dockRedundant;
+      dockEl.classList.toggle('on', on);
+      dockValueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
+      dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') + '&goto=size' : 'order.html';
+      /* segnale globale: su mobile il bottone Basket si alza sopra
+         il dock (altrimenti si coprono a vicenda) */
+      document.body.classList.toggle('gc-dock-on',
+        on && getComputedStyle(dockEl).display !== 'none');
+    }
+    function checkDockRedundant() {
+      if (!dockHideNear) return;
+      var r = dockHideNear.getBoundingClientRect();
+      var redundant = r.top < window.innerHeight - 80 && r.bottom > 0;
+      if (redundant !== dockRedundant) { dockRedundant = redundant; updateDock(); }
+    }
+    if (dockHideNear) {
+      window.addEventListener('scroll', checkDockRedundant, { passive: true });
+      window.addEventListener('resize', checkDockRedundant, { passive: true });
+    }
 
     function showTab(name) {
       root.querySelectorAll('.flavor-tab').forEach(function (t) {
@@ -676,18 +712,9 @@
           if (ctaEl) ctaEl.href = 'order.html?flavours=' + selected.join(',') + '&goto=size';
         }
       }
-      /* Dock mobile: visibile solo con ≥1 gusto scelto, contenuto
-         identico al riepilogo (il CSS lo mostra solo <760px) */
-      if (dockEl) {
-        var dockOn = selected.length > 0;
-        dockEl.classList.toggle('on', dockOn);
-        dockValueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
-        dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') + '&goto=size' : 'order.html';
-        /* segnale globale: su mobile il bottone Basket si alza sopra
-           il dock (altrimenti si coprono a vicenda) */
-        document.body.classList.toggle('gc-dock-on',
-          dockOn && getComputedStyle(dockEl).display !== 'none');
-      }
+      /* Dock mobile: visibile solo con ≥1 gusto scelto E bersaglio
+         fuori vista (il CSS lo mostra solo <760px) */
+      if (dockEl) { checkDockRedundant(); updateDock(); }
       if (opts.onChange) opts.onChange(selected.slice());
     }
 

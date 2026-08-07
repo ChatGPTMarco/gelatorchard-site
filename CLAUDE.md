@@ -391,7 +391,13 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   naviga ma scrolla al modulo taglia (jumpToPrice, smooth per i click,
   instant per gli atterraggi automatici). Visibile solo sul tab Kit
   (syncDockFormat). Con dock aperto il basket-fab si alza
-  (.gc-dock-on su body, settato da sync() in flavors.js).
+  (.gc-dock-on su body, settato da updateDock() in flavors.js).
+  ANTI-RIDONDANZA (fix founder, 8 ago sera): il dock SPARISCE quando
+  il suo bersaglio è già in vista — su /order #op-price
+  (opts.dockHideNear), in home il riepilogo .kit-summary — e riappare
+  risalendo al picker. Scroll listener passivo + getBoundingClientRect
+  (niente IntersectionObserver: #op-price viene ri-renderizzato a ogni
+  refresh e l'observer perderebbe il nodo).
 - TIMBRI PICKER (fix founder, post-migrazione): il timbro delle tile
   fuori stagione vive FUORI dalla .swatch (dentro ereditava grayscale
   +opacity della foto e spariva); niente mix-blend, inchiostro ruggine
