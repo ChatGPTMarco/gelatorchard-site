@@ -95,7 +95,7 @@
 
         /* Capitolo 2 — la produzione */
         '<section class="story-chapter" data-chapter="2">' +
-          '<div class="sc-photo"><span class="photo-ph">Photo of Marco in the lab at the bench machine, to upload</span></div>' +
+          '<div class="sc-photo"><span class="photo-ph">Photo of Marco churning in the lab, to upload</span></div>' +
           '<span class="sc-kicker">Chapter 2 · The Making</span>' +
           '<h2>Made by ' + b.operator + '</h2>' +
           '<ul class="prod-log">' +
@@ -121,7 +121,7 @@
           /* Ritmo del drop settimanale (PRODUZIONE.md), non stesso-giorno */
           '<ul class="mini-journey">' +
             '<li><span class="mj-t">Thu</span>Harvest, then to the lab by evening</li>' +
-            '<li><span class="mj-t">Fri</span>Churned in 750g cycles</li>' +
+            '<li><span class="mj-t">Fri</span>Churned fresh, batch by batch</li>' +
             '<li><span class="mj-t">Sat</span>Dispatch, dry ice packed</li>' +
             '<li><span class="mj-t">Sat</span>Your freezer</li>' +
           '</ul>' +

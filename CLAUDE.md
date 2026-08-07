@@ -273,6 +273,12 @@ Situazione reale: NIENTE Trittico, macchina professionale da banco da 750g/ciclo
   gio sera→ven). "12L"/Trittico non esistono più finché non arriva il Trittico.
 
 ## Regole di copy (VINCOLANTI)
+0. DECISIONE FOUNDER (8 ago 2026): sul sito pubblico MAI specificare la
+   capacità produttiva per ciclo ("750g alla volta", "bench machine",
+   "N cycles") — suona amatoriale. Il cap "42 servings per drop" RESTA
+   (scarsità vera). Il 750g sopravvive solo come taglia del Family Tub
+   (spec di prodotto). Vale per copy, log batch e story page; i numeri
+   veri restano in PRODUZIONE.md/COSTI.md (interni).
 1. Specificità, non aggettivi: "Tom Johnson, Woodchurch, Kent, raccolto 15 maggio 06:12" — mai "ingredienti freschi".
 2. NIENTE numeri inventati (pre-lancio): no recensioni finte, no "X ordini", no press bar fake.
    Solo claim verificabili: 3 ingredienti, 100% frutta UK di stagione, tracciabilità batch.

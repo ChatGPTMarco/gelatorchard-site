@@ -37,7 +37,7 @@
     },
     tub: {
       name: 'Family Tub', tabPrice: '£22', min: 1, max: 2, price: 22,
-      priceLabel: '£22', desc: '750g, one full churn (about a litre): six 125g servings. One flavour, or two half-and-half.',
+      priceLabel: '£22', desc: '750g (about a litre): six 125g servings. One flavour, or two half-and-half.',
       hint: '1 or 2 flavours, the tub can hold two halves'
     }
   };
