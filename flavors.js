@@ -601,10 +601,21 @@
             '<div class="ks-value empty">Pick 1–2 flavours above</div>' +
           '</div>' +
           '<a class="pill pill-dark ks-cta" data-track="picker_continue" href="order.html">Continue · pick your Kit size →</a>' +
+        /* Dock mobile (fix founder 8 ago 2026): stesso contenuto del
+           riepilogo, fisso in basso, appare al primo gusto scelto.
+           Stringhe RIUSATE dal riepilogo: zero copy nuovo. */
+        '</div>' +
+        '<div class="picker-dock" aria-live="polite">' +
+          '<div><span class="pd-k">Your Gelato Kit (pick up to 2 flavours)</span>' +
+          '<span class="pd-value"></span></div>' +
+          '<a class="pill pill-green pd-cta" data-track="picker_continue" href="order.html">Continue · pick your Kit size →</a>' +
         '</div>' : '');
 
     var valueEl = root.querySelector('.ks-value');
     var ctaEl = root.querySelector('.ks-cta');
+    var dockEl = root.querySelector('.picker-dock');
+    var dockValueEl = root.querySelector('.pd-value');
+    var dockCtaEl = root.querySelector('.pd-cta');
 
     function showTab(name) {
       root.querySelectorAll('.flavor-tab').forEach(function (t) {
@@ -638,6 +649,13 @@
           valueEl.classList.remove('empty');
           if (ctaEl) ctaEl.href = 'order.html?flavours=' + selected.join(',');
         }
+      }
+      /* Dock mobile: visibile solo con ≥1 gusto scelto, contenuto
+         identico al riepilogo (il CSS lo mostra solo <760px) */
+      if (dockEl) {
+        dockEl.classList.toggle('on', selected.length > 0);
+        dockValueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
+        dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') : 'order.html';
       }
       if (opts.onChange) opts.onChange(selected.slice());
     }

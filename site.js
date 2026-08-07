@@ -86,9 +86,16 @@
           urgent.endLong + '. Order it at its best</a>';
       }
       scarcityBar.innerHTML = msg;
+      /* Fix founder (mobile): su schermi stretti la frase va a capo e la
+         barra è più alta di 38px — gli offset sticky di nav e story-head
+         leggono l'altezza VERA da --sb-h, mai un numero fisso. */
+      document.documentElement.style.setProperty('--sb-h', scarcityBar.offsetHeight + 'px');
     };
     renderScarcity();
     setInterval(renderScarcity, 30 * 60 * 1000);
+    window.addEventListener('resize', function () {
+      if (scarcityBar) document.documentElement.style.setProperty('--sb-h', scarcityBar.offsetHeight + 'px');
+    });
   }
 
   var navEl = document.getElementById('site-nav');

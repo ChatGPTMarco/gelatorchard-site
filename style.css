@@ -585,8 +585,14 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .scarcity-bar a:hover{text-decoration:underline}
 .scarcity-bar strong{font-weight:700}
 .scarcity-bar.sb-last{background:var(--stamp)} /* ≤7 giorni: rosso ruggine (Lista A.2) */
-.has-scarcity .nav{top:38px}
-.has-scarcity .story-head{top:102px}
+/* Mobile (fix founder): la frase NON si tronca mai — va a capo, la barra
+   cresce e site.js pubblica l'altezza reale in --sb-h per gli offset sticky */
+@media(max-width:600px){
+  .scarcity-bar{height:auto;min-height:38px;padding:7px 14px}
+  .scarcity-bar a{white-space:normal;overflow:visible;text-overflow:clip;text-align:center;line-height:1.45;font-size:11px}
+}
+.has-scarcity .nav{top:var(--sb-h,38px)}
+.has-scarcity .story-head{top:calc(var(--sb-h,38px) + 64px)}
 
 /* --- Manifesto NOT/IS (10.5.2): fondo scuro, stacco netto --- */
 .manifesto-band{background:var(--ink);color:var(--bg);padding:96px 0}
@@ -706,9 +712,10 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .pq{border-left:3px solid var(--green);padding:6px 0 6px 18px;font-family:var(--serif);font-size:17.5px;line-height:1.55;margin:0}
 .pq cite{display:block;font-family:var(--sans);font-style:normal;font-size:12.5px;color:var(--ink-faint);margin-top:8px}
 
-/* --- Farmer reveal nel picker (10.6) — campo dati mono della scheda --- */
-.t-farmer{max-height:0;overflow:hidden;opacity:0;margin-top:0;font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);line-height:1.55;padding:0 14px;transition:max-height .45s var(--ease-apple),opacity .45s var(--ease-apple),margin-top .45s var(--ease-apple)}
-.tile.selected .t-farmer{max-height:96px;opacity:1;margin-top:0;padding-bottom:10px}
+/* --- Campo contadino della scheda (ex reveal 10.6) — SEMPRE visibile
+   (fix founder 8 ago 2026): il nome del contadino è la promessa del
+   sito, non un premio per chi clicca. Campo dati mono della scheda. --- */
+.t-farmer{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);line-height:1.55;padding:6px 14px 10px;border-top:1px dashed var(--line)}
 .tf-k{display:block;font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--green-deep);margin-bottom:1px}
 /* Link storia (10.6) → striscia in fondo alla scheda, come card-link in demo */
 .tile .t-link{display:block;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--green-deep);text-decoration:none;margin:0;padding:9px 14px;border-top:1.5px solid var(--ink);border-radius:0;transition:background .15s}
@@ -717,7 +724,22 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .tile.out .t-link:hover{background:rgba(176,72,46,.07)}
 
 @media(prefers-reduced-motion:reduce){
-  .t-farmer{transition:none}
+  .picker-dock{transition:none}
+}
+
+/* --- Dock di selezione mobile (fix founder 8 ago 2026) ---
+   Su mobile il feedback post-tap e il passo successivo non possono
+   vivere sotto la piega: al primo gusto scelto sale dal bordo basso
+   una barra-modulo sticky (stessa idea della .form-action in demo)
+   con i gusti selezionati aggiornati live e la STESSA CTA del
+   riepilogo desktop. Solo home (showSummary); niente popup. */
+.picker-dock{display:none}
+@media(max-width:760px){
+  .picker-dock{display:flex;flex-direction:column;gap:9px;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;background:var(--surface);border:1.5px solid var(--ink);box-shadow:0 6px 24px rgba(29,29,31,.22);padding:12px 14px;transform:translateY(calc(100% + 40px));transition:transform .3s var(--ease-apple)}
+  .picker-dock.on{transform:none}
+  .picker-dock .pd-k{display:block;font-family:var(--mono);font-size:8.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint)}
+  .picker-dock .pd-value{font-family:var(--serif);font-size:17px;font-weight:600;line-height:1.25}
+  .picker-dock .pill{width:100%;padding:12px 14px;font-size:11px}
 }
 
 /* ============================================================

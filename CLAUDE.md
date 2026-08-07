@@ -339,6 +339,15 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   Card bag in home corretta a 250g.
 - Restano compiti del founder (asset fisici): video 15s, foto vere,
   contatti reali footer.
+- MOBILE UX PICKER (fix founder, post-migrazione): (1) barra scarsità
+  mai troncata su mobile — va a capo, site.js pubblica l'altezza vera
+  in --sb-h e nav/story-head la usano per gli offset sticky; (2) campo
+  "Grown by…" (.t-farmer) SEMPRE visibile sulle schede, non più
+  reveal-alla-selezione (il contadino è la promessa, non un premio);
+  (3) .picker-dock: su <760px al primo gusto scelto sale una barra
+  fissa in basso (stile .form-action della demo, NIENTE popup) con
+  gusti selezionati live e la stessa CTA del riepilogo — stringhe
+  riusate, zero copy nuovo; solo home (showSummary), aria-live.
 - TIMBRI PICKER (fix founder, post-migrazione): il timbro delle tile
   fuori stagione vive FUORI dalla .swatch (dentro ereditava grayscale
   +opacity della foto e spariva); niente mix-blend, inchiostro ruggine
