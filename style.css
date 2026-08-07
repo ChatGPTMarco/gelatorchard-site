@@ -8,6 +8,12 @@
   --ink:#1D1D1F;
   --ink-soft:rgba(29,29,31,.62);
   --ink-faint:rgba(29,29,31,.42);
+  /* REGOLA ACCENTI (8 ago 2026): VERDE = azione e stato (CTA, link,
+     barre, focus, eyebrow di sezione) · ARANCIO = identità e calore
+     (logo, kicker del manifesto, strong delle righe IS, stelle) ·
+     STAMP (ruggine) = urgenza e scarsità (timbri, countdown hot,
+     callout FOMO). Eccezione ammessa: scale semaforiche data-viz
+     (es. .season-fill verde→arancio→ruggine). Non mischiare i ruoli. */
   --green:#2D7A4A;
   --green-deep:#1F5C37;
   --orange:#E8934A;
@@ -115,8 +121,7 @@ section{padding:88px 0}
 .tile.out .t-meta{color:var(--ink-faint)}
 .tile.out .t-link{color:var(--stamp)}
 .stamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-8deg);border:2px solid var(--stamp);color:var(--stamp);background:rgba(251,251,249,.88);font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:4px 10px;border-radius:6px;white-space:nowrap}
-.tile.soldout{opacity:.45;cursor:not-allowed}
-.tile.soldout .t-meta{color:var(--orange)}
+/* (.tile.soldout rimosso: classe morta del Cap. 3, sostituita da .sold) */
 /* Terzo stato (spec 6 ago 2026): in stagione ma esaurito — grigio CALDO,
    distinto a colpo d'occhio dal grigio freddo "fuori stagione" (.out) */
 .tile.sold{cursor:default}
@@ -486,7 +491,7 @@ textarea.field-input{min-height:90px;resize:vertical}
 .cp-level.mid{background:rgba(232,147,74,.15);color:#8A5220}
 .cp-level.min{background:rgba(29,29,31,.06);color:var(--ink-soft)}
 .cp-story{font-size:15.5px;color:var(--ink-soft);margin-top:12px}
-.cp-fomo{border-left:3px solid var(--orange);background:rgba(232,147,74,.09);border-radius:0 14px 14px 0;padding:12px 16px;font-size:14px;font-weight:600;margin-top:16px}
+.cp-fomo{border-left:3px solid var(--stamp);background:rgba(176,72,46,.07);border-radius:0 14px 14px 0;padding:12px 16px;font-size:14px;font-weight:600;margin-top:16px} /* urgenza = stamp (regola accenti) */
 .cal-panel h4{font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);margin:26px 0 10px}
 
 /* Righe frutta con stato stagionale */
@@ -581,13 +586,13 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .drop-status .ds-line2{font-size:13.5px;line-height:1.45}
 .ds-bar{width:100%;height:5px;border-radius:5px;background:rgba(29,29,31,.08);overflow:hidden}
 .ds-bar i{display:block;height:100%;background:var(--green);border-radius:5px;transition:width 1s linear}
-.ds-bar.servings i{background:var(--orange)}
+/* barra porzioni: verde come la barra tempo (stato = verde, regola accenti) */
 .ds-cap{font-size:12px;color:var(--ink-faint);letter-spacing:.02em}
 .ds-cap strong{color:var(--ink)}
 .drop-status.hot{border-color:rgba(176,72,46,.45)}
 .drop-status.hot .ds-kicker{color:var(--stamp)}
 .drop-status.hot .ds-timer{color:var(--stamp)}
-.drop-status.hot .ds-bar.time i{background:var(--stamp)}
+.drop-status.hot .ds-bar i{background:var(--stamp)}
 @media(prefers-reduced-motion:reduce){.ds-dot{animation:none}.ds-bar i{transition:none}}
 .cal-hero .drop-status,.howto-close .drop-status{margin-left:auto;margin-right:auto}
 .cal-hero .hero-ctas{justify-content:center}
@@ -613,7 +618,10 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .kit-people{width:100%;max-width:360px;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--surface);font-family:var(--sans);font-size:15px;font-weight:600;color:var(--ink);margin-bottom:16px;cursor:pointer}
 .kit-people:focus-visible{outline:2px solid var(--green);outline-offset:2px}
 
-/* --- Confronto etichette (10.5.2b) --- */
+/* --- Confronto etichette (10.5.2b) — dall'8 ago 2026 vive DENTRO il
+   manifesto scuro: le card bianche esplodono sul fondo ink --- */
+.manifesto-band .labels-grid{margin-top:36px}
+.manifesto-band .labels-verdict{color:#fff;opacity:.92}
 .labels-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px;align-items:stretch}
 @media(max-width:760px){.labels-grid{grid-template-columns:1fr}}
 .label-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px;display:flex;flex-direction:column}

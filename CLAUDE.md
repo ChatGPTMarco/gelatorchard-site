@@ -258,6 +258,20 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
 - CHECKLIST LANCIO: canonical, og:url, sitemap.xml e JSON-LD url puntano a
   chatgptmarco.github.io/gelatorchard-site → sostituire TUTTI col dominio vero.
 - Classici senza foto nel picker: scelta founder, per ora restano gradienti.
+- DIETA HOMEPAGE 14→9 (approvata e applicata 8 ago 2026): etichette DENTRO
+  il manifesto scuro (ancora #labels sulla labels-grid), proof bar a 5
+  numeri FUSA in #proof (cold-grid a 8 celle senza duplicati), panel
+  testimonials FUSO in #proof (ancora #testimonials sulla testi-grid,
+  blockquote assorbite nelle card), sezione #alerts RIMOSSA dalla home
+  (iscrizione su app.html/calendario; CTA band → app.html), unboxing
+  DENTRO #formats. Sezioni finali: hero, manifesto, season, flavors,
+  letter, journey, formats, proof, cta band.
+- REGOLA ACCENTI (in :root di style.css): verde = azione/stato, arancio =
+  identità/calore (logo, mf-kicker, IS, stelle), stamp = urgenza/scarsità.
+  Eccezione: scale semaforiche data-viz (.season-fill). Barra porzioni
+  drop card ora verde; .cp-fomo ora stamp; .tile.soldout (morta) rimossa.
+- Hero flip, video 15s, contatti footer: RIMANDATI, si fanno quando lo
+  dice il founder.
 
 ## Metodo di lavoro
 - Modifiche chirurgiche, mai rigenerare file interi senza necessità.
