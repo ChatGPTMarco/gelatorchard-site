@@ -83,7 +83,10 @@
             '<li><span class="dl-k">Farm</span><span class="dl-v">' + b.farmName + '</span></li>' +
             '<li><span class="dl-k">Location</span><span class="dl-v">' + b.location + '</span></li>' +
             '<li><span class="dl-k">Variety</span><span class="dl-v">' + b.variety + '</span></li>' +
-            '<li><span class="dl-k">Harvest</span><span class="dl-v">' + b.harvest + ', ' + b.harvestTime + '</span></li>' +
+            /* L'ora di raccolta è OPZIONALE: se il contadino non la manda,
+               si mostra solo la data (mai inventarla — PRODUZIONE.md §7) */
+            '<li><span class="dl-k">Harvest</span><span class="dl-v">' + b.harvest +
+              (b.harvestTime ? ', ' + b.harvestTime : '') + '</span></li>' +
             '<li><span class="dl-k">Method</span><span class="dl-v">' + b.method + '</span></li>' +
             '<li><span class="dl-k">Certification</span><span class="dl-v">' + b.certification + '</span></li>' +
           '</ul>' +
