@@ -280,7 +280,8 @@ section{padding:88px 0}
 
 /* --- Formati → listino tariffario (Registro Tappa 2): voce di
    listino con tag da modulo e prezzo in mono sopra riga tratteggiata --- */
-.formats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;align-items:stretch}
+/* 5 voci di listino (8 ago sera): auto-fit, su desktop stanno in fila */
+.formats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;margin-top:52px;align-items:stretch}
 .fmt{display:flex;flex-direction:column;gap:10px;text-align:left}
 .fmt-tag{align-self:flex-start;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);background:none;border:1px dashed var(--ink-soft);border-radius:0;padding:4px 10px}
 .fmt.featured .fmt-tag{color:#fff;background:var(--green);border:1px solid var(--green-deep)}
