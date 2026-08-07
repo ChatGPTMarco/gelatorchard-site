@@ -167,8 +167,10 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
 Il founder ha approvato la migrazione del sito alla direzione della demo
 (demo-registro.html) con un vincolo ASSOLUTO: **COPY CONGELATO — nessuna
 parola dei testi va cambiata in questa fase**, solo pelle (CSS, markup
-minimo, font). STATO: TAPPE 1 E 2 COMPLETATE (8 ago 2026), in attesa
-del verdetto del founder prima della tappa 3.
+minimo, font). STATO: MIGRAZIONE COMPLETATA — tutte e 3 le tappe fatte
+e PUSHATE l'8 ago 2026 (live su GitHub Pages; remote riallineato:
+origin era uno snapshot manuale del 4 ago, sostituito con force-push
+autorizzato dal founder; URL repo ora ChatGPTMarco/gelatorchard-site).
 Piano a 3 tappe, checkpoint col founder dopo ognuna:
 1. ✅ Fondamenta globali (fatta, zero testi toccati): token in style.css
    (--bg → carta #FAF8F2, --mono IBM Plex Mono aggiunto al link Google
@@ -197,8 +199,22 @@ Piano a 3 tappe, checkpoint col founder dopo ognuna:
    caroselli → schede (kicker/meta/scorta in mono, citazioni e righe
    del Viaggio restano serif, frecce/dot squadrati). Motori JS intatti
    salvo le 3 stringhe-link in tileHTML (flavors.js).
-3. order.html → modulo d'ordine, story page → FULL RECORD, pagine restanti
-   (calendario, business, app, how-to-order).
+3. ✅ order.html → modulo d'ordine (fatta, solo CSS, zero testi):
+   fmt-tab linguette mono, ticket batch a riga di registro, price-block
+   bordo ink con prezzo mono, basket drawer (item squadrati, qty-btn
+   quadrati, fulfilment mono, totali mono con riga tratteggiata),
+   checkout-card bordo ink, field-label mono uppercase, field-input
+   caselle 1.5px ink, notice tratteggiate, paybtn mono, done-steps
+   quadrati, select Kit mono. Story → FULL RECORD: story-head carta
+   con riga ink (via blur), sh-* mono e segmenti quadrati, data-list
+   tabella campi mono k/v, prod-log orari mono, .qc timbrini quadrati,
+   sc-kicker mono, foto/mappa bordo ink. Calendario: cp-level/h4/
+   fr-state/fl-badge mono, stamp-inline double-border, barre squadrate,
+   testi ruota SVG in mono. Business: eredita flavor-tab/checkout-card/
+   field. Alerts: fcheck squadrate, fc-range mono. How-to-order:
+   drop-step bordo ink, ds-num quadrato, ds-day mono. Globali: eyebrow
+   e mf-kicker in mono, badge-soon e photo-tag squadrati. Citazioni,
+   lettera e story-quote restano serif (guardia anti-freddezza).
 Principi: Fraunces resta la voce umana (lettera, headline), monospace SOLO
 per i dati, frutta unico colore saturo, timbri --stamp per stagioni/urgenza,
 guardia anti-freddezza (se sembra una bolletta, scaldare). Tutti i motori
