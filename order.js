@@ -360,7 +360,19 @@
     if (G.track) G.track('add_to_basket', { format: activeFormat, people: people, flavours: sel.join(',') });
     saveBasket();
     renderBasket();
-    openDrawer();
+    /* NIENTE drawer automatico (fix founder, 8 ago sera): l'Add non è
+       il checkout — si resta sul catalogo per scegliere altri gusti o
+       formati (un secondo Cup di un altro gusto, ecc.). Il carrello
+       si apre solo dal bottone Basket. Feedback: selezione svuotata
+       (picker pronto al prossimo gusto, la hint sotto l'Add torna a
+       "Select a flavour to continue") + pulse sul fab col conteggio. */
+    picker.clear();
+    var fab = document.getElementById('basket-fab');
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (fab && !fab.hidden && !reduced) {
+      fab.classList.add('pulse');
+      setTimeout(function () { fab.classList.remove('pulse'); }, 1600);
+    }
   });
 
   /* ---------- 3.7 basket drawer ---------- */

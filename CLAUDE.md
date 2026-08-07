@@ -405,6 +405,12 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   sotto, pulse su #op-add invece che sul menu taglie. Il Kit tiene
   etichetta/CTA/atterraggio suoi (taglia). syncDockFormat non nasconde
   più il dock fuori dal Kit: aggiorna etichetta e CTA.
+- ADD ≠ CHECKOUT (fix founder, 8 ago sera): l'Add to Basket NON apre
+  più il drawer (anti-pattern: sbatteva l'utente sul checkout dopo un
+  solo Cup). Dopo l'Add: selezione svuotata via picker.clear() (la
+  hint torna "Select a flavour to continue", si può scegliere il
+  prossimo gusto/formato), fab Basket col conteggio + pulse. Il
+  drawer si apre SOLO dal bottone Basket.
 - TIMBRI PICKER (fix founder, post-migrazione): il timbro delle tile
   fuori stagione vive FUORI dalla .swatch (dentro ereditava grayscale
   +opacity della foto e spariva); niente mix-blend, inchiostro ruggine
