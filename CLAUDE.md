@@ -417,11 +417,14 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   più il dock fuori dal Kit: aggiorna etichetta e CTA.
 - PULSE DISPONIBILITÀ PICKER (founder, 9 ago 2026): scorrendo lo
   schedario, le schede IN STAGIONE pulsano quando entrano in vista
-  (initTilePulse in motion.js, riuso keyframes tile-pulse, onda
-  0/120/…ms tra schede vicine, ritriggherabile a ogni rientro); le
-  grigie/.out e le selezionate restano ferme; spento con
-  prefers-reduced-motion. Selettore: .tile[role="checkbox"] (solo le
-  selezionabili hanno role).
+  (initTilePulse in motion.js, onda 0/120/…ms tra schede vicine,
+  ritriggherabile a ogni rientro); le grigie/.out e le selezionate
+  restano ferme; spento con prefers-reduced-motion. Selettore:
+  .tile[role="checkbox"] (solo le selezionabili hanno role).
+  SECONDO FIX founder: pulsa TUTTA la scheda avanti/indietro
+  (keyframes tile-breathe, scale 1→1.04→1, .7s ×2, .tile.pulse) —
+  NON l'alone sul bordo foto; tile-pulse (glow) resta solo per
+  kit-people/op-add/fmt-tab. Vale anche per il pulse da carosello.
 - CRO FUNNEL 5 PUNTI (8 ago sera, approvati dal founder in blocco):
   (1) CHECKOUT A 2 PASSI — l'interstitial manifesto (ex Step B, 3.8)
   non esiste più: conferma → pagamento; il manifesto NOT/IS vive in
