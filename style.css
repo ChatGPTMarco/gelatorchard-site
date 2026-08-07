@@ -567,10 +567,20 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 
 /* --- How to Order: drop settimanale --- */
 .howto-lede{font-size:clamp(17px,2.2vw,20px);line-height:1.6;margin-top:8px}
-.drop-status{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:10px 20px;border-radius:100px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-size:14px;color:var(--ink-soft)}
+/* Pillola FOMO a due righe + contatore (scelta founder 8 ago 2026) */
+.drop-status{display:inline-flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:22px;padding:14px 22px;border-radius:18px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-size:14px;color:var(--ink-soft);text-align:left;max-width:480px}
 .drop-status strong{color:var(--ink)}
+.drop-status .ds-line1{display:flex;align-items:center;gap:9px;color:var(--ink);font-weight:700;font-size:15px}
+.drop-status .ds-line2{font-size:13.5px;line-height:1.45}
+.drop-status .ds-cap{font-size:12px;color:var(--ink-faint);letter-spacing:.02em}
 .drop-status .ds-dot{width:9px;height:9px;border-radius:50%;background:var(--stamp);flex:none}
 .drop-status .ds-dot.open{background:var(--green)}
+.drop-status.hot{border-color:rgba(176,72,46,.45)}
+.drop-status.hot .ds-line1{color:var(--stamp)}
+.ds-count{width:100%;font-size:12.5px;font-weight:600;color:var(--ink)}
+.ds-bar{margin-top:5px;width:100%;height:4px;border-radius:4px;background:rgba(29,29,31,.08);overflow:hidden}
+.ds-bar i{display:block;height:100%;background:var(--green);border-radius:4px}
+.drop-status.hot .ds-bar i{background:var(--stamp)}
 .cal-hero .drop-status,.howto-close .drop-status{margin-left:auto;margin-right:auto}
 .cal-hero .hero-ctas{justify-content:center}
 .drop-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:52px}

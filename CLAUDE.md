@@ -142,10 +142,18 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   Tower Hamlets/SFBB in DA VERIFICARE.
   DECISIONE FOUNDER (opzione B, 6 ago 2026): fuori finestra il checkout NON si
   blocca mai — l'ordine si accoda al drop successivo e il copy lo dichiara
-  (pillola [data-drop-status] su how-to-order e /order, riga nel riepilogo
-  ordine). howto.js è condiviso: caricato anche da order.html dopo order.js.
+  (pillola [data-drop-status] su how-to-order, /order e picker in home).
+  howto.js è condiviso: caricato da order.html e index.html.
   Mai scrivere "closed"/"chiuso" come se il negozio fosse chiuso: è chiusa
   solo la conta della settimana.
+  PILLOLA FOMO (scelta founder 8 ago 2026, "combo"): loss-frame con le due
+  date reali ("Saturday 15 or Saturday 22: your call" + countdown vivo alla
+  chiusura, lecito perché la scadenza è vera), stato .hot ruggine sotto le
+  6 ore, riga cap "42 servings per drop · first come, first served".
+  AL LANCIO il contatore reale "X of 42 servings left" + barra si accende
+  da solo via GelatorchardBackend.dropServingsOrdered (serve la RPC
+  Supabase drop_servings, vedi commento in backend.js). MAI numeri
+  inventati nel contatore: senza dato reale mostra solo il cap.
 - story.js (nella radice) → logica story page (story.html?batch=… / ?flavour=…). I dati batch
   vivono SOLO in Gelatorchard.BATCHES (flavors.js): registro JSON provvisorio, al lancio
   alimentato dal CMS Notion del founder (1 pagina Notion per batch → QR sull'etichetta).

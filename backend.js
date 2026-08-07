@@ -104,6 +104,20 @@ window.GelatorchardBackend = (function () {
       }).then(function () { return { live: true }; });
     },
 
+    /* Contatore FOMO della pillola drop (howto.js): porzioni già
+       ordinate nel drop corrente. AL LANCIO richiede una funzione RPC
+       Supabase `drop_servings` che sommi le porzioni degli ordini
+       arrivati dall'apertura della finestra corrente (42 = cap,
+       PRODUZIONE.md). Finché non esiste o in preview: null → la
+       pillola mostra il cap statico, MAI un numero inventato. */
+    dropServingsOrdered: function () {
+      if (!isLive()) return Promise.resolve(null);
+      return rest('rpc/drop_servings', 'POST', {}).then(function (r) {
+        return (typeof r === 'number') ? r
+          : (r && typeof r.servings === 'number') ? r.servings : null;
+      }).catch(function () { return null; });
+    },
+
     /* Cap. 6 → webhook notifica (email/Slack di Marco) */
     sendEnquiry: function (payload) {
       track('enquiry_send', { type: payload && payload.type });
