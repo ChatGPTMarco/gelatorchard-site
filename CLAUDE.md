@@ -415,6 +415,13 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   sotto, pulse su #op-add invece che sul menu taglie. Il Kit tiene
   etichetta/CTA/atterraggio suoi (taglia). syncDockFormat non nasconde
   più il dock fuori dal Kit: aggiorna etichetta e CTA.
+- PULSE DISPONIBILITÀ PICKER (founder, 9 ago 2026): scorrendo lo
+  schedario, le schede IN STAGIONE pulsano quando entrano in vista
+  (initTilePulse in motion.js, riuso keyframes tile-pulse, onda
+  0/120/…ms tra schede vicine, ritriggherabile a ogni rientro); le
+  grigie/.out e le selezionate restano ferme; spento con
+  prefers-reduced-motion. Selettore: .tile[role="checkbox"] (solo le
+  selezionabili hanno role).
 - CRO FUNNEL 5 PUNTI (8 ago sera, approvati dal founder in blocco):
   (1) CHECKOUT A 2 PASSI — l'interstitial manifesto (ex Step B, 3.8)
   non esiste più: conferma → pagamento; il manifesto NOT/IS vive in

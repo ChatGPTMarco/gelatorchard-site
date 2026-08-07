@@ -203,6 +203,43 @@
     update();
   }
 
+  /* ---------- Pulse di disponibilità sul picker (founder, 9 ago) ----
+     Scorrendo lo schedario, le schede IN STAGIONE (role=checkbox)
+     pulsano quando ENTRANO in vista — riuso dei keyframes tile-pulse —
+     con un leggero sfasamento a onda tra schede vicine. Le grigie
+     (.out/.sold, senza role) restano ferme. Niente pulse sulle
+     selezionate (hanno già bordo verde e ✕) e, come tutto il motion
+     layer, niente con prefers-reduced-motion. Scroll listener secco
+     (niente rAF: 13 rect per evento sono spiccioli, stesso pattern
+     del dock in flavors.js). */
+  function initTilePulse() {
+    if (REDUCED) return;
+    var tiles = Array.prototype.slice.call(document.querySelectorAll('.tile[role="checkbox"]'));
+    if (!tiles.length) return;
+    function check() {
+      var wh = window.innerHeight;
+      var wave = 0;
+      tiles.forEach(function (t) {
+        var r = t.getBoundingClientRect();
+        var visible = r.height > 0 && r.top < wh * 0.88 && r.bottom > wh * 0.12;
+        var was = t.__pulsedIn;
+        t.__pulsedIn = visible;
+        if (visible && !was && !t.classList.contains('selected')) {
+          (function (el, delay) {
+            setTimeout(function () {
+              el.classList.add('pulse');
+              setTimeout(function () { el.classList.remove('pulse'); }, 1600);
+            }, delay);
+          })(t, (wave++ % 5) * 120);
+        }
+      });
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check, { passive: true });
+    check();
+  }
+
   scan();
   initScrollFx();
+  initTilePulse();
 })();
