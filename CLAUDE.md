@@ -220,6 +220,12 @@ per i dati, frutta unico colore saturo, timbri --stamp per stagioni/urgenza,
 guardia anti-freddezza (se sembra una bolletta, scaldare). Tutti i motori
 JS restano intoccati. La demo è il riferimento visivo vincolante.
 - Deploy: GitHub Pages dal branch main → ogni push è live su https://chatgptmarco.github.io/gelatorchard-site/
+- CACHE-BUSTING (8 ago 2026, obbligatorio): tutti i <script src> e il
+  <link> di style.css portano ?v=rN (ora r3). GitHub Pages serve i file
+  con max-age=600 e i telefoni tengono i .js vecchi anche oltre: senza
+  bump i fix arrivano tardi o mai. QUANDO SI DEPLOYA una modifica a
+  js/css, INCREMENTARE la versione in TUTTE le 8 pagine (perl one-liner:
+  s/v=r3/v=r4/g). I nomi file restano invariati.
 
 ## Design system (vincolante)
 - Stile: Apple minimal, light mode. bg #FBFBF9, verde brand #2D7A4A, arancio #E8934A, ink #1D1D1F.
