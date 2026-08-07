@@ -3,7 +3,10 @@
    Capitolo 1 · Token e componenti globali
    ============================================================ */
 :root{
-  --bg:#FBFBF9;
+  /* MIGRAZIONE "IL REGISTRO" — Tappa 1 (8 ago 2026): carta più calda,
+     radius netti, bordi ink, monospace per i dati. Riferimento visivo
+     vincolante: demo-registro.html. Copy congelato: qui solo pelle. */
+  --bg:#FAF8F2;
   --surface:#FFFFFF;
   --ink:#1D1D1F;
   --ink-soft:rgba(29,29,31,.62);
@@ -18,11 +21,12 @@
   --green-deep:#1F5C37;
   --orange:#E8934A;
   --stamp:#B0482E;
-  --line:rgba(29,29,31,.08);
-  --shadow:0 1px 2px rgba(0,0,0,.04), 0 12px 32px rgba(29,29,31,.06);
-  --radius:22px;
+  --line:rgba(29,29,31,.16);
+  --shadow:5px 5px 0 rgba(29,29,31,.08); /* ombra "a piastra" da modulo stampato */
+  --radius:0px; /* registro: angoli netti, niente card arrotondate */
   --serif:'Fraunces', Georgia, serif;
   --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --mono:'IBM Plex Mono', ui-monospace, Menlo, Consolas, monospace; /* SOLO per i dati */
   /* Motion (Cap. 9.4): curva e durate standard per TUTTE le transizioni */
   --ease-apple:cubic-bezier(.16,1,.3,1);
   --dur-fast:.4s;
@@ -31,7 +35,9 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px;
+     /* trama millimetrata della carta (dalla demo registro) */
+     background-image:radial-gradient(rgba(29,29,31,.025) 1px,transparent 1px);background-size:22px 22px}
 h1,h2,h3,.serif{font-family:var(--serif);font-optical-sizing:auto;font-weight:500;letter-spacing:-.015em}
 img{max-width:100%;display:block}
 a{color:inherit}
@@ -45,21 +51,25 @@ section{padding:88px 0}
 .sub{color:var(--ink-soft);font-size:17px;max-width:56ch;margin-top:16px}
 .caption{color:var(--ink-faint);font-size:13px}
 
-/* ---------- Bottoni (pillole) ---------- */
-.pill{display:inline-flex;align-items:center;gap:8px;border-radius:100px;padding:13px 26px;font-family:var(--sans);font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .18s ease, box-shadow .18s ease, background .18s ease}
-.pill:hover{transform:scale(1.035);box-shadow:var(--shadow)}
-.pill-dark{background:var(--ink);color:#fff}
-.pill-green{background:var(--green);color:#fff}
+/* ---------- Bottoni (da modulo — registro, Tappa 1) ----------
+   La classe resta .pill per non toccare i markup: la pelle è quella
+   del bottone .fa-btn della demo (mono uppercase, angoli netti,
+   bordo pieno, niente scale al hover). */
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:0;padding:13px 24px;font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1.5px solid var(--ink);transition:background .15s ease,color .15s ease,border-color .15s ease}
+.pill:hover{background:rgba(29,29,31,.05)}
+.pill-dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pill-dark:hover{background:#000;border-color:#000}
+.pill-green{background:var(--green);color:#fff;border-color:var(--green-deep)}
 .pill-green:hover{background:var(--green-deep)}
-.pill-ghost{background:transparent;color:var(--ink);border-color:var(--line);background:var(--surface)}
-.pill-sm{padding:9px 18px;font-size:13.5px}
+.pill-ghost{background:var(--surface);color:var(--ink);border-color:var(--ink)}
+.pill-sm{padding:9px 16px;font-size:11.5px}
 
-/* ---------- Card ---------- */
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+/* ---------- Card (scheda da schedario: bordo ink, niente radius) ---------- */
+.card{background:var(--surface);border:1.5px solid var(--ink);border-radius:var(--radius);box-shadow:none;padding:28px}
 .card.featured{border:2px solid var(--green)}
 
-/* ---------- Nav ---------- */
-.nav{position:sticky;top:0;z-index:60;background:rgba(251,251,249,.78);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid var(--line)}
+/* ---------- Nav (carta intestata: fondo carta pieno, riga ink) ---------- */
+.nav{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1.5px solid var(--ink)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 /* Logo lockup: GELAT + mark (arancia/foglia/cono come "O") + RCHARD */
 .brand{display:inline-flex;align-items:center;text-decoration:none;line-height:1}
@@ -68,9 +78,9 @@ section{padding:88px 0}
 .footer .brand .brand-word{font-size:17px}
 .footer .brand .logo-o{width:20px;height:30px}
 .nav-links{display:flex;gap:6px;list-style:none}
-.nav-links a{display:block;padding:8px 14px;border-radius:100px;font-size:14px;font-weight:500;color:var(--ink-soft);text-decoration:none;transition:background .15s,color .15s}
+.nav-links a{display:block;padding:8px 12px;border-radius:0;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:background .15s,color .15s}
 .nav-links a:hover{color:var(--ink);background:rgba(29,29,31,.05)}
-.nav-links a.active{color:var(--ink);background:rgba(45,122,74,.1)}
+.nav-links a.active{color:var(--green-deep);background:rgba(45,122,74,.1)}
 @media(max-width:760px){.nav-links{display:none}}
 /* --- Hamburger + menu mobile (8 ago 2026): sotto i 760px i link
    centrali spariscono, il menu vive qui --- */
@@ -81,9 +91,9 @@ section{padding:88px 0}
 .nav-burger.open span:nth-child(2){opacity:0}
 .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 @media(max-width:760px){.nav-burger{display:flex}}
-.nav-mobile{border-top:1px solid var(--line);background:rgba(251,251,249,.96);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4)}
+.nav-mobile{border-top:1px solid var(--line);background:var(--bg)}
 .nav-mobile ul{list-style:none;padding:8px 24px 14px}
-.nav-mobile li a{display:block;padding:13px 0;font-size:16px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+.nav-mobile li a{display:block;padding:13px 0;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-bottom:1px dashed var(--line)}
 .nav-mobile li:last-child a{border-bottom:none}
 @media(min-width:761px){.nav-mobile{display:none!important}}
 
@@ -187,7 +197,7 @@ section{padding:88px 0}
 .hero .h1 .green{color:var(--green)}
 .hero-sub{font-size:19px;color:var(--ink-soft);max-width:520px;margin:22px auto 0}
 .hero-ctas{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:32px}
-.hero-visual{margin:56px auto 0;max-width:920px;height:min(52vw,420px);border-radius:32px;position:relative;overflow:hidden;box-shadow:var(--shadow);background:linear-gradient(135deg,#F4A6B4 0%,#E8536B 45%,#C1304A 100%)}
+.hero-visual{margin:56px auto 0;max-width:920px;height:min(52vw,420px);border-radius:0;position:relative;overflow:hidden;border:1.5px solid var(--ink);box-shadow:var(--shadow);background:linear-gradient(135deg,#F4A6B4 0%,#E8536B 45%,#C1304A 100%)}
 .hv-overlay{position:absolute;left:0;right:0;bottom:0;padding:56px 28px 22px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.55));color:#fff;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;text-align:left}
 .hv-title{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:-.01em}
 .hv-sub{font-size:13.5px;opacity:.9;margin-top:2px}
@@ -275,7 +285,7 @@ section{padding:88px 0}
 .cal-text p{font-size:14.5px;color:var(--ink-soft)}
 
 /* --- Unboxing --- */
-.unbox-visual{border-radius:32px;overflow:hidden;position:relative;height:min(58vw,460px);box-shadow:var(--shadow);background:linear-gradient(135deg,#E9E4DB,#D8D1C4)}
+.unbox-visual{border-radius:0;border:1.5px solid var(--ink);overflow:hidden;position:relative;height:min(58vw,460px);box-shadow:var(--shadow);background:linear-gradient(135deg,#E9E4DB,#D8D1C4)}
 .unbox-placeholder{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);border:2px dashed rgba(29,29,31,.25);border-radius:12px;padding:14px 22px;text-align:center}
 .unbox-visual .hv-title{font-size:28px}
 .unbox-visual .hv-sub{max-width:52ch}
@@ -291,12 +301,13 @@ section{padding:88px 0}
 .quotes-note{text-align:center;font-size:12.5px;color:var(--ink-faint);margin-top:28px}
 
 /* --- CTA band --- */
-.cta-band{border-radius:32px;background:linear-gradient(135deg,var(--green-deep),var(--green));color:#fff;text-align:center;padding:72px 32px}
+.cta-band{border-radius:0;background:linear-gradient(135deg,var(--green-deep),var(--green));color:#fff;text-align:center;padding:72px 32px}
 .cta-band h2{color:#fff;font-size:clamp(28px,4vw,44px);line-height:1.12}
 .cta-band p{opacity:.92;margin-top:14px;font-size:16.5px}
 .cta-band .ctas{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
-.pill-white{background:#fff;color:var(--green)}
-.pill-ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.pill-white{background:#fff;color:var(--green-deep);border-color:#fff}
+.pill-white:hover{background:#fff}
+.pill-ghost-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
 .pill-ghost-light:hover{background:rgba(255,255,255,.12)}
 
 /* ============================================================
@@ -555,7 +566,7 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 
 /* --- Barra di scarsità (10.7): sticky sopra la nav, ovunque --- */
 .scarcity-bar{position:sticky;top:0;z-index:80;background:var(--green-deep);height:38px;display:flex;align-items:center;justify-content:center;padding:0 16px}
-.scarcity-bar a{color:#fff;font-size:12.5px;font-weight:500;letter-spacing:.02em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.scarcity-bar a{color:#fff;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.04em;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .scarcity-bar a:hover{text-decoration:underline}
 .scarcity-bar strong{font-weight:700}
 .scarcity-bar.sb-last{background:var(--stamp)} /* ≤7 giorni: rosso ruggine (Lista A.2) */
@@ -578,20 +589,22 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .howto-lede{font-size:clamp(17px,2.2vw,20px);line-height:1.6;margin-top:8px}
 /* Drop card FOMO "viva" (founder 8 ago 2026): orologio a secondi,
    due date, barra del tempo che si svuota, pallino pulsante */
-.drop-status{display:inline-flex;flex-direction:column;align-items:flex-start;gap:7px;margin-top:24px;padding:18px 24px 16px;border-radius:20px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-size:14px;color:var(--ink-soft);text-align:left;min-width:min(420px,100%);max-width:480px}
+/* Registro Tappa 1: la drop card diventa docket — bordo ink, angoli
+   netti, orologio e cap in monospace (come .docket della demo) */
+.drop-status{display:inline-flex;flex-direction:column;align-items:flex-start;gap:7px;margin-top:24px;padding:18px 24px 16px;border-radius:0;background:var(--surface);border:1.5px solid var(--ink);box-shadow:none;font-size:14px;color:var(--ink-soft);text-align:left;min-width:min(420px,100%);max-width:480px}
 .drop-status strong{color:var(--ink)}
-.ds-kicker{display:flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:700;color:var(--green-deep)}
+.ds-kicker{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--green-deep)}
 .ds-dot{width:9px;height:9px;border-radius:50%;background:var(--stamp);flex:none;animation:ds-pulse 1.6s ease-in-out infinite}
 .ds-dot.open{background:var(--green)}
 @keyframes ds-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
 .ds-big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.ds-timer{font-family:var(--serif);font-size:clamp(26px,4vw,34px);font-weight:600;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.01em}
-.ds-to{font-size:12.5px;color:var(--ink-faint)}
+.ds-timer{font-family:var(--mono);font-size:clamp(26px,4vw,34px);font-weight:600;line-height:1.05;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.ds-to{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-faint)}
 .drop-status .ds-line2{font-size:13.5px;line-height:1.45}
-.ds-bar{width:100%;height:5px;border-radius:5px;background:rgba(29,29,31,.08);overflow:hidden}
-.ds-bar i{display:block;height:100%;background:var(--green);border-radius:5px;transition:width 1s linear}
+.ds-bar{width:100%;height:5px;border-radius:0;background:rgba(29,29,31,.08);overflow:hidden}
+.ds-bar i{display:block;height:100%;background:var(--green);border-radius:0;transition:width 1s linear}
 /* barra porzioni: verde come la barra tempo (stato = verde, regola accenti) */
-.ds-cap{font-size:12px;color:var(--ink-faint);letter-spacing:.02em}
+.ds-cap{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.05em;text-transform:uppercase;border-top:1px dashed var(--line);padding-top:9px;margin-top:2px;width:100%}
 .ds-cap strong{color:var(--ink)}
 .drop-status.hot{border-color:rgba(176,72,46,.45)}
 .drop-status.hot .ds-kicker{color:var(--stamp)}

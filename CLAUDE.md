@@ -167,12 +167,21 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
 Il founder ha approvato la migrazione del sito alla direzione della demo
 (demo-registro.html) con un vincolo ASSOLUTO: **COPY CONGELATO — nessuna
 parola dei testi va cambiata in questa fase**, solo pelle (CSS, markup
-minimo, font). STATO: NON ANCORA INIZIATA (tappa 1 interrotta prima di
-qualsiasi modifica). Piano a 3 tappe, checkpoint col founder dopo ognuna:
-1. Fondamenta globali: token (carta #FAF8F2, --mono IBM Plex Mono da
-   aggiungere al link Google Fonts di ogni pagina, radius netti, bordi
-   ink), .pill → bottoni da modulo (mono uppercase), nav → carta
-   intestata, barra scarsità e drop docket in stile registro.
+minimo, font). STATO: TAPPA 1 COMPLETATA (8 ago 2026), in attesa del
+verdetto del founder prima della tappa 2.
+Piano a 3 tappe, checkpoint col founder dopo ognuna:
+1. ✅ Fondamenta globali (fatta, zero testi toccati): token in style.css
+   (--bg → carta #FAF8F2, --mono IBM Plex Mono aggiunto al link Google
+   Fonts di tutte le 8 pagine incluso admin, --radius → 0, --line → .16,
+   --shadow → piastra 5px 5px 0, trama millimetrata sul body), .pill →
+   bottone da modulo (mono uppercase, bordo 1.5px, niente scale hover;
+   classi invariate), .card e hero-visual/unbox-visual bordo ink e
+   angoli netti (cta-band squadrata), nav → carta intestata (fondo
+   carta pieno senza blur, riga ink 1.5px, link mono uppercase, menu
+   mobile allineato), barra scarsità in mono (colori/soglie invariati),
+   drop docket [data-drop-status] → documento (bordo ink, orologio
+   mono, riga cap mono uppercase con riga tratteggiata). howto.js,
+   site.js e tutti i motori JS INTOCCATI.
 2. Picker → schedario (specimen card come in demo, con Full record/Alert),
    formati → listino tariffario, prova sociale → registro, slide caroselli
    → schede con campi mono.
