@@ -470,7 +470,7 @@
         '<div class="swatch ' + f.sw + '"><span class="stamp">' + st.stampLabel + '</span></div>' +
         '<div class="t-name">' + f.name + '</div>' +
         '<div class="t-meta">' + meta + '</div>' +
-        '<a class="t-link" href="app.html?fruit=' + f.id + '">Tell me when it’s back →</a>' +
+        '<a class="t-link" href="app.html?fruit=' + f.id + '">Alert me when it returns →</a>' +
         '</div>';
     }
     /* Terzo stato (spec 6 ago 2026): in stagione MA scorta esaurita.
@@ -486,8 +486,8 @@
         '<div class="swatch ' + f.sw + '"></div>' +
         '<div class="t-name">' + f.name + '</div>' +
         '<div class="t-meta">Sold out: more fruit on order, back soon</div>' +
-        (bs ? '<a class="t-link" href="story.html?batch=' + bs.id + '">Read the story →</a>' : '') +
-        (st.always ? '' : '<a class="t-link" href="app.html?fruit=' + f.id + '">Tell me when it’s back →</a>') +
+        (bs ? '<a class="t-link" href="story.html?batch=' + bs.id + '">Full record #' + bs.id + ' →</a>' : '') +
+        (st.always ? '' : '<a class="t-link" href="app.html?fruit=' + f.id + '">Alert me when it returns →</a>') +
         '</div>';
     }
 
@@ -505,8 +505,12 @@
         : '<div class="t-farmer"><span class="tf-k">Grown in</span>' +
           ((s && s.origin) ? s.origin : 'Britain') + ' · batch details ship on your bag</div>';
     }
+    /* Registro Tappa 2: col batch pubblicato il link parla la lingua
+       dello schedario ("Full record #NNN", come in demo); senza batch
+       resta il link storia per gusto. */
     var story = st.always ? '' :
-      '<a class="t-link" href="story.html?flavour=' + f.id + '">Read the story →</a>';
+      (b ? '<a class="t-link" href="story.html?batch=' + b.id + '">Full record #' + b.id + ' →</a>'
+         : '<a class="t-link" href="story.html?flavour=' + f.id + '">Read the story →</a>');
     /* Tastiera (Lista A.1): la tile è un checkbox focusabile — il toggle
        via Enter/Spazio vive nel gestore keydown del picker */
     return '<div class="tile" data-id="' + f.id + '" role="checkbox" aria-checked="false" tabindex="0"' +

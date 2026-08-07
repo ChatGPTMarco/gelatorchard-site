@@ -167,8 +167,8 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
 Il founder ha approvato la migrazione del sito alla direzione della demo
 (demo-registro.html) con un vincolo ASSOLUTO: **COPY CONGELATO — nessuna
 parola dei testi va cambiata in questa fase**, solo pelle (CSS, markup
-minimo, font). STATO: TAPPA 1 COMPLETATA (8 ago 2026), in attesa del
-verdetto del founder prima della tappa 2.
+minimo, font). STATO: TAPPE 1 E 2 COMPLETATE (8 ago 2026), in attesa
+del verdetto del founder prima della tappa 3.
 Piano a 3 tappe, checkpoint col founder dopo ognuna:
 1. ✅ Fondamenta globali (fatta, zero testi toccati): token in style.css
    (--bg → carta #FAF8F2, --mono IBM Plex Mono aggiunto al link Google
@@ -182,9 +182,21 @@ Piano a 3 tappe, checkpoint col founder dopo ognuna:
    drop docket [data-drop-status] → documento (bordo ink, orologio
    mono, riga cap mono uppercase con riga tratteggiata). howto.js,
    site.js e tutti i motori JS INTOCCATI.
-2. Picker → schedario (specimen card come in demo, con Full record/Alert),
-   formati → listino tariffario, prova sociale → registro, slide caroselli
-   → schede con campi mono.
+2. ✅ Picker → schedario (fatta): .tile = specimen card (scheda bianca
+   bordo ink, foto con riga di separazione, nome Fraunces, meta/farmer
+   reveal in mono, casella di spunta ::before con ✕, link a striscia
+   in fondo, hover lift + ombra dura, timbro double-border ruggine);
+   griglia auto-fill minmax(230px,1fr); tab Frutta/Classici a
+   linguette mono. UNICI testi toccati (autorizzati dal piano, come
+   in demo): link scheda → "Full record #NNN →" quando il batch è
+   pubblicato (href ?batch=) e "Alert me when it returns →" al posto
+   di "Tell me when it's back →"; tutto il resto del copy intatto.
+   Formati home → listino (tag tratteggiato mono, prezzo mono su riga
+   tratteggiata), prova sociale → registro (batch-log libro mastro
+   ink+mono, cold-cell tratteggiate con numeri mono, t-who mono),
+   caroselli → schede (kicker/meta/scorta in mono, citazioni e righe
+   del Viaggio restano serif, frecce/dot squadrati). Motori JS intatti
+   salvo le 3 stringhe-link in tileHTML (flavors.js).
 3. order.html → modulo d'ordine, story page → FULL RECORD, pagine restanti
    (calendario, business, app, how-to-order).
 Principi: Fraunces resta la voce umana (lettera, headline), monospace SOLO
