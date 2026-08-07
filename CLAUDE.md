@@ -348,6 +348,12 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   fissa in basso (stile .form-action della demo, NIENTE popup) con
   gusti selezionati live e la stessa CTA del riepilogo — stringhe
   riusate, zero copy nuovo; solo home (showSummary), aria-live.
+  NB: il dock viene SPOSTATO su <body> da renderFlavorPicker — dentro
+  #flavor-picker il transform della .reveal (motion.js) diventa il
+  containing block del position:fixed e il dock si incolla alla
+  sezione invece che allo schermo (bug intermittente trovato dal
+  founder). Se si tocca il render del picker, il dock deve restare
+  figlio diretto di <body>.
 - ATTERRAGGIO goto=size (fix founder, post-migrazione): le CTA del
   riepilogo picker e del dock mobile linkano order.html?flavours=…
   &goto=size; order.js con quel parametro (e gusti preselezionati)

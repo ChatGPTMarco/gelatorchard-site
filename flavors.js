@@ -613,9 +613,19 @@
 
     var valueEl = root.querySelector('.ks-value');
     var ctaEl = root.querySelector('.ks-cta');
+    /* Il dock va spostato su <body> (fix founder, 8 ago 2026): dentro
+       #flavor-picker erediterebbe il transform della .reveal di
+       motion.js, e un antenato con transform diventa il containing
+       block del position:fixed — il dock si incollava al fondo della
+       SEZIONE invece che allo schermo, apparendo a intermittenza. */
     var dockEl = root.querySelector('.picker-dock');
-    var dockValueEl = root.querySelector('.pd-value');
-    var dockCtaEl = root.querySelector('.pd-cta');
+    if (dockEl) {
+      var oldDock = document.querySelector('body > .picker-dock');
+      if (oldDock) oldDock.remove();
+      document.body.appendChild(dockEl);
+    }
+    var dockValueEl = dockEl && dockEl.querySelector('.pd-value');
+    var dockCtaEl = dockEl && dockEl.querySelector('.pd-cta');
 
     function showTab(name) {
       root.querySelectorAll('.flavor-tab').forEach(function (t) {
