@@ -329,6 +329,16 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
 - Barra scarsità: ricalcolo ogni 30 minuti (tab aperte a cavallo di mezzanotte).
 - CHECKLIST LANCIO: canonical, og:url, sitemap.xml e JSON-LD url puntano a
   chatgptmarco.github.io/gelatorchard-site → sostituire TUTTI col dominio vero.
+- CRO RIMANDATI AL PRE-LANCIO (decisione founder 8 ago sera, dopo i 5
+  punti implementati): (a) collegare un provider analytics VERO agli
+  eventi già cablati (analytics.js: picker_select, add_to_basket con
+  bump:true, checkout_start, order_submitted, alert_subscribe) — è il
+  prerequisito di ogni altro test; (b) audit spietato dei campi del
+  checkout su mobile (minimo indispensabile per consegnare a E14);
+  (c) link WhatsApp "domande? scrivi a Marco" vicino al pagamento
+  (serve il numero vero); (d) politica di reso/annullamento visibile
+  (obbligo UK vendita a distanza + gestisce l'obiezione "e se sabato
+  non ci sono?") — il testo lo scrive il founder, qui si impagina.
 - Classici senza foto nel picker: scelta founder, per ora restano gradienti.
 - DIETA HOMEPAGE 14→9 (approvata e applicata 8 ago 2026): etichette DENTRO
   il manifesto scuro (ancora #labels sulla labels-grid), proof bar a 5
