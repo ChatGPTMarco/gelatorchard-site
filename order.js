@@ -27,7 +27,7 @@
       hint: 'One bag = one flavour'
     },
     kit: {
-      name: 'Gelato Kit', tabPrice: 'from £15', min: 1, max: 2,
+      name: 'Gelato Kit', tabPrice: 'from £25', min: 1, max: 2,
       hint: 'Pick 1 or 2 flavours, one per piping bag'
     },
     multipack: {
@@ -60,17 +60,20 @@
 
   function gbp(n) { return '£' + n.toFixed(2); }
 
-  /* ---------- Stato basket (persistito) ---------- */
+  /* ---------- Stato basket (persistito) ----------
+     DECISIONE FOUNDER (8 ago 2026): SOLO DELIVERY, niente pickup.
+     Giro del sabato su Canary Wharf, Poplar e South Quay (E14),
+     nessun minimo d'ordine (zona corta). Ghiaccio secco SOLO nel
+     Kit box; il resto viaggia in borsa frigo coi siberini. I prezzi
+     pickup restano in KIT_SIZES per un eventuale ritiro futuro. */
   var basket = [];
-  var fulfilment = 'pickup';
+  var fulfilment = 'delivery';
   try {
     basket = JSON.parse(localStorage.getItem('gc-basket-v1') || '[]');
-    fulfilment = localStorage.getItem('gc-fulfilment') || 'pickup';
   } catch (e) { basket = []; }
   function saveBasket() {
     try {
       localStorage.setItem('gc-basket-v1', JSON.stringify(basket));
-      localStorage.setItem('gc-fulfilment', fulfilment);
     } catch (e) {}
   }
   function unitPrice(item) {
@@ -184,10 +187,11 @@
     var f = FORMATS[activeFormat];
     if (activeFormat === 'kit') {
       /* Taglia per persone (PRODUZIONE.md): 250g a testa = 2 porzioni
-         da 125g a persona. Il menu a tendina guida la quantità giusta. */
+         da 125g a persona. Prezzo UNICO consegnato (delivery-only).
+         Accessori: 1 cono + 1 coppetta + 1 cucchiaino A PORZIONE. */
       var s = KIT_SIZES[kitPeople];
       var servings = s.grams / 125;
-      var perServing = (s.price / servings).toFixed(2);
+      var perServing = (s.priceDelivery / servings).toFixed(2);
       return '<div class="price-block">' +
         '<label class="kit-people-label" for="kit-people">Who’s it for?</label>' +
         '<select id="kit-people" class="kit-people">' +
@@ -198,15 +202,16 @@
               ' · ' + (k.grams / 125) + ' servings</option>';
           }).join('') +
         '</select>' +
-        '<div class="price-line">£' + s.price.toFixed(2) + ' pickup · £' + s.priceDelivery.toFixed(2) + ' delivery</div>' +
+        '<div class="price-line">£' + s.priceDelivery.toFixed(2) + ' delivered</div>' +
         '<p class="price-anchor">A London gelato bar charges <strong>£4.50–7.50 a scoop</strong>. ' +
-        'Here a full 125g serving (two proper scoops) works out at <strong>£' + perServing + '</strong>, with the farmer’s story included.</p>' +
+        'Here a full 125g serving (two proper scoops) works out at <strong>£' + perServing + ' delivered</strong>, with the farmer’s story included.</p>' +
         '<ul class="value-stack">' +
         '<li>' + s.bags + ' piping bags of 250g: ' + (s.grams >= 1000 ? (s.grams / 1000) + 'kg' : s.grams + 'g') +
           ' of real gelato, ' + servings + ' × 125g servings (two each)</li>' +
         '<li>Up to 2 flavours, one per piping bag</li>' +
-        '<li>Wafer cones, kraft cups and wooden spoons to match</li>' +
+        '<li>' + servings + ' wafer cones, ' + servings + ' kraft cups, ' + servings + ' wooden spoons: one of each per serving</li>' +
         '<li>Insulated dry-ice box (holds -18°C for 6+ hours)</li>' +
+        '<li>Saturday delivery to Canary Wharf, Poplar &amp; South Quay, included</li>' +
         '<li>Full traceability: a QR to the batch story</li>' +
         '</ul></div>';
     }
@@ -230,7 +235,7 @@
     add.classList.toggle('disabled', !ok);
     if (activeFormat === 'kit') {
       var ks = KIT_SIZES[kitPeople];
-      add.textContent = 'Add the Kit for ' + kitPeople + ' · £' + ks.price + ' / £' + ks.priceDelivery;
+      add.textContent = 'Add the Kit for ' + kitPeople + ' · £' + ks.priceDelivery + ' delivered';
       hint.textContent = ok ? '' : 'Select 1–2 flavours to continue';
     } else {
       add.textContent = 'Add to Basket · ' + f.priceLabel;
@@ -292,15 +297,7 @@
     renderBasket();
   });
 
-  document.getElementById('ful-pickup').addEventListener('click', function () { setFulfilment('pickup'); });
-  document.getElementById('ful-delivery').addEventListener('click', function () { setFulfilment('delivery'); });
-  function setFulfilment(mode) {
-    fulfilment = mode;
-    document.getElementById('ful-pickup').classList.toggle('active', mode === 'pickup');
-    document.getElementById('ful-delivery').classList.toggle('active', mode === 'delivery');
-    saveBasket();
-    renderBasket();
-  }
+  /* (toggle pickup/delivery rimosso: si consegna e basta, vedi sopra) */
 
   function renderBasket() {
     var box = document.getElementById('basket-items');
@@ -323,8 +320,7 @@
     var sub = basket.reduce(function (n, it) { return n + unitPrice(it) * it.qty; }, 0);
     document.getElementById('tot-sub').textContent = gbp(sub);
     var del = document.getElementById('tot-del');
-    if (fulfilment === 'pickup') del.textContent = '£0.00 (pickup)';
-    else del.textContent = hasKit() ? 'Included in Kit price' : 'To be confirmed';
+    del.textContent = 'Included · Saturday round, E14';
     document.getElementById('tot-grand').textContent = gbp(sub);
     var fab = document.getElementById('basket-fab');
     document.getElementById('fab-count').textContent = basketCount();
@@ -341,9 +337,7 @@
       .toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
   }
   function etaLine() {
-    return fulfilment === 'delivery'
-      ? 'Delivery: ' + etaDate() + ' (or Sunday, you pick the slot by email)'
-      : 'Pickup: ' + etaDate() + ', we’ll confirm the exact time by email';
+    return 'Delivery: ' + etaDate() + ' (or Sunday, you pick the slot by email)';
   }
 
   /* ---------- 3.8 Step A — conferma ordine ---------- */
@@ -362,6 +356,7 @@
       ? 'You’re in this week’s drop: fruit ordered from the farm Tuesday evening, made fresh Friday morning'
       : 'This week’s window has passed, so you join the next drop: counted Tuesday 6pm, made fresh Friday morning');
     rows.push(etaLine());
+    rows.push('Delivery round: Canary Wharf, Poplar & South Quay (E14), included in the price');
     rows.push('You’ll receive a QR to scan on arrival');
     rows.push('We’ll ask you for a review, Marco reads every comment');
     document.getElementById('cf-list').innerHTML =
@@ -380,8 +375,9 @@
   /* ---------- 3.8 Step B → dettagli/pagamento ---------- */
   document.getElementById('mf-ok').addEventListener('click', function () {
     document.getElementById('pay-gift').hidden = !hasKit();
-    document.getElementById('pay-ice').hidden =
-      !(fulfilment === 'delivery' && basketFruitIds().length > 0);
+    /* Ghiaccio secco SOLO nel Kit box; il resto viaggia in borsa
+       frigo coi siberini (decisione founder 8 ago 2026) */
+    document.getElementById('pay-ice').hidden = !hasKit();
     var sub = basket.reduce(function (n, it) { return n + unitPrice(it) * it.qty; }, 0);
     document.getElementById('pay-go').textContent = 'Pay ' + gbp(sub) + ' (preview)';
     showView('view-payment');
@@ -449,7 +445,6 @@
   });
 
   /* ---------- init ---------- */
-  setFulfilment(fulfilment);
   refresh();
   renderBasket();
 })();

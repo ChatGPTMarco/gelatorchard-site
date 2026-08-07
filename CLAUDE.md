@@ -177,12 +177,16 @@ Situazione reale: NIENTE Trittico, macchina professionale da banco da 750g/ciclo
 - Formati: Cup 125g · Sacapoche 250g (2 porzioni) · Multipack 4×125g ·
   Family Tub 750g (una mantecata) · KIT per persone: 250g a testa, max 2 gusti,
   taglie 2/3/4/6 (menu a tendina in order.js, KIT_SIZES; default per 4).
-- Prezzi Kit dall'ANALISI COSTI (COSTI.md, 8 ago 2026): pickup £15/20/28/40,
-  delivery = pickup + £10 (£25/30/38/50) perché EPS+ghiaccio secco+giro
-  costano ~£12 reali. ⚠️ per-4 delivery: £34 storico → £38, da far
-  confermare al founder. Coppetta £3.50 confermata (food cost 15%).
-  IVA: gelato sempre standard-rated 20%, ma sotto soglia £90k non si
-  applica. Trappola ghiaccio secco (minimo 10kg, sublima) in COSTI.md §5.
+- Prezzi Kit dall'ANALISI COSTI (COSTI.md): £25/30/38/50 DELIVERED,
+  CONFERMATI dal founder l'8 ago 2026 (il £38 per-4 incluso). Coppetta
+  £3.50 confermata (food cost 15%). IVA: gelato sempre standard-rated
+  20%, ma sotto soglia £90k non si applica.
+- DECISIONI FOUNDER 8 ago 2026 (vincolanti): SOLO DELIVERY, niente
+  pickup (toggle rimosso da order); giro del SABATO su Canary Wharf,
+  Poplar e South Quay (E14) — risponde alla vecchia domanda aperta
+  sulle zone; NESSUN minimo d'ordine; ghiaccio secco SOLO nel Kit box,
+  borsa frigo + siberini per le consegne piccole. Cap onesto dichiarato
+  sul sito: 42 porzioni per drop (how-to-order, step 1).
 - Capacità: ven 07-15, tetto 8 cicli, piano vendita 7 cicli = 5.25kg = 42
   porzioni/drop; max 6 gusti per drop; eccedenze → drop successivo (opzione B).
 - Formula del martedì sera e timeline gio-sab in PRODUZIONE.md.

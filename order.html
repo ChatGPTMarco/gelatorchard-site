@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Order | Gelatorchard</title>
-<meta name="description" content="Choose a format, pick your flavours and trace every batch back to its farm. Gelato Kit £28 pickup / £34 delivery.">
+<meta name="description" content="Choose a format, pick your flavours and trace every batch back to its farm. Gelato Kit sized for 2–6 people, from £25 delivered (Canary Wharf, Poplar & South Quay).">
 <!-- Open Graph (Lista A.4) — og:image: foto hero stock, vedi FAKE-DATA.md -->
 <link rel="canonical" href="https://chatgptmarco.github.io/gelatorchard-site/order.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Gelatorchard">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="Order | Gelatorchard">
-<meta property="og:description" content="Choose a format, pick your flavours and trace every batch back to its farm. Gelato Kit £28 pickup / £34 delivery.">
+<meta property="og:description" content="Choose a format, pick your flavours and trace every batch back to its farm. Gelato Kit sized for 2–6 people, from £25 delivered (Canary Wharf, Poplar & South Quay).">
 <meta property="og:url" content="https://chatgptmarco.github.io/gelatorchard-site/order.html">
 <meta property="og:image" content="https://chatgptmarco.github.io/gelatorchard-site/assets/hero-gelato.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -26,7 +26,7 @@
   "url": "https://chatgptmarco.github.io/gelatorchard-site/order.html",
   "offers": {
     "@type": "AggregateOffer",
-    "lowPrice": "15.00",
+    "lowPrice": "25.00",
     "highPrice": "50.00",
     "priceCurrency": "GBP",
     "availability": "https://schema.org/PreOrder"
@@ -184,16 +184,13 @@
     <button class="drawer-close" id="drawer-close" aria-label="Close basket">✕</button>
   </div>
   <div class="drawer-body">
-    <p class="field-note" style="margin-bottom:6px">Pickup or delivery?</p>
-    <div class="fulfilment">
-      <button id="ful-pickup" class="active">Pickup (free)</button>
-      <button id="ful-delivery">Delivery</button>
-    </div>
+    <!-- Solo delivery (founder, 8 ago 2026): giro del sabato su E14 -->
+    <p class="field-note" style="margin-bottom:6px">Saturday delivery to Canary Wharf, Poplar &amp; South Quay (E14) · included in the price</p>
     <div id="basket-items"></div>
   </div>
   <div class="drawer-foot">
     <div class="tot-row"><span>Subtotal</span><span id="tot-sub">£0.00</span></div>
-    <div class="tot-row"><span>Delivery</span><span id="tot-del">£0.00 (pickup)</span></div>
+    <div class="tot-row"><span>Delivery</span><span id="tot-del">Included · Saturday round, E14</span></div>
     <div class="tot-row grand"><span>Total</span><span id="tot-grand">£0.00</span></div>
     <button class="pill pill-dark" id="go-checkout">Go to Checkout</button>
   </div>

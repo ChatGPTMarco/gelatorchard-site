@@ -41,9 +41,10 @@ Massimo **2 gusti per box**, un gusto per sacapoche.
 | **4** (standard) | 4 × 250g | 1kg | 8 | **£28 (fisso)** | **£34 (fisso)** |
 | 6 | 6 × 250g | 1.5kg | 12 | £40 ⚠️ | £46 ⚠️ |
 
-⚠️ = prezzo PROPOSTO da Fable a coerenza col £/kg dei prezzi fissi
-(coppetta £3.50/125g = £28/kg; Kit per 4 = £28/kg + box): **da confermare
-col founder prima del lancio** (elencati anche in FAKE-DATA.md).
+AGGIORNAMENTO 8 ago 2026: prezzi definitivi in COSTI.md (delivery =
+pickup + £10, CONFERMATI dal founder). Modello SOLO DELIVERY su
+Canary Wharf / Poplar / South Quay (E14), nessun minimo d'ordine;
+ghiaccio secco solo nel Kit box, siberini per le consegne piccole.
 Ancora prezzo: una gelateria di Londra chiede £4.50-7.50 a pallina;
 qui una porzione da 125g (2 palline) costa £3.50-3.75.
 

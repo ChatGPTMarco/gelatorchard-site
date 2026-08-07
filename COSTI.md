@@ -1,5 +1,15 @@
 # ANALISI DEI COSTI — Kit e Coppetta (8 agosto 2026)
 
+> **DECISIONI DEL FOUNDER (8 ago 2026, dopo l'analisi):**
+> 1. **£38 per il Kit per 4 consegnato: CONFERMATO.**
+> 2. **SOLO DELIVERY, niente pickup**: giro del sabato su Canary Wharf,
+>    Poplar e South Quay (E14). I prezzi pickup restano in questo file
+>    e in KIT_SIZES come base per un eventuale ritiro futuro.
+> 3. **Nessun minimo d'ordine** (la zona è corta, il giro costa poco).
+> 4. **Ghiaccio secco SOLO nel Kit box**; coppette/sacapoche singole e
+>    multipack viaggiano in borsa frigo coi siberini. Il claim "dry ice"
+>    sul sito resta riferito al solo Kit (corretto così).
+
 Prezzi raccolti dal web ad agosto 2026 (fonti in fondo). Dove il prezzo esatto
 richiede un preventivo, è indicata una STIMA con range: da verificare al primo
 ordine fornitori. Tutti i costi sono IVA inclusa dove il fornitore la applica.

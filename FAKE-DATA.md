@@ -23,7 +23,10 @@ in tutto il progetto è l'elenco esatto di ciò che va sostituito o rimosso.
 | how-to-order.html | proof · reclami sull'attesa | 0 | registro feedback reale |
 | index.html #testimonials | 4 citazioni panel con nomi/zone | Sarah M./James L./Lisa R./Tom S. (INVENTATI) | citazioni e nomi VERI del panel di assaggio; la nota "pre-launch tasting panel" sotto la griglia è OBBLIGATORIA finché non si lancia |
 | flavors.js | date harvest/produced di TUTTI i batch | dinamiche: giovedì/venerdì dell'ultimo drop (demoBatchDates) | date dei batch veri dal CMS. NB le date REALI del batch #042: raccolto 15 May 2026 alle 06:12, prodotto 17 May 2026 |
-| order.js KIT_SIZES | prezzi Kit (pickup £15/20/28/40, delivery = +£10: £25/30/38/50) | dall'analisi costi COSTI.md (food cost 33-44% pickup). ⚠️ il per-4 DELIVERY passa dal £34 storico a £38: a £34 con EPS+ghiaccio+giro (~£12 reali) si vendeva quasi in perdita | CONFERMA ESPLICITA del founder, soprattutto sul £34→£38; riflessi in index #formats e JSON-LD (15–50) |
+(I prezzi del Kit NON sono più in questa lista: £25/30/38/50 delivered
+CONFERMATI dal founder l'8 ago 2026 insieme al modello solo-delivery su
+E14 — vedi COSTI.md. Restano da validare coi fornitori le STIME di costo
+del §7 di COSTI.md, che non toccano i prezzi al cliente.)
 | flavors.js | log e batchSize dei batch | riscritti sul piano reale (cicli 750g, fornello, gio sera→ven; quantità frutta/zucchero derivate da PRODUZIONE.md) | log di produzione veri |
 
 I record fake in `flavors.js` hanno il campo `fake: true`: la story page e il
