@@ -57,6 +57,10 @@
   var kitPeople = 4; /* default: il formato di punta */
   var TAB_ORDER = ['cup', 'bag', 'kit', 'multipack', 'tub'];
   var activeFormat = 'kit'; /* prodotto di punta: default */
+  /* CRO message match (8 ago 2026): ?format=cup|bag|kit|multipack|tub
+     apre il catalogo sul tab giusto (card formati in home, CTA lettera) */
+  var fmtParam = new URLSearchParams(location.search).get('format');
+  if (fmtParam && FORMATS[fmtParam]) activeFormat = fmtParam;
 
   function gbp(n) { return '£' + n.toFixed(2); }
 

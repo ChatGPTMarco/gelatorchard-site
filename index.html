@@ -53,20 +53,21 @@
            C: "Read the Label on Your Usual Gelato. Then Read Ours." -->
       <h1 class="h1 reveal" data-dur="slow">Your “artisan” gelato has<br><span class="green">16 ingredients. Ours has 3.</span></h1>
       <p class="hero-sub reveal" data-dur="slow" data-delay="0.25">We read the labels so you don’t have to. Every Gelatorchard batch starts with a named British farmer, a recorded harvest hour, and a finished label of exactly three words: fruit, cane sugar, water.</p>
+      <!-- CRO (8 ago 2026): CTA primaria sul PERCORSO D'ORDINE (#flavors),
+           riga di fiducia con soli claim reali sotto le CTA -->
       <div class="hero-ctas reveal" data-dur="slow" data-delay="0.45">
-        <a class="pill pill-dark" data-track="hero_cta_season" href="#season">See what’s in season today</a>
+        <a class="pill pill-dark" data-track="hero_cta_flavours" href="#flavors">Pick your flavours</a>
         <a class="pill pill-ghost" data-track="hero_cta_labels" href="#labels">Read both labels</a>
       </div>
-      <!-- Frase hook: [N] frutti in stagione, conteggio live (home.js) -->
-      <div class="hero-hook reveal" id="harvest-hook"></div>
-      <!-- Diario del Raccolto (spec 6 ago 2026): carosello NARRATIVO dei
-           frutti in stagione oggi. Niente prezzi né CTA ordina: si sceglie
-           solo nel picker #flavors. Render + logica in home.js. -->
+      <p class="hero-trust reveal" data-delay="0.55">3 ingredients · Saturday delivery to E14, included · try it once for £3.50</p>
+      <!-- HERO FLIP (CRO): il visual SUBITO dopo le CTA, dentro la piega.
+           Diario del Raccolto: carosello NARRATIVO dei frutti in stagione
+           oggi, niente prezzi né CTA ordina (home.js). -->
       <div class="hero-visual harvest-carousel reveal-fade" id="harvest-carousel"
            aria-roledescription="carousel" aria-label="In season this week"></div>
-      <!-- Dieta hero (8 ago 2026): qui restano headline + UN hook + il
-           Diario. Il carosello "Il Viaggio" vive nella sezione #journey
-           più in basso, al posto della vecchia journey statica. -->
+      <!-- Il hook "[N] UK Fruits" (conteggio live, home.js) ora fa da
+           didascalia sotto il carosello e lancia il manifesto -->
+      <div class="hero-hook reveal" id="harvest-hook"></div>
     </div>
   </section>
 
@@ -179,6 +180,11 @@
           <p class="ps"><strong>P.S.</strong> Every bag we sell carries a QR code to the exact batch it came from: the farmer’s name, the field, the hour it was picked, the production log. I didn’t add it to impress you. I added it so I could never cheat, even if I wanted to.</p>
         </div>
       </div>
+      <!-- CRO: ogni long-form chiude con l'azione successiva; il Cup è
+           l'entry a rischio minimo (£3.50, prezzo reale) -->
+      <div class="reveal" style="text-align:center;margin-top:36px">
+        <a class="pill pill-ghost" data-track="letter_cta_cup" href="order.html?format=cup">Put me to the test: a Cup is £3.50 →</a>
+      </div>
     </div>
   </section>
 
@@ -212,7 +218,8 @@
           <h3>Cup</h3>
           <p>One flavour, one sitting, cup + cone. The cheapest possible way to check we’re telling the truth.</p>
           <div class="fmt-price">£3.50</div>
-          <a class="pill pill-ghost pill-sm" href="order.html">Order</a>
+          <!-- CRO message match: ogni card apre /order sul SUO tab -->
+          <a class="pill pill-ghost pill-sm" href="order.html?format=cup">Order</a>
         </div>
         <div class="card fmt featured reveal">
           <span class="fmt-tag">Most Popular</span>
@@ -225,9 +232,9 @@
         <div class="card fmt reveal">
           <span class="fmt-tag">One Flavour, No Ceremony</span>
           <h3>Piping Bag</h3>
-          <p>500g of a single flavour, squeezed straight onto cone or cup. For people who already know exactly what they want.</p>
+          <p>250g of a single flavour, two proper servings, squeezed straight onto cone or cup. For people who already know exactly what they want.</p>
           <div class="fmt-price">from £6.50</div>
-          <a class="pill pill-ghost pill-sm" href="order.html">Order</a>
+          <a class="pill pill-ghost pill-sm" href="order.html?format=bag">Order</a>
         </div>
       </div>
       <p class="sec-sub reveal" style="text-align:center;margin:32px auto 0">Where the money goes: about a third of a Kit’s price is the fruit and the cold-chain packaging alone. That’s the part we will never save on, and the only part you can actually taste.</p>

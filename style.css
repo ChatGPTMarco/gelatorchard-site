@@ -194,7 +194,11 @@ section{padding:88px 0}
 .hv-badge{flex-shrink:0;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:100px;padding:7px 15px;font-size:12.5px;font-weight:600;white-space:nowrap}
 
 /* --- Diario del Raccolto: carosello hero narrativo (spec 6 ago 2026) --- */
-/* Frase hook sopra il carosello: [N] calcolato live da home.js */
+/* CRO hero flip (8 ago 2026): visual dentro la piega, hook a didascalia */
+.hero-trust{font-size:13px;color:var(--ink-faint);margin-top:14px;text-align:center}
+.hero .harvest-carousel{margin-top:34px}
+.hero .hero-hook{margin-top:44px}
+/* Frase hook: [N] calcolato live da home.js */
 .hero-hook{margin-top:72px;text-align:center}
 .hook-title{font-family:var(--serif);font-size:clamp(28px,3.4vw,34px);font-weight:600;color:var(--ink);line-height:1.22;letter-spacing:-.01em}
 .hook-title .green{color:var(--green)}

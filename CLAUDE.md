@@ -270,8 +270,15 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   identità/calore (logo, mf-kicker, IS, stelle), stamp = urgenza/scarsità.
   Eccezione: scale semaforiche data-viz (.season-fill). Barra porzioni
   drop card ora verde; .cp-fomo ora stamp; .tile.soldout (morta) rimossa.
-- Hero flip, video 15s, contatti footer: RIMANDATI, si fanno quando lo
-  dice il founder.
+- MANDATO CRO (8 ago 2026, "applica come skill il CRO Designer"): HERO
+  FLIP fatto — ordine: eyebrow, H1, sub, CTA (primaria → #flavors,
+  data-track hero_cta_flavours) + riga fiducia .hero-trust (soli claim
+  reali), carosello DENTRO la piega (margin 34px), hook a didascalia
+  sotto. Deep-link ?format=cup|bag|kit|multipack|tub su /order (message
+  match dalle card formati e dalla CTA post-lettera "a Cup is £3.50").
+  Card bag in home corretta a 250g.
+- Restano compiti del founder (asset fisici): video 15s, foto vere,
+  contatti reali footer.
 
 ## Metodo di lavoro
 - Modifiche chirurgiche, mai rigenerare file interi senza necessità.
