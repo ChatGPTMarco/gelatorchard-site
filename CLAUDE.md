@@ -161,8 +161,27 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
 - demo-direzione-precedente.html → vecchia direzione archiviata. NON toccare, NON imitare.
 - demo-registro.html → DEMO della direzione di stile "Il Registro" (documentary/
   spec-sheet, 8 ago 2026): una sezione (picker-schedario + drop docket), self-
-  contained, dati reali da flavors.js, IBM Plex Mono proposto per i dati.
-  In ATTESA di verdetto del founder: NON migrare il sito senza il suo ok.
+  contained, dati reali da flavors.js, IBM Plex Mono per i dati.
+
+## MIGRAZIONE STILE "IL REGISTRO" — APPROVATA (founder, 8 ago 2026)
+Il founder ha approvato la migrazione del sito alla direzione della demo
+(demo-registro.html) con un vincolo ASSOLUTO: **COPY CONGELATO — nessuna
+parola dei testi va cambiata in questa fase**, solo pelle (CSS, markup
+minimo, font). STATO: NON ANCORA INIZIATA (tappa 1 interrotta prima di
+qualsiasi modifica). Piano a 3 tappe, checkpoint col founder dopo ognuna:
+1. Fondamenta globali: token (carta #FAF8F2, --mono IBM Plex Mono da
+   aggiungere al link Google Fonts di ogni pagina, radius netti, bordi
+   ink), .pill → bottoni da modulo (mono uppercase), nav → carta
+   intestata, barra scarsità e drop docket in stile registro.
+2. Picker → schedario (specimen card come in demo, con Full record/Alert),
+   formati → listino tariffario, prova sociale → registro, slide caroselli
+   → schede con campi mono.
+3. order.html → modulo d'ordine, story page → FULL RECORD, pagine restanti
+   (calendario, business, app, how-to-order).
+Principi: Fraunces resta la voce umana (lettera, headline), monospace SOLO
+per i dati, frutta unico colore saturo, timbri --stamp per stagioni/urgenza,
+guardia anti-freddezza (se sembra una bolletta, scaldare). Tutti i motori
+JS restano intoccati. La demo è il riferimento visivo vincolante.
 - Deploy: GitHub Pages dal branch main → ogni push è live su https://chatgptmarco.github.io/gelatorchard-site/
 
 ## Design system (vincolante)
