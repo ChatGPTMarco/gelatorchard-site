@@ -161,19 +161,30 @@
   /* Atterraggio dal picker in home (?goto=size, fix founder 8 ago 2026):
      i gusti sono già scelti, quindi il passo davanti all'utente è
      "Who's it for?" — si scrolla lì, non si atterra in cima pagina.
-     Pulse verde sul menu taglie (stesso pattern del pulse sulle tile). */
+     ROBUSTEZZA MOBILE (secondo fix): il salto è ISTANTANEO (lo smooth
+     su mobile viene cancellato dal primo tocco e scavalcato dal
+     ripristino scroll di Safari) e parte DOPO l'evento load, quando
+     il browser ha finito i suoi scroll. La CSS scroll-behavior:smooth
+     va bypassata a mano: vale anche per gli scroll "auto". Il pulse
+     verde sul menu taglie fa da segnale d'atterraggio. */
   if (new URLSearchParams(location.search).get('goto') === 'size' && preselect.length) {
-    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setTimeout(function () {
+    var jumpToSize = function () {
       var priceBox = document.getElementById('op-price');
       if (!priceBox) return;
-      priceBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+      var htmlEl = document.documentElement;
+      var prevBehavior = htmlEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = 'auto'; /* spegne lo smooth CSS: salto secco */
+      priceBox.scrollIntoView({ block: 'center' });
+      htmlEl.style.scrollBehavior = prevBehavior;
       var sel = document.getElementById('kit-people');
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (sel && !reduced) {
         sel.classList.add('pulse');
         setTimeout(function () { sel.classList.remove('pulse'); }, 1600);
       }
-    }, 150);
+    };
+    if (document.readyState === 'complete') setTimeout(jumpToSize, 60);
+    else window.addEventListener('load', function () { setTimeout(jumpToSize, 60); });
   }
 
   /* ---------- 3.4 ticket batch/classico ---------- */
