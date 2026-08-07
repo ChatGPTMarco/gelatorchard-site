@@ -398,6 +398,13 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   risalendo al picker. Scroll listener passivo + getBoundingClientRect
   (niente IntersectionObserver: #op-price viene ri-renderizzato a ogni
   refresh e l'observer perderebbe il nodo).
+  TUTTI I FORMATI (fix founder, 8 ago sera): il dock vive anche su
+  Cup/Piping Bag/Multipack/Family Tub — etichetta = FORMATS[..].name,
+  CTA generica "Continue →" (unico copy nuovo), atterraggio su
+  #op-tickets (gusti scelti) con riquadro formato e Add to Basket
+  sotto, pulse su #op-add invece che sul menu taglie. Il Kit tiene
+  etichetta/CTA/atterraggio suoi (taglia). syncDockFormat non nasconde
+  più il dock fuori dal Kit: aggiorna etichetta e CTA.
 - TIMBRI PICKER (fix founder, post-migrazione): il timbro delle tile
   fuori stagione vive FUORI dalla .swatch (dentro ereditava grayscale
   +opacity della foto e spariva); niente mix-blend, inchiostro ruggine

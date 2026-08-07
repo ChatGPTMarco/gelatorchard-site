@@ -159,34 +159,52 @@
      CSS smooth (atterraggi automatici); i click dell'utente usano
      lo smooth normale. */
   function jumpToPrice(instant, withPulse) {
-    var priceBox = document.getElementById('op-price');
-    if (!priceBox) return;
+    /* Kit → modulo taglia (#op-price). Altri formati (founder, 8 ago
+       sera): si atterra sui ticket dei gusti scelti, con riquadro
+       formato e Add to Basket subito sotto. */
+    var target = (activeFormat === 'kit') ? null : document.getElementById('op-tickets');
+    if (!target || !target.children.length) target = document.getElementById('op-price');
+    if (!target) return;
     if (instant) {
       var htmlEl = document.documentElement;
       var prevBehavior = htmlEl.style.scrollBehavior;
       htmlEl.style.scrollBehavior = 'auto';
-      priceBox.scrollIntoView({ block: 'start' });
+      target.scrollIntoView({ block: 'start' });
       htmlEl.style.scrollBehavior = prevBehavior;
     } else {
-      priceBox.scrollIntoView({ block: 'start' });
+      target.scrollIntoView({ block: 'start' });
     }
     if (withPulse) {
-      var sel = document.getElementById('kit-people');
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (sel && !reduced) {
-        sel.classList.add('pulse');
-        setTimeout(function () { sel.classList.remove('pulse'); }, 1600);
+      if (reduced) return;
+      /* Kit: pulsa il menu taglie. Altri formati: pulsa Add to Basket. */
+      var el = (activeFormat === 'kit')
+        ? document.getElementById('kit-people')
+        : document.getElementById('op-add');
+      if (el) {
+        el.classList.add('pulse');
+        setTimeout(function () { el.classList.remove('pulse'); }, 1600);
       }
     }
   }
 
-  /* Il dock del picker vive anche qui (fix founder, 8 ago sera): chi
-     cambia idea sui gusti DOPO l'atterraggio ritrova la stessa barra
-     con la stessa CTA — che qui non naviga, scrolla al modulo taglia.
-     Ha senso solo per il Kit: sugli altri formati resta nascosto. */
+  /* Il dock del picker vive su TUTTI i formati (founder, 8 ago sera):
+     per il Kit guida alla taglia, per Cup/Bag/Multipack/Tub al
+     riquadro formato + Add to Basket. Etichetta = stringhe già
+     esistenti (riepilogo Kit / nome formato da FORMATS); fuori dal
+     Kit la CTA è la generica "Continue →". */
   function syncDockFormat() {
     var d = document.querySelector('body > .picker-dock');
-    if (d) d.style.display = (activeFormat === 'kit') ? '' : 'none';
+    if (!d) return;
+    var k = d.querySelector('.pd-k');
+    var cta = d.querySelector('.pd-cta');
+    if (activeFormat === 'kit') {
+      k.textContent = 'Your Gelato Kit (pick up to 2 flavours)';
+      cta.textContent = 'Continue · pick your Kit size →';
+    } else {
+      k.textContent = FORMATS[activeFormat].name;
+      cta.textContent = 'Continue →';
+    }
   }
 
   var picker = G.renderFlavorPicker(document.getElementById('op-picker'), {
