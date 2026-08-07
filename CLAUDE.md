@@ -405,6 +405,25 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   sotto, pulse su #op-add invece che sul menu taglie. Il Kit tiene
   etichetta/CTA/atterraggio suoi (taglia). syncDockFormat non nasconde
   più il dock fuori dal Kit: aggiorna etichetta e CTA.
+- CRO FUNNEL 5 PUNTI (8 ago sera, approvati dal founder in blocco):
+  (1) CHECKOUT A 2 PASSI — l'interstitial manifesto (ex Step B, 3.8)
+  non esiste più: conferma → pagamento; il manifesto NOT/IS vive in
+  view-done DOPO l'acquisto (rinforzo, non freno). view-manifesto
+  rimossa da order.html e da VIEWS; pay-back torna a view-confirm.
+  (2) CATTURA INTENTI PRE-LANCIO — al pay (preview) l'email del
+  checkout entra nella Seasonal Alert List coi frutti dell'ordine:
+  subscribeAlerts (Brevo al live) + persistenza locale gc-alerts
+  nello stesso formato di alerts.js (admin la vede). In view-done
+  riga-promessa #done-launch ("first in line… September"), rimossa
+  automaticamente al live insieme al notice preview.
+  (3) ORDER BUMP — col Kit nel basket il drawer mostra la riga
+  ".bump-row": "+ Add a Cup of [gusto 1 del Kit] · £3.50", un tap
+  aggiunge il Cup e la riga sparisce (anche se quel Cup c'è già).
+  Track add_to_basket con bump:true.
+  (4) NAV ORDER DIRETTO — il bottone Order della nav va a order.html
+  (prima: index#flavors, tre salti).
+  (5) BARRA SCARSITÀ NEL FUNNEL — i 3 link con gusto ora portano
+  &goto=format (atterraggio sulle linguette col gusto preselezionato).
 - HOME → SCELTA FORMATO (fix founder, 8 ago sera): dalla home il
   formato NON è ancora scelto — riepilogo e dock ora dicono "Your
   flavours (pick up to 2)" / "Continue · choose your format →" e

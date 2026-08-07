@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=r12">
+<link rel="stylesheet" href="style.css?v=r13">
 </head>
 <body>
 
@@ -81,7 +81,7 @@
   <!-- ============ CHECKOUT STEP A — confirm order (3.8, deliberate friction) ============ -->
   <section id="view-confirm" hidden>
     <div class="container checkout-view">
-      <span class="eyebrow">Checkout · Step 1 of 3</span>
+      <span class="eyebrow">Checkout · Step 1 of 2</span>
       <h1 class="h2">Read it back before you pay</h1>
       <div class="checkout-card" style="margin-top:24px">
         <ul class="check-list" id="cf-list"></ul>
@@ -94,29 +94,13 @@
     </div>
   </section>
 
-  <!-- ============ CHECKOUT STEP B — what this gelato is NOT (3.8) ============ -->
-  <section id="view-manifesto" hidden>
-    <div class="container checkout-view">
-      <span class="eyebrow">Checkout · Step 2 of 3</span>
-      <h1 class="h2">Know what you’re buying, and what you’re refusing</h1>
-      <div class="checkout-card manifesto" style="margin-top:24px">
-        <p class="no-line">This is <strong>NOT</strong> supermarket ice cream.</p>
-        <p class="no-line">This is <strong>NOT</strong> made from powders.</p>
-        <p class="no-line">This is <strong>NOT</strong> months old.</p>
-        <p class="yes-line" style="margin-top:14px">This <strong>IS</strong> London's most traceable gelato.</p>
-        <p class="yes-line">This <strong>IS</strong> fruit frozen at peak ripeness.</p>
-        <p class="yes-line">This <strong>IS</strong> the real name of the farmer who grew it.</p>
-        <div class="step-ctas">
-          <button class="pill pill-dark" id="mf-ok">Got it, let's continue</button>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- CRO (8 ago sera, ok founder): l'interstitial manifesto NON esiste
+       più nel checkout — rinforza DOPO l'acquisto, dentro view-done. -->
 
   <!-- ============ DETAILS + PAYMENT (3.8 email / 3.9) ============ -->
   <section id="view-payment" hidden>
     <div class="container checkout-view">
-      <span class="eyebrow">Checkout · Step 3 of 3</span>
+      <span class="eyebrow">Checkout · Step 2 of 2</span>
       <h1 class="h2">Last step: where the story (and the gelato) goes</h1>
       <div class="checkout-card" style="margin-top:24px">
         <label class="field-label" for="pay-email">Your email (for order updates + the next flavour)</label>
@@ -157,7 +141,11 @@
       <h1 class="h2" id="done-title">Order confirmed</h1>
       <div class="checkout-card" style="margin-top:24px">
         <div class="notice preview" style="margin:0 0 18px">Preview mode: no payment was taken and no real order was placed. Live orders open at the September launch.</div>
-        <p id="done-sub" style="font-size:16px"></p>
+        <!-- Cattura intenti pre-lancio (8 ago sera): l'email del checkout
+             entra nella Seasonal Alert List coi frutti dell'ordine
+             (subscribeAlerts). Al live: riga rimossa insieme al notice. -->
+        <p id="done-launch" style="font-size:15px;font-weight:600">Your flavours and email are saved: you’re first in line when live orders open in September.</p>
+        <p id="done-sub" style="font-size:16px;margin-top:14px"></p>
         <p style="font-weight:600;margin-top:18px">What happens now:</p>
         <ol class="done-steps">
           <li>You'll receive a confirmation email in the next few minutes</li>
@@ -165,6 +153,17 @@
           <li>On arrival: scan the QR on the piping bag and read the full story</li>
           <li>After tasting: leave us a review. Marco replies within 24 hours</li>
         </ol>
+        <!-- Manifesto post-acquisto (ex Step B del checkout, spostato qui
+             l'8 ago sera con ok del founder): rinforza, non frena -->
+        <p style="font-weight:600;margin-top:24px">Know what you’re buying, and what you’re refusing</p>
+        <div class="manifesto" style="margin-top:6px">
+          <p class="no-line">This is <strong>NOT</strong> supermarket ice cream.</p>
+          <p class="no-line">This is <strong>NOT</strong> made from powders.</p>
+          <p class="no-line">This is <strong>NOT</strong> months old.</p>
+          <p class="yes-line" style="margin-top:14px">This <strong>IS</strong> London's most traceable gelato.</p>
+          <p class="yes-line">This <strong>IS</strong> fruit frozen at peak ripeness.</p>
+          <p class="yes-line">This <strong>IS</strong> the real name of the farmer who grew it.</p>
+        </div>
         <div class="step-ctas">
           <a class="pill pill-dark" href="index.html">Back to home</a>
           <a class="pill pill-ghost" href="app.html">Join the Seasonal Alert List →</a>
@@ -197,12 +196,12 @@
 </aside>
 
 <footer id="site-footer"></footer>
-<script src="flavors.js?v=r12"></script>
-<script src="analytics.js?v=r12"></script>
-<script src="backend.js?v=r12"></script>
-<script src="order.js?v=r12"></script>
-<script src="howto.js?v=r12"></script>
-<script src="motion.js?v=r12"></script>
-<script src="site.js?v=r12"></script>
+<script src="flavors.js?v=r13"></script>
+<script src="analytics.js?v=r13"></script>
+<script src="backend.js?v=r13"></script>
+<script src="order.js?v=r13"></script>
+<script src="howto.js?v=r13"></script>
+<script src="motion.js?v=r13"></script>
+<script src="site.js?v=r13"></script>
 </body>
 </html>

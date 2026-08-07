@@ -395,6 +395,9 @@ section{padding:88px 0}
 .qty-btn:hover{background:rgba(29,29,31,.05)}
 .bi-remove{background:none;border:none;font-size:12px;color:var(--ink-faint);cursor:pointer;text-decoration:underline;margin-left:6px}
 .basket-empty{text-align:center;color:var(--ink-faint);font-size:14px;padding:40px 0}
+/* Order bump (CRO 8 ago sera): riga-modulo tratteggiata verde nel drawer */
+.bump-row{display:block;width:100%;margin-top:4px;border:1.5px dashed var(--green-deep);background:rgba(45,122,74,.06);color:var(--green-deep);font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:12px;cursor:pointer;text-align:center;border-radius:0;transition:background .15s}
+.bump-row:hover{background:rgba(45,122,74,.12)}
 .fulfilment{display:flex;gap:8px;margin:8px 0 18px}
 .fulfilment button{flex:1;border:1.5px solid var(--ink);background:var(--surface);border-radius:0;padding:10px;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;color:var(--ink)}
 .fulfilment button.active{border-color:var(--green-deep);background:rgba(45,122,74,.08);color:var(--green-deep)}

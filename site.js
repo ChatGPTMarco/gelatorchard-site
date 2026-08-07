@@ -73,15 +73,17 @@
         msg = '<a data-track="scarcity_bar" href="calendario.html"><strong>Next into season:</strong> ' +
           urgent.name + ' · opens ' + urgent.startLabel + '</a>';
       } else if (urgent.daysLeft <= 7) {
-        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '"><strong>' +
+        /* goto=format (8 ago sera): il gusto è nel link, il formato no —
+           si atterra sulle linguette di /order col gusto preselezionato */
+        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '&goto=format"><strong>' +
           urgent.name + ': ' + urgent.daysLeft + (urgent.daysLeft === 1 ? ' day' : ' days') +
           ' left.</strong> Then gone until ' + urgent.returnMonthYear + '. Order now or wait a year</a>';
       } else if (urgent.daysLeft <= 21) {
-        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '"><strong>' +
+        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '&goto=format"><strong>' +
           urgent.name + ':</strong> ' + urgent.daysLeft + ' days left this season · back ' +
           urgent.returnMonthYear + '. Order it while it exists</a>';
       } else {
-        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '"><strong>' +
+        msg = '<a data-track="scarcity_bar" href="order.html?flavours=' + urgent.id + '&goto=format"><strong>' +
           urgent.name + ' is in season' + (urgent.peak ? ', at its peak' : '') + '</strong> · until ' +
           urgent.endLong + '. Order it at its best</a>';
       }
@@ -110,7 +112,9 @@
           }).join('') +
         '</ul>' +
         '<div class="nav-right">' +
-          '<a class="pill pill-dark pill-sm" data-track="nav_order" href="' + pre + '#flavors">Order</a>' +
+          /* CRO 8 ago sera (ok founder): chi clicca Order ha già deciso —
+             dritto a /order (linguette + picker), niente giro per la home */
+          '<a class="pill pill-dark pill-sm" data-track="nav_order" href="order.html">Order</a>' +
           /* Hamburger (8 ago 2026): sotto i 760px i link centrali
              spariscono, senza questo il mobile non aveva navigazione */
           '<button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">' +

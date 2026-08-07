@@ -113,7 +113,10 @@
   }
 
   /* ---------- Viste ---------- */
-  var VIEWS = ['view-catalog', 'view-confirm', 'view-manifesto', 'view-payment', 'view-done'];
+  /* CRO 8 ago sera (ok founder): via l'interstitial manifesto — il
+     checkout è 2 passi (conferma → pagamento), il manifesto rinforza
+     in view-done, dopo l'acquisto. */
+  var VIEWS = ['view-catalog', 'view-confirm', 'view-payment', 'view-done'];
   function showView(id) {
     VIEWS.forEach(function (v) { document.getElementById(v).hidden = (v !== id); });
     document.getElementById('basket-fab').hidden = !(id === 'view-catalog' && basketCount() > 0);
@@ -447,7 +450,7 @@
             '<button class="bi-remove" data-i="' + i + '" data-d="0">remove</button>' +
           '</div></div>' +
           '<div class="bi-price">' + gbp(unitPrice(it) * it.qty) + '</div></div>';
-      }).join('');
+      }).join('') + bumpHTML();
     }
     var sub = basket.reduce(function (n, it) { return n + unitPrice(it) * it.qty; }, 0);
     document.getElementById('tot-sub').textContent = gbp(sub);
@@ -460,6 +463,34 @@
     document.getElementById('go-checkout').disabled = basket.length === 0;
     return sub;
   }
+
+  /* ---------- Order bump (CRO 8 ago sera, ok founder) ----------
+     Col Kit nel basket, una riga sola: un Cup del primo gusto del Kit
+     a £3.50 con un tap. Prodotto e prezzo reali, gusto già scelto
+     dall'utente. Sparisce se quel Cup è già nel basket. */
+  function bumpHTML() {
+    var kitIt = basket.filter(function (it) { return it.format === 'kit'; })[0];
+    if (!kitIt || !kitIt.flavours.length) return '';
+    var fl = kitIt.flavours[0];
+    var already = basket.some(function (it) {
+      return it.format === 'cup' && it.flavours.length === 1 && it.flavours[0] === fl;
+    });
+    if (already) return '';
+    return '<button class="bump-row" id="bump-cup" data-fl="' + fl + '">' +
+      '+ Add a Cup of ' + G.flavorById(fl).name + ' · £3.50</button>';
+  }
+  document.getElementById('basket-items').addEventListener('click', function (e) {
+    var b = e.target.closest('#bump-cup');
+    if (!b) return;
+    var fl = b.getAttribute('data-fl');
+    var key = 'cup|' + fl;
+    var existing = basket.filter(function (it) { return it.key === key; })[0];
+    if (existing) existing.qty += 1;
+    else basket.push({ key: key, format: 'cup', people: null, flavours: [fl], qty: 1 });
+    if (G.track) G.track('add_to_basket', { format: 'cup', people: null, flavours: fl, bump: true });
+    saveBasket();
+    renderBasket();
+  });
 
   /* ---------- data stimata: il sabato del drop settimanale ----------
      Fonte unica G.orderWindow (flavors.js): niente più "domani",
@@ -501,11 +532,6 @@
     openDrawer();
   });
   document.getElementById('cf-yes').addEventListener('click', function () {
-    showView('view-manifesto');
-  });
-
-  /* ---------- 3.8 Step B → dettagli/pagamento ---------- */
-  document.getElementById('mf-ok').addEventListener('click', function () {
     document.getElementById('pay-gift').hidden = !hasKit();
     /* Ghiaccio secco SOLO nel Kit box; il resto viaggia in borsa
        frigo coi siberini (decisione founder 8 ago 2026) */
@@ -515,7 +541,7 @@
     showView('view-payment');
   });
   document.getElementById('pay-back').addEventListener('click', function () {
-    showView('view-manifesto');
+    showView('view-confirm');
   });
 
   /* ---------- 3.9 / 3.10 pagamento (preview) → conferma ---------- */
@@ -557,6 +583,24 @@
       localStorage.setItem('gc-orders', JSON.stringify(hist));
     } catch (e) {}
     if (G.track) G.track('order_submitted', { total: record.total, fulfilment: fulfilment, items: record.items.length });
+    /* Cattura intenti pre-lancio (8 ago sera): l'email entra nella
+       Seasonal Alert List coi frutti dell'ordine — al lancio Brevo
+       avvisa per primi chi aveva già ordinato in preview. In preview
+       il backend è no-op: si persiste in locale nello stesso formato
+       di alerts.js (gc-alerts), così admin.html vede la domanda. */
+    var orderFruits = basketFruitIds();
+    if (orderFruits.length) {
+      if (window.GelatorchardBackend && window.GelatorchardBackend.subscribeAlerts) {
+        try { window.GelatorchardBackend.subscribeAlerts(email, orderFruits); } catch (e) {}
+      }
+      try {
+        var al = JSON.parse(localStorage.getItem('gc-alerts') || '{}');
+        al.email = al.email || email;
+        al.fruits = al.fruits || [];
+        orderFruits.forEach(function (id) { if (al.fruits.indexOf(id) < 0) al.fruits.push(id); });
+        localStorage.setItem('gc-alerts', JSON.stringify(al));
+      } catch (e) {}
+    }
     if (window.GelatorchardBackend) {
       record.items.forEach(function (it) {
         window.GelatorchardBackend.submitOrder({
@@ -566,6 +610,8 @@
           if (r && r.live) {
             var n = document.querySelector('#view-done .notice.preview');
             if (n) n.remove();
+            var l = document.getElementById('done-launch');
+            if (l) l.remove(); /* al live la promessa pre-lancio non serve più */
           }
         }).catch(function () {});
       });
