@@ -621,6 +621,8 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 /* --- Confronto etichette (10.5.2b) — dall'8 ago 2026 vive DENTRO il
    manifesto scuro: le card bianche esplodono sul fondo ink --- */
 .manifesto-band .labels-grid{margin-top:36px}
+/* le card bianche NON devono ereditare il testo chiaro del bando scuro */
+.manifesto-band .label-card{color:var(--ink)}
 .manifesto-band .labels-verdict{color:#fff;opacity:.92}
 .labels-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:52px;align-items:stretch}
 @media(max-width:760px){.labels-grid{grid-template-columns:1fr}}
