@@ -339,6 +339,12 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   Card bag in home corretta a 250g.
 - Restano compiti del founder (asset fisici): video 15s, foto vere,
   contatti reali footer.
+- TIMBRI PICKER (fix founder, post-migrazione): il timbro delle tile
+  fuori stagione vive FUORI dalla .swatch (dentro ereditava grayscale
+  +opacity della foto e spariva); niente mix-blend, inchiostro ruggine
+  su tassello carta .94, centrato sulla fascia foto (top 60px). Le
+  tile sold ora hanno il timbro "Sold out" (senza data: la regola
+  resta che non si promette una data di rifornimento ignota).
 
 ## Metodo di lavoro
 - Modifiche chirurgiche, mai rigenerare file interi senza necessità.

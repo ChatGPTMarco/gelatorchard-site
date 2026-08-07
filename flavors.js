@@ -466,8 +466,12 @@
       var meta = (st.state === 'finished' && st.daysSinceEnd != null && st.daysSinceEnd <= 30)
         ? 'Ended ' + st.daysSinceEnd + (st.daysSinceEnd === 1 ? ' day' : ' days') + ' ago'
         : st.subtitle;
+      /* Il timbro vive FUORI dalla .swatch: dentro erediterebbe il
+         grayscale+opacity della foto e l'inchiostro non si vedrebbe
+         (fix founder, 8 ago 2026). Posizionato via CSS sulla foto. */
       return '<div class="tile out" data-id="' + f.id + '" aria-disabled="true">' +
-        '<div class="swatch ' + f.sw + '"><span class="stamp">' + st.stampLabel + '</span></div>' +
+        '<div class="swatch ' + f.sw + '"></div>' +
+        '<span class="stamp">' + st.stampLabel + '</span>' +
         '<div class="t-name">' + f.name + '</div>' +
         '<div class="t-meta">' + meta + '</div>' +
         '<a class="t-link" href="app.html?fruit=' + f.id + '">Alert me when it returns →</a>' +
@@ -481,9 +485,13 @@
        Vale anche per i Classici (niente stagione, ma si esauriscono). */
     if (G.stockStatus(f.id) === 'esaurito') {
       var bs = G.BATCHES[f.id];
+      /* Timbro "Sold out" senza data (la regola resta: non promettiamo
+         una data di rifornimento che non conosciamo). Stesse parole
+         già presenti nella riga meta. */
       return '<div class="tile out sold" data-id="' + f.id + '" aria-disabled="true"' +
         (bs && bs.fake ? ' data-fake="1"' : '') + '>' +
         '<div class="swatch ' + f.sw + '"></div>' +
+        '<span class="stamp">Sold out</span>' +
         '<div class="t-name">' + f.name + '</div>' +
         '<div class="t-meta">Sold out: more fruit on order, back soon</div>' +
         (bs ? '<a class="t-link" href="story.html?batch=' + bs.id + '">Full record #' + bs.id + ' →</a>' : '') +
