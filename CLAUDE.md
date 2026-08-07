@@ -159,6 +159,10 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   alimentato dal CMS Notion del founder (1 pagina Notion per batch → QR sull'etichetta).
   Mai inventare batch: si aggiungono solo con dati confermati dal founder.
 - demo-direzione-precedente.html → vecchia direzione archiviata. NON toccare, NON imitare.
+- demo-registro.html → DEMO della direzione di stile "Il Registro" (documentary/
+  spec-sheet, 8 ago 2026): una sezione (picker-schedario + drop docket), self-
+  contained, dati reali da flavors.js, IBM Plex Mono proposto per i dati.
+  In ATTESA di verdetto del founder: NON migrare il sito senza il suo ok.
 - Deploy: GitHub Pages dal branch main → ogni push è live su https://chatgptmarco.github.io/gelatorchard-site/
 
 ## Design system (vincolante)
