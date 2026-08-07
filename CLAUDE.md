@@ -348,6 +348,13 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   fissa in basso (stile .form-action della demo, NIENTE popup) con
   gusti selezionati live e la stessa CTA del riepilogo — stringhe
   riusate, zero copy nuovo; solo home (showSummary), aria-live.
+- ATTERRAGGIO goto=size (fix founder, post-migrazione): le CTA del
+  riepilogo picker e del dock mobile linkano order.html?flavours=…
+  &goto=size; order.js con quel parametro (e gusti preselezionati)
+  scrolla su #op-price ("Who's it for?") con pulse verde sul menu
+  taglie (.kit-people.pulse, keyframes tile-pulse riusati; rispetta
+  prefers-reduced-motion). La barra scarsità continua a linkare senza
+  goto: chi arriva da lì non ha ancora confermato i gusti.
 - TIMBRI PICKER (fix founder, post-migrazione): il timbro delle tile
   fuori stagione vive FUORI dalla .swatch (dentro ereditava grayscale
   +opacity della foto e spariva); niente mix-blend, inchiostro ruggine

@@ -158,6 +158,24 @@
     onChange: refresh
   });
 
+  /* Atterraggio dal picker in home (?goto=size, fix founder 8 ago 2026):
+     i gusti sono già scelti, quindi il passo davanti all'utente è
+     "Who's it for?" — si scrolla lì, non si atterra in cima pagina.
+     Pulse verde sul menu taglie (stesso pattern del pulse sulle tile). */
+  if (new URLSearchParams(location.search).get('goto') === 'size' && preselect.length) {
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(function () {
+      var priceBox = document.getElementById('op-price');
+      if (!priceBox) return;
+      priceBox.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+      var sel = document.getElementById('kit-people');
+      if (sel && !reduced) {
+        sel.classList.add('pulse');
+        setTimeout(function () { sel.classList.remove('pulse'); }, 1600);
+      }
+    }, 150);
+  }
+
   /* ---------- 3.4 ticket batch/classico ---------- */
   function ticketHTML(id) {
     var f = G.flavorById(id);

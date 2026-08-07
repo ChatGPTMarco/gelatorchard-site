@@ -647,7 +647,10 @@
         } else {
           valueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
           valueEl.classList.remove('empty');
-          if (ctaEl) ctaEl.href = 'order.html?flavours=' + selected.join(',');
+          /* goto=size: /order atterra direttamente su "Who's it for?"
+             (fix founder 8 ago 2026) — i gusti sono già scelti, il
+             passo davanti all'utente è la taglia, non la cima pagina */
+          if (ctaEl) ctaEl.href = 'order.html?flavours=' + selected.join(',') + '&goto=size';
         }
       }
       /* Dock mobile: visibile solo con ≥1 gusto scelto, contenuto
@@ -655,7 +658,7 @@
       if (dockEl) {
         dockEl.classList.toggle('on', selected.length > 0);
         dockValueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
-        dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') : 'order.html';
+        dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') + '&goto=size' : 'order.html';
       }
       if (opts.onChange) opts.onChange(selected.slice());
     }

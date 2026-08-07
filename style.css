@@ -190,6 +190,7 @@ section{padding:88px 0}
   .hc-slide{transition:none;transform:none}
   .hc-dot{transition:none}
   .tile.pulse .swatch{animation:none}
+  .kit-people.pulse{animation:none}
 }
 
 /* ============================================================
@@ -655,6 +656,8 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .kit-people-label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);margin-bottom:8px}
 .kit-people{width:100%;max-width:360px;padding:12px 16px;border-radius:0;border:1.5px solid var(--ink);background:var(--surface);font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:16px;cursor:pointer}
 .kit-people:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+/* Atterraggio goto=size: il menu taglie pulsa per farsi trovare */
+.kit-people.pulse{animation:tile-pulse .75s ease-out 2}
 
 /* --- Confronto etichette (10.5.2b) — dall'8 ago 2026 vive DENTRO il
    manifesto scuro: le card bianche esplodono sul fondo ink --- */
