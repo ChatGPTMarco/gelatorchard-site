@@ -578,6 +578,10 @@
     opts = opts || {};
     var max = opts.max != null ? opts.max : 2;
     var showSummary = opts.summary !== false;
+    /* opts.dock: forza il dock mobile anche senza riepilogo (/order);
+       opts.onDockCta(selection): la CTA del dock chiama questo invece
+       di navigare (usato su /order per scrollare al modulo taglia). */
+    var wantDock = opts.dock != null ? !!opts.dock : showSummary;
     var selected = [];
     (opts.preselect || []).forEach(function (id) {
       var st = G.seasonStatus(id);
@@ -601,10 +605,13 @@
             '<div class="ks-value empty">Pick 1–2 flavours above</div>' +
           '</div>' +
           '<a class="pill pill-dark ks-cta" data-track="picker_continue" href="order.html">Continue · pick your Kit size →</a>' +
-        /* Dock mobile (fix founder 8 ago 2026): stesso contenuto del
-           riepilogo, fisso in basso, appare al primo gusto scelto.
-           Stringhe RIUSATE dal riepilogo: zero copy nuovo. */
-        '</div>' +
+        '</div>' : '') +
+      /* Dock mobile (fix founder 8 ago 2026): stesso contenuto del
+         riepilogo, fisso in basso, appare al primo gusto scelto.
+         Stringhe RIUSATE dal riepilogo: zero copy nuovo. Dall'8 ago
+         sera vive anche su /order (opts.dock): lì la CTA non naviga,
+         scrolla al modulo taglia via opts.onDockCta. */
+      (wantDock ?
         '<div class="picker-dock" aria-live="polite">' +
           '<div><span class="pd-k">Your Gelato Kit (pick up to 2 flavours)</span>' +
           '<span class="pd-value"></span></div>' +
@@ -626,6 +633,12 @@
     }
     var dockValueEl = dockEl && dockEl.querySelector('.pd-value');
     var dockCtaEl = dockEl && dockEl.querySelector('.pd-cta');
+    if (dockCtaEl && opts.onDockCta) {
+      dockCtaEl.addEventListener('click', function (e) {
+        e.preventDefault();
+        opts.onDockCta(selected.slice());
+      });
+    }
 
     function showTab(name) {
       root.querySelectorAll('.flavor-tab').forEach(function (t) {
@@ -666,9 +679,14 @@
       /* Dock mobile: visibile solo con ≥1 gusto scelto, contenuto
          identico al riepilogo (il CSS lo mostra solo <760px) */
       if (dockEl) {
-        dockEl.classList.toggle('on', selected.length > 0);
+        var dockOn = selected.length > 0;
+        dockEl.classList.toggle('on', dockOn);
         dockValueEl.textContent = selected.map(function (id) { return G.flavorById(id).name; }).join(' + ');
         dockCtaEl.href = selected.length ? 'order.html?flavours=' + selected.join(',') + '&goto=size' : 'order.html';
+        /* segnale globale: su mobile il bottone Basket si alza sopra
+           il dock (altrimenti si coprono a vicenda) */
+        document.body.classList.toggle('gc-dock-on',
+          dockOn && getComputedStyle(dockEl).display !== 'none');
       }
       if (opts.onChange) opts.onChange(selected.slice());
     }

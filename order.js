@@ -134,6 +134,7 @@
     tabsEl.querySelectorAll('.fmt-tab').forEach(function (t) {
       t.classList.toggle('active', t === btn);
     });
+    syncDockFormat(); /* prima di setMax: sync() legge la visibilità del dock */
     picker.setMax(FORMATS[activeFormat].max); /* fa scattare refresh() via onChange */
   });
 
@@ -151,12 +152,52 @@
   var qs = new URLSearchParams(location.search).get('flavours');
   if (qs) preselect = qs.split(',').filter(Boolean);
 
+  /* Salto al modulo taglia ("Who's it for?"): block:'start' così la
+     sezione parte dall'INIZIO con la domanda in alto (fix founder,
+     8 ago sera) — il margine per nav sticky + barra scarsità vive in
+     CSS (scroll-margin-top su #op-price). instant=true bypassa la
+     CSS smooth (atterraggi automatici); i click dell'utente usano
+     lo smooth normale. */
+  function jumpToPrice(instant, withPulse) {
+    var priceBox = document.getElementById('op-price');
+    if (!priceBox) return;
+    if (instant) {
+      var htmlEl = document.documentElement;
+      var prevBehavior = htmlEl.style.scrollBehavior;
+      htmlEl.style.scrollBehavior = 'auto';
+      priceBox.scrollIntoView({ block: 'start' });
+      htmlEl.style.scrollBehavior = prevBehavior;
+    } else {
+      priceBox.scrollIntoView({ block: 'start' });
+    }
+    if (withPulse) {
+      var sel = document.getElementById('kit-people');
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (sel && !reduced) {
+        sel.classList.add('pulse');
+        setTimeout(function () { sel.classList.remove('pulse'); }, 1600);
+      }
+    }
+  }
+
+  /* Il dock del picker vive anche qui (fix founder, 8 ago sera): chi
+     cambia idea sui gusti DOPO l'atterraggio ritrova la stessa barra
+     con la stessa CTA — che qui non naviga, scrolla al modulo taglia.
+     Ha senso solo per il Kit: sugli altri formati resta nascosto. */
+  function syncDockFormat() {
+    var d = document.querySelector('body > .picker-dock');
+    if (d) d.style.display = (activeFormat === 'kit') ? '' : 'none';
+  }
+
   var picker = G.renderFlavorPicker(document.getElementById('op-picker'), {
     max: FORMATS[activeFormat].max,
     summary: false,
+    dock: true,
     preselect: preselect,
-    onChange: refresh
+    onChange: refresh,
+    onDockCta: function () { jumpToPrice(false, true); }
   });
+  syncDockFormat();
 
   /* Atterraggio dal picker in home (?goto=size, fix founder 8 ago 2026):
      i gusti sono già scelti, quindi il passo davanti all'utente è
@@ -176,28 +217,14 @@
     ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
       window.addEventListener(ev, function () { userTookOver = true; }, { passive: true, once: true });
     });
-    var jumpToSize = function () {
-      if (userTookOver) return;
-      var priceBox = document.getElementById('op-price');
-      if (!priceBox) return;
-      var htmlEl = document.documentElement;
-      var prevBehavior = htmlEl.style.scrollBehavior;
-      htmlEl.style.scrollBehavior = 'auto'; /* spegne lo smooth CSS: salto secco */
-      priceBox.scrollIntoView({ block: 'center' });
-      htmlEl.style.scrollBehavior = prevBehavior;
-    };
-    jumpToSize();                                  /* subito: DOM pronto */
-    setTimeout(jumpToSize, 250);                   /* dopo docket + barra scarsità */
+    var autoJump = function () { if (!userTookOver) jumpToPrice(true, false); };
+    autoJump();                                    /* subito: DOM pronto */
+    setTimeout(autoJump, 250);                     /* dopo docket + barra scarsità */
     setTimeout(function () {
-      jumpToSize();                                /* assestamento (font, reveal) */
-      var sel = document.getElementById('kit-people');
-      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (sel && !reduced && !userTookOver) {
-        sel.classList.add('pulse');
-        setTimeout(function () { sel.classList.remove('pulse'); }, 1600);
-      }
+      if (userTookOver) return;
+      jumpToPrice(true, true);                     /* assestamento + pulse */
     }, 700);
-    window.addEventListener('load', function () { setTimeout(jumpToSize, 60); });
+    window.addEventListener('load', function () { setTimeout(autoJump, 60); });
   }
 
   /* ---------- 3.4 ticket batch/classico ---------- */

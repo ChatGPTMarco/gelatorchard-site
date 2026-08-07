@@ -359,8 +359,16 @@ section{padding:88px 0}
 .cta-hint{font-size:13px;color:var(--ink-faint)}
 .scarcity{font-size:13.5px;color:#B96F2E;margin-top:14px}
 
+/* Atterraggio goto=size / CTA dock: la sezione parte dall'inizio,
+   "Who's it for?" subito sotto nav sticky + barra scarsità */
+#op-price{scroll-margin-top:calc(var(--sb-h,38px) + 76px)}
+
 /* --- Basket drawer --- */
 .basket-fab{position:fixed;right:24px;bottom:24px;z-index:65;box-shadow:0 8px 28px rgba(29,29,31,.25)}
+/* col dock aperto il Basket si alza sopra di lui (solo mobile) */
+@media(max-width:760px){
+  .gc-dock-on .basket-fab{bottom:calc(158px + env(safe-area-inset-bottom,0px))}
+}
 .drawer-overlay{position:fixed;inset:0;background:rgba(29,29,31,.35);z-index:85;opacity:0;pointer-events:none;transition:opacity .25s}
 .drawer-overlay.open{opacity:1;pointer-events:auto}
 .drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100vw);background:var(--bg);z-index:90;transform:translateX(102%);transition:transform .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(29,29,31,.15)}

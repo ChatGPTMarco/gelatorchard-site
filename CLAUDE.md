@@ -367,6 +367,15 @@ Server locale: python -m http.server 8000 nella cartella; ricordare Ctrl+F5 (cac
   taglie (.kit-people.pulse, keyframes tile-pulse riusati; rispetta
   prefers-reduced-motion). La barra scarsità continua a linkare senza
   goto: chi arriva da lì non ha ancora confermato i gusti.
+  RAFFINATO (8 ago sera, fix founder): block:'start' + scroll-margin-top
+  su #op-price (nav+barra via --sb-h) così la sezione parte dall'INIZIO
+  con la domanda in vista, non centrata sul prezzo. Il dock vive ANCHE
+  su /order (opts.dock + opts.onDockCta in renderFlavorPicker): chi
+  cambia gusti dopo l'atterraggio ritrova la barra, la cui CTA lì non
+  naviga ma scrolla al modulo taglia (jumpToPrice, smooth per i click,
+  instant per gli atterraggi automatici). Visibile solo sul tab Kit
+  (syncDockFormat). Con dock aperto il basket-fab si alza
+  (.gc-dock-on su body, settato da sync() in flavors.js).
 - TIMBRI PICKER (fix founder, post-migrazione): il timbro delle tile
   fuori stagione vive FUORI dalla .swatch (dentro ereditava grayscale
   +opacity della foto e spariva); niente mix-blend, inchiostro ruggine
