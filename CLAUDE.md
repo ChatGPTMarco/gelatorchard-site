@@ -189,8 +189,10 @@ INTERVENTI APPROVATI ("gelato-first") — FATTI il 14 ago 2026 (v=r16):
 - La migrazione "Il Registro" (sotto) va fatta nella variante CALDA:
   "documento con dentro il gelato", mai bolletta. Se rigore e golosità
   confliggono, vince la golosità sopra la piega e il rigore sotto.
-- COPY RESTA CONGELATO: l'eventuale riga sensoriale nel sottotitolo hero
-  va PROPOSTA al founder e aggiunta solo con suo ok esplicito.
+- COPY RESTA CONGELATO. Unica eccezione APPROVATA dal founder (14 ago
+  2026, opzione A): riga sensoriale AGGIUNTA in coda al sub hero —
+  "Cold, soft, and tasting of the field it grew in." Nessuna parola
+  preesistente cancellata.
 - Video 15s e foto vere restano compiti del founder (non bloccanti ora).
 
 ## MIGRAZIONE STILE "IL REGISTRO" — APPROVATA (founder, 8 ago 2026)
