@@ -93,9 +93,12 @@ section{padding:88px 0}
 /* Solo la G è l'iniziale grande: la maiuscola di "Orchard" è l'ARANCIA
    stessa, quindi la R resta piccola come le altre (fix founder). */
 .brand-word:first-of-type::first-letter{font-size:1.32em}
-.logo-o{width:19.5px;height:36.8px;margin:0 1px;transform:translateY(-5.5px);flex-shrink:0;align-self:center}
+/* Allineamento da O (fix founder): il FONDO dell'arancia poggia sulla
+   baseline del testo (+0.7px di overshoot ottico, come una vera O
+   tonda); il cono può scendere sotto, non disturba. */
+.logo-o{width:19.5px;height:36.8px;margin:0 1px;transform:translateY(-3px);flex-shrink:0;align-self:center}
 .footer .brand .brand-word{font-size:16px}
-.footer .brand .logo-o{width:17.5px;height:33px;transform:translateY(-5px)}
+.footer .brand .logo-o{width:17.5px;height:33px;transform:translateY(-2.5px)}
 /* Filetto oro con punto arancio sotto il marchio (solo footer: la nav
    non ha l'altezza per il lockup completo) */
 .brand-rule{display:flex;align-items:center;gap:9px;max-width:280px;margin:14px 0 10px}
