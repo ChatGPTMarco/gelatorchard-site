@@ -68,10 +68,16 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   SVG dalla sua bozza Canva che aveva il watermark): lockup "GELAT + mark +
   RCHARD" dove la O è il mark SVG — arancia --orange con foglia --green su un
   CONO DORATO a retino waffle (--gold #BA9C57, token SOLO per il logo, non è
-  un accento UI). Lettere in maiuscoletto serif verde: .brand-word Fraunces 500,
-  ::first-letter più grande su G e R. Nel footer il lockup completo ha il
-  filetto oro con punto arancio (.brand-rule) tra marchio e tagline; la nav
-  resta senza filetto (non ha l'altezza).
+  un accento UI). Lettere in maiuscoletto serif verde (.brand-word Fraunces
+  540, 18px nav / 16px footer): SOLO la G ha ::first-letter grande — la
+  maiuscola di "Orchard" è l'arancia stessa, la R resta piccola. APPROVATO
+  dal founder il 14 ago 2026 dopo iterazioni misurate nel browser: arancia
+  = diametro delle maiuscole, gap da lettera (viewBox stretto sul bordo,
+  margin 1px), FONDO dell'arancia sulla baseline del testo (+0.7px di
+  overshoot ottico da O tonda; il cono scende sotto la riga, voluto).
+  Se si ritocca il lockup, riverificare queste misure, non a occhio.
+  Nel footer il lockup completo ha il filetto oro con punto arancio
+  (.brand-rule) tra marchio e tagline; la nav resta senza filetto.
   La favicon (stesso mark, data URI) è iniettata da site.js: non aggiungere <link rel="icon"> negli HTML.
 - flavors.js (nella radice) → motore stagionale (Gelatorchard.seasonStatus, calendario raccolto UK),
   <FlavorPicker> (opts: max/preselect/summary/onChange → controller get/setMax/clear),
