@@ -146,6 +146,13 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
 - order.js (nella radice) → logica di /order: formati (FORMATS con min/max gusti), basket
   (localStorage gc-basket-v1 + gc-fulfilment), checkout. Solo per order.html.
   ETA = sabato del drop settimanale via G.orderWindow (NON più "domani").
+  DECISIONE FOUNDER 14 ago 2026 (supera il vecchio "kit default"): su
+  /order SENZA ?format= NESSUN formato è preselezionato — nessun tab
+  attivo, price block "Choose your format above", Add disabilitato con
+  hint, dock con le stringhe neutre della home; la scelta tra le 5
+  linguette è il primo passo. ?format=<id> resta il message match dei
+  deep-link; goto=size (link vecchi in cache) forza ancora il Kit;
+  goto=format senza tab attivo fa pulsare TUTTE le linguette.
 - how-to-order.html + howto.js → pagina "How to Order" (drop settimanale, direct
   response): finestra ordini lun 10:00 → mar 18:00, frutta gio sera, produzione ven
   mattina, consegna sab/dom. Il ritmo vive SOLO in Gelatorchard.orderWindow
