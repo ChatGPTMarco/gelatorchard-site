@@ -170,14 +170,22 @@ Il founder ha notato che il sito non sembra vendere gelato. Cause misurate:
 un'azienda agricola; (3) vocabolario 50/50 tra cibo e documenti, zero
 parole sensoriali; (4) palette fredda da erboristeria, i colori del gelato
 vivono solo nelle tile; (5) il sito dimostra prima di far venire voglia.
-INTERVENTI APPROVATI (da fare, "gelato-first"):
-- Foto di GELATO (non frutta) sopra la piega e nelle tile del picker:
-  il founder NON è pronto con le foto vere → usare FOTO STOCK GRATUITE
-  dal web (Unsplash/Pexels, procedura e licenze in FOTO-DA-SCARICARE.md),
-  tutte marcate data-fake + etichetta bozza e registrate in FAKE-DATA.md,
-  da sostituire con le foto vere prima della pubblicazione.
-- Colore caldo dei gelati (rosa/viola/crema/pistacchio) come fondi e
-  accenti di sezione, non solo dentro le tile.
+INTERVENTI APPROVATI ("gelato-first") — FATTI il 14 ago 2026 (v=r16):
+- ✅ Foto di GELATO (non frutta) sopra la piega e nelle tile del picker:
+  13 foto stock Pexels in foto-gusti/gelato/<id>.jpg (ID e note in
+  FAKE-DATA.md; scartate quelle con brand terzi visibili). Le usano:
+  applyTilePhotos (flavors.js, primo candidato della catena, ORA ANCHE
+  I CLASSICI — superata la scelta "classici a gradiente"), il Diario
+  del Raccolto (home.js data-photo), assets/hero-gelato.jpg (og:image,
+  sostituita: vaschetta artigianale di gelato alla fragola) e
+  viaggio/laboratorio.jpg (sostituita, via le bande nere). Tutte
+  data-fake, da sostituire con le foto vere prima della pubblicazione.
+- ✅ Colore caldo dei gelati come fondi di sezione: token --warm-pink/
+  --warm-cream/--warm-pistachio/--warm-plum in :root; hero = alba rosa
+  che sfuma nella carta, #flavors rosa, #season pistacchio, #formats
+  crema, /order #view-catalog gradiente rosa in testa. #proof e la
+  lettera restano carta (rigore sotto la piega). Blocco in coda a
+  style.css, zero markup toccato.
 - La migrazione "Il Registro" (sotto) va fatta nella variante CALDA:
   "documento con dentro il gelato", mai bolletta. Se rigore e golosità
   confliggono, vince la golosità sopra la piega e il rigore sotto.

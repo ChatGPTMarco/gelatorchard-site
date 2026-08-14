@@ -21,6 +21,14 @@
   --green-deep:#1F5C37;
   --orange:#E8934A;
   --stamp:#B0482E;
+  /* GELATO-FIRST (8 ago 2026): tinte CALDE dei gelati (rosa/crema/
+     pistacchio/viola) per fondi e accenti di sezione — derivate dalle
+     .sw-* schiarite verso la carta #FAF8F2. Variante calda del
+     Registro: "documento con dentro il gelato", mai bolletta. */
+  --warm-pink:#F7E8E4;
+  --warm-cream:#F6EFE0;
+  --warm-pistachio:#EEF1E1;
+  --warm-plum:#F0EAF2;
   --line:rgba(29,29,31,.16);
   --shadow:5px 5px 0 rgba(29,29,31,.08); /* ombra "a piastra" da modulo stampato */
   --radius:0px; /* registro: angoli netti, niente card arrotondate */
@@ -827,3 +835,23 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 .journey-line line{stroke:rgba(45,122,74,.35);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
 .j-step{position:relative;z-index:1}
 @media(max-width:760px){.journey-line{display:none}}
+
+/* ============================================================
+   GELATO-FIRST — fondi caldi di sezione (diagnosi 8 ago 2026)
+   Variante CALDA del Registro: il documento contiene il gelato.
+   Golosità SOPRA la piega (hero, picker, listino); il rigore
+   resta sotto (#proof e la lettera restano carta). Solo pelle:
+   nessun markup toccato, i fondi agganciano gli id esistenti.
+   ============================================================ */
+/* Hero: alba rosa-fragola che sfuma nella carta */
+.hero{background:linear-gradient(180deg,var(--warm-pink) 0%,rgba(247,232,228,0) 82%)}
+/* Picker (home): lo schedario poggia su un fondo rosa gelato */
+#flavors{background:var(--warm-pink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* Ruota stagionale: pistacchio pallido */
+#season{background:var(--warm-pistachio);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* Listino formati: crema fior di latte */
+#formats{background:var(--warm-cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* Le schede bianche del picker restano bianche sui fondi caldi:
+   il contrasto scheda/fondo è il punto (specimen su tavolo caldo). */
+/* /order: lo stesso calore in testa al modulo d'ordine */
+#view-catalog{background:linear-gradient(180deg,var(--warm-pink) 0%,rgba(247,232,228,0) 46%)}

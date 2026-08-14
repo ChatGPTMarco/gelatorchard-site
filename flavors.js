@@ -531,32 +531,31 @@
       '</div>';
   }
 
-  /* Foto prodotto sulle tile della Collezione Frutta: prova
-     foto-gusti/frutta/<id>.jpg (stessa convenzione dei caroselli),
-     fallback automatico al gradiente .sw-*. Le foto attuali sono
-     BOZZE stock/AI → swatch marcato data-fake (FAKE-DATA.md).
-     Niente foto su: Classici (non consegnate) e tile "sold" (il
-     grigio caldo È il segnale di scorta esaurita). Le tile fuori
+  /* Foto prodotto sulle tile: prova PRIMA il GELATO del gusto
+     (foto-gusti/gelato/<id>.jpg — diagnosi "gelato-first" 8 ago 2026:
+     nelle tile si vende gelato, non frutta cruda), poi il primo piano
+     frutta, poi la foto del carosello, infine resta il gradiente .sw-*.
+     Le foto attuali sono BOZZE stock/AI → swatch marcato data-fake
+     (FAKE-DATA.md). Dall'intervento gelato-first anche i CLASSICI
+     hanno la foto (foto-gusti/gelato/). Niente foto sulle tile "sold"
+     (il grigio caldo È il segnale di scorta esaurita). Le tile fuori
      stagione mostrano la foto in scala di grigi (filter esistente). */
   var TILE_PHOTOS = {};
   function applyTilePhotos(root) {
     root.querySelectorAll('.tile').forEach(function (t) {
       if (t.classList.contains('sold')) return;
       var id = t.getAttribute('data-id');
-      if (G.isClassic(id)) return;
       var sw = t.querySelector('.swatch');
       function apply(url) {
         sw.classList.add('has-photo');
         sw.setAttribute('data-fake', '1'); /* bozza: togliere con le foto vere */
         sw.style.backgroundImage = 'url("' + url + '")';
       }
-      /* Nella tile serve il frutto RICONOSCIBILE (scelta founder):
-         prima il primo piano dedicato in frutta/tile/, poi la foto
-         standard del carosello, poi resta il gradiente. */
       var cached = TILE_PHOTOS[id];
       if (cached === false) return;
       if (cached) { apply(cached); return; }
       var candidates = [
+        'foto-gusti/gelato/' + id + '.jpg',
         'foto-gusti/frutta/tile/' + id + '.jpg',
         'foto-gusti/frutta/' + id + '.jpg'
       ];

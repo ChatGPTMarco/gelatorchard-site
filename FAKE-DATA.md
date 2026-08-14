@@ -73,6 +73,41 @@ parità di nome. La cartella `foto/` resta come archivio degli originali.
 | assets/farmer-field.jpg | story cap. 1 | raccolta fragole, viso coperto dal cappello — bande nere da stock |
 | assets/lab-gelato.jpg | story cap. 2 | stesso mantecatore della tappa 2 |
 
+## Foto GELATO stock (intervento gelato-first, 14 ago 2026 — Pexels, TUTTE bozze)
+
+Diagnosi founder 8 ago: il sito mostrava frutta cruda, non gelato. Scaricate
+da Pexels (licenza Pexels: uso commerciale libero, senza attribuzione) foto di
+GELATO nei colori giusti per gusto, in `foto-gusti/gelato/<id>.jpg`. Le usano:
+le TILE del picker (primo candidato in applyTilePhotos, flavors.js — ora anche
+i Classici), il Diario del Raccolto (data-photo in home.js) e l'og:image.
+Tutte marcate `data-fake` via i meccanismi esistenti. Al lancio: sostituire i
+file con le foto vere dei gelati Gelatorchard a parità di nome.
+
+| File | Pexels ID | Nota |
+|---|---|---|
+| foto-gusti/gelato/strawberry.jpg | 5535554 | scoop rosa acceso, close-up |
+| foto-gusti/gelato/raspberry.jpg | 8104733 | bowl con lamponi freschi |
+| foto-gusti/gelato/cherry.jpg | 12861927 | coppette con ciliegie |
+| foto-gusti/gelato/blueberry.jpg | 5090114 | viola con mirtilli su marmo |
+| foto-gusti/gelato/blackcurrant.jpg | 8807333 | scoop viola intenso |
+| foto-gusti/gelato/victoria-plum.jpg | 8807332 | scoop viola su carta kraft |
+| foto-gusti/gelato/apple-pear.jpg | 7525078 | scooping crema in coppetta |
+| foto-gusti/gelato/quince.jpg | 9227715 | crema + caramello ambrato |
+| foto-gusti/gelato/rhubarb.jpg | 7664392 | rosa pastello (con more, piatto vintage) |
+| foto-gusti/gelato/chocolate.jpg | 9227761 | cono cioccolato (sfondo azzurro) |
+| foto-gusti/gelato/pistachio.jpg | 8713080 | vaschetta da banco con pistacchi |
+| foto-gusti/gelato/stracciatella.jpg | 5060451 | crema con striature di cioccolato |
+| foto-gusti/gelato/hazelnut.jpg | 11521706 | vaschetta da banco con granella |
+| assets/hero-gelato.jpg (SOSTITUITA) | 5061196 | vaschetta gelato fragola, og:image |
+| foto-gusti/viaggio/laboratorio.jpg (SOSTITUITA) | 12551947 | vaschette dall'alto (via le bande nere) |
+
+NB scartate in ricerca per marchi terzi visibili (mai usare): Pexels 22809621/
+22809619/22809618 e 22809606 ("Scoop A Cone"), 29269190 ("Sorbetto's"),
+5060890 ("Isle of Gelato"), 17260658 (cup brandizzata portoghese).
+NB il colore di quince/apple-pear/rhubarb è un'approssimazione da bozza: la
+cotogna cotta è ambra, mela-pera crema, rabarbaro rosa pallido — validare col
+gelato vero.
+
 **File della cartella `foto/` NON usati (non usare mai):**
 - `rhubarb.jpg` → watermark Alamy visibile (non licenziata)
 - `Marco al Trittico….jpg` → gelatiere sconosciuto con grembiule del marchio

@@ -259,8 +259,11 @@
       ? '<div class="hc-stock"' + (b && b.fake ? ' data-fake="1"' : '') +
         '>Already sold out this week: ask for the next harvest below</div>'
       : '';
+    /* Gelato-first (8 ago 2026): sopra la piega si mostra il GELATO
+       del gusto, non la frutta cruda nei campi (foto-gusti/gelato/).
+       Il fallback onerror al gradiente resta invariato. */
     return '<div class="hc-slide ' + f.sw + '" data-id="' + f.id + '"' +
-      ' data-photo="foto-gusti/frutta/' + f.id + '.jpg" role="group" ' +
+      ' data-photo="foto-gusti/gelato/' + f.id + '.jpg" role="group" ' +
       'aria-roledescription="slide" aria-label="' + f.name + ', ' + st.subtitle + '">' +
       '<div class="hc-overlay">' + quote + '<div class="hc-meta">' + meta + '</div>' + stock + '</div>' +
       '</div>';
