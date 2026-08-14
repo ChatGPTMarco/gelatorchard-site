@@ -29,6 +29,9 @@
   --warm-cream:#F6EFE0;
   --warm-pistachio:#EEF1E1;
   --warm-plum:#F0EAF2;
+  /* Oro del logo v2 (design founder 14 ago 2026): SOLO per il lockup
+     (cono waffle, filetti del brand-rule). Non è un accento di UI. */
+  --gold:#BA9C57;
   --line:rgba(29,29,31,.16);
   --shadow:5px 5px 0 rgba(29,29,31,.08); /* ombra "a piastra" da modulo stampato */
   --radius:0px; /* registro: angoli netti, niente card arrotondate */
@@ -81,11 +84,21 @@ section{padding:88px 0}
 .nav{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1.5px solid var(--ink)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 /* Logo lockup: GELAT + mark (arancia/foglia/cono come "O") + RCHARD */
-.brand{display:inline-flex;align-items:center;text-decoration:none;line-height:1}
-.brand-word{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.05em;color:var(--green-deep)}
-.logo-o{width:22px;height:33px;margin:0 1.5px;transform:translateY(4px);flex-shrink:0}
-.footer .brand .brand-word{font-size:17px}
-.footer .brand .logo-o{width:20px;height:30px}
+/* Lockup v2 (design founder 14 ago 2026): maiuscoletto serif verde —
+   la prima lettera di GELAT e RCHARD è più grande (::first-letter),
+   spaziatura generosa come nella bozza. Distanze lettera↔arancia
+   invariate: l'arancia È la O della parola. */
+.brand{display:inline-flex;align-items:baseline;text-decoration:none;line-height:1}
+.brand-word{display:inline-block;font-family:var(--serif);font-size:16.5px;font-weight:500;letter-spacing:.09em;color:var(--green-deep)}
+.brand-word::first-letter{font-size:1.34em}
+.logo-o{width:23px;height:34.5px;margin:0 2px;transform:translateY(9px);flex-shrink:0;align-self:center}
+.footer .brand .brand-word{font-size:15px}
+.footer .brand .logo-o{width:21px;height:31.5px;transform:translateY(8px)}
+/* Filetto oro con punto arancio sotto il marchio (solo footer: la nav
+   non ha l'altezza per il lockup completo) */
+.brand-rule{display:flex;align-items:center;gap:9px;max-width:280px;margin:14px 0 10px}
+.brand-rule span{flex:1;height:1px;background:var(--gold)}
+.brand-rule i{width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0}
 .nav-links{display:flex;gap:6px;list-style:none}
 .nav-links a{display:block;padding:8px 12px;border-radius:0;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;transition:background .15s,color .15s}
 .nav-links a:hover{color:var(--ink);background:rgba(29,29,31,.05)}

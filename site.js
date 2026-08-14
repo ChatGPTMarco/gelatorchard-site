@@ -6,14 +6,22 @@
 (function () {
   var page = (location.pathname.split('/').pop() || 'index.html');
 
-  /* ---------- Logo (lockup ufficiale: la "O" è un'arancia con foglia
-     sopra un cono a tratto, ricreato in SVG con i token del sito) ---------- */
+  /* ---------- Logo (lockup ufficiale v2, design founder 14 ago 2026:
+     la "O" è un'arancia con foglia appoggiata su un CONO DORATO a
+     retino waffle che scende sotto la riga; lettere in maiuscoletto
+     serif verde — vedi .brand-word in style.css. Ricreato in SVG coi
+     token del sito: la bozza Canva del founder aveva il watermark). ---------- */
   var LOGO_O =
     '<svg class="logo-o" viewBox="0 0 100 150" aria-hidden="true" focusable="false">' +
-      '<path d="M28 82 L48 142 L68 82" fill="none" stroke="var(--green-deep)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>' +
-      '<circle cx="48" cy="58" r="32" fill="var(--orange)"/>' +
-      '<path d="M52 26 C53 19 56 13 62 8" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>' +
-      '<path d="M56 14 C64 2 78 0 86 6 C80 18 64 22 56 14 Z" fill="var(--green)"/>' +
+      '<clipPath id="gc-cone"><path d="M29 80 L50 142 L71 80 Z"/></clipPath>' +
+      '<g clip-path="url(#gc-cone)" stroke="var(--gold)" stroke-width="2.5">' +
+        '<path d="M41 80 L61 138 M53 80 L69 126 M65 80 L75 108" fill="none"/>' +
+        '<path d="M59 80 L39 138 M47 80 L31 126 M35 80 L25 108" fill="none"/>' +
+      '</g>' +
+      '<path d="M29 80 L50 142 L71 80 Z" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linejoin="round"/>' +
+      '<circle cx="50" cy="55" r="31" fill="var(--orange)"/>' +
+      '<path d="M54 24 C55 18 58 12 64 7" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>' +
+      '<path d="M58 13 C66 1 80 -1 88 5 C82 17 66 21 58 13 Z" fill="var(--green)"/>' +
     '</svg>';
   function brandHTML() {
     return '<a class="brand" href="index.html" aria-label="Gelatorchard, home">' +
@@ -26,10 +34,10 @@
   favicon.type = 'image/svg+xml';
   favicon.href = 'data:image/svg+xml,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150">' +
-    '<path d="M28 82 L48 142 L68 82" fill="none" stroke="#1F5C37" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>' +
-    '<circle cx="48" cy="58" r="32" fill="#E8934A"/>' +
-    '<path d="M52 26 C53 19 56 13 62 8" fill="none" stroke="#2D7A4A" stroke-width="5" stroke-linecap="round"/>' +
-    '<path d="M56 14 C64 2 78 0 86 6 C80 18 64 22 56 14 Z" fill="#2D7A4A"/>' +
+    '<path d="M29 80 L50 142 L71 80 Z" fill="none" stroke="#BA9C57" stroke-width="7" stroke-linejoin="round"/>' +
+    '<circle cx="50" cy="55" r="31" fill="#E8934A"/>' +
+    '<path d="M54 24 C55 18 58 12 64 7" fill="none" stroke="#2D7A4A" stroke-width="5" stroke-linecap="round"/>' +
+    '<path d="M58 13 C66 1 80 -1 88 5 C82 17 66 21 58 13 Z" fill="#2D7A4A"/>' +
     '</svg>');
   document.head.appendChild(favicon);
   /* Le voci puntano alle sezioni della homepage: dalle altre pagine
@@ -159,6 +167,9 @@
       '<div class="footer-grid">' +
         '<div>' +
           brandHTML() +
+          /* Lockup completo (design founder 14 ago 2026): filetto oro
+             con punto arancio tra marchio e tagline, come nella bozza */
+          '<div class="brand-rule" aria-hidden="true"><span></span><i></i><span></span></div>' +
           '<p class="tagline">No Powders. Just Fruit. Every batch traced, every farmer with a name.</p>' +
         '</div>' +
         '<div><h4>Shop</h4><ul>' +

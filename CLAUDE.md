@@ -64,8 +64,14 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
 - index.html, order.html, calendario.html, business.html, story.html, app.html, how-to-order.html
 - style.css (nella radice) → TUTTI i token e componenti del design system. Non inventare colori/font nuovi.
 - site.js (nella radice) → Nav e Footer globali iniettati su ogni pagina. Modificare SOLO qui nav/footer.
-  Contiene anche il LOGO ufficiale: lockup "GELAT + mark + RCHARD" dove la O è il mark SVG
-  (arancia --orange, foglia --green, cono a tratto --green-deep) — ricreato dal logo del founder.
+  Contiene anche il LOGO ufficiale v2 (design founder 14 ago 2026, ricreato in
+  SVG dalla sua bozza Canva che aveva il watermark): lockup "GELAT + mark +
+  RCHARD" dove la O è il mark SVG — arancia --orange con foglia --green su un
+  CONO DORATO a retino waffle (--gold #BA9C57, token SOLO per il logo, non è
+  un accento UI). Lettere in maiuscoletto serif verde: .brand-word Fraunces 500,
+  ::first-letter più grande su G e R. Nel footer il lockup completo ha il
+  filetto oro con punto arancio (.brand-rule) tra marchio e tagline; la nav
+  resta senza filetto (non ha l'altezza).
   La favicon (stesso mark, data URI) è iniettata da site.js: non aggiungere <link rel="icon"> negli HTML.
 - flavors.js (nella radice) → motore stagionale (Gelatorchard.seasonStatus, calendario raccolto UK),
   <FlavorPicker> (opts: max/preselect/summary/onChange → controller get/setMax/clear),
