@@ -90,7 +90,9 @@ section{padding:88px 0}
    invariate: l'arancia È la O della parola. */
 .brand{display:inline-flex;align-items:baseline;text-decoration:none;line-height:1}
 .brand-word{display:inline-block;font-family:var(--serif);font-size:18px;font-weight:540;letter-spacing:.09em;color:var(--green-deep)}
-.brand-word::first-letter{font-size:1.32em}
+/* Solo la G è l'iniziale grande: la maiuscola di "Orchard" è l'ARANCIA
+   stessa, quindi la R resta piccola come le altre (fix founder). */
+.brand-word:first-of-type::first-letter{font-size:1.32em}
 .logo-o{width:19.5px;height:36.8px;margin:0 1px;transform:translateY(-5.5px);flex-shrink:0;align-self:center}
 .footer .brand .brand-word{font-size:16px}
 .footer .brand .logo-o{width:17.5px;height:33px;transform:translateY(-5px)}
