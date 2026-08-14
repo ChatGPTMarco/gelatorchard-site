@@ -11,17 +11,21 @@
      retino waffle che scende sotto la riga; lettere in maiuscoletto
      serif verde — vedi .brand-word in style.css. Ricreato in SVG coi
      token del sito: la bozza Canva del founder aveva il watermark). ---------- */
+  /* Proporzioni corrette (fix founder 14 ago): l'arancia è GRANDE
+     quanto le maiuscole — deve leggersi come la O della parola — e il
+     cono è corto, per metà nascosto dietro l'arancia, che spunta
+     appena sotto la riga. Mai più "iconcina tra due parole". */
   var LOGO_O =
-    '<svg class="logo-o" viewBox="0 0 100 150" aria-hidden="true" focusable="false">' +
-      '<clipPath id="gc-cone"><path d="M29 80 L50 142 L71 80 Z"/></clipPath>' +
+    '<svg class="logo-o" viewBox="0 0 100 140" aria-hidden="true" focusable="false">' +
+      '<clipPath id="gc-cone"><path d="M33 82 L50 130 L67 82 Z"/></clipPath>' +
       '<g clip-path="url(#gc-cone)" stroke="var(--gold)" stroke-width="2.5">' +
-        '<path d="M41 80 L61 138 M53 80 L69 126 M65 80 L75 108" fill="none"/>' +
-        '<path d="M59 80 L39 138 M47 80 L31 126 M35 80 L25 108" fill="none"/>' +
+        '<path d="M43 82 L59 128 M53 82 L65 116 M63 82 L71 102" fill="none"/>' +
+        '<path d="M57 82 L41 128 M47 82 L35 116 M37 82 L29 102" fill="none"/>' +
       '</g>' +
-      '<path d="M29 80 L50 142 L71 80 Z" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linejoin="round"/>' +
-      '<circle cx="50" cy="55" r="31" fill="var(--orange)"/>' +
-      '<path d="M54 24 C55 18 58 12 64 7" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>' +
-      '<path d="M58 13 C66 1 80 -1 88 5 C82 17 66 21 58 13 Z" fill="var(--green)"/>' +
+      '<path d="M33 82 L50 130 L67 82 Z" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linejoin="round"/>' +
+      '<circle cx="50" cy="52" r="36" fill="var(--orange)"/>' +
+      '<path d="M55 18 C56 12 59 7 65 2" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>' +
+      '<path d="M59 10 C67 0 79 -2 87 4 C81 14 67 18 59 10 Z" fill="var(--green)"/>' +
     '</svg>';
   function brandHTML() {
     return '<a class="brand" href="index.html" aria-label="Gelatorchard, home">' +
@@ -33,11 +37,11 @@
   favicon.rel = 'icon';
   favicon.type = 'image/svg+xml';
   favicon.href = 'data:image/svg+xml,' + encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 150">' +
-    '<path d="M29 80 L50 142 L71 80 Z" fill="none" stroke="#BA9C57" stroke-width="7" stroke-linejoin="round"/>' +
-    '<circle cx="50" cy="55" r="31" fill="#E8934A"/>' +
-    '<path d="M54 24 C55 18 58 12 64 7" fill="none" stroke="#2D7A4A" stroke-width="5" stroke-linecap="round"/>' +
-    '<path d="M58 13 C66 1 80 -1 88 5 C82 17 66 21 58 13 Z" fill="#2D7A4A"/>' +
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">' +
+    '<path d="M33 82 L50 130 L67 82 Z" fill="none" stroke="#BA9C57" stroke-width="7" stroke-linejoin="round"/>' +
+    '<circle cx="50" cy="52" r="36" fill="#E8934A"/>' +
+    '<path d="M55 18 C56 12 59 7 65 2" fill="none" stroke="#2D7A4A" stroke-width="5" stroke-linecap="round"/>' +
+    '<path d="M59 10 C67 0 79 -2 87 4 C81 14 67 18 59 10 Z" fill="#2D7A4A"/>' +
     '</svg>');
   document.head.appendChild(favicon);
   /* Le voci puntano alle sezioni della homepage: dalle altre pagine

@@ -91,9 +91,9 @@ section{padding:88px 0}
 .brand{display:inline-flex;align-items:baseline;text-decoration:none;line-height:1}
 .brand-word{display:inline-block;font-family:var(--serif);font-size:16.5px;font-weight:500;letter-spacing:.09em;color:var(--green-deep)}
 .brand-word::first-letter{font-size:1.34em}
-.logo-o{width:23px;height:34.5px;margin:0 2px;transform:translateY(9px);flex-shrink:0;align-self:center}
+.logo-o{width:23px;height:32.2px;margin:0 2px;transform:translateY(-2px);flex-shrink:0;align-self:center}
 .footer .brand .brand-word{font-size:15px}
-.footer .brand .logo-o{width:21px;height:31.5px;transform:translateY(8px)}
+.footer .brand .logo-o{width:21px;height:29.4px;transform:translateY(-2px)}
 /* Filetto oro con punto arancio sotto il marchio (solo footer: la nav
    non ha l'altezza per il lockup completo) */
 .brand-rule{display:flex;align-items:center;gap:9px;max-width:280px;margin:14px 0 10px}
