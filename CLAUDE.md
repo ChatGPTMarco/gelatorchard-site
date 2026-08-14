@@ -163,6 +163,28 @@ I nomi file restano quelli storici (calendario.html non si rinomina).
   spec-sheet, 8 ago 2026): una sezione (picker-schedario + drop docket), self-
   contained, dati reali da flavors.js, IBM Plex Mono per i dati.
 
+## DIAGNOSI "NON SEMBRA UN SITO DI GELATO" (founder + Fable, 8 ago 2026)
+Il founder ha notato che il sito non sembra vendere gelato. Cause misurate:
+(1) sopra la piega solo testo d'accusa (16-vs-3), zero gelato visibile;
+(2) le foto mostrano FRUTTA CRUDA nei campi, non gelato mangiabile — sembra
+un'azienda agricola; (3) vocabolario 50/50 tra cibo e documenti, zero
+parole sensoriali; (4) palette fredda da erboristeria, i colori del gelato
+vivono solo nelle tile; (5) il sito dimostra prima di far venire voglia.
+INTERVENTI APPROVATI (da fare, "gelato-first"):
+- Foto di GELATO (non frutta) sopra la piega e nelle tile del picker:
+  il founder NON è pronto con le foto vere → usare FOTO STOCK GRATUITE
+  dal web (Unsplash/Pexels, procedura e licenze in FOTO-DA-SCARICARE.md),
+  tutte marcate data-fake + etichetta bozza e registrate in FAKE-DATA.md,
+  da sostituire con le foto vere prima della pubblicazione.
+- Colore caldo dei gelati (rosa/viola/crema/pistacchio) come fondi e
+  accenti di sezione, non solo dentro le tile.
+- La migrazione "Il Registro" (sotto) va fatta nella variante CALDA:
+  "documento con dentro il gelato", mai bolletta. Se rigore e golosità
+  confliggono, vince la golosità sopra la piega e il rigore sotto.
+- COPY RESTA CONGELATO: l'eventuale riga sensoriale nel sottotitolo hero
+  va PROPOSTA al founder e aggiunta solo con suo ok esplicito.
+- Video 15s e foto vere restano compiti del founder (non bloccanti ora).
+
 ## MIGRAZIONE STILE "IL REGISTRO" — APPROVATA (founder, 8 ago 2026)
 Il founder ha approvato la migrazione del sito alla direzione della demo
 (demo-registro.html) con un vincolo ASSOLUTO: **COPY CONGELATO — nessuna
