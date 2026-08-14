@@ -56,11 +56,18 @@
   };
   var kitPeople = 4; /* default: il formato di punta */
   var TAB_ORDER = ['cup', 'bag', 'kit', 'multipack', 'tub'];
-  var activeFormat = 'kit'; /* prodotto di punta: default */
+  /* NESSUN formato preselezionato (fix founder, 14 ago 2026): chi
+     arriva su /order senza ?format= deve SCEGLIERE tra le 5 linguette,
+     non trovarsi dentro la taglia del Kit. Il default 'kit' resta solo
+     per i vecchi link goto=size in cache (che presuppongono il Kit). */
+  var activeFormat = null;
   /* CRO message match (8 ago 2026): ?format=cup|bag|kit|multipack|tub
      apre il catalogo sul tab giusto (card formati in home, CTA lettera) */
   var fmtParam = new URLSearchParams(location.search).get('format');
   if (fmtParam && FORMATS[fmtParam]) activeFormat = fmtParam;
+  if (!activeFormat && new URLSearchParams(location.search).get('goto') === 'size') {
+    activeFormat = 'kit'; /* compatibilità coi link vecchi */
+  }
 
   function gbp(n) { return '£' + n.toFixed(2); }
 
@@ -162,6 +169,8 @@
      CSS smooth (atterraggi automatici); i click dell'utente usano
      lo smooth normale. */
   function jumpToPrice(instant, withPulse) {
+    /* Senza formato scelto il "prossimo passo" sono le linguette */
+    if (!activeFormat) return jumpToTabs(instant, withPulse);
     /* Kit → modulo taglia (#op-price). Altri formati (founder, 8 ago
        sera): si atterra sui ticket dei gusti scelti, con riquadro
        formato e Add to Basket subito sotto. */
@@ -201,6 +210,12 @@
     if (!d) return;
     var k = d.querySelector('.pd-k');
     var cta = d.querySelector('.pd-cta');
+    if (!activeFormat) {
+      /* Stesse stringhe del dock in home (formato ancora da scegliere) */
+      k.textContent = 'Your flavours';
+      cta.textContent = 'Continue · choose your format →';
+      return;
+    }
     if (activeFormat === 'kit') {
       k.textContent = 'Your Gelato Kit (pick up to 2 flavours)';
       cta.textContent = 'Continue · pick your Kit size →';
@@ -211,7 +226,9 @@
   }
 
   var picker = G.renderFlavorPicker(document.getElementById('op-picker'), {
-    max: FORMATS[activeFormat].max,
+    /* Senza formato: max neutro 2 (come in home); il tab scelto poi
+       lo corregge via setMax (FIFO oltre il limite) */
+    max: activeFormat ? FORMATS[activeFormat].max : 2,
     summary: false,
     dock: true,
     dockHideNear: '#op-price', /* dock via quando "Who's it for?" è in vista */
@@ -251,11 +268,16 @@
     }
     if (withPulse) {
       var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      var t = tabs.querySelector('.fmt-tab.active');
-      if (t && !reduced) {
+      if (reduced) return;
+      /* Tab attivo → pulsa quello; nessun formato scelto → pulsano
+         TUTTE le linguette (la scelta è il passo da fare) */
+      var ts = tabs.querySelectorAll('.fmt-tab.active').length
+        ? tabs.querySelectorAll('.fmt-tab.active')
+        : tabs.querySelectorAll('.fmt-tab');
+      ts.forEach(function (t) {
         t.classList.add('pulse');
         setTimeout(function () { t.classList.remove('pulse'); }, 1600);
-      }
+      });
     }
   }
 
@@ -307,6 +329,13 @@
 
   /* ---------- 3.5 blocco prezzo ---------- */
   function priceHTML() {
+    if (!activeFormat) {
+      /* Formato non ancora scelto: il prezzo non esiste, il passo
+         davanti all'utente sono le linguette qui sopra */
+      return '<div class="price-block">' +
+        '<div class="price-line">Choose your format above</div>' +
+        '<p class="price-anchor">Cup, Piping Bag, Gelato Kit, Multipack or Family Tub: the price appears when you pick one.</p></div>';
+    }
     var f = FORMATS[activeFormat];
     if (activeFormat === 'kit') {
       /* Taglia per persone (PRODUZIONE.md): 250g a testa = 2 porzioni
@@ -348,17 +377,20 @@
   /* ---------- refresh catalogo (ticket, prezzo, CTA, scarcity) ---------- */
   function refresh(selection) {
     selection = selection || picker.get();
-    var f = FORMATS[activeFormat];
+    var f = activeFormat ? FORMATS[activeFormat] : null;
 
     document.getElementById('op-tickets').innerHTML = selection.map(ticketHTML).join('');
     document.getElementById('op-price').innerHTML = priceHTML();
 
     var add = document.getElementById('op-add');
     var hint = document.getElementById('op-hint');
-    var ok = selection.length >= f.min;
+    var ok = !!f && selection.length >= f.min;
     add.disabled = !ok;
     add.classList.toggle('disabled', !ok);
-    if (activeFormat === 'kit') {
+    if (!f) {
+      add.textContent = 'Add to Basket';
+      hint.textContent = 'Choose your format above to continue';
+    } else if (activeFormat === 'kit') {
       var ks = KIT_SIZES[kitPeople];
       add.textContent = 'Add the Kit for ' + kitPeople + ' · £' + ks.priceDelivery + ' delivered';
       hint.textContent = ok ? '' : 'Select 1–2 flavours to continue';
@@ -366,7 +398,7 @@
       add.textContent = 'Add to Basket · ' + f.priceLabel;
       hint.textContent = ok ? '' : 'Select a flavour to continue';
     }
-    if (ok) hint.textContent = f.hint;
+    if (ok && f) hint.textContent = f.hint;
 
     /* 3.6 scarcity reale: solo gusti frutta con stagione in chiusura (≤45 giorni) */
     var lines = [];
@@ -383,6 +415,7 @@
 
   /* ---------- 3.6 aggiungi al basket ---------- */
   document.getElementById('op-add').addEventListener('click', function () {
+    if (!activeFormat) return; /* senza formato il bottone è disabilitato */
     var sel = picker.get();
     if (sel.length < FORMATS[activeFormat].min) return;
     var people = activeFormat === 'kit' ? kitPeople : null;
