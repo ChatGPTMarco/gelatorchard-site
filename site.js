@@ -15,17 +15,21 @@
      quanto le maiuscole — deve leggersi come la O della parola — e il
      cono è corto, per metà nascosto dietro l'arancia, che spunta
      appena sotto la riga. Mai più "iconcina tra due parole". */
+  /* viewBox STRETTO sull'arancia (14..86): zero aria interna ai lati,
+     l'arancia sta alle stesse distanze di una lettera. Foglia grande e
+     leggibile, retino del cono a 2+2 tratti (a 20px sei tratti sono
+     rumore, non waffle). */
   var LOGO_O =
-    '<svg class="logo-o" viewBox="0 0 100 140" aria-hidden="true" focusable="false">' +
+    '<svg class="logo-o" viewBox="13 -7 78 147" aria-hidden="true" focusable="false">' +
       '<clipPath id="gc-cone"><path d="M33 82 L50 130 L67 82 Z"/></clipPath>' +
-      '<g clip-path="url(#gc-cone)" stroke="var(--gold)" stroke-width="2.5">' +
-        '<path d="M43 82 L59 128 M53 82 L65 116 M63 82 L71 102" fill="none"/>' +
-        '<path d="M57 82 L41 128 M47 82 L35 116 M37 82 L29 102" fill="none"/>' +
+      '<g clip-path="url(#gc-cone)" stroke="var(--gold)" stroke-width="3">' +
+        '<path d="M45 82 L61 126 M59 82 L69 108" fill="none"/>' +
+        '<path d="M55 82 L39 126 M41 82 L31 108" fill="none"/>' +
       '</g>' +
-      '<path d="M33 82 L50 130 L67 82 Z" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linejoin="round"/>' +
+      '<path d="M33 82 L50 130 L67 82 Z" fill="none" stroke="var(--gold)" stroke-width="4.5" stroke-linejoin="round"/>' +
       '<circle cx="50" cy="52" r="36" fill="var(--orange)"/>' +
-      '<path d="M55 18 C56 12 59 7 65 2" fill="none" stroke="var(--green)" stroke-width="4" stroke-linecap="round"/>' +
-      '<path d="M59 10 C67 0 79 -2 87 4 C81 14 67 18 59 10 Z" fill="var(--green)"/>' +
+      '<path d="M54 20 C55 13 58 7 64 1" fill="none" stroke="var(--green)" stroke-width="4.5" stroke-linecap="round"/>' +
+      '<path d="M56 8 C66 -4 82 -6 90 2 C83 14 66 18 56 8 Z" fill="var(--green)"/>' +
     '</svg>';
   function brandHTML() {
     return '<a class="brand" href="index.html" aria-label="Gelatorchard, home">' +
@@ -37,11 +41,11 @@
   favicon.rel = 'icon';
   favicon.type = 'image/svg+xml';
   favicon.href = 'data:image/svg+xml,' + encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140">' +
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="13 -7 78 147">' +
     '<path d="M33 82 L50 130 L67 82 Z" fill="none" stroke="#BA9C57" stroke-width="7" stroke-linejoin="round"/>' +
     '<circle cx="50" cy="52" r="36" fill="#E8934A"/>' +
-    '<path d="M55 18 C56 12 59 7 65 2" fill="none" stroke="#2D7A4A" stroke-width="5" stroke-linecap="round"/>' +
-    '<path d="M59 10 C67 0 79 -2 87 4 C81 14 67 18 59 10 Z" fill="#2D7A4A"/>' +
+    '<path d="M54 20 C55 13 58 7 64 1" fill="none" stroke="#2D7A4A" stroke-width="5" stroke-linecap="round"/>' +
+    '<path d="M56 8 C66 -4 82 -6 90 2 C83 14 66 18 56 8 Z" fill="#2D7A4A"/>' +
     '</svg>');
   document.head.appendChild(favicon);
   /* Le voci puntano alle sezioni della homepage: dalle altre pagine
