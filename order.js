@@ -444,7 +444,12 @@
       box.innerHTML = basket.map(function (it, i) {
         return '<div class="basket-item">' +
           '<div><div class="bi-name">' + displayName(it) + '</div>' +
-          '<div class="bi-flavours">' + it.flavours.map(function (id) { return G.flavorById(id).name; }).join(' + ') + '</div>' +
+          /* Punti colore dei gusti anche nel basket (round 3 gelato-
+             first): il prodotto resta visibile fino al pagamento */
+          '<div class="bi-flavours">' + it.flavours.map(function (id) {
+            var fl = G.flavorById(id);
+            return '<span class="bk-dot ' + fl.sw + '" aria-hidden="true"></span>' + fl.name;
+          }).join(' + ') + '</div>' +
           '<div class="bi-qty">' +
             '<button class="qty-btn" data-i="' + i + '" data-d="-1" aria-label="Decrease">−</button>' +
             '<span>' + it.qty + '</span>' +

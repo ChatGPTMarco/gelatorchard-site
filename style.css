@@ -893,3 +893,12 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
 /* Riga sensoriale: voce umana → serif corsivo, mai mono */
 .fmt-sense{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--ink-soft);flex-grow:0!important}
 .price-sense{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-soft);margin-top:10px}
+
+/* --- Gelato-first, round 3 (14 ago 2026) --- */
+/* Nota di gusto nella tile: voce umana serif, sotto il nome. Anche
+   sulle tile grigie (la nostalgia è una leva, non un difetto). */
+.t-taste{font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.45;color:var(--ink-soft);padding:0 14px 2px}
+.tile .t-taste + .t-meta{padding-top:2px}
+/* Punto colore del gusto nelle righe del basket: il prodotto resta
+   in mano fino al pagamento (i ticket hanno già il loro tk-dot) */
+.bk-dot{display:inline-block;width:11px;height:11px;border:1px solid var(--ink);vertical-align:-1px;margin-right:6px}

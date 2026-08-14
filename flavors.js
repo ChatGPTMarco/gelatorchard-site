@@ -427,23 +427,26 @@
   };
 
   /* ---------- <FlavorPicker> ---------- */
+  /* taste: nota di gusto (round 3 gelato-first, ok founder 14 ago 2026)
+     — 3-6 parole sensoriali, en-GB, niente iperboli né provenienze
+     inventate. Mostrata nella tile sotto il nome (.t-taste). */
   var FLAVORS = {
     fruit: [
-      { id: 'strawberry',    name: 'Strawberry',    sw: 'sw-strawberry' },
-      { id: 'raspberry',     name: 'Raspberry',     sw: 'sw-raspberry' },
-      { id: 'cherry',        name: 'Cherry',        sw: 'sw-cherry' },
-      { id: 'blueberry',     name: 'Blueberry',     sw: 'sw-blueberry' },
-      { id: 'blackcurrant',  name: 'Blackcurrant',  sw: 'sw-blackcurrant' },
-      { id: 'victoria-plum', name: 'Victoria Plum', sw: 'sw-victoria-plum' },
-      { id: 'apple-pear',    name: 'Apple & Pear',  sw: 'sw-apple-pear' },
-      { id: 'quince',        name: 'Quince',        sw: 'sw-quince' },
-      { id: 'rhubarb',       name: 'Rhubarb',       sw: 'sw-rhubarb' }
+      { id: 'strawberry',    name: 'Strawberry',    sw: 'sw-strawberry',    taste: 'Jammy and bright, with a sharp edge.' },
+      { id: 'raspberry',     name: 'Raspberry',     sw: 'sw-raspberry',     taste: 'Sharper than it is sweet.' },
+      { id: 'cherry',        name: 'Cherry',        sw: 'sw-cherry',        taste: 'Dark stone-fruit depth, faintly almond.' },
+      { id: 'blueberry',     name: 'Blueberry',     sw: 'sw-blueberry',     taste: 'Mellow, violet, quietly perfumed.' },
+      { id: 'blackcurrant',  name: 'Blackcurrant',  sw: 'sw-blackcurrant',  taste: 'Loud, tart, unmistakably British.' },
+      { id: 'victoria-plum', name: 'Victoria Plum', sw: 'sw-victoria-plum', taste: 'Honeyed skin, sharp flesh.' },
+      { id: 'apple-pear',    name: 'Apple & Pear',  sw: 'sw-apple-pear',    taste: 'Orchard-crisp and gently floral.' },
+      { id: 'quince',        name: 'Quince',        sw: 'sw-quince',        taste: 'Slow-cooked amber: rose and apple.' },
+      { id: 'rhubarb',       name: 'Rhubarb',       sw: 'sw-rhubarb',       taste: 'Pink, brisk, custard’s best friend.' }
     ],
     classics: [
-      { id: 'chocolate',     name: 'Dark Chocolate', sw: 'sw-chocolate' },
-      { id: 'pistachio',     name: 'Pistachio',      sw: 'sw-pistachio' },
-      { id: 'stracciatella', name: 'Stracciatella',  sw: 'sw-stracciatella' },
-      { id: 'hazelnut',      name: 'Hazelnut',       sw: 'sw-hazelnut' }
+      { id: 'chocolate',     name: 'Dark Chocolate', sw: 'sw-chocolate',     taste: 'Dense, dark, barely sweet.' },
+      { id: 'pistachio',     name: 'Pistachio',      sw: 'sw-pistachio',     taste: 'Roasted, lightly salted, resolutely nutty.' },
+      { id: 'stracciatella', name: 'Stracciatella',  sw: 'sw-stracciatella', taste: 'Cold cream, snapped dark chocolate.' },
+      { id: 'hazelnut',      name: 'Hazelnut',       sw: 'sw-hazelnut',      taste: 'Warm roast, quiet and deep.' }
     ]
   };
   G.FLAVORS = FLAVORS;
@@ -473,6 +476,7 @@
         '<div class="swatch ' + f.sw + '"></div>' +
         '<span class="stamp">' + st.stampLabel + '</span>' +
         '<div class="t-name">' + f.name + '</div>' +
+        (f.taste ? '<div class="t-taste">' + f.taste + '</div>' : '') +
         '<div class="t-meta">' + meta + '</div>' +
         '<a class="t-link" href="app.html?fruit=' + f.id + '">Alert me when it returns →</a>' +
         '</div>';
@@ -493,6 +497,7 @@
         '<div class="swatch ' + f.sw + '"></div>' +
         '<span class="stamp">Sold out</span>' +
         '<div class="t-name">' + f.name + '</div>' +
+        (f.taste ? '<div class="t-taste">' + f.taste + '</div>' : '') +
         '<div class="t-meta">Sold out: more fruit on order, back soon</div>' +
         (bs ? '<a class="t-link" href="story.html?batch=' + bs.id + '">Full record #' + bs.id + ' →</a>' : '') +
         (st.always ? '' : '<a class="t-link" href="app.html?fruit=' + f.id + '">Alert me when it returns →</a>') +
@@ -525,6 +530,7 @@
       ' aria-label="' + f.name + ', ' + st.subtitle + '">' +
       '<div class="swatch ' + f.sw + '"></div>' +
       '<div class="t-name">' + f.name + '</div>' +
+      (f.taste ? '<div class="t-taste">' + f.taste + '</div>' : '') +
       '<div class="t-meta">' + st.subtitle + '</div>' +
       reveal +
       story +

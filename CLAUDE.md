@@ -221,6 +221,19 @@ INTERVENTI APPROVATI ("gelato-first") — FATTI il 14 ago 2026 (v=r16):
   che mangia, mai visi); (5) fascia foto tile 120→165px; (6) hero
   gradient più pieno (#F5DDD6) e card formato con tinta calda propria
   (nth-of-type); (7) righe sensoriali (sopra).
+- GELATO-FIRST ROUND 3 (14 ago 2026, "più memorabile e appetibile"):
+  (a) NOTE DI GUSTO per tutti i 13 gusti — campo taste in FLAVORS
+  (flavors.js), 3-6 parole sensoriali en-GB, renderizzato .t-taste
+  (serif corsivo) sotto il nome in TUTTI gli stati tile (anche grigie
+  e sold: la nostalgia è una leva). Nuovo copy approvato col mandato;
+  modificarle solo lì. (b) Punti colore .bk-dot nelle righe del basket
+  (order.js renderBasket) — il prodotto resta visibile al checkout;
+  i ticket avevano già tk-dot. (c) PESO FOTO DIMEZZATO (6.9MB→3.0MB):
+  foto-gusti/gelato a w=1000, format-* a w=900, viaggio a w=1200 —
+  ai prossimi download stock usare queste taglie, mai w=1600 per le
+  tile. (d) og:image hero-gelato.jpg ora TAGLIO ORIZZONTALE 1600×840
+  (fit=crop Pexels): le anteprime WhatsApp/social escono intere; se si
+  sostituisce il file mantenere ~1.91:1.
 - Video 15s e foto vere restano compiti del founder (non bloccanti ora).
 
 ## MIGRAZIONE STILE "IL REGISTRO" — APPROVATA (founder, 8 ago 2026)
