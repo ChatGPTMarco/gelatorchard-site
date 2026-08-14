@@ -3,6 +3,11 @@
    Capitolo 1 · Token e componenti globali
    ============================================================ */
 :root{
+  /* SITO LIGHT-ONLY (fix founder 14 ago 2026): senza questa
+     dichiarazione (qui + meta color-scheme in ogni <head>) il dark
+     mode forzato di Chrome/Samsung su Android inverte la carta e
+     ammazza foto e tinte calde. Mai rimuovere. */
+  color-scheme: only light;
   /* MIGRAZIONE "IL REGISTRO" — Tappa 1 (8 ago 2026): carta più calda,
      radius netti, bordi ink, monospace per i dati. Riferimento visivo
      vincolante: demo-registro.html. Copy congelato: qui solo pelle. */
