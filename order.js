@@ -328,6 +328,8 @@
         '<div class="price-line">£' + s.priceDelivery.toFixed(2) + ' delivered</div>' +
         '<p class="price-anchor">A London gelato bar charges <strong>£4.50–7.50 a scoop</strong>. ' +
         'Here a full 125g serving (two proper scoops) works out at <strong>£' + perServing + ' delivered</strong>, with the farmer’s story included.</p>' +
+        /* Riga sensoriale (passata gelato-first, ok founder 14 ago) */
+        '<p class="price-sense">Piped soft at the table: cones up, two flavours, everyone serves their own.</p>' +
         '<ul class="value-stack">' +
         '<li>' + s.bags + ' piping bags of 250g: ' + (s.grams >= 1000 ? (s.grams / 1000) + 'kg' : s.grams + 'g') +
           ' of real gelato, ' + servings + ' × 125g servings (two each)</li>' +

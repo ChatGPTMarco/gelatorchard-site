@@ -101,9 +101,23 @@ file con le foto vere dei gelati Gelatorchard a parità di nome.
 | assets/hero-gelato.jpg (SOSTITUITA) | 5061196 | vaschetta gelato fragola, og:image |
 | foto-gusti/viaggio/laboratorio.jpg (SOSTITUITA) | 12551947 | vaschette dall'alto (via le bande nere) |
 
+Round 2 (14 ago 2026, "applica tutti e sette") — foto nelle CARD FORMATO
+(#formats, cablate da photos.js) e persona che mangia nel Viaggio:
+
+| File | Origine | Nota |
+|---|---|---|
+| assets/format-cup.jpg | Pexels 5535554 (riuso tile fragola) | Cup |
+| assets/format-kit.jpg | riuso viaggio/confezione.jpg (box AI) | Kit — stessa avvertenza polistirolo |
+| assets/format-bag.jpg | Pexels 5061196 (riuso og:image) | Piping Bag (texture spatolata) |
+| assets/format-multipack.jpg | Pexels 13198346 | 3 coppette nel sacchetto kraft (bustine salsa con scritte minuscole, illeggibili alla taglia card) |
+| assets/format-tub.jpg | Pexels 11521706 (riuso tile nocciola) | Family Tub |
+| foto-gusti/viaggio/servito.jpg (SOSTITUITA di nuovo) | Pexels 29687845 | mano + coppetta kraft + cucchiaino di legno: "You eat it" ora ha una persona, senza viso riconoscibile |
+
 NB scartate in ricerca per marchi terzi visibili (mai usare): Pexels 22809621/
 22809619/22809618 e 22809606 ("Scoop A Cone"), 29269190 ("Sorbetto's"),
-5060890 ("Isle of Gelato"), 17260658 (cup brandizzata portoghese).
+5060890 ("Isle of Gelato"), 17260658 (cup brandizzata portoghese),
+23833884 (slogan sul cup, foto scura), 9227960 (coppetta con stampa
+infantile, fuori brand).
 NB il colore di quince/apple-pear/rhubarb è un'approssimazione da bozza: la
 cotogna cotta è ambra, mela-pera crema, rabarbaro rosa pallido — validare col
 gelato vero.

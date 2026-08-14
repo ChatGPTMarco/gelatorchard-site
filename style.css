@@ -148,7 +148,9 @@ section{padding:88px 0}
 /* casella di spunta del modulo (✕ = selezionata, come in demo) */
 .tile:not(.out)::before{content:"";position:absolute;top:8px;left:8px;z-index:2;width:22px;height:22px;background:#fff;border:1.5px solid var(--ink);font-family:var(--mono);font-weight:600;font-size:15px;line-height:19px;text-align:center;color:var(--green-deep)}
 .tile.selected::before{content:"✕"}
-.tile .swatch{height:120px;border-radius:0;border-bottom:1.5px solid var(--ink);position:relative;overflow:hidden}
+/* Gelato-first 14 ago: fascia foto più generosa (120→165px), il
+   gelato deve dominare la specimen card, non farci capolino */
+.tile .swatch{height:165px;border-radius:0;border-bottom:1.5px solid var(--ink);position:relative;overflow:hidden}
 .tile .swatch.has-photo{background-size:cover;background-position:center}
 .tile .t-name{font-family:var(--serif);font-weight:600;font-size:19px;padding:10px 14px 2px}
 .tile .t-meta{font-family:var(--mono);font-size:11px;color:var(--ink-soft);padding:2px 14px 12px;flex:1}
@@ -861,8 +863,9 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
    resta sotto (#proof e la lettera restano carta). Solo pelle:
    nessun markup toccato, i fondi agganciano gli id esistenti.
    ============================================================ */
-/* Hero: alba rosa-fragola che sfuma nella carta */
-.hero{background:linear-gradient(180deg,var(--warm-pink) 0%,rgba(247,232,228,0) 82%)}
+/* Hero: alba rosa-fragola che sfuma nella carta (14 ago: un filo più
+   piena — i fondi timidi non dicono "gelateria") */
+.hero{background:linear-gradient(180deg,#F5DDD6 0%,rgba(245,221,214,0) 82%)}
 /* Picker (home): lo schedario poggia su un fondo rosa gelato */
 #flavors{background:var(--warm-pink);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 /* Ruota stagionale: pistacchio pallido */
@@ -873,3 +876,20 @@ select.field-input{appearance:none;-webkit-appearance:none;background-image:line
    il contrasto scheda/fondo è il punto (specimen su tavolo caldo). */
 /* /order: lo stesso calore in testa al modulo d'ordine */
 #view-catalog{background:linear-gradient(180deg,var(--warm-pink) 0%,rgba(247,232,228,0) 46%)}
+
+/* --- Gelato-first, round 2 (14 ago 2026, "applica tutti e sette") --- */
+/* Foto prodotto nelle card formato: full-bleed sopra il contenuto,
+   riga ink di separazione come le specimen card del picker. Se la
+   foto manca lo slot sparisce da solo (photos.js non inserisce nulla). */
+.fmt-photo{position:relative;overflow:hidden;height:150px;margin:-28px -28px 6px;border-bottom:1.5px solid var(--ink);background:var(--bg)}
+.fmt-photo:empty{display:none}
+/* Ogni formato ha la tinta calda del suo contenuto: la card resta un
+   modulo bordato ink, ma il tavolo sotto è di gelateria */
+.formats-grid > .fmt:nth-of-type(1){background:var(--warm-pink)}
+.formats-grid > .fmt:nth-of-type(2){background:var(--warm-cream)}
+.formats-grid > .fmt:nth-of-type(3){background:var(--warm-plum)}
+.formats-grid > .fmt:nth-of-type(4){background:var(--warm-pistachio)}
+.formats-grid > .fmt:nth-of-type(5){background:var(--warm-pink)}
+/* Riga sensoriale: voce umana → serif corsivo, mai mono */
+.fmt-sense{font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--ink-soft);flex-grow:0!important}
+.price-sense{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-soft);margin-top:10px}

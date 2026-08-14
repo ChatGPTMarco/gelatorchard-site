@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=r21">
+<link rel="stylesheet" href="style.css?v=r22">
 </head>
 <body>
 
@@ -48,11 +48,14 @@
   <section class="hero">
     <div class="container">
       <span class="eyebrow reveal">No Powders. Just Fruit.</span>
-      <!-- Varianti headline da testare (Caples — 10.5.1):
+      <!-- HEADLINE GELATO-FIRST (approvata dal founder 14 ago 2026,
+           "applica tutti e sette"): si mangia in headline, la prova
+           16-vs-3 apre il sub. Varianti precedenti da testare:
+           A: "Your 'artisan' gelato has 16 ingredients. Ours has 3."
            B: "The Last 'Strawberry' Gelato You Bought Probably Never Met a Strawberry."
            C: "Read the Label on Your Usual Gelato. Then Read Ours." -->
-      <h1 class="h1 reveal" data-dur="slow">Your “artisan” gelato has<br><span class="green">16 ingredients. Ours has 3.</span></h1>
-      <p class="hero-sub reveal" data-dur="slow" data-delay="0.25">We read the labels so you don’t have to. Every Gelatorchard batch starts with a named British farmer, a recorded harvest hour, and a finished label of exactly three words: fruit, cane sugar, water. Cold, soft, and tasting of the field it grew in.</p>
+      <h1 class="h1 reveal" data-dur="slow">Strawberries picked Thursday.<br><span class="green">On your spoon Saturday.</span></h1>
+      <p class="hero-sub reveal" data-dur="slow" data-delay="0.25">Your “artisan” gelato has 16 ingredients. Ours has 3. We read the labels so you don’t have to: every Gelatorchard batch starts with a named British farmer, a recorded harvest hour, and a finished label of exactly three words: fruit, cane sugar, water. Cold, soft, and tasting of the field it grew in.</p>
       <!-- CRO (8 ago 2026): CTA primaria sul PERCORSO D'ORDINE (#flavors),
            riga di fiducia con soli claim reali sotto le CTA -->
       <div class="hero-ctas reveal" data-dur="slow" data-delay="0.45">
@@ -68,6 +71,25 @@
       <!-- Il hook "[N] UK Fruits" (conteggio live, home.js) ora fa da
            didascalia sotto il carosello e lancia il manifesto -->
       <div class="hero-hook reveal" id="harvest-hook"></div>
+    </div>
+  </section>
+
+  <!-- ============ 6→2. FLAVOR PICKER (10.6) — SPOSTATO PRIMA DEL
+       MANIFESTO (gelato-first, ok founder 14 ago 2026): la golosità
+       viene prima del rigore, il muro dei NOT non deve più essere la
+       prima cosa che si incontra scrollando. ============ -->
+  <section id="flavors">
+    <div class="container">
+      <div class="sec-head reveal">
+        <span class="eyebrow">Pick Your Flavour</span>
+        <h2 class="h2">If You Can Select It, It Was Picked This Season.<br>If It’s Grey, It’s Gone.</h2>
+        <p class="sec-sub">Tap a fruit and you’ll see who grew it. Two flavours fill a Gelato Kit. The grey tiles come back when their season does, and not one day before.</p>
+        <!-- Stato drop PRIMA della scelta (8 ago 2026): l'aspettativa
+             sui tempi si gestisce qui, non al checkout. Riempita da
+             howto.js via G.orderWindow. -->
+        <div class="drop-status" data-drop-status></div>
+      </div>
+      <div id="flavor-picker" class="reveal"></div>
     </div>
   </section>
 
@@ -148,22 +170,6 @@
     </div>
   </section>
 
-  <!-- ============ 6. FLAVOR PICKER (10.6) ============ -->
-  <section id="flavors">
-    <div class="container">
-      <div class="sec-head reveal">
-        <span class="eyebrow">Pick Your Flavour</span>
-        <h2 class="h2">If You Can Select It, It Was Picked This Season.<br>If It’s Grey, It’s Gone.</h2>
-        <p class="sec-sub">Tap a fruit and you’ll see who grew it. Two flavours fill a Gelato Kit. The grey tiles come back when their season does, and not one day before.</p>
-        <!-- Stato drop PRIMA della scelta (8 ago 2026): l'aspettativa
-             sui tempi si gestisce qui, non al checkout. Riempita da
-             howto.js via G.orderWindow. -->
-        <div class="drop-status" data-drop-status></div>
-      </div>
-      <div id="flavor-picker" class="reveal"></div>
-    </div>
-  </section>
-
   <!-- ============ 7. LETTERA DI MARCO (10.5.3) ============ -->
   <section id="letter">
     <div class="container">
@@ -216,25 +222,34 @@
       </div>
       <div class="formats-grid">
         <div class="card fmt reveal">
+          <!-- GELATO-FIRST 14 ago 2026: foto prodotto (stock, data-fake
+               via photos.js) + una riga sensoriale per card, approvate
+               dal founder ("applica tutti e sette") -->
+          <div class="fmt-photo" data-fmt="cup"></div>
           <span class="fmt-tag">For Sceptics</span>
           <h3>Cup</h3>
           <p>One flavour, one sitting, cup + cone. The cheapest possible way to check we’re telling the truth.</p>
+          <p class="fmt-sense">Spoon-soft in minutes, and the fruit hits before the cold does.</p>
           <div class="fmt-price">£3.50</div>
           <!-- CRO message match: ogni card apre /order sul SUO tab -->
           <a class="pill pill-ghost pill-sm" href="order.html?format=cup">Order</a>
         </div>
         <div class="card fmt featured reveal">
+          <div class="fmt-photo" data-fmt="kit"></div>
           <span class="fmt-tag">Most Popular</span>
           <h3>Gelato Kit</h3>
           <p>Sized by how many you are: 2, 3, 4 or 6 people, 250g a head (two proper 125g servings each), up to two flavours in piping bags. Cones, cups, wooden spoons and a dry-ice box included. A London gelato bar charges £4.50–7.50 a scoop; here a full serving is about £3.50, with the farmer’s name attached.</p>
           <!-- Prezzi dall'analisi costi (COSTI.md), SOLO delivery (E14) -->
+          <p class="fmt-sense">Piped soft at the table: cones up, two flavours, everyone serves their own.</p>
           <div class="fmt-price">£38 delivered for 4 · sizes from £25</div>
           <a class="pill pill-dark pill-sm" href="order.html">Order</a>
         </div>
         <div class="card fmt reveal">
+          <div class="fmt-photo" data-fmt="bag"></div>
           <span class="fmt-tag">One Flavour, No Ceremony</span>
           <h3>Piping Bag</h3>
           <p>250g of a single flavour, two proper servings, squeezed straight onto cone or cup. For people who already know exactly what they want.</p>
+          <p class="fmt-sense">Cold silk straight from the bag — no scoop, no bowl, no waiting.</p>
           <div class="fmt-price">from £6.50</div>
           <a class="pill pill-ghost pill-sm" href="order.html?format=bag">Order</a>
         </div>
@@ -242,16 +257,20 @@
              (founder, 8 ago sera): prima vivevano solo nei tab di
              /order. Descrizioni RIUSATE da FORMATS (order.js). -->
         <div class="card fmt reveal">
+          <div class="fmt-photo" data-fmt="multipack"></div>
           <span class="fmt-tag">The Family Taster</span>
           <h3>Multipack</h3>
           <p>4 cups of 125g, up to 4 flavours, one per cup.</p>
+          <p class="fmt-sense">Four colours of the season, lined up in one drawer of the freezer.</p>
           <div class="fmt-price">£12</div>
           <a class="pill pill-ghost pill-sm" href="order.html?format=multipack">Order</a>
         </div>
         <div class="card fmt reveal">
+          <div class="fmt-photo" data-fmt="tub"></div>
           <span class="fmt-tag">For Your Freezer</span>
           <h3>Family Tub</h3>
           <p>750g (about a litre): six 125g servings. One flavour, or two half-and-half.</p>
+          <p class="fmt-sense">Scoops like soft clay, and tastes of the punnet it started as.</p>
           <div class="fmt-price">£22</div>
           <a class="pill pill-ghost pill-sm" href="order.html?format=tub">Order</a>
         </div>
@@ -349,15 +368,15 @@
 </main>
 
 <footer id="site-footer"></footer>
-<script src="flavors.js?v=r21"></script>
-<script src="analytics.js?v=r21"></script>
-<script src="backend.js?v=r21"></script>
-<script src="calendar.js?v=r21"></script>
-<script src="alerts.js?v=r21"></script>
-<script src="home.js?v=r21"></script>
-<script src="howto.js?v=r21"></script> <!-- pillola stato drop al picker -->
-<script src="photos.js?v=r21"></script>
-<script src="motion.js?v=r21"></script>
-<script src="site.js?v=r21"></script>
+<script src="flavors.js?v=r22"></script>
+<script src="analytics.js?v=r22"></script>
+<script src="backend.js?v=r22"></script>
+<script src="calendar.js?v=r22"></script>
+<script src="alerts.js?v=r22"></script>
+<script src="home.js?v=r22"></script>
+<script src="howto.js?v=r22"></script> <!-- pillola stato drop al picker -->
+<script src="photos.js?v=r22"></script>
+<script src="motion.js?v=r22"></script>
+<script src="site.js?v=r22"></script>
 </body>
 </html>

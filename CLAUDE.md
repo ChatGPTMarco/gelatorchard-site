@@ -201,10 +201,26 @@ INTERVENTI APPROVATI ("gelato-first") — FATTI il 14 ago 2026 (v=r16):
 - La migrazione "Il Registro" (sotto) va fatta nella variante CALDA:
   "documento con dentro il gelato", mai bolletta. Se rigore e golosità
   confliggono, vince la golosità sopra la piega e il rigore sotto.
-- COPY RESTA CONGELATO. Unica eccezione APPROVATA dal founder (14 ago
-  2026, opzione A): riga sensoriale AGGIUNTA in coda al sub hero —
-  "Cold, soft, and tasting of the field it grew in." Nessuna parola
-  preesistente cancellata.
+- COPY RESTA CONGELATO. Eccezioni APPROVATE dal founder il 14 ago 2026:
+  (a) riga sensoriale in coda al sub hero ("Cold, soft, and tasting of
+  the field it grew in.", opzione A); (b) col mandato "applica tutti e
+  sette" (critica gelato-first round 2): H1 → "Strawberries picked
+  Thursday. / On your spoon Saturday." con la vecchia headline 16-vs-3
+  spostata IN APERTURA del sub (nessuna parola persa, varianti storiche
+  nel commento HTML); passata sensoriale = 5 righe .fmt-sense nelle
+  card formato in home + 1 riga .price-sense nel Kit su /order (serif
+  corsivo, mai mono). Nessun'altra parola toccata.
+- GELATO-FIRST ROUND 2 (14 ago 2026, tutti e 7 i punti della critica
+  applicati col mandato del founder): (1) foto prodotto nelle card
+  formato di #formats via photos.js (assets/format-*.jpg, FAKE-DATA);
+  (2) headline che mangia (sopra); (3) ORDINE HOME CAMBIATO: #flavors
+  ora è la sezione 2, SUBITO dopo l'hero e PRIMA del manifesto NOT/IS
+  (la golosità prima del rigore) — ordine attuale: hero, flavors,
+  manifesto(+labels), season, letter, journey, formats, proof, cta;
+  (4) viaggio/servito.jpg = mano+coppetta kraft+cucchiaino (persona
+  che mangia, mai visi); (5) fascia foto tile 120→165px; (6) hero
+  gradient più pieno (#F5DDD6) e card formato con tinta calda propria
+  (nth-of-type); (7) righe sensoriali (sopra).
 - Video 15s e foto vere restano compiti del founder (non bloccanti ora).
 
 ## MIGRAZIONE STILE "IL REGISTRO" — APPROVATA (founder, 8 ago 2026)

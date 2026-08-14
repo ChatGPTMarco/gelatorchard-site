@@ -20,6 +20,15 @@
        con foto per-gusto da foto-gusti/ — niente più foto stock qui.
        hero-gelato.jpg resta SOLO come og:image (vedi FAKE-DATA.md). */
     { sel: '.unbox-visual', file: 'unboxing-box.jpg',  alt: 'Kraft box packaging (stock photo, placeholder)' },
+    /* GELATO-FIRST 14 ago 2026: foto prodotto nelle card formato di
+       #formats — la sezione dei soldi non resta mai senza cibo.
+       Stock/riusi elencati in FAKE-DATA.md, sostituire con gli scatti
+       veri dei formati a parità di nome. */
+    { sel: '.fmt-photo[data-fmt="cup"]',       file: 'format-cup.jpg',       alt: 'Cup of strawberry gelato (stock photo, placeholder)' },
+    { sel: '.fmt-photo[data-fmt="kit"]',       file: 'format-kit.jpg',       alt: 'Gelato Kit box (AI draft image, placeholder)' },
+    { sel: '.fmt-photo[data-fmt="bag"]',       file: 'format-bag.jpg',       alt: 'Soft piped gelato (stock photo, placeholder)' },
+    { sel: '.fmt-photo[data-fmt="multipack"]', file: 'format-multipack.jpg', alt: 'Cups of gelato in a kraft bag (stock photo, placeholder)' },
+    { sel: '.fmt-photo[data-fmt="tub"]',       file: 'format-tub.jpg',       alt: 'Tray of hazelnut gelato (stock photo, placeholder)' },
     /* story page: i due riquadri sono renderizzati da story.js, in ordine */
     { sel: '.story-chapter[data-chapter="1"] .sc-photo', file: 'farmer-field.jpg', alt: 'Farmer in a strawberry field (stock photo, placeholder)' },
     { sel: '.story-chapter[data-chapter="2"] .sc-photo', file: 'lab-gelato.jpg',   alt: 'Artisan gelato lab (stock photo, placeholder)' }
